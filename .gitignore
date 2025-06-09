@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# GLB files (3D models) - usually large files that should be stored in Firebase/CDN
+*.glb
+*.gltf
+public/glb/*.glb
+public/glb/*.gltf
