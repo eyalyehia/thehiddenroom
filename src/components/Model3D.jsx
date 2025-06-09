@@ -3,6 +3,9 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useControls, folder } from 'leva';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '../firebase';
 
 // מפת שמות בעברית לאובייקטים בסצנה
 const ELEMENTS_MAP = {
@@ -48,7 +51,7 @@ function logSceneObjects(scene) {
 /**
  * Loading Screen Component displayed while the model is loading.
  */
-function LoadingScreen() {
+function LoadingScreen({ progress = 0 }) {
   return (
     <div style={{
       position: 'absolute',
@@ -58,6 +61,7 @@ function LoadingScreen() {
       height: '100%',
       background: '#1a1611',
       display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       color: 'white',
@@ -65,9 +69,28 @@ function LoadingScreen() {
       fontFamily: 'Arial, sans-serif',
       zIndex: 9999
     }}>
-      <div>
+      <div style={{ textAlign: 'center' }}>
         <div>Loading...</div>
         <div style={{ marginTop: '20px', fontSize: '16px' }}>אנא המתן</div>
+        <div style={{ 
+          marginTop: '30px', 
+          width: '300px', 
+          height: '4px', 
+          backgroundColor: '#333', 
+          borderRadius: '2px',
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            width: `${progress}%`,
+            height: '100%',
+            backgroundColor: '#4CAF50',
+            transition: 'width 0.3s ease',
+            borderRadius: '2px'
+          }}></div>
+        </div>
+        <div style={{ marginTop: '10px', fontSize: '14px' }}>
+          {Math.round(progress)}%
+        </div>
       </div>
     </div>
   );
@@ -346,9 +369,12 @@ const INTERACTIVE_OBJECTS = [
 /**
  * Main 3D Model component that loads the GLTF model and handles interactions.
  * @param {Function} setHovered - Callback to set the currently hovered object.
+ * @param {Function} setModelLoaded - Callback to set model loading state.
+ * @param {Function} setLoadingProgress - Callback to set loading progress.
  */
-function Model({ setHovered }) {
-  const { scene } = useGLTF('/glb/3-test.glb');
+function Model({ setHovered, setModelLoaded, setLoadingProgress }) {
+  const [modelUrl, setModelUrl] = useState(null);
+  const [gltfScene, setGltfScene] = useState(null);
   const interactiveObjects = useRef({});
   const modelRef = useRef();
   const rotationState = useRef({
@@ -357,6 +383,96 @@ function Model({ setHovered }) {
     arrowUp: false,
     arrowDown: false
   });
+
+  // טעינת המודל מ-Firebase Storage
+  useEffect(() => {
+    // קבלת ה-URL של הקובץ מ-Firebase Storage
+    const getModelUrl = async () => {
+      try {
+        const modelRef = ref(storage, 'dor1000.glb');
+        const url = await getDownloadURL(modelRef);
+        console.log("התקבל URL למודל:", url);
+        setModelUrl(url);
+      } catch (error) {
+        console.error("שגיאה בטעינת המודל:", error.code, error.message);
+      }
+    };
+    
+    getModelUrl();
+  }, []);
+
+  useEffect(() => {
+    if (modelUrl) {
+      try {
+        console.log("התקבל URL למודל:", modelUrl);
+        const loader = new GLTFLoader();
+        
+        loader.load(
+          modelUrl,
+          // onLoad
+          (gltf) => {
+            console.log("GLTF נטען בהצלחה:", gltf);
+            
+            // מציאת המקלדת וצביעה בשחור
+            gltf.scene.traverse((object) => {
+              // מחפש אובייקטים בשם Cube.041 או Keyboard Genius
+              if (object.isMesh && 
+                  (object.name === "Cube.041" || 
+                  object.name === "Keyboard Genius" || 
+                  object.name.toLowerCase().includes("keyboard"))) {
+                console.log("מצאתי את המקלדת!", object.name);
+                
+                // יצירת חומר שחור חדש
+                const blackMaterial = new THREE.MeshStandardMaterial({
+                  color: 0x000000,  // שחור
+                  roughness: 0.5,
+                  metalness: 0.8
+                });
+                
+                // החלפת החומר של המקלדת לשחור
+                if (Array.isArray(object.material)) {
+                  // אם יש מספר חומרים, מחליף את כולם לשחור
+                  object.material = Array(object.material.length).fill(blackMaterial);
+                } else {
+                  // אחרת מחליף את החומר היחיד
+                  object.material = blackMaterial;
+                }
+                
+                console.log("צבעתי את המקלדת בשחור!", object.name);
+              }
+            });
+            
+            setGltfScene(gltf.scene);
+            // עדכון הפרוגרס ל-100% כשהמודל נטען
+            if (setLoadingProgress) setLoadingProgress(100);
+            if (setModelLoaded) setModelLoaded(true);
+          },
+          // onProgress
+          (progress) => {
+            if (progress.lengthComputable) {
+              const percent = (progress.loaded / progress.total * 100);
+              console.log(`טעינה: ${percent.toFixed(2)}%`);
+              // עדכון הפרוגרס בהתאם לטעינה האמיתית
+              if (setLoadingProgress) setLoadingProgress(Math.min(98, percent));
+            } else {
+              // אם אין מידע על הגודל, נעדכן בצורה חלקה
+              if (setLoadingProgress) setLoadingProgress(prev => Math.min(90, prev + 1));
+            }
+          },
+          // onError
+          (error) => {
+            console.error("שגיאה בטעינת GLTF:", error);
+            if (setModelLoaded) setModelLoaded(false);
+          }
+        );
+        
+      } catch (error) {
+        console.log(error)
+        console.error("שגיאה בטעינת המודל:", error.code, error.message);
+        if (setModelLoaded) setModelLoaded(false);
+      }
+    }
+  }, [modelUrl, setLoadingProgress, setModelLoaded]);
 
   // Initial rotation values for resetting the model
   const initialRotation = [
@@ -494,21 +610,56 @@ function Model({ setHovered }) {
 
   // Effect to process the loaded scene, identify interactive objects, and apply enhancements
   useEffect(() => {
-    logSceneObjects(scene); // Log all objects in the scene
+    if (!gltfScene) return; // אם המודל עדיין לא נטען, לא נמשיך
+    
+    logSceneObjects(gltfScene); // Log all objects in the scene
     interactiveObjects.current = {};
 
     // Optimize and identify objects
-    scene.traverse((object) => {
+    gltfScene.traverse((object) => {
       if (object.isMesh) {
         // Performance optimizations
         object.castShadow = false; // Disable unnecessary shadows
         object.receiveShadow = false;
         object.frustumCulled = true; // Cull objects outside view frustum
 
+        // Specific treatment for keyboard - make it black
+        if (object.name.includes("Keyboard") || 
+            object.name.toLowerCase().includes("keyboard") || 
+            object.name.includes("keyboard") ||
+            (object.parent && object.parent.name && 
+             (object.parent.name.includes("Keyboard") || 
+              object.parent.name.toLowerCase().includes("keyboard") ||
+              object.parent.name.includes("keyboard")))) {
+          
+          const kbMaterials = Array.isArray(object.material) ? object.material : [object.material];
+          kbMaterials.forEach(mat => {
+            if (mat) {
+              // Set material color to black
+              mat.color = new THREE.Color(0x000000);
+              mat.emissive = new THREE.Color(0x000000);
+              mat.roughness = 0.3;
+              mat.metalness = 0.6; // Slightly more metallic for keyboard
+            }
+          });
+          console.log(`צבע מקלדת בשחור: ${object.name}`);
+        }
+
         // Improve material appearance to be more luminous
         const materials = Array.isArray(object.material) ? object.material : [object.material];
         materials.forEach(mat => {
           if (mat && (mat.isMeshStandardMaterial || mat.isMeshPhongMaterial)) {
+            // Skip if this is a keyboard element (already handled above)
+            if (object.name.includes("Keyboard") || 
+                object.name.toLowerCase().includes("keyboard") ||
+                object.name.includes("keyboard") ||
+                (object.parent && object.parent.name && 
+                 (object.parent.name.includes("Keyboard") || 
+                  object.parent.name.toLowerCase().includes("keyboard") ||
+                  object.parent.name.includes("keyboard")))) {
+              return;
+            }
+            
             mat.roughness = 0.3; // Less roughness = more shine
             mat.metalness = 0.1; // Slight metallic feel
             mat.envMapIntensity = 1.5; // Stronger environmental reflection
@@ -578,7 +729,7 @@ function Model({ setHovered }) {
         }
       }
     });
-  }, [scene]); // Re-run effect if the scene object changes
+  }, [gltfScene]); // Re-run effect if the gltfScene object changes
 
   /**
    * Handles pointer over (hover) event on interactive objects.
@@ -704,10 +855,15 @@ function Model({ setHovered }) {
     -0.1 * (Math.PI / 180)
   ];
 
+  // אם המודל עדיין לא נטען, לא נציג כלום
+  if (!gltfScene) {
+    return null;
+  }
+
   return (
     <primitive
       ref={modelRef}
-      object={scene}
+      object={gltfScene}
       scale={fixedScale}
       position={fixedPosition}
       rotation={fixedRotation}
@@ -1004,6 +1160,8 @@ function LightingControls() {
 const Model3D = () => { // Renamed from App to Model3D as requested
   const [hovered, setHovered] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [modelLoaded, setModelLoaded] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   
   // הגדרות תאורה עם Leva
   const lightSettings = LightingControls();
@@ -1026,18 +1184,21 @@ const Model3D = () => { // Renamed from App to Model3D as requested
     return () => window.removeEventListener('keydown', preventDefaultArrows);
   }, []);
 
-  // Handle loading state with a minimum display time for the loading screen
+  // Handle loading state - hide loading screen when model is loaded
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Show loading screen for at least 2 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
+    if (modelLoaded && loadingProgress >= 100) {
+      // המתן רגע קצר נוסף אחרי שהמודל נטען לחלוטין
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [modelLoaded, loadingProgress]);
 
   return (
     <div id="model-container" style={{ width: '100vw', height: '100vh', margin: 0, padding: 0, overflow: 'hidden' }}>
-      {isLoading && <LoadingScreen />}
+      {isLoading && <LoadingScreen progress={loadingProgress} />}
 
       <Canvas
         style={{ background: '#1a1611' }}
@@ -1289,7 +1450,11 @@ const Model3D = () => { // Renamed from App to Model3D as requested
 
         {/* Suspense for loading the GLTF model */}
         <Suspense fallback={null}>
-          <Model setHovered={setHovered} />
+          <Model 
+            setHovered={setHovered} 
+            setModelLoaded={setModelLoaded}
+            setLoadingProgress={setLoadingProgress}
+          />
         </Suspense>
 
         {/* Camera controls */}
