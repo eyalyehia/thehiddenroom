@@ -960,7 +960,7 @@ function LightingControls() {
     
     // תאורת טלוויזיה
     'תאורת טלוויזיה': folder({
-      'עוצמת טלוויזיה': { value: 2.8, min: 0, max: 10, step: 0.1 },
+      'עוצמת טלוויזיה': { value: 0, min: 0, max: 10, step: 0.1 },
       'צבע טלוויזיה': { value: '#3498db' },
       'מיקום X': { value: -2, min: -5, max: 2, step: 0.1 },
       'מיקום Y': { value: 4.8, min: 1, max: 8, step: 0.1 },
@@ -1102,7 +1102,7 @@ const Model3D = () => { // Renamed from App to Model3D as requested
         />
 
         {/* Strong additional light for the desk area from above */}
-        <spotLight
+        {/* <spotLight
           position={[
             lightSettings['מיקום X עליון'],
             lightSettings['מיקום Y עליון'],
@@ -1115,28 +1115,28 @@ const Model3D = () => { // Renamed from App to Model3D as requested
           target-position={[0, 2.5, 2.5]}
           distance={lightSettings['מרחק השפעה עליון']}
           decay={1.1}
-        />
+        /> */}
 
         {/* Additional light for the desk from the left */}
-        <pointLight
+        {/* <pointLight
           position={[-1.5, 4, 2.8]}
           intensity={4.8}
           color="#fff176"
           distance={8}
           decay={1.3}
-        />
+        /> */}
 
         {/* Additional light for the desk from the right */}
-        <pointLight
+        {/* <pointLight
           position={[1.5, 4, 2.8]}
           intensity={4.5}
           color="#ffcc02"
           distance={8}
           decay={1.4}
-        />
+        /> */}
 
         {/* Light for the lamp and keyboard area */}
-        <spotLight
+        {/* <spotLight
           position={[-1, 4.2, 3.5]}
           angle={Math.PI / 5}
           penumbra={0.1}
@@ -1145,10 +1145,10 @@ const Model3D = () => { // Renamed from App to Model3D as requested
           target-position={[-0.8, 2.8, 2.8]}
           distance={6}
           decay={1.2}
-        />
+        /> */}
 
         {/* Light from the TV - strong */}
-        <pointLight
+        {/* <pointLight
           position={[
             lightSettings['מיקום X'], 
             lightSettings['מיקום Y'], 
@@ -1158,10 +1158,10 @@ const Model3D = () => { // Renamed from App to Model3D as requested
           color={lightSettings['צבע טלוויזיה']}
           distance={lightSettings['מרחק השפעה']}
           decay={2}
-        />
+        /> */}
 
         {/* Light for the left poster - significantly increased */}
-        <spotLight
+        {/* <spotLight
           position={[
             lightSettings['מיקום פוסטר שמאל X'],
             lightSettings['מיקום פוסטר שמאל Y'],
@@ -1174,7 +1174,7 @@ const Model3D = () => { // Renamed from App to Model3D as requested
           target-position={[-2.5, 3, 0]}
           distance={12}
           decay={1.0}
-        />
+        /> */}
 
         {/* Focused and very strong light for the left poster */}
         <spotLight
@@ -1276,13 +1276,13 @@ const Model3D = () => { // Renamed from App to Model3D as requested
         />
 
         {/* Light for the chair */}
-        <pointLight
+        {/* <pointLight
           position={[0.5, 1.5, 1.5]}
           intensity={2.0}
           color="#9b59b6"
           distance={7}
           decay={1.5}
-        />
+        /> */}
 
         {/* Environment map for realistic reflections */}
         <Environment preset="night" />
