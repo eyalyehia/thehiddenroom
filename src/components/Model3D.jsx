@@ -397,7 +397,7 @@ function Model({ setHovered, setModelLoaded, setLoadingProgress }) {
         console.error("שגיאה בטעינת המודל:", error.code, error.message);
       }
     };
-    
+    // 
     getModelUrl();
   }, []);
 
