@@ -19,32 +19,41 @@ export const applyHighlightEffect = (obj) => {
     const addGlowToMaterial = (material) => {
       if (!material) return;
       
-      // צבע בסיס שחור עם עוצמה גבוהה יותר
-      material.emissive = new THREE.Color(0x333333);
-      material.emissiveIntensity = 1.5;
+      // צבע בסיס כהה מאוד שעדיין נראה
+      material.emissive = new THREE.Color(0x111111);
+      material.emissiveIntensity = 2.5;
+      
+      // גם נשנה את הצבע הבסיסי של החומר לכהה יותר
+      if (material.color) {
+        material.color.multiplyScalar(0.3); // הכהה את הצבע הבסיסי
+      }
       
       // טיפול מיוחד בפוסטר שמאלי (Plane012)
       if (obj.name === "Plane012") {
-        material.emissiveIntensity = 2.0;
-        material.emissive = new THREE.Color(0x444444);
+        material.emissiveIntensity = 3.0;
+        material.emissive = new THREE.Color(0x111111);
+        if (material.color) material.color.multiplyScalar(0.2);
       }
       
       // טיפול מיוחד באובייקטי טלוויזיה
       if (obj.userData.name === "TV" || obj.name.includes("TV")) {
-        material.emissive = new THREE.Color(0x555555);
-        material.emissiveIntensity = 2.0;
+        material.emissive = new THREE.Color(0x111111);
+        material.emissiveIntensity = 3.0;
+        if (material.color) material.color.multiplyScalar(0.2);
       }
       
       // טיפול מיוחד לחטיף Cube008
       if (obj.name === "Cube008" || obj.name.includes("Cube008")) {
-        material.emissive = new THREE.Color(0x444444);
-        material.emissiveIntensity = 2.2;
+        material.emissive = new THREE.Color(0x111111);
+        material.emissiveIntensity = 3.5;
+        if (material.color) material.color.multiplyScalar(0.1);
       }
       
       // טיפול מיוחד לבסיס (ג'ויסטיק)
       if (obj.name === "base" || obj.name.includes("base")) {
-        material.emissive = new THREE.Color(0x444444);
-        material.emissiveIntensity = 2.5;
+        material.emissive = new THREE.Color(0x111111);
+        material.emissiveIntensity = 3.5;
+        if (material.color) material.color.multiplyScalar(0.1);
       }
       
              // טיפול מיוחד ליומן
@@ -53,24 +62,27 @@ export const applyHighlightEffect = (obj) => {
            obj.name === "Plane013" || obj.name.includes("diary") || 
            obj.name.includes("notebook") || obj.name.includes("journal") ||
            obj.userData.name === "Diary") {
-         material.emissive = new THREE.Color(0x666666);
-         material.emissiveIntensity = 1.8;
+         material.emissive = new THREE.Color(0x111111);
+         material.emissiveIntensity = 3.0;
+         if (material.color) material.color.multiplyScalar(0.2);
        }
        
        // טיפול מיוחד לספר עם משקפיים
        if (obj.name === "Book with glasses" || obj.name.includes("book with glasses") ||
            obj.name.toLowerCase().includes("book") || obj.name.toLowerCase().includes("glasses") ||
            obj.userData.name === "Book") {
-         material.emissive = new THREE.Color(0x555555);
-         material.emissiveIntensity = 2.0;
+         material.emissive = new THREE.Color(0x111111);
+         material.emissiveIntensity = 3.0;
+         if (material.color) material.color.multiplyScalar(0.2);
        }
       
       // טיפול מיוחד לשקית חטיף
       if (obj.userData.name === "TostitosBag" || obj.name === "Cube008" ||
           obj.name.toLowerCase().includes("snack") || obj.name.toLowerCase().includes("bag") ||
           obj.name.toLowerCase().includes("tostitos")) {
-        material.emissive = new THREE.Color(0x555555);
-        material.emissiveIntensity = 2.0;
+        material.emissive = new THREE.Color(0x111111);
+        material.emissiveIntensity = 3.0;
+        if (material.color) material.color.multiplyScalar(0.2);
       }
       
       // טיפול מיוחד למסך מחשב
@@ -78,8 +90,9 @@ export const applyHighlightEffect = (obj) => {
           obj.name.toLowerCase().includes("computer") || 
           obj.name.toLowerCase().includes("monitor") ||
           obj.name.toLowerCase().includes("screen")) {
-        material.emissive = new THREE.Color(0x777777);
-        material.emissiveIntensity = 1.8;
+        material.emissive = new THREE.Color(0x111111);
+        material.emissiveIntensity = 3.0;
+        if (material.color) material.color.multiplyScalar(0.2);
       }
     };
     
