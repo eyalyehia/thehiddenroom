@@ -100,7 +100,7 @@ export const applyHighlightEffect = (obj) => {
       }, frameInterval);
     }
   } catch (error) {
-    console.error(`שגיאה בהפעלת אפקט על אובייקט ${obj.name}:`, error);
+    // console.error(`שגיאה בהפעלת אפקט על אובייקט ${obj.name}:`, error);
   }
 };
 
@@ -129,6 +129,6 @@ export const removeHighlightEffect = (obj) => {
       obj.userData.pulseAnimation = null;
     }
   } catch (error) {
-    console.error(`שגיאה בהסרת אפקט מאובייקט ${obj.name}:`, error);
+    // console.error(`שגיאה בהסרת אפקט מאובייקט ${obj.name}:`, error);
   }
 }; 

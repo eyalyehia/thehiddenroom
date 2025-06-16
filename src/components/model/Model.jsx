@@ -37,7 +37,7 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
         const url = await getModelUrl();
         setModelUrl(url);
       } catch (error) {
-        console.error("שגיאה בטעינת URL המודל:", error);
+        // console.error("שגיאה בטעינת URL המודל:", error);
         if (setModelLoaded) setModelLoaded(false);
       }
     };
@@ -59,7 +59,7 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
     };
 
     const handleError = (error) => {
-      console.error("שגיאה בטעינת המודל:", error);
+      // console.error("שגיאה בטעינת המודל:", error);
       if (setModelLoaded) setModelLoaded(false);
     };
 
@@ -84,7 +84,7 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
     handleModelRotation(modelRef, rotationState);
   });
 
-  // עיבוד הסצנה וזיהוי אובייקטים אינטראקטיביים
+  // עיבוד הסצנה וזיהוי אובייקטים אינטראקטיביים עם אופטימיזציות ביצועים
   useEffect(() => {
     if (!gltfScene) return;
     
@@ -92,7 +92,9 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
 
     gltfScene.traverse((object) => {
       if (object.isMesh) {
-        console.log(`מצאתי mesh: "${object.name}"`);
+        // console.log(`מצאתי mesh: "${object.name}"`);
+        
+        // אופטימיזציות ביצועים
         object.castShadow = false;
         object.receiveShadow = false;
         object.frustumCulled = true;
@@ -111,12 +113,12 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
         
         // לוג מיוחד לספר עם משקפיים
         if (object.name && (object.name.toLowerCase().includes("book") || object.name.toLowerCase().includes("glasses"))) {
-          console.log(`נמצא אובייקט שעשוי להיות ספר: "${object.name}", isInteractive: ${isInteractive}`);
+          // console.log(`נמצא אובייקט שעשוי להיות ספר: "${object.name}", isInteractive: ${isInteractive}`);
         }
 
         if (isInteractive) {
           const { key, description } = getInteractiveObjectInfo(object);
-          console.log(`אובייקט אינטראקטיבי נמצא: "${object.name}" -> ${key} (${description})`);
+          // console.log(`אובייקט אינטראקטיבי נמצא: "${object.name}" -> ${key} (${description})`);
 
           object.userData.name = key;
           object.userData.description = description;

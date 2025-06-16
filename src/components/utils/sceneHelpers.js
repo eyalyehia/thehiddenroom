@@ -9,7 +9,7 @@ export const handleKeyboardColoring = (object) => {
       (object.name === "Cube.041" || 
       object.name === "Keyboard Genius" || 
       object.name.toLowerCase().includes("keyboard"))) {
-    console.log("מצאתי את המקלדת!", object.name);
+    // console.log("מצאתי את המקלדת!", object.name);
     
     const blackMaterial = new THREE.MeshStandardMaterial({
       color: 0x000000,
@@ -23,7 +23,7 @@ export const handleKeyboardColoring = (object) => {
       object.material = blackMaterial;
     }
     
-    console.log("צבעתי את המקלדת בשחור!", object.name);
+    // console.log("צבעתי את המקלדת בשחור!", object.name);
   }
 };
 
@@ -49,7 +49,7 @@ export const handleKeyboardInScene = (object) => {
         mat.metalness = 0.6;
       }
     });
-    console.log(`צבע מקלדת בשחור: ${object.name}`);
+    // console.log(`צבע מקלדת בשחור: ${object.name}`);
   }
 };
 
