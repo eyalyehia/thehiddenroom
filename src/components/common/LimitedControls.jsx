@@ -19,7 +19,7 @@ function LimitedControls() {
     <OrbitControls
       ref={controlsRef}
       minDistance={8}
-      maxDistance={18}
+      maxDistance={14}
       minPolarAngle={Math.PI / 2.5}
       maxPolarAngle={Math.PI / 2.2}
       minAzimuthAngle={-Math.PI / 12}
@@ -30,6 +30,8 @@ function LimitedControls() {
       autoRotate={false}
       enableDamping
       dampingFactor={0.07}
+      zoomSpeed={0.7} // האטת מהירות הזום
+     
     />
   );
 }
