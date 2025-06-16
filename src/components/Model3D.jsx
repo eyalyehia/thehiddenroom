@@ -25,7 +25,7 @@ const Model3D = () => {
   const [hovered, setHovered] = useState(null);
   
   // שימוש ב-hooks מותאמים אישית
-  const { isLoading, modelLoaded, loadingProgress, setModelLoaded, setLoadingProgress } = useLoadingState();
+  const { isLoading, loadingProgress, setModelLoaded, setLoadingProgress } = useLoadingState();
   useKeyboardPreventDefault();
   
   // הגדרות תאורה
