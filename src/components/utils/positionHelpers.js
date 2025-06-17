@@ -11,7 +11,7 @@ export const MODEL_POSITION = [-1.8, -0.1, 1.3];
 
 // Camera settings
 export const CAMERA_SETTINGS = {
-  position: [1, 2.2, 14],
+  position: [3, 3, 14],
   fov: 45
 };
 
