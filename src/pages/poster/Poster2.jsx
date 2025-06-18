@@ -52,19 +52,25 @@ const Poster2 = () => {
       </button>
       
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
-      <div className="w-full h-screen flex items-center justify-center p-8">
-        <div className="w-full max-w-7xl grid grid-cols-4 grid-rows-2 gap-6 h-full max-h-[85vh]">
+      <div className="w-full h-screen flex items-center justify-center p-4">
+        <div className="w-full max-w-[1000px] grid grid-cols-4 grid-rows-2 gap-4 h-full max-h-[85vh] px-4">
           {posters.map((poster) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors w-full h-full relative overflow-hidden"
+              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors relative overflow-hidden flex items-center justify-center"
+              style={{ 
+                aspectRatio: '332/490',
+                width: '100%',
+                maxWidth: '200px',
+                height: 'auto'
+              }}
               onClick={() => setSelectedPoster(poster.id)}
             >
               <img
                 src={poster.src}
                 alt={poster.alt}
-                className="w-full h-full object-cover absolute inset-0"
-                style={{ objectPosition: 'center' }}
+                className="h-full w-full object-cover"
+                style={{ maxHeight: '100%', maxWidth: '100%' }}
               />
             </div>
           ))}
