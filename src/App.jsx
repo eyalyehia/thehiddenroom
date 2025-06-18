@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Model3D from './components/Model3D'
+import HomePage3d from './pages/HomePage3d'
 import Poster from './pages/poster/Poster'
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/poster" element={<Poster />} />
-        <Route path="/" element={<Model3D />} />
+        <Route path="/" element={<HomePage3d />} />
       </Routes>
     </Router>
   )
