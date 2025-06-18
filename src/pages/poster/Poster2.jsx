@@ -57,7 +57,7 @@ const Poster2 = () => {
           {posters.map((poster) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors relative overflow-hidden flex items-center justify-center"
+              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-all duration-300 hover:scale-110 hover:z-10 relative overflow-visible flex items-center justify-center"
               style={{ 
                 aspectRatio: '332/490',
                 width: '100%',
@@ -69,7 +69,7 @@ const Poster2 = () => {
               <img
                 src={poster.src}
                 alt={poster.alt}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300"
                 style={{ maxHeight: '100%', maxWidth: '100%' }}
               />
             </div>
@@ -137,15 +137,17 @@ const Poster2 = () => {
         )}
       </button>
 
-      {/* תצוגה מוגדלת של פוסטר נבחר */}
+      {/* תצוגה מוגדלת של פוסטר נבחר בלחיצה */}
       {selectedPoster && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50" onClick={() => setSelectedPoster(null)}>
-          <div className="relative max-w-2xl max-h-[80vh] bg-gray-800 p-4" onClick={e => e.stopPropagation()}>
-            <div className="w-full h-full flex items-center justify-center text-gray-500 text-xl">
-              Poster {selectedPoster}
-            </div>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-8" onClick={() => setSelectedPoster(null)}>
+          <div className="relative w-full max-w-2xl h-auto bg-transparent" onClick={e => e.stopPropagation()}>
+            <img
+              src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
+              alt={`Poster ${selectedPoster}`}
+              className="w-full h-auto object-contain max-h-[70vh]"
+            />
             <button 
-              className="absolute top-2 right-2 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-lg"
+              className="absolute top-2 right-2 w-8 h-8 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center text-lg transition-colors"
               onClick={() => setSelectedPoster(null)}
             >
               ×
