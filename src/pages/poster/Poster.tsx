@@ -139,12 +139,23 @@ const Poster = () => {
 
       {/* תצוגה מוגדלת של פוסטר נבחר בלחיצה */}
       {selectedPoster && (
-        <div className={`fixed inset-0 bg-black/80 z-50 p-8 ${selectedPoster === 6 ? 'flex items-end justify-center pb-16' : 'flex items-center justify-center'}`} onClick={() => setSelectedPoster(null)}>
+        <div
+          className={`fixed inset-0 bg-black/80 z-50 p-8 ${selectedPoster === 6 ? 'flex items-end justify-center' : selectedPoster === 8 ? 'flex items-start justify-center' : 'flex items-center justify-center'}`}
+          style={
+            selectedPoster === 6
+              ? { paddingBottom: '14rem' }
+              : selectedPoster === 8
+                ? { paddingTop: '30rem' }
+                : {}
+          }
+          onClick={() => setSelectedPoster(null)}
+        >
           <div className={`relative w-full h-auto bg-transparent ${selectedPoster === 6 ? 'max-w-3xl' : 'max-w-2xl'}`} onClick={e => e.stopPropagation()}>
             <img
               src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
               alt={`Poster ${selectedPoster}`}
-              className={`w-full h-auto object-contain ${selectedPoster === 6 ? 'max-h-[20vh]' : 'max-h-[70vh]'}`}
+              className={`w-full h-auto object-contain ${selectedPoster === 6 ? 'max-h-[20vh]' : selectedPoster === 8 ? 'max-h-[10vh] max-w-[470px]' : 'max-h-[70vh]'}`}
+              style={selectedPoster === 8 ? { marginLeft: '84px' } : {}}
             />
             <button 
               className="absolute top-2 right-2 w-8 h-8 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center text-lg transition-colors"
