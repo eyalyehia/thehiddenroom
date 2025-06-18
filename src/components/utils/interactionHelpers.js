@@ -81,7 +81,11 @@ export const handleClick = (e) => {
   
   if (obj && obj.userData.isInteractive) {
     const name = obj.userData.name;
-    if (name === "Poster" || obj.name === "Plane012") {
+    
+    if (name === "Poster" || obj.name === "Plane012" || obj.name === "Plane014" ||
+        obj.name.toLowerCase().includes("poster") || 
+        obj.name.toLowerCase().includes("frame") ||
+        obj.name.toLowerCase().includes("picture")) {
       window.location.href = '/poster';
       return;
     }

@@ -107,7 +107,7 @@ export const getInteractiveObjectInfo = (object) => {
   const objectName = object.name.toLowerCase();
   const parentName = object.parent ? object.parent.name.toLowerCase() : "";
 
-  if (object.name === "Poster" || object.name.includes("Poster") || object.name === "Plane012") {
+  if (object.name === "Poster" || object.name.includes("Poster") || object.name === "Plane012" || object.name === "Plane014") {
     key = "Poster";
     description = "פוסטר";
   } else if (object.name === "TV" || object.name === "TV_1" || object.name === "TV_2" || 
@@ -126,7 +126,7 @@ export const getInteractiveObjectInfo = (object) => {
   } else if (object.name === "Cube300_1" || object.name === "Cube.300" || 
              object.name === "Cube300" || objectName.includes("cube300") ||
              object.name === "Plane013" || objectName.includes("diary") || 
-             objectName.includes("notebook") || objectName.includes("journal")) {
+             object.name.includes("notebook") || objectName.includes("journal")) {
     key = "Diary";
     description = "יומן / פנקס על השולחן";
   } else if (object.name === "Book with glasses" || objectName.includes("book with glasses") ||

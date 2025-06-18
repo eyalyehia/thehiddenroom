@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Poster = () => {
-  const [selectedPoster, setSelectedPoster] = useState<number | null>(null);
+const Poster2 = () => {
+  const [selectedPoster, setSelectedPoster] = useState(null);
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
@@ -20,9 +20,9 @@ const Poster = () => {
     navigate('/');
   };
 
-  // פונקציה למעבר לעמוד השני של הפוסטרים
+  // פונקציה למעבר חזרה לעמוד הראשון של הפוסטרים
   const handleNextPage = () => {
-    navigate('/poster2');
+    navigate('/poster');
   };
 
   // פונקציה למעבר לעמוד היומן
@@ -107,23 +107,23 @@ const Poster = () => {
             <path d="M28.1152 24.1211H38.7486" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
             <path d="M7.46789 7H1V37H48V7H41.1009" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
-                 )}
-       </button>
+        )}
+      </button>
 
-      {/* כפתור חץ לעמוד השני */}
+      {/* כפתור חץ לעמוד הראשון */}
       <button
-        className="fixed right-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50"
-        aria-label="Next Page"
+        className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50"
+        aria-label="Previous Page"
         onClick={handleNextPage}
         onMouseEnter={() => setIsHoveringArrowButton(true)}
         onMouseLeave={() => setIsHoveringArrowButton(false)}
       >
         {isHoveringArrowButton ? (
-          <svg width="41" height="61" viewBox="0 0 41 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="41" height="61" viewBox="0 0 41 61" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'scaleX(-1)' }}>
             <path d="M10.1597 2L39 30.4696L10.1597 59L2 50.9516L22.6728 30.538L2 10.0484L10.1597 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         ) : (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'scaleX(-1)' }}>
             <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         )}
@@ -149,4 +149,4 @@ const Poster = () => {
   );
 };
 
-export default Poster; 
+export default Poster2; 

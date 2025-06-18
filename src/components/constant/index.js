@@ -4,6 +4,7 @@ export const INTERACTIVE_OBJECTS = [
   "TV", "TV_1", "TV_2", // הטלוויזיה
   "Plane002_1", // הטלוויזיה השנייה
   "Plane012", // הפוסטר השמאלי
+  "Plane014", // הפוסטר הימני
   "Cube008", // החטיף
   "base", // הג'ויסטיק
   "Plane013", // יומן
