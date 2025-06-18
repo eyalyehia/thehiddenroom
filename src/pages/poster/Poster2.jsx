@@ -8,11 +8,11 @@ const Poster2 = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const navigate = useNavigate();
 
-  // רשימת 8 פוסטרים ריקים בינתיים
+  // רשימת הפוסטרים 9-16
   const posters = Array.from({ length: 8 }, (_, index) => ({
-    id: index + 1,
-    src: '', // יתמלא אחר כך
-    alt: `Poster ${index + 1}`
+    id: index + 9, // מתחיל מ-9
+    src: `/src/pages/poster/pictures/regular/${(index + 9).toString().padStart(2, '0')}.jpg`,
+    alt: `Poster ${index + 9}`
   }));
 
   // פונקציה לחזרה לעמוד הראשי
@@ -54,16 +54,18 @@ const Poster2 = () => {
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-8">
         <div className="w-full max-w-7xl grid grid-cols-4 grid-rows-2 gap-6 h-full max-h-[85vh]">
-          {posters.map((poster, index) => (
+          {posters.map((poster) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors w-full h-full"
+              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors w-full h-full relative overflow-hidden"
               onClick={() => setSelectedPoster(poster.id)}
             >
-              {/* מסגרת ריקה בינתיים */}
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                Poster {poster.id}
-              </div>
+              <img
+                src={poster.src}
+                alt={poster.alt}
+                className="w-full h-full object-cover absolute inset-0"
+                style={{ objectPosition: 'center' }}
+              />
             </div>
           ))}
         </div>
@@ -149,4 +151,4 @@ const Poster2 = () => {
   );
 };
 
-export default Poster2; 
+export default Poster2;

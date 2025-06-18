@@ -8,10 +8,10 @@ const Poster = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const navigate = useNavigate();
 
-  // רשימת 8 פוסטרים ריקים בינתיים
+  // רשימת הפוסטרים עם נתיבים מעודכנים ותיקון לתמונה 04.webp
   const posters = Array.from({ length: 8 }, (_, index) => ({
     id: index + 1,
-    src: '', // יתמלא אחר כך
+    src: `/src/pages/poster/pictures/regular/${(index + 1).toString().padStart(2, '0')}${index + 1 === 4 ? '.webp' : '.jpg'}`,
     alt: `Poster ${index + 1}`
   }));
 
@@ -57,13 +57,15 @@ const Poster = () => {
           {posters.map((poster, index) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors w-full h-full"
+              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors w-full h-full relative overflow-hidden"
               onClick={() => setSelectedPoster(poster.id)}
             >
-              {/* מסגרת ריקה בינתיים */}
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                Poster {poster.id}
-              </div>
+              <img
+                src={poster.src}
+                alt={poster.alt}
+                className="w-full h-full object-cover absolute inset-0"
+                style={{ objectPosition: 'center' }}
+              />
             </div>
           ))}
         </div>
@@ -149,4 +151,4 @@ const Poster = () => {
   );
 };
 
-export default Poster; 
+export default Poster;
