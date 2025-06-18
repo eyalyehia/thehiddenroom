@@ -11,7 +11,7 @@ const Poster2 = () => {
   // רשימת הפוסטרים 9-16
   const posters = Array.from({ length: 8 }, (_, index) => ({
     id: index + 9, // מתחיל מ-9
-    src: `/src/pages/poster/pictures/regular/${(index + 9).toString().padStart(2, '0')}.jpg`,
+    src: `/poster/pictures/regular/${(index + 9).toString().padStart(2, '0')}.jpg`,
     alt: `Poster ${index + 9}`
   }));
 

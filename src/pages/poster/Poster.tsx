@@ -11,7 +11,7 @@ const Poster = () => {
   // רשימת הפוסטרים עם נתיבים מעודכנים ותיקון לתמונה 04.webp
   const posters = Array.from({ length: 8 }, (_, index) => ({
     id: index + 1,
-    src: `/src/pages/poster/pictures/regular/${(index + 1).toString().padStart(2, '0')}${index + 1 === 4 ? '.webp' : '.jpg'}`,
+    src: `/poster/pictures/regular/${(index + 1).toString().padStart(2, '0')}${index + 1 === 4 ? '.webp' : '.jpg'}`,
     alt: `Poster ${index + 1}`
   }));
 
