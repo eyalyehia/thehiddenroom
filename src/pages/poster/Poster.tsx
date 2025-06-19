@@ -1,19 +1,121 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Poster = () => {
+  const [hoveredPoster, setHoveredPoster] = useState<number | null>(null);
   const [selectedPoster, setSelectedPoster] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const navigate = useNavigate();
+
+  // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises: Promise<unknown>[] = [];
+      for (let i = 1; i <= 8; i++) {
+        const imagePromise = new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = `/poster/pictures/zoomIn/${i.toString().padStart(2, '0')}.png`;
+        });
+        imagePromises.push(imagePromise);
+      }
+      
+      try {
+        await Promise.all(imagePromises);
+        setImagesLoaded(true);
+      } catch (error) {
+        console.warn('Some images failed to preload:', error);
+        setImagesLoaded(true); // עדיין נמשיך אפילו אם חלק נכשל
+      }
+    };
+    
+    preloadImages();
+  }, []);
 
   // רשימת הפוסטרים עם נתיבים מעודכנים ותיקון לתמונה 04.webp
   const posters = Array.from({ length: 8 }, (_, index) => ({
     id: index + 1,
     src: `/poster/pictures/regular/${(index + 1).toString().padStart(2, '0')}${index + 1 === 4 ? '.webp' : '.jpg'}`,
-    alt: `Poster ${index + 1}`
+    alt: `Poster ${index + 1}`,
+    // הגדרת אזורי הגדלה לכל פוסטר (באחוזים מהתמונה)
+    hotspots: getHotspotsForPoster(index + 1)
   }));
+
+  // 🎛️ מרכז שליטה על זום עבור כל פוסטר
+  // כאן תוכל לשלוט על כל פרמטר של הזום לכל תמונה
+  function getPosterZoomConfig(posterId: number) {
+    const configs = {
+      1: { // The Silence of the Lambs 🦋
+        // 📍 מיקום האזור האקטיבי על התמונה (באחוזים)
+        hotspot: { left: 37, top: 43, width: 25, height: 15 },
+        // 📏 גודל התמונה המוגדלת (ב-px או tailwind classes)
+        zoomSize: "w-15", // שנה ל: w-32, w-48, w-64, w-80, w-96 
+        // 📐 גובה התמונה המוגדלת (ב-px או tailwind classes)
+                 zoomHeight: "h-20", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-64, h-80, h-96, h-auto
+        // 📌 מיקום התמונה המוגדלת ביחס לעכבר
+        zoomOffset: { x: -35, y: -42 }
+      },
+      2: { // פוסטר 2
+        hotspot: { left: 50, top: 30, width: 20, height: 15 },
+        zoomSize: "w-20",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -35, y: -42 }
+      },
+      3: { // פוסטר 3
+        hotspot: { left: 35, top: 20, width: 30, height: 15 },
+        zoomSize: "w-15",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -25, y: -20 }
+      },
+      4: { // פוסטר 4
+        hotspot: { left: 40, top: 5, width: 10, height: 20 },
+        zoomSize: "w-20",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -25, y: -30 }
+      },
+      5: { // פוסטר 5
+        hotspot: { left: 5, top:70, width: 20, height: 10 },
+        zoomSize: "w-15",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -20, y: -50 }
+      },
+      6: { // פוסטר 6
+        hotspot: { left: 40, top: 85, width: 20, height: 15 },
+        zoomSize: "w-20",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -35, y: 5 }
+      },
+      7: { // פוסטר 7
+        hotspot: { left: 2, top: 70, width: 20, height: 15 },
+        zoomSize: "w-15",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -35, y: -15 }
+      },
+      8: { // פוסטר 8
+        hotspot: { left: 40, top: 48, width: 15, height: 15 },
+        zoomSize: "w-48",
+        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
+        zoomOffset: { x: -60, y: -5 }
+      }
+    };
+
+    return configs[posterId] || {
+      hotspot: { left: 40, top: 40, width: 20, height: 20 },
+      zoomSize: "w-48",
+      zoomHeight: "h-auto",
+      zoomOffset: { x: 20, y: -100 }
+    };
+  }
+
+  // פונקציה להגדרת אזורי ההגדלה לכל פוסטר
+  function getHotspotsForPoster(posterId: number) {
+    return [getPosterZoomConfig(posterId).hotspot];
+  }
 
   // פונקציה לחזרה לעמוד הראשי
   const handleClose = () => {
@@ -28,6 +130,28 @@ const Poster = () => {
   // פונקציה למעבר לעמוד היומן
   const handleNotebookClick = () => {
     navigate('/notebook');
+  };
+
+  // פונקציה לטיפול בהעברת עכבר על אזור הגדלה - משופרת
+  const handleHotspotEnter = (posterId: number, event: React.MouseEvent) => {
+    if (imagesLoaded) {
+      setHoveredPoster(posterId);
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    }
+  };
+
+  const handleHotspotLeave = () => {
+    setHoveredPoster(null);
+  };
+
+  // פונקציה מהירה לעדכון מיקום עכבר
+  const handleMouseMove = (event: React.MouseEvent) => {
+    setMousePosition({ x: event.clientX, y: event.clientY });
+  };
+
+  // פונקציה לטיפול בלחיצה על אזור הגדלה - פתיחת דיאלוג מלא
+  const handleHotspotClick = (posterId: number) => {
+    setSelectedPoster(posterId);
   };
 
   return (
@@ -64,14 +188,52 @@ const Poster = () => {
                 maxWidth: '200px',
                 height: 'auto'
               }}
-              onClick={() => setSelectedPoster(poster.id)}
             >
-              <img
-                src={poster.src}
-                alt={poster.alt}
-                className="h-full w-full object-cover transition-transform duration-300"
-                style={{ maxHeight: '100%', maxWidth: '100%' }}
-              />
+              <div className="relative w-full h-full">
+                <img
+                  src={poster.src}
+                  alt={poster.alt}
+                  className="h-full w-full object-cover transition-transform duration-300"
+                  style={{ maxHeight: '100%', maxWidth: '100%' }}
+                />
+                {/* 🎯 מדד חזותי - מסגרת המראה את האזור האקטיבי */}
+                {poster.hotspots.map((hotspot, hotspotIndex) => (
+                  <div
+                    key={`visual-${hotspotIndex}`}
+                    className="absolute border-2 border-red-500 border-dashed bg-red-500/10 pointer-events-none opacity-50 hover:opacity-80 transition-opacity"
+                    style={{
+                      left: `${hotspot.left}%`,
+                      top: `${hotspot.top}%`,
+                      width: `${hotspot.width}%`,
+                      height: `${hotspot.height}%`,
+                    }}
+                    title={`זום אזור ${poster.id}`}
+                  >
+                    {/* טקסט מזהה */}
+                    <div className="absolute -top-6 left-0 text-red-500 text-xs font-bold bg-black/70 px-1 rounded">
+                      זום #{poster.id}
+                    </div>
+                  </div>
+                ))}
+
+                {/* אזורי הגדלה - האזור האקטיבי בפועל */}
+                {poster.hotspots.map((hotspot, hotspotIndex) => (
+                  <div
+                    key={hotspotIndex}
+                    className="absolute cursor-pointer"
+                    style={{
+                      left: `${hotspot.left}%`,
+                      top: `${hotspot.top}%`,
+                      width: `${hotspot.width}%`,
+                      height: `${hotspot.height}%`,
+                    }}
+                    onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
+                    onMouseLeave={handleHotspotLeave}
+                    onMouseMove={handleMouseMove}
+                    onClick={() => handleHotspotClick(poster.id)}
+                  />
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -137,9 +299,29 @@ const Poster = () => {
         )}
       </button>
 
-      {/* תצוגה מוגדלת של פוסטר נבחר בלחיצה */}
+      {/* תצוגה מוגדלת נקודתית של פוסטר בהעברת עכבר */}
+      {hoveredPoster && imagesLoaded && (
+        <div 
+          className="fixed z-50 pointer-events-none"
+          style={{
+            left: mousePosition.x + getPosterZoomConfig(hoveredPoster).zoomOffset.x,
+            top: mousePosition.y + getPosterZoomConfig(hoveredPoster).zoomOffset.y,
+            transform: 'translate(0, 0)',
+            willChange: 'transform'
+          }}
+        >
+          <img
+            src={`/poster/pictures/zoomIn/${hoveredPoster.toString().padStart(2, '0')}.png`}
+            alt={`Poster ${hoveredPoster}`}
+            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white rounded-lg shadow-2xl bg-black/90`}
+            style={{ willChange: 'transform' }}
+          />
+        </div>
+      )}
+
+      {/* 🖼️ דיאלוג מלא לתצוגת פוסטר בלחיצה */}
       {selectedPoster && (
-        <div
+        <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${selectedPoster === 6 ? 'flex items-end justify-center' : selectedPoster === 8 ? 'flex items-start justify-center' : 'flex items-center justify-center'}`}
           style={
             selectedPoster === 6
@@ -154,7 +336,7 @@ const Poster = () => {
             <img
               src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
               alt={`Poster ${selectedPoster}`}
-              className={`w-full h-auto object-contain ${selectedPoster === 6 ? 'max-h-[20vh]' : selectedPoster === 8 ? 'max-h-[10vh] max-w-[470px]' : 'max-h-[70vh]'}`}
+              className={`w-full h-auto object-cover ${selectedPoster === 6 ? 'max-h-[20vh]' : selectedPoster === 8 ? 'max-h-[10vh] max-w-[470px]' : 'max-h-[70vh]'} border border-white rounded-lg shadow-2xl`}
               style={selectedPoster === 8 ? { marginLeft: '84px' } : {}}
             />
             <button 
