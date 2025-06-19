@@ -50,57 +50,53 @@ const Poster2 = () => {
   // כאן תוכל לשלוט על כל פרמטר של הזום לכל תמונה
   function getPosterZoomConfig(posterId) {
     const configs = {
-      9: { // פוסטר 9
-        // 📍 מיקום האזור האקטיבי על התמונה (באחוזים)
+      9: {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
-        // 📏 גודל התמונה המוגדלת (ב-px או tailwind classes)
-        zoomSize: "w-20", // שנה ל: w-32, w-48, w-64, w-80, w-96 
-        // 📐 גובה התמונה המוגדלת (ב-px או tailwind classes)
-        zoomHeight: "h-10", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        // 📌 מיקום התמונה המוגדלת ביחס לעכבר
-        zoomOffset: { x: -20, y: -5 }
+        zoomSize: "w-20",
+        zoomHeight: "h-9",
+        zoomOffset: { x: -85, y: -4 }
       },
-      10: { // פוסטר 10
+      10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
         zoomSize: "w-15",
-        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -20, y: -50 }
+        zoomHeight: "h-auto",
+        zoomOffset: { x: -55, y: -9 }
       },
-      11: { // פוסטר 11
+      11: {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
         zoomSize: "w-13",
-        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -25, y: -20 }
+        zoomHeight: "h-15",
+        zoomOffset: { x: -55, y: -10 }
       },
-      12: { // פוסטר 12
+      12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
-        zoomSize: "w-15",
-        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -25, y: -25 }
+        zoomSize: "w-12",
+        zoomHeight: "h-15",
+        zoomOffset: { x: -52, y: -15 }
       },
-      13: { // פוסטר 13
+      13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
         zoomSize: "w-15",
-        zoomHeight: "h-15", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -25, y: -35 }
+        zoomHeight: "h-15",
+        zoomOffset: { x: -55, y: -35 }
       },
-      14: { // פוסטר 14
+      14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
         zoomSize: "w-25",
-        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -30, y: -20 }
+        zoomHeight: "h-auto",
+        zoomOffset: { x: -75, y: -15 }
       },
-      15: { // פוסטר 15
+      15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
-        zoomSize: "w-15",
-        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -30, y: -20 }
+        zoomSize: "w-20",
+        zoomHeight: "h-20",
+        zoomOffset: { x: -65, y: -5 }
       },
-      16: { // פוסטר 16
+      16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
         zoomSize: "w-25",
-        zoomHeight: "h-auto", // שנה ל: h-16, h-20, h-24, h-32, h-40, h-48, h-auto
-        zoomOffset: { x: -62, y: -70 }
+        zoomHeight: "h-18",
+        zoomOffset: { x: -108, y: -7 }
       }
     };
 
@@ -136,17 +132,17 @@ const Poster2 = () => {
   const handleHotspotEnter = (posterId, event) => {
     if (imagesLoaded) {
       setHoveredPoster(posterId);
-      setMousePosition({ x: event.clientX, y: event.clientY });
+      // מיקום קבוע במקום לעקוב אחרי העכבר
+      const rect = event.currentTarget.getBoundingClientRect();
+      setMousePosition({ 
+        x: rect.right + 10, // מימין לתמונה
+        y: rect.top // באותו גובה של התמונה
+      });
     }
   };
 
   const handleHotspotLeave = () => {
     setHoveredPoster(null);
-  };
-
-  // פונקציה מהירה לעדכון מיקום עכבר
-  const handleMouseMove = (event) => {
-    setMousePosition({ x: event.clientX, y: event.clientY });
   };
 
   // פונקציה לטיפול בלחיצה על אזור הגדלה - פתיחת דיאלוג מלא
@@ -196,8 +192,8 @@ const Poster2 = () => {
                   className="h-full w-full object-cover transition-transform duration-300"
                   style={{ maxHeight: '100%', maxWidth: '100%' }}
                 />
-                {/* 🎯 מדד חזותי - מסגרת המראה את האזור האקטיבי */}
-                {poster.hotspots.map((hotspot, hotspotIndex) => (
+{/* 🎯 מדד חזותי - מסגרת המראה את האזור האקטיבי */}
+                {/* {poster.hotspots.map((hotspot, hotspotIndex) => (
                   <div
                     key={`visual-${hotspotIndex}`}
                     className="absolute border-2 border-red-500 border-dashed bg-red-500/10 pointer-events-none opacity-50 hover:opacity-80 transition-opacity"
@@ -209,12 +205,11 @@ const Poster2 = () => {
                     }}
                     title={`זום אזור ${poster.id}`}
                   >
-                    {/* טקסט מזהה */}
                     <div className="absolute -top-6 left-0 text-red-500 text-xs font-bold bg-black/70 px-1 rounded">
                       זום #{poster.id}
                     </div>
                   </div>
-                ))}
+                ))} */}
 
                 {/* אזורי הגדלה - האזור האקטיבי בפועל */}
                 {poster.hotspots.map((hotspot, hotspotIndex) => (
@@ -229,7 +224,6 @@ const Poster2 = () => {
                     }}
                     onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
                     onMouseLeave={handleHotspotLeave}
-                    onMouseMove={handleMouseMove}
                     onClick={() => handleHotspotClick(poster.id)}
                   />
                 ))}
