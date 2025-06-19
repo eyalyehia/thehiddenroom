@@ -9,16 +9,22 @@ const Poster = () => {
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [imageCache, setImageCache] = useState<{ [key: number]: HTMLImageElement }>({});
   const navigate = useNavigate();
 
-  // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר
+  // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר עם cache
   useEffect(() => {
     const preloadImages = async () => {
       const imagePromises: Promise<unknown>[] = [];
+      const cache: { [key: number]: HTMLImageElement } = {};
+      
       for (let i = 1; i <= 8; i++) {
         const imagePromise = new Promise((resolve, reject) => {
           const img = new Image();
-          img.onload = resolve;
+          img.onload = () => {
+            cache[i] = img;
+            resolve(img);
+          };
           img.onerror = reject;
           img.src = `/poster/pictures/zoomIn/${i.toString().padStart(2, '0')}.png`;
         });
@@ -27,10 +33,11 @@ const Poster = () => {
       
       try {
         await Promise.all(imagePromises);
+        setImageCache(cache);
         setImagesLoaded(true);
       } catch (error) {
         console.warn('Some images failed to preload:', error);
-        setImagesLoaded(true); // עדיין נמשיך אפילו אם חלק נכשל
+        setImagesLoaded(true);
       }
     };
     
@@ -170,6 +177,13 @@ const Poster = () => {
           </svg>
         )}
       </button>
+
+      {/* Loading indicator */}
+      {!imagesLoaded && (
+        <div className="fixed top-6 left-6 text-white text-sm opacity-70 z-50">
+          טוען תמונות...
+        </div>
+      )}
       
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
@@ -342,6 +356,27 @@ const Poster = () => {
           </div>
         </div>
       )}
+
+      {/* 🔄 Preload נסתר של כל תמונות הזום */}
+      <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+        {Array.from({ length: 8 }, (_, i) => (
+          <img
+            key={`preload-${i + 1}`}
+            src={`/poster/pictures/zoomIn/${(i + 1).toString().padStart(2, '0')}.png`}
+            alt={`Preload ${i + 1}`}
+            style={{ width: '1px', height: '1px' }}
+            onLoad={() => {
+              if (!imagesLoaded) {
+                const allLoaded = Array.from({ length: 8 }, (_, idx) => {
+                  const img = document.querySelector(`img[src="/poster/pictures/zoomIn/${(idx + 1).toString().padStart(2, '0')}.png"]`) as HTMLImageElement;
+                  return img && img.complete;
+                }).every(Boolean);
+                if (allLoaded) setImagesLoaded(true);
+              }
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -9,16 +9,22 @@ const Poster2 = () => {
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [_imageCache, setImageCache] = useState({});
   const navigate = useNavigate();
 
-  // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר
+  // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר עם cache
   useEffect(() => {
     const preloadImages = async () => {
       const imagePromises = [];
+      const cache = {};
+      
       for (let i = 9; i <= 16; i++) {
         const imagePromise = new Promise((resolve, reject) => {
           const img = new Image();
-          img.onload = resolve;
+          img.onload = () => {
+            cache[i] = img;
+            resolve(img);
+          };
           img.onerror = reject;
           img.src = `/poster/pictures/zoomIn/${i.toString().padStart(2, '0')}.png`;
         });
@@ -27,10 +33,11 @@ const Poster2 = () => {
       
       try {
         await Promise.all(imagePromises);
+        setImageCache(cache);
         setImagesLoaded(true);
       } catch (error) {
         console.warn('Some images failed to preload:', error);
-        setImagesLoaded(true); // עדיין נמשיך אפילו אם חלק נכשל
+        setImagesLoaded(true);
       }
     };
     
@@ -329,6 +336,34 @@ const Poster2 = () => {
               ×
             </button>
           </div>
+        </div>
+      )}
+
+      {/* 🔄 Preload נסתר של כל תמונות הזום */}
+      <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+        {Array.from({ length: 8 }, (_, i) => (
+          <img
+            key={`preload-${i + 9}`}
+            src={`/poster/pictures/zoomIn/${(i + 9).toString().padStart(2, '0')}.png`}
+            alt={`Preload ${i + 9}`}
+            style={{ width: '1px', height: '1px' }}
+            onLoad={() => {
+              if (!imagesLoaded) {
+                const allLoaded = Array.from({ length: 8 }, (_, idx) => {
+                  const img = document.querySelector(`img[src="/poster/pictures/zoomIn/${(idx + 9).toString().padStart(2, '0')}.png"]`);
+                  return img && img.complete;
+                }).every(Boolean);
+                if (allLoaded) setImagesLoaded(true);
+              }
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Loading indicator */}
+      {!imagesLoaded && (
+        <div className="fixed top-6 left-6 text-white text-sm opacity-70 z-50">
+          טוען תמונות...
         </div>
       )}
     </div>
