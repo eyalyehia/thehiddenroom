@@ -9,20 +9,22 @@ const Poster = () => {
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [imageCache, setImageCache] = useState<{ [key: number]: HTMLImageElement }>({});
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [imageElements, setImageElements] = useState<{[key: number]: HTMLImageElement}>({});
   const navigate = useNavigate();
 
   // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר עם cache
   useEffect(() => {
     const preloadImages = async () => {
       const imagePromises: Promise<unknown>[] = [];
-      const cache: { [key: number]: HTMLImageElement } = {};
+      const imageCache: {[key: number]: HTMLImageElement} = {};
       
       for (let i = 1; i <= 8; i++) {
         const imagePromise = new Promise((resolve, reject) => {
           const img = new Image();
           img.onload = () => {
-            cache[i] = img;
+            imageCache[i] = img;
+            setLoadedImages(prev => new Set([...prev, i]));
             resolve(img);
           };
           img.onerror = reject;
@@ -33,7 +35,7 @@ const Poster = () => {
       
       try {
         await Promise.all(imagePromises);
-        setImageCache(cache);
+        setImageElements(imageCache);
         setImagesLoaded(true);
       } catch (error) {
         console.warn('Some images failed to preload:', error);
@@ -99,12 +101,12 @@ const Poster = () => {
         zoomHeight: "h-17",
         zoomOffset: { x: -50, y: -5 }
       },
-      8: {
-        hotspot: { left: 40, top: 48, width: 15, height: 15 },
-        zoomSize: "w-48",
-        zoomHeight: "h-auto",
-        zoomOffset: { x: -89, y: 10 }
-      }
+              8: {
+          hotspot: { left: 40, top: 48, width: 15, height: 15 },
+          zoomSize: "w-48",
+          zoomHeight: "h-auto",
+          zoomOffset: { x: -113, y: 10 }
+        }
     };
 
     return configs[posterId] || {
@@ -137,13 +139,12 @@ const Poster = () => {
 
   // פונקציה לטיפול בהעברת עכבר על אזור הגדלה - משופרת
   const handleHotspotEnter = (posterId: number, event: React.MouseEvent) => {
-    if (imagesLoaded) {
+    if (imagesLoaded && loadedImages.has(posterId)) {
       setHoveredPoster(posterId);
-      // מיקום קבוע במקום לעקוב אחרי העכבר
       const rect = event.currentTarget.getBoundingClientRect();
       setMousePosition({ 
-        x: rect.right + 10, // מימין לתמונה
-        y: rect.top // באותו גובה של התמונה
+        x: rect.right + 10,
+        y: rect.top
       });
     }
   };
@@ -177,13 +178,6 @@ const Poster = () => {
           </svg>
         )}
       </button>
-
-      {/* Loading indicator */}
-      {!imagesLoaded && (
-        <div className="fixed top-6 left-6 text-white text-sm opacity-70 z-50">
-          טוען תמונות...
-        </div>
-      )}
       
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
@@ -191,7 +185,7 @@ const Poster = () => {
           {posters.map((poster, index) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer hover:border-gray-400 transition-all duration-300 hover:scale-110 hover:z-10 relative overflow-visible flex items-center justify-center"
+              className="bg-gray-800 border border-gray-600 cursor-pointer relative overflow-visible flex items-center justify-center"
               style={{ 
                 aspectRatio: '332/490',
                 width: '100%',
@@ -308,21 +302,25 @@ const Poster = () => {
       </button>
 
       {/* תצוגה מוגדלת נקודתית של פוסטר בהעברת עכבר */}
-      {hoveredPoster && imagesLoaded && (
+      {hoveredPoster && imagesLoaded && loadedImages.has(hoveredPoster) && (
         <div 
-          className="fixed z-50 pointer-events-none"
+          className="fixed z-50 pointer-events-none opacity-0 animate-fadeIn"
           style={{
             left: mousePosition.x + getPosterZoomConfig(hoveredPoster).zoomOffset.x,
             top: mousePosition.y + getPosterZoomConfig(hoveredPoster).zoomOffset.y,
             transform: 'translate(0, 0)',
-            willChange: 'transform'
+            willChange: 'transform, opacity',
+            animation: 'fadeIn 0.15s ease-out forwards'
           }}
         >
           <img
-            src={`/poster/pictures/zoomIn/${hoveredPoster.toString().padStart(2, '0')}.png`}
+            src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomIn/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
             className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white rounded-lg shadow-2xl bg-black/90`}
-            style={{ willChange: 'transform' }}
+            style={{ 
+              willChange: 'transform',
+              opacity: 1
+            }}
           />
         </div>
       )}
@@ -356,27 +354,6 @@ const Poster = () => {
           </div>
         </div>
       )}
-
-      {/* 🔄 Preload נסתר של כל תמונות הזום */}
-      <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}>
-        {Array.from({ length: 8 }, (_, i) => (
-          <img
-            key={`preload-${i + 1}`}
-            src={`/poster/pictures/zoomIn/${(i + 1).toString().padStart(2, '0')}.png`}
-            alt={`Preload ${i + 1}`}
-            style={{ width: '1px', height: '1px' }}
-            onLoad={() => {
-              if (!imagesLoaded) {
-                const allLoaded = Array.from({ length: 8 }, (_, idx) => {
-                  const img = document.querySelector(`img[src="/poster/pictures/zoomIn/${(idx + 1).toString().padStart(2, '0')}.png"]`) as HTMLImageElement;
-                  return img && img.complete;
-                }).every(Boolean);
-                if (allLoaded) setImagesLoaded(true);
-              }
-            }}
-          />
-        ))}
-      </div>
     </div>
   );
 };
