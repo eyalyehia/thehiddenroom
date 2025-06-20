@@ -345,6 +345,198 @@ const Poster = () => {
               className={`w-full h-auto object-cover ${selectedPoster === 6 ? 'max-h-[20vh]' : selectedPoster === 8 ? 'max-h-[10vh] max-w-[470px]' : 'max-h-[70vh]'} border border-white rounded-lg shadow-2xl`}
               style={selectedPoster === 8 ? { marginLeft: '84px' } : {}}
             />
+            {selectedPoster === 1 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">THE SILENCE OF THE LAMBS, 1991</div>
+                  <div>The skull on the moth's back is made of seven nude</div>
+                  <div>women, in a composition based on Salvador Dalí's art.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 2 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">ONCE UPON A TIME IN HOLLYWOOD, 2019</div>
+                  <div>Quentin Tarantino, the director, appears with a camera,</div>
+                  <div>even though he doesn't appear in the film itself.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 3 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '645px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">UNDER THE SILVER LAKE, 2018</div>
+                  <div>Hidden figures like a pirate and a mermaid appear throughout</div>
+                  <div>the poster, a nod to the film's theme of hidden clues.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 4 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">US, 2019</div>
+                  <div>The scissor handles form two figures facing opposite directions,</div>
+                  <div>a nod to the film's theme of dual identity.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 5 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">10 CLOVERFIELD LANE, 2016</div>
+                  <div>The hidden robot is the logo of "Bad Robot Productions",</div>
+                  <div>one of the production companies behind the film.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 6 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">THE DARK KNIGHT, 2008</div>
+                  <div>Rotating the poster 90 degrees reveals the phrase</div>
+                  <div>"A Taste for the Theatrical", a quote from the previous film's ending.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 7 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">CAPTAIN MARVEL, 2019</div>
+                  <div>Brightening the poster reveals Goose's tail,</div>
+                  <div>the cat of the main character Carol Danvers.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 8 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold">PASSENGERS, 2016</div>
+                  <div>The lines and circles are arranged in Morse code that spells out "SOS",</div>
+                  <div>a hint at the film's characters' distress.</div>
+                </div>
+              </div>
+            )}
             <button 
               className="absolute top-2 right-2 w-8 h-8 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center text-lg transition-colors"
               onClick={() => setSelectedPoster(null)}
