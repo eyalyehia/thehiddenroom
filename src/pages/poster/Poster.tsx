@@ -185,7 +185,8 @@ const Poster = () => {
           {posters.map((poster, index) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer relative overflow-visible flex items-center justify-center"
+              className="bg-gray-800 border border-gray-600 cursor-pointer relative overflow-visible flex items-center justify-center poster-item"
+              data-poster-id={poster.id}
               style={{ 
                 aspectRatio: '332/490',
                 width: '100%',
@@ -336,9 +337,31 @@ const Poster = () => {
                 ? { paddingTop: '30rem' }
                 : {}
           }
-          onClick={() => setSelectedPoster(null)}
+          onMouseMove={(e) => {
+            // Get the poster element that was clicked
+            const posterElements = document.querySelectorAll('.poster-item');
+            const clickedPoster = Array.from(posterElements).find(
+              (el) => Number(el.getAttribute('data-poster-id')) === selectedPoster
+            );
+            
+            if (clickedPoster) {
+              const rect = clickedPoster.getBoundingClientRect();
+              
+              // Check if mouse is outside the original poster frame
+              if (
+                e.clientX < rect.left || 
+                e.clientX > rect.right || 
+                e.clientY < rect.top || 
+                e.clientY > rect.bottom
+              ) {
+                setSelectedPoster(null);
+              }
+            }
+          }}
         >
-          <div className={`relative w-full h-auto bg-transparent ${selectedPoster === 6 ? 'max-w-3xl' : 'max-w-2xl'}`} onClick={e => e.stopPropagation()}>
+          <div 
+            className={`relative w-full h-auto bg-transparent ${selectedPoster === 6 ? 'max-w-3xl' : 'max-w-2xl'}`}
+          >
             <img
               src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
               alt={`Poster ${selectedPoster}`}
