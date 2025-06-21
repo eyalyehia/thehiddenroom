@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Poster = () => {
   const [hoveredPoster, setHoveredPoster] = useState<number | null>(null);
   const [selectedPoster, setSelectedPoster] = useState<number | null>(null);
+  const [clickedPosters, setClickedPosters] = useState<Set<number>>(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
@@ -140,12 +141,18 @@ const Poster = () => {
   // פונקציה לטיפול בהעברת עכבר על אזור הגדלה - משופרת
   const handleHotspotEnter = (posterId: number, event: React.MouseEvent) => {
     if (imagesLoaded && loadedImages.has(posterId)) {
-      setHoveredPoster(posterId);
-      const rect = event.currentTarget.getBoundingClientRect();
-      setMousePosition({ 
-        x: rect.right + 10,
-        y: rect.top
-      });
+      // If this poster was previously clicked, show full zoom on hover
+      if (clickedPosters.has(posterId)) {
+        setSelectedPoster(posterId);
+      } else {
+        // Otherwise show small preview
+        setHoveredPoster(posterId);
+        const rect = event.currentTarget.getBoundingClientRect();
+        setMousePosition({ 
+          x: rect.right + 10,
+          y: rect.top
+        });
+      }
     }
   };
 
@@ -155,6 +162,8 @@ const Poster = () => {
 
   // פונקציה לטיפול בלחיצה על אזור הגדלה - פתיחת דיאלוג מלא
   const handleHotspotClick = (posterId: number) => {
+    // Add this poster to the set of clicked posters
+    setClickedPosters(prev => new Set([...prev, posterId]));
     setSelectedPoster(posterId);
   };
 
@@ -355,6 +364,7 @@ const Poster = () => {
                 e.clientY > rect.bottom
               ) {
                 setSelectedPoster(null);
+                // Don't reset hoveredPoster here to allow hover effect to work again
               }
             }
           }}
