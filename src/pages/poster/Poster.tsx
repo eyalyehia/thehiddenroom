@@ -560,12 +560,14 @@ const Poster = () => {
                 </div>
               </div>
             )}
+            {/* X button removed as requested
             <button 
               className="absolute top-2 right-2 w-8 h-8 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center text-lg transition-colors"
               onClick={() => setSelectedPoster(null)}
             >
               ×
             </button>
+            */}
           </div>
         </div>
       )}
