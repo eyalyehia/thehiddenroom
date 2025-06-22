@@ -94,7 +94,7 @@ export const handleClick = (e) => {
         obj.name === "Cube300" || obj.name === "Plane013" || 
         obj.name.includes("diary") || obj.name.includes("notebook") || 
         obj.name.includes("journal")) {
-      alert(`📖 יומן אישי\n\nזהו היומן האישי שלי שבו אני כותב את המחשבות והרעיונות שלי.\nכאן אני מתכנן פרויקטים חדשים ומתעד את ההתקדמות שלי בתכנות.\n\n"כל יום הוא הזדמנות חדשה ללמוד משהו חדש..."`);
+      window.location.href = '/notebook';
       return;
     }
 

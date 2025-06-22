@@ -19,7 +19,7 @@ function LimitedControls() {
     <OrbitControls
       ref={controlsRef}
       minDistance={8}
-      maxDistance={14}
+      maxDistance={13}
       minPolarAngle={Math.PI / 2.5}
       maxPolarAngle={Math.PI / 2.2}
       minAzimuthAngle={-Math.PI / 1500}
