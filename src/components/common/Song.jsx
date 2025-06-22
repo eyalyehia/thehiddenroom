@@ -7,7 +7,6 @@ import React, { useState, useEffect, useRef } from 'react';
 const Song = ({ isPageLoading }) => {
   const [isPlaying, setIsPlaying] = useState(false); // מתחיל במצב OFF עד לאישור המשתמש
   const [isHovered, setIsHovered] = useState(false);
-  const [showPermissionRequest, setShowPermissionRequest] = useState(false); // הודעת בקשת אישור
   const audioRef = useRef(null);
 
   console.log('🎼 קומפוננט Song נטען, מצב ראשוני:', isPlaying ? 'מנגן' : 'מושתק');
@@ -20,59 +19,19 @@ const Song = ({ isPageLoading }) => {
     audio.preload = 'auto'; // טעינה מוקדמת
     audioRef.current = audio;
 
-    // ניסיון הפעלה מיידי
-    const attemptAutoplay = async () => {
-      try {
-        console.log('מנסה להפעיל מוסיקה אוטומטית...');
-        await audio.play();
+    // הפעלה אוטומטית
+    audio.play()
+      .then(() => {
         console.log('המוזיקה התחילה אוטומטית! ✅');
         setIsPlaying(true);
-      } catch (error) {
-        console.log('דפדפן חוסם הפעלה אוטומטית, מציג בקשת אישור 🎵');
-        setIsPlaying(false); // מעדכן שהמוסיקה לא מנגנת כרגע
-        setShowPermissionRequest(true); // מציג הודעת אישור יפה
-        
-        // פונקציה להפעלה לאחר אינטראקציה
-        const playAfterInteraction = async () => {
-          try {
-            await audio.play();
-            console.log('המוסיקה התחילה לאחר אינטראקציה! ✅');
-            setIsPlaying(true);
-          } catch (err) {
-            console.error('שגיאה בהפעלת מוסיקה:', err);
-            setIsPlaying(false);
-          }
-        };
-        
-        // מאזינים לאירועי אינטראקציה
-        const handleClick = () => {
-          playAfterInteraction();
-          document.removeEventListener('click', handleClick);
-          document.removeEventListener('touchstart', handleTouch);
-        };
-        
-        const handleTouch = () => {
-          playAfterInteraction();
-          document.removeEventListener('click', handleClick);
-          document.removeEventListener('touchstart', handleTouch);
-        };
-        
-        document.addEventListener('click', handleClick);
-        document.addEventListener('touchstart', handleTouch);
-      }
-    };
-
-    // המתן לסיום טעינת הדף ואז הפעל
-    const timer = setTimeout(() => {
-      // בודק אם הטעינה הסתיימה לפני ניסיון הפעלה
-      if (!isPageLoading) {
-        attemptAutoplay();
-      }
-    }, 500); // זמן קצת יותר ארוך
+      })
+      .catch(error => {
+        console.log('דפדפן חוסם הפעלה אוטומטית:', error);
+        setIsPlaying(false);
+      });
 
     // ניקוי כשהקומפוננט נהרס
     return () => {
-      clearTimeout(timer);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -80,22 +39,15 @@ const Song = ({ isPageLoading }) => {
     };
   }, []);
 
-  // מאזין לסיום טעינת הדף - אז מציג בקשת אישור
+  // מאזין לסיום טעינת הדף
   useEffect(() => {
-    if (isPageLoading === false && audioRef.current) {
-      console.log('✅ טעינת הדף הסתיימה, מציג בקשת אישור למוסיקה...');
-      const timer = setTimeout(() => {
-        console.log('🎵 מציג dialog לבקשת אישור מוסיקה');
-        setShowPermissionRequest(true);
-        setIsPlaying(false); // מתחיל במצב לא מנגן
-      }, 1000); // המתנה של שנייה לאחר סיום הטעינה
-      
-      return () => clearTimeout(timer);
+    if (!isPageLoading && audioRef.current) {
+      console.log('✅ טעינת הדף הסתיימה');
     }
   }, [isPageLoading]);
 
   // טיפול בלחיצה על הכפתור - החלפה בין מצב ON למצב OFF
-  const handleToggleSound = async () => {
+  const handleToggleSound = () => {
     if (!audioRef.current) {
       console.log('❌ אין אודיו זמין');
       return;
@@ -108,14 +60,15 @@ const Song = ({ isPageLoading }) => {
       console.log('🔇 המשתמש כיבה את המוזיקה');
     } else {
       // הפעלת המוסיקה
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-        console.log('🔊 המשתמש הדליק את המוזיקה');
-      } catch (error) {
-        console.error('❌ שגיאה בהפעלת המוזיקה:', error);
-        setIsPlaying(false);
-      }
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          console.log('🔊 המשתמש הדליק את המוזיקה');
+        })
+        .catch(error => {
+          console.error('❌ שגיאה בהפעלת המוזיקה:', error);
+          setIsPlaying(false);
+        });
     }
   };
 
@@ -208,89 +161,10 @@ const Song = ({ isPageLoading }) => {
     opacity: isHovered ? 0.8 : 1,
   };
 
-  // פונקציה להפעלת מוסיקה עם אישור
-  const handleMusicPermission = async () => {
-    if (audioRef.current) {
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-        setShowPermissionRequest(false);
-        console.log('🎵 המשתמש אישר - המוסיקה התחילה!');
-      } catch (error) {
-        console.error('❌ שגיאה בהפעלת מוסיקה:', error);
-        setIsPlaying(false);
-      }
-    }
-  };
+
 
   return (
     <>
-      {/* הודעת בקשת אישור למוסיקה */}
-      {showPermissionRequest && (
-        <div style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          color: 'white',
-          padding: '30px',
-          borderRadius: '15px',
-          textAlign: 'center',
-          zIndex: 10000,
-          fontFamily: 'Arial, sans-serif',
-          backdropFilter: 'blur(10px)',
-          border: '2px solid #8B5CF6',
-          boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)'
-        }}>
-          <div style={{ fontSize: '48px', marginBottom: '20px' }}>🎵</div>
-          <h2 style={{ margin: '0 0 15px 0', fontSize: '24px' }}>הפעלת מוסיקה</h2>
-          <p style={{ margin: '0 0 25px 0', fontSize: '16px', opacity: '0.9' }}>
-            האם תרצה להפעיל מוסיקת רקע לחוויה מושלמת?
-          </p>
-          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-            <button
-              onClick={handleMusicPermission}
-              style={{
-                backgroundColor: '#8B5CF6',
-                color: 'white',
-                border: 'none',
-                padding: '12px 25px',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#7C3AED'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#8B5CF6'}
-            >
-              🎶 כן, הפעל מוסיקה
-            </button>
-            <button
-              onClick={() => {
-                setShowPermissionRequest(false);
-                setIsPlaying(false);
-                console.log('🔇 המשתמש דחה הפעלת מוסיקה');
-              }}
-              style={{
-                backgroundColor: 'transparent',
-                color: 'white',
-                border: '2px solid #666',
-                padding: '12px 25px',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.target.style.borderColor = '#999'}
-              onMouseLeave={(e) => e.target.style.borderColor = '#666'}
-            >
-              🔇 לא, תודה
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* כפתור השמע */}
       <button
