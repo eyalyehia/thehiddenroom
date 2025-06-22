@@ -22,7 +22,7 @@ function LimitedControls() {
       maxDistance={14}
       minPolarAngle={Math.PI / 2.5}
       maxPolarAngle={Math.PI / 2.2}
-      minAzimuthAngle={-Math.PI / 12}
+      minAzimuthAngle={-Math.PI / 1500}
       maxAzimuthAngle={Math.PI / 12}
       enableZoom={true}
       enablePan={false}
