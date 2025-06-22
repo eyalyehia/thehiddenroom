@@ -57,9 +57,9 @@ const Poster = () => {
     const configs = {
       1: {
         hotspot: { left: 37, top: 43, width: 25, height: 15 },
-        zoomSize: "w-15",
-        zoomHeight: "h-15",
-        zoomOffset: { x: -62, y: -6 }
+        zoomSize: "w-20",
+        zoomHeight: "h-auto",
+        zoomOffset: { x: -75, y: -6 }
       },
       2: {
         hotspot: { left: 50, top: 30, width: 20, height: 15 },
@@ -69,9 +69,9 @@ const Poster = () => {
       },
       3: {
         hotspot: { left: 35, top: 20, width: 30, height: 15 },
-        zoomSize: "w-15",
+        zoomSize: "w-20",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -72, y: -25 }
+        zoomOffset: { x: -77, y: -25 }
       },
       4: {
         hotspot: { left: 40, top: 5, width: 10, height: 20 },
@@ -178,7 +178,7 @@ const Poster = () => {
           {posters.map((poster) => (
             <div
               key={poster.id}
-              className="bg-gray-800 border border-gray-600 cursor-pointer relative overflow-visible flex items-center justify-center poster-item"
+              className="bg-gray-800 border border-gray-600 relative overflow-visible flex items-center justify-center poster-item"
               data-poster-id={poster.id}
               style={{ 
                 aspectRatio: '332/490',
