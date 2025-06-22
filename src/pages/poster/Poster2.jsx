@@ -64,50 +64,50 @@ const Poster2 = () => {
     const configs = {
       9: {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
-        zoomSize: "w-20 2xl:w-28",
-        zoomHeight: "h-9 2xl:h-12",
+        zoomSize: "w-20",
+        zoomHeight: "h-9",
         zoomOffset: { x: -85, y: 0 }
       },
       10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
-        zoomSize: "w-17 2xl:w-24",
+        zoomSize: "w-17",
         zoomHeight: "h-auto",
         zoomOffset: { x: -55, y: -9 }
       },
       11: {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
-        zoomSize: "w-17 2xl:w-24",
-        zoomHeight: "h-15 2xl:h-20",
+        zoomSize: "w-17",
+        zoomHeight: "h-15",
         zoomOffset: { x: -70, y: -5 }
       },
       12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
-        zoomSize: "w-12 2xl:w-16",
-        zoomHeight: "h-17 2xl:h-24",
+        zoomSize: "w-12",
+        zoomHeight: "h-17",
         zoomOffset: { x: -52, y: -25 }
       },
       13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
-        zoomSize: "w-15 2xl:w-20",
-        zoomHeight: "h-15 2xl:h-20",
+        zoomSize: "w-15",
+        zoomHeight: "h-15",
         zoomOffset: { x: -55, y: -35 }
       },
       14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
-        zoomSize: "w-25 2xl:w-36",
+        zoomSize: "w-25",
         zoomHeight: "h-auto",
         zoomOffset: { x: -75, y: -15 }
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
-        zoomSize: "w-20 2xl:w-28",
-        zoomHeight: "h-20 2xl:h-28",
+        zoomSize: "w-20",
+        zoomHeight: "h-20",
         zoomOffset: { x: -65, y: -5 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
-        zoomSize: "w-25 2xl:w-36",
-        zoomHeight: "h-18 2xl:h-24",
+        zoomSize: "w-25",
+        zoomHeight: "h-18",
         zoomOffset: { x: -108, y: -7 }
       }
     };
@@ -186,18 +186,18 @@ const Poster2 = () => {
     <div className="min-h-screen w-full relative overflow-hidden" style={{ backgroundColor: '#1D1C1A' }}>
       {/* כפתור סגירה */}
       <button
-        className="fixed top-6 right-6 w-10 h-10 2xl:w-14 2xl:h-14 2xl:top-8 2xl:right-8 transition-opacity z-50"
+        className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50"
         aria-label="Close"
         onClick={handleClose}
         onMouseEnter={() => setIsHoveringCloseButton(true)}
         onMouseLeave={() => setIsHoveringCloseButton(false)}
       >
         {isHoveringCloseButton ? (
-          <svg className="w-10 h-10 2xl:w-14 2xl:h-14" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         ) : (
-          <svg className="w-10 h-10 2xl:w-14 2xl:h-14" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         )}
@@ -205,18 +205,18 @@ const Poster2 = () => {
       
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
-        <div className="w-full max-w-[1000px] 2xl:max-w-[1400px] grid grid-cols-4 grid-rows-2 gap-4 2xl:gap-8 h-full max-h-[85vh] 2xl:max-h-[90vh] px-4 2xl:px-12">
+        <div className="w-full max-w-[1000px] grid grid-cols-4 grid-rows-2 gap-4 h-full max-h-[85vh] px-4">
           {posters.map((poster) => (
             <div
               key={poster.id}
-                              className="bg-gray-800 border border-gray-600 relative overflow-visible flex items-center justify-center poster-item 2xl:!max-w-[320px]"
-                data-poster-id={poster.id}
-                style={{ 
-                  aspectRatio: '332/490',
-                  width: '100%',
-                  maxWidth: '200px',
-                  height: 'auto'
-                }}
+              className="bg-gray-800 border border-gray-600 relative overflow-visible flex items-center justify-center poster-item"
+              data-poster-id={poster.id}
+              style={{ 
+                aspectRatio: '332/490',
+                width: '100%',
+                maxWidth: '200px',
+                height: 'auto'
+              }}
             >
               <div className="relative w-full h-full">
                 <img
@@ -269,14 +269,15 @@ const Poster2 = () => {
 
       {/* כפתור יומן */}
       <button
-        className="fixed bottom-6 left-6 2xl:bottom-8 2xl:left-8 transition-opacity z-50 w-[47px] h-[36px] 2xl:w-[64px] 2xl:h-[48px]"
+        className="fixed bottom-6 left-6 transition-opacity z-50"
+        style={{ width: '47px', height: '36px' }}
         aria-label="Notebook"
         onClick={handleNotebookClick}
         onMouseEnter={() => setIsHoveringNotebookButton(true)}
         onMouseLeave={() => setIsHoveringNotebookButton(false)}
       >
         {isHoveringNotebookButton ? (
-          <svg className="w-[49px] h-[38px] 2xl:w-[66px] 2xl:h-[51px]" viewBox="0 0 49 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="49" height="38" viewBox="0 0 49 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.46789 7H1V37H48V7H41.1009" fill="white"/>
             <path d="M7.46789 7H1V37H48V7H41.1009" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
             <path d="M8.01758 1H41.9043V30.2914H8.01758V1Z" fill="white" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
@@ -291,7 +292,7 @@ const Poster2 = () => {
             <path d="M28.1152 24.1211H38.7486" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         ) : (
-          <svg className="w-[49px] h-[38px] 2xl:w-[66px] 2xl:h-[51px]" viewBox="0 0 49 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="49" height="38" viewBox="0 0 49 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.9609 1.18164V30.1102" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
             <path d="M8.01758 1H41.9043V30.2914H8.01758V1Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
             <path d="M11.1719 7.17578H21.8052" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
@@ -309,18 +310,18 @@ const Poster2 = () => {
 
       {/* כפתור חץ לעמוד הראשון */}
       <button
-        className="fixed left-6 top-1/2 transform -translate-y-1/2 2xl:left-8 transition-opacity z-50 w-[33px] h-[49px] 2xl:w-[44px] 2xl:h-[66px]"
+        className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50"
         aria-label="Previous Page"
         onClick={handleNextPage}
         onMouseEnter={() => setIsHoveringArrowButton(true)}
         onMouseLeave={() => setIsHoveringArrowButton(false)}
       >
         {isHoveringArrowButton ? (
-          <svg className="w-[41px] h-[61px] 2xl:w-[55px] 2xl:h-[82px]" viewBox="0 0 41 61" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'scaleX(-1)' }}>
+          <svg width="41" height="61" viewBox="0 0 41 61" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'scaleX(-1)' }}>
             <path d="M10.1597 2L39 30.4696L10.1597 59L2 50.9516L22.6728 30.538L2 10.0484L10.1597 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         ) : (
-          <svg className="w-[33px] h-[49px] 2xl:w-[44px] 2xl:h-[66px]" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'scaleX(-1)' }}>
+          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'scaleX(-1)' }}>
             <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         )}
@@ -377,11 +378,11 @@ const Poster2 = () => {
             }
           }}
         >
-          <div className="relative w-full max-w-2xl 2xl:max-w-4xl h-auto bg-transparent">
+          <div className="relative w-full max-w-2xl h-auto bg-transparent">
             <img
               src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
               alt={`Poster ${selectedPoster}`}
-              className="w-full h-auto object-cover max-h-[70vh] 2xl:max-h-[80vh] border border-white shadow-2xl"
+              className="w-full h-auto object-cover max-h-[70vh] border border-white shadow-2xl"
             />
             {selectedPoster === 9 && (
               <div 
@@ -401,9 +402,9 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">VALERIAN AND THE CITY OF A THOUSAND PLANETS, 2017</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">The name "Korben's" is a reference to Korben Dallas, the protagonist of The</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">"Fifth Element" (1997). It's a subtle nod from Luc Besson, who directed both films.</div>
+                  <div className="font-bold text-xl mb-1">VALERIAN AND THE CITY OF A THOUSAND PLANETS, 2017</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The name "Korben's" is a reference to Korben Dallas, the protagonist of The</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">"Fifth Element" (1997). It's a subtle nod from Luc Besson, who directed both films.</div>
                 </div>
               </div>
             )}
@@ -425,8 +426,8 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">HALLOWEEN, 1978</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">The hand holding the knife forms a screaming face.</div>
+                  <div className="font-bold text-xl mb-1">HALLOWEEN, 1978</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The hand holding the knife forms a screaming face.</div>
                 </div>
               </div>
             )}
@@ -448,8 +449,8 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">BRAVE, 2012</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">A bear hides among the rocks, a hint at the story's central threat.</div>
+                  <div className="font-bold text-xl mb-1">BRAVE, 2012</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A bear hides among the rocks, a hint at the story's central threat.</div>
                 </div>
               </div>
             )}
@@ -471,9 +472,9 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">MOTHER!, 2017</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">A framed portrait of Javier Bardem is hidden among the leaves,</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">a detail that also appears later in the film.</div>
+                  <div className="font-bold text-xl mb-1">MOTHER!, 2017</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A framed portrait of Javier Bardem is hidden among the leaves,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a detail that also appears later in the film.</div>
                 </div>
               </div>
             )}
@@ -495,9 +496,9 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">AVENGERS: INFINITY WAR, 2018</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">As the first major film shot entirely with IMAX cameras,</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">the word "IMAX" is subtly hidden multiple times.</div>
+                  <div className="font-bold text-xl mb-1">AVENGERS: INFINITY WAR, 2018</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">As the first major film shot entirely with IMAX cameras,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">the word "IMAX" is subtly hidden multiple times.</div>
                 </div>
               </div>
             )}
@@ -519,9 +520,9 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">GREMLINS, 1984</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">The logo of "Amblin Entertainment", Steven Spielberg's production company</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">and the film's producer, is hidden in the button of the jeans.</div>
+                  <div className="font-bold text-xl mb-1">GREMLINS, 1984</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The logo of "Amblin Entertainment", Steven Spielberg's production company</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">and the film's producer, is hidden in the button of the jeans.</div>
                 </div>
               </div>
             )}
@@ -543,9 +544,9 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">TEXAS CHAINSAW MASSACRE, 2022</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">Beneath Leatherface's bottom lip, a silhouette of his iconic figure</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">holding a chainsaw is hidden.</div>
+                  <div className="font-bold text-xl mb-1">TEXAS CHAINSAW MASSACRE, 2022</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Beneath Leatherface's bottom lip, a silhouette of his iconic figure</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">holding a chainsaw is hidden.</div>
                 </div>
               </div>
             )}
@@ -567,9 +568,9 @@ const Poster2 = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl 2xl:text-3xl mb-1 2xl:mb-2">TOY STORY 4, 2019</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">In the picture hanging on the wall, familiar characters from the movie "Up"</div>
-                  <div className="font-normal text-base 2xl:text-xl opacity-70 text-gray-300">can be seen playing cards.</div>
+                  <div className="font-bold text-xl mb-1">TOY STORY 4, 2019</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">In the picture hanging on the wall, familiar characters from the movie "Up"</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">can be seen playing cards.</div>
                 </div>
               </div>
             )}
