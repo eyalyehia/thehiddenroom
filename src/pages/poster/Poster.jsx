@@ -2,23 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Poster = () => {
-  const [hoveredPoster, setHoveredPoster] = useState<number | null>(null);
-  const [selectedPoster, setSelectedPoster] = useState<number | null>(null);
-  const [clickedPosters, setClickedPosters] = useState<Set<number>>(new Set());
+  const [hoveredPoster, setHoveredPoster] = useState(null);
+  const [selectedPoster, setSelectedPoster] = useState(null);
+  const [clickedPosters, setClickedPosters] = useState(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
-  const [imageElements, setImageElements] = useState<{[key: number]: HTMLImageElement}>({});
+  const [loadedImages, setLoadedImages] = useState(new Set());
+  const [imageElements, setImageElements] = useState({});
   const navigate = useNavigate();
 
-  // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר עם cache
   useEffect(() => {
     const preloadImages = async () => {
-      const imagePromises: Promise<unknown>[] = [];
-      const imageCache: {[key: number]: HTMLImageElement} = {};
+      const imagePromises = [];
+      const imageCache = {};
       
       for (let i = 1; i <= 8; i++) {
         const imagePromise = new Promise((resolve, reject) => {
@@ -47,18 +46,14 @@ const Poster = () => {
     preloadImages();
   }, []);
 
-  // רשימת הפוסטרים עם נתיבים מעודכנים ותיקון לתמונה 04.webp
   const posters = Array.from({ length: 8 }, (_, index) => ({
     id: index + 1,
     src: `/poster/pictures/regular/${(index + 1).toString().padStart(2, '0')}${index + 1 === 4 ? '.webp' : '.jpg'}`,
     alt: `Poster ${index + 1}`,
-    // הגדרת אזורי הגדלה לכל פוסטר (באחוזים מהתמונה)
     hotspots: getHotspotsForPoster(index + 1)
   }));
 
-  // 🎛️ מרכז שליטה על זום עבור כל פוסטר
-  // כאן תוכל לשלוט על כל פרמטר של הזום לכל תמונה
-  function getPosterZoomConfig(posterId: number) {
+  function getPosterZoomConfig(posterId) {
     const configs = {
       1: {
         hotspot: { left: 37, top: 43, width: 25, height: 15 },
@@ -102,12 +97,12 @@ const Poster = () => {
         zoomHeight: "h-17",
         zoomOffset: { x: -50, y: -5 }
       },
-              8: {
-          hotspot: { left: 40, top: 48, width: 15, height: 15 },
-          zoomSize: "w-48",
-          zoomHeight: "h-auto",
-          zoomOffset: { x: -113, y: 10 }
-        }
+      8: {
+        hotspot: { left: 40, top: 48, width: 15, height: 15 },
+        zoomSize: "w-48",
+        zoomHeight: "h-auto",
+        zoomOffset: { x: -113, y: 10 }
+      }
     };
 
     return configs[posterId] || {
@@ -118,34 +113,27 @@ const Poster = () => {
     };
   }
 
-  // פונקציה להגדרת אזורי ההגדלה לכל פוסטר
-  function getHotspotsForPoster(posterId: number) {
+  function getHotspotsForPoster(posterId) {
     return [getPosterZoomConfig(posterId).hotspot];
   }
 
-  // פונקציה לחזרה לעמוד הראשי
   const handleClose = () => {
     navigate('/');
   };
 
-  // פונקציה למעבר לעמוד השני של הפוסטרים
   const handleNextPage = () => {
     navigate('/poster2');
   };
 
-  // פונקציה למעבר לעמוד היומן
   const handleNotebookClick = () => {
     navigate('/notebook');
   };
 
-  // פונקציה לטיפול בהעברת עכבר על אזור הגדלה - משופרת
-  const handleHotspotEnter = (posterId: number, event: React.MouseEvent) => {
+  const handleHotspotEnter = (posterId, event) => {
     if (imagesLoaded && loadedImages.has(posterId)) {
-      // If this poster was previously clicked, show full zoom on hover
       if (clickedPosters.has(posterId)) {
         setSelectedPoster(posterId);
       } else {
-        // Otherwise show small preview
         setHoveredPoster(posterId);
         const rect = event.currentTarget.getBoundingClientRect();
         setMousePosition({ 
@@ -160,16 +148,13 @@ const Poster = () => {
     setHoveredPoster(null);
   };
 
-  // פונקציה לטיפול בלחיצה על אזור הגדלה - פתיחת דיאלוג מלא
-  const handleHotspotClick = (posterId: number) => {
-    // Add this poster to the set of clicked posters
+  const handleHotspotClick = (posterId) => {
     setClickedPosters(prev => new Set([...prev, posterId]));
     setSelectedPoster(posterId);
   };
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden" style={{ backgroundColor: '#1D1C1A' }}>
-      {/* כפתור סגירה */}
       <button
         className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50"
         aria-label="Close"
@@ -188,10 +173,9 @@ const Poster = () => {
         )}
       </button>
       
-      {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-[1000px] grid grid-cols-4 grid-rows-2 gap-4 h-full max-h-[85vh] px-4">
-          {posters.map((poster, index) => (
+          {posters.map((poster) => (
             <div
               key={poster.id}
               className="bg-gray-800 border border-gray-600 cursor-pointer relative overflow-visible flex items-center justify-center poster-item"
@@ -210,26 +194,7 @@ const Poster = () => {
                   className="h-full w-full object-cover transition-transform duration-300"
                   style={{ maxHeight: '100%', maxWidth: '100%' }}
                 />
-{/* 🎯 מדד חזותי - מסגרת המראה את האזור האקטיבי */}
-                {/* {poster.hotspots.map((hotspot, hotspotIndex) => (
-                  <div
-                    key={`visual-${hotspotIndex}`}
-                    className="absolute border-2 border-red-500 border-dashed bg-red-500/10 pointer-events-none opacity-50 hover:opacity-80 transition-opacity"
-                    style={{
-                      left: `${hotspot.left}%`,
-                      top: `${hotspot.top}%`,
-                      width: `${hotspot.width}%`,
-                      height: `${hotspot.height}%`,
-                    }}
-                    title={`זום אזור ${poster.id}`}
-                  >
-                    <div className="absolute -top-6 left-0 text-red-500 text-xs font-bold bg-black/70 px-1 rounded">
-                      זום #{poster.id}
-                    </div>
-                  </div>
-                ))} */}
 
-                {/* אזורי הגדלה - האזור האקטיבי בפועל */}
                 {poster.hotspots.map((hotspot, hotspotIndex) => (
                   <div
                     key={hotspotIndex}
@@ -251,7 +216,6 @@ const Poster = () => {
         </div>
       </div>
 
-      {/* כפתור יומן */}
       <button
         className="fixed bottom-6 left-6 transition-opacity z-50"
         style={{ width: '47px', height: '36px' }}
@@ -289,10 +253,9 @@ const Poster = () => {
             <path d="M28.1152 24.1211H38.7486" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
             <path d="M7.46789 7H1V37H48V7H41.1009" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
-                 )}
-       </button>
+        )}
+      </button>
 
-      {/* כפתור חץ לעמוד השני */}
       <button
         className="fixed right-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50"
         aria-label="Next Page"
@@ -311,7 +274,6 @@ const Poster = () => {
         )}
       </button>
 
-      {/* תצוגה מוגדלת נקודתית של פוסטר בהעברת עכבר */}
       {hoveredPoster && imagesLoaded && loadedImages.has(hoveredPoster) && (
         <div 
           className="fixed z-50 pointer-events-none opacity-0 animate-fadeIn"
@@ -335,7 +297,6 @@ const Poster = () => {
         </div>
       )}
 
-      {/* 🖼️ דיאלוג מלא לתצוגת פוסטר בלחיצה */}
       {selectedPoster && (
         <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${selectedPoster === 6 ? 'flex items-end justify-center' : selectedPoster === 8 ? 'flex items-start justify-center' : 'flex items-center justify-center'}`}
@@ -347,7 +308,6 @@ const Poster = () => {
                 : {}
           }
           onMouseMove={(e) => {
-            // Get the poster element that was clicked
             const posterElements = document.querySelectorAll('.poster-item');
             const clickedPoster = Array.from(posterElements).find(
               (el) => Number(el.getAttribute('data-poster-id')) === selectedPoster
@@ -356,7 +316,6 @@ const Poster = () => {
             if (clickedPoster) {
               const rect = clickedPoster.getBoundingClientRect();
               
-              // Check if mouse is outside the original poster frame
               if (
                 e.clientX < rect.left || 
                 e.clientX > rect.right || 
@@ -364,7 +323,6 @@ const Poster = () => {
                 e.clientY > rect.bottom
               ) {
                 setSelectedPoster(null);
-                // Don't reset hoveredPoster here to allow hover effect to work again
               }
             }
           }}
@@ -570,14 +528,6 @@ const Poster = () => {
                 </div>
               </div>
             )}
-            {/* X button removed as requested
-            <button 
-              className="absolute top-2 right-2 w-8 h-8 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center text-lg transition-colors"
-              onClick={() => setSelectedPoster(null)}
-            >
-              ×
-            </button>
-            */}
           </div>
         </div>
       )}
@@ -585,4 +535,4 @@ const Poster = () => {
   );
 };
 
-export default Poster;
+export default Poster; 
