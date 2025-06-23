@@ -171,7 +171,7 @@ const Poster = () => {
       </button>
       
       <div className="w-full h-screen flex items-center justify-center p-4">
-        <div className="w-full max-w-[1200px] grid grid-cols-4 grid-rows-2 gap-8 h-full max-h-[95vh] px-4">
+        <div className="w-full max-w-[1200px] grid grid-cols-4 grid-rows-2 gap-6 h-full max-h-[95vh] px-4">
           {posters.map((poster) => (
             <div
               key={poster.id}
@@ -180,7 +180,7 @@ const Poster = () => {
               style={{ 
                 aspectRatio: '332/490',
                 width: '100%',
-                maxWidth: '220px' ,
+                maxWidth: '200px' ,
                 height: 'auto'
               }}
             >
