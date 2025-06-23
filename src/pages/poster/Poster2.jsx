@@ -530,50 +530,36 @@ const Poster2 = () => {
             )}
             {selectedPoster === 15 && (
               <div 
-                className="absolute text-white"
+                className="absolute text-white bg-black/60 p-4 rounded-lg"
                 style={{
                   position: 'absolute',
                   width: '498px',
-                  height: '92px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-75px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TEXAS CHAINSAW MASSACRE, 2022</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Beneath Leatherface's bottom lip, a silhouette of his iconic figure</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">holding a chainsaw is hidden.</div>
-                </div>
+                <div className="font-bold text-xl mb-2">TEXAS CHAINSAW MASSACRE, 2022</div>
+                <div className="font-normal text-base opacity-90">Beneath Leatherface's bottom lip, a silhouette of his iconic figure holding a chainsaw is hidden.</div>
               </div>
             )}
             {selectedPoster === 16 && (
               <div 
-                className="absolute text-white"
+                className="absolute text-white bg-black/60 p-4 rounded-lg"
                 style={{
                   position: 'absolute',
                   width: '533px',
-                  height: '92px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-75px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOY STORY 4, 2019</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">In the picture hanging on the wall, familiar characters from the movie "Up"</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">can be seen playing cards.</div>
-                </div>
+                <div className="font-bold text-xl mb-4">TOY STORY 4, 2019</div>
+                <div className="font-normal text-base opacity-90">In the picture hanging on the wall, familiar characters from the movie "Up" can be seen playing cards.</div>
               </div>
             )}
             {/* X button removed as requested
