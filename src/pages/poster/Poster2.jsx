@@ -66,7 +66,7 @@ const Poster2 = () => {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
         zoomSize: "w-20",
         zoomHeight: "h-9",
-        zoomOffset: { x: -85, y: 0 }
+        zoomOffset: { x: -95, y: 5 }
       },
       10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
@@ -78,7 +78,7 @@ const Poster2 = () => {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
         zoomSize: "w-17",
         zoomHeight: "h-15",
-        zoomOffset: { x: -70, y: -5 }
+        zoomOffset: { x: -77, y: 8 }
       },
       12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
@@ -90,25 +90,25 @@ const Poster2 = () => {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
         zoomSize: "w-15",
         zoomHeight: "h-15",
-        zoomOffset: { x: -55, y: -35 }
+        zoomOffset: { x: -65, y: -17 }
       },
       14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
-        zoomSize: "w-25",
+        zoomSize: "w-20",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -75, y: -15 }
+        zoomOffset: { x: -60, y: 0 }
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
         zoomSize: "w-20",
         zoomHeight: "h-20",
-        zoomOffset: { x: -65, y: -5 }
+        zoomOffset: { x: -70, y: -5 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
-        zoomSize: "w-25",
+        zoomSize: "w-21",
         zoomHeight: "h-18",
-        zoomOffset: { x: -108, y: -7 }
+        zoomOffset: { x: -100, y: -7 }
       }
     };
 
@@ -251,10 +251,10 @@ const Poster2 = () => {
                     key={hotspotIndex}
                     className="absolute cursor-pointer hover-detection-area"
                     style={{
-                      left: `${Math.max(0, hotspot.left - 1)}%`,  /* Slightly larger detection area */
-                      top: `${Math.max(0, hotspot.top - 1)}%`,     /* Slightly larger detection area */
-                      width: `${hotspot.width + 2}%`,              /* Slightly larger detection area */
-                      height: `${hotspot.height + 2}%`,            /* Slightly larger detection area */
+                      left: `${Math.max(0, hotspot.left - 5)}%`,  /* Much larger detection area */
+                      top: `${Math.max(0, hotspot.top - 5)}%`,     /* Much larger detection area */
+                      width: `${Math.min(100, hotspot.width + 10)}%`,              /* Much larger detection area */
+                      height: `${Math.min(100, hotspot.height + 10)}%`,            /* Much larger detection area */
                       zIndex: 5,
                     }}
                     onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
