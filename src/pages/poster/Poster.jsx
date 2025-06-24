@@ -171,7 +171,7 @@ const Poster = () => {
       </button>
       
       <div className="w-full h-screen flex items-center justify-center p-4">
-        <div className="w-full max-w-[1200px] grid grid-cols-4 grid-rows-2 gap-8 h-full max-h-[95vh] px-4">
+        <div className="w-full max-w-[1400px] grid grid-cols-4 grid-rows-2 gap-4 h-full max-h-[95vh] px-4">
           {posters.map((poster) => (
             <div
               key={poster.id}
@@ -180,7 +180,7 @@ const Poster = () => {
               style={{ 
                 aspectRatio: '332/490',
                 width: '100%',
-                maxWidth: '220px' ,
+                maxWidth: '280px' ,
                 height: 'auto'
               }}
             >
@@ -197,10 +197,10 @@ const Poster = () => {
                     key={hotspotIndex}
                     className="absolute cursor-pointer hover-detection-area"
                     style={{
-                      left: `${Math.max(0, hotspot.left - 5)}%`,  /* Much larger detection area */
-                      top: `${Math.max(0, hotspot.top - 5)}%`,     /* Much larger detection area */
-                      width: `${Math.min(100, hotspot.width + 10)}%`,              /* Much larger detection area */
-                      height: `${Math.min(100, hotspot.height + 10)}%`,            /* Much larger detection area */
+                      left: `${Math.max(0, hotspot.left - 3)}%`,  /* Adjusted detection area for larger posters */
+                      top: `${Math.max(0, hotspot.top - 3)}%`,     /* Adjusted detection area for larger posters */
+                      width: `${Math.min(100, hotspot.width + 6)}%`,              /* Adjusted detection area for larger posters */
+                      height: `${Math.min(100, hotspot.height + 6)}%`,            /* Adjusted detection area for larger posters */
                       zIndex: 5,
                     }}
                     onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
@@ -451,7 +451,7 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">10 CLOVERFIELD LANE, 2016</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The hidden robot is the logo of “Bad Robot Productions”,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The hidden robot is the logo of "Bad Robot Productions",</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">one of the production companies behind the film.</div>
                 </div>
               </div>
@@ -475,7 +475,7 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">THE DARK KNIGHT, 2008</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Rotating the poster 90 degrees reveals the phrase "A Taste for the Theatrical",a quote from the previous film’s ending</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Rotating the poster 90 degrees reveals the phrase "A Taste for the Theatrical",a quote from the previous film's ending</div>
                 </div>
               </div>
             )}
@@ -498,7 +498,7 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">CAPTAIN MARVEL, 2019</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Brightening the poster reveals Goose’s tail,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Brightening the poster reveals Goose's tail,</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">the cat of the main character Carol Danvers.</div>
                 </div>
               </div>
