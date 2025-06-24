@@ -182,11 +182,22 @@ const Poster2 = () => {
     setSelectedPoster(posterId);
   };
 
+  const handleZoomedImageEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleZoomedImageLeave = () => {
+    setHoveredPoster(null);
+  };
+
   return (
     <div className="min-h-screen w-full relative overflow-hidden" style={{ backgroundColor: '#1D1C1A' }}>
       {/* כפתור סגירה */}
       <button
-        className="fixed top-6 right-6 transition-opacity z-50"
+        className="fixed top-6 right-6 transition-opacity z-50 cursor-pointer"
         style={{ width: '34px', height: '34px' }}
         aria-label="Close"
         onClick={handleClose}
@@ -270,7 +281,7 @@ const Poster2 = () => {
 
       {/* כפתור יומן */}
       <button
-        className="fixed bottom-6 left-6 transition-opacity z-50"
+        className="fixed bottom-6 left-6 transition-opacity z-50 cursor-pointer"
         style={{ width: '47px', height: '36px' }}
         aria-label="Notebook"
         onClick={handleNotebookClick}
@@ -311,7 +322,7 @@ const Poster2 = () => {
 
       {/* כפתור חץ לעמוד הראשון */}
       <button
-        className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50"
+        className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
         style={{ width: '29px', height: '45px' }}
         aria-label="Previous Page"
         onClick={handleNextPage}
@@ -332,7 +343,7 @@ const Poster2 = () => {
       {/* תצוגה מוגדלת נקודתית של פוסטר בהעברת עכבר */}
       {hoveredPoster && imagesLoaded && loadedImages.has(hoveredPoster) && (
         <div 
-          className="fixed z-50 pointer-events-none opacity-0 animate-fadeIn"
+          className="fixed z-50 opacity-0 animate-fadeIn cursor-pointer"
           style={{
             left: mousePosition.x + getPosterZoomConfig(hoveredPoster).zoomOffset.x,
             top: mousePosition.y + getPosterZoomConfig(hoveredPoster).zoomOffset.y,
@@ -340,6 +351,9 @@ const Poster2 = () => {
             willChange: 'transform, opacity',
             animation: 'fadeIn 0.15s ease-out forwards'
           }}
+          onMouseEnter={handleZoomedImageEnter}
+          onMouseLeave={handleZoomedImageLeave}
+          onClick={() => handleHotspotClick(hoveredPoster)}
         >
           <img
             src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomIn/${hoveredPoster.toString().padStart(2, '0')}.png`}

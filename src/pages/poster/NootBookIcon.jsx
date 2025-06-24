@@ -5,16 +5,16 @@ const NootBookIcon = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const navigate = useNavigate();
 
-  // פונקציה לחזרה לעמוד הראשי
+  // Function to navigate back to home
   const handleClose = () => {
     navigate('/');
   };
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden" style={{ backgroundColor: '#1D1C1A' }}>
-      {/* כפתור סגירה */}
+    <div className="relative w-[1920px] h-[1080px] bg-[#1D1C1A] overflow-hidden flex items-center justify-center">
+      {/* Close Button */}
       <button
-        className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50"
+        className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
         aria-label="Close"
         onClick={handleClose}
         onMouseEnter={() => setIsHoveringCloseButton(true)}
@@ -31,22 +31,26 @@ const NootBookIcon = () => {
         )}
       </button>
 
-      {/* תוכן העמוד - The Hidden Room */}
-      <div className="w-full h-screen flex flex-col items-center justify-center p-8 text-center">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold text-white mb-8">
+      {/* Page Content - The Hidden Room */}
+      <div 
+        className="absolute w-[908px] h-[234px] text-white font-['Work_Sans'] font-bold text-[48px] leading-[128.04%] text-left"
+        style={{
+          left: 'calc(50% - 908px/2 - 355px)',
+          top: '270px'
+        }}
+      >
+        <div className="space-y-6">
+          <h1 className="mb-6">
             THE HIDDEN ROOM
           </h1>
-          
-          <div className="text-white text-lg leading-relaxed space-y-6">
-            <p>
+          <div className="font-normal text-[20px] leading-[26px]">
+            <p className="opacity-90">
               This room is an exploration of visual Easter eggs: those small, hidden messages.
             </p>
-            <p>
-              From films and posters to brand logos and video games, each section invites
-              you to look closer and uncover what's been hiding in plain sight.
+            <p className="opacity-90">
+              From films and posters to brand logos and video games, each section invites you to look closer and uncover what's been hiding in plain sight.
             </p>
-            <p className="mt-8">
+            <p className="opacity-90" style={{ marginTop: '27px' }}>
               Hidden messages are all around us, all it takes is a closer look.
             </p>
           </div>
@@ -56,4 +60,4 @@ const NootBookIcon = () => {
   );
 };
 
-export default NootBookIcon; 
+export default NootBookIcon;
