@@ -24,51 +24,51 @@ const Poster = () => {
     const configs = {
       1: {
         hotspot: { left: 37, top: 43, width: 25, height: 15 },
-        zoomSize: "w-20",
+        zoomSize: "w-30",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -86, y: 5 }
+        zoomOffset: { x: -105, y: -5 }
       },
       2: {
         hotspot: { left: 50, top: 30, width: 20, height: 15 },
-        zoomSize: "w-20",
+        zoomSize: "w-27",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -85, y: 15 }
+        zoomOffset: { x: -119, y: 10 }
       },
       3: {
         hotspot: { left: 35, top: 20, width: 30, height: 15 },
-        zoomSize: "w-22",
+        zoomSize: "w-28",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -92, y: -40 }
+        zoomOffset: { x: -115, y: -40 }
       },
       4: {
         hotspot: { left: 40, top: 5, width: 10, height: 20 },
-        zoomSize: "w-25",
+        zoomSize: "w-30",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -62, y:5 }
+        zoomOffset: { x: -70, y:-5 }
       },
       5: {
         hotspot: { left: 5, top:70, width: 20, height: 10 },
-        zoomSize: "w-20",
+        zoomSize: "w-27",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -75, y: -25 }
+        zoomOffset: { x: -80, y: -20 }
       },
       6: {
         hotspot: { left: 40, top: 85, width: 20, height: 15 },
-        zoomSize: "w-35",
+        zoomSize: "w-45",
         zoomHeight: "h-2",
-        zoomOffset: { x: -105, y: 28 }
+        zoomOffset: { x: -130, y: 40 }
       },
       7: {
         hotspot: { left: 2, top: 70, width: 20, height: 15 },
-        zoomSize: "w-19",
-        zoomHeight: "h-22",
-        zoomOffset: { x: -70, y: -9 }
+        zoomSize: "w-24",
+        zoomHeight: "h-30",
+        zoomOffset: { x: -80, y: -25 }
       },
       8: {
         hotspot: { left: 40, top: 48, width: 15, height: 15 },
-        zoomSize: "w-48",
+        zoomSize: "w-55",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -120, y: 25 }
+        zoomOffset: { x: -130, y: 29 }
       }
     };
 

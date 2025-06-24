@@ -64,51 +64,51 @@ const Poster2 = () => {
     const configs = {
       9: {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
-        zoomSize: "w-20",
+        zoomSize: "w-24",
         zoomHeight: "h-12",
-        zoomOffset: { x: -95, y: 5 }
+        zoomOffset: { x: -125, y: 2 }
       },
       10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
-        zoomSize: "w-23",
+        zoomSize: "w-25",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -61, y: 10 }
+        zoomOffset: { x: -75, y: 10 }
       },
       11: {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
-        zoomSize: "w-17",
+        zoomSize: "w-25",
         zoomHeight: "h-19",
-        zoomOffset: { x: -77, y: 12 }
+        zoomOffset: { x: -115, y: 15 }
       },
       12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
-        zoomSize: "w-17",
+        zoomSize: "w-22",
         zoomHeight: "h-22",
-        zoomOffset: { x: -72, y: -35 }
+        zoomOffset: { x: -90, y: -65 }
       },
       13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
-        zoomSize: "w-20",
-        zoomHeight: "h-15",
-        zoomOffset: { x: -79, y: -10 }
+        zoomSize: "w-24",
+        zoomHeight: "h-18",
+        zoomOffset: { x: -95, y: -10 }
       },
       14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
-        zoomSize: "w-20",
+        zoomSize: "w-28",
         zoomHeight: "h-15",
-        zoomOffset: { x: -75, y: 5 }
+        zoomOffset: { x: -85, y:5 }
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
-        zoomSize: "w-20",
-        zoomHeight: "h-20",
-        zoomOffset: { x: -80, y: 15 }
+        zoomSize: "w-25",
+        zoomHeight: "h-25",
+        zoomOffset: { x: -100, y: 19 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
-        zoomSize: "w-25",
+        zoomSize: "w-32",
         zoomHeight: "h-20",
-        zoomOffset: { x: -125, y: 2 }
+        zoomOffset: { x: -160, y: 35 }
       }
     };
 
@@ -206,7 +206,7 @@ const Poster2 = () => {
       
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
-        <div className="w-full max-w-[1200px] grid grid-cols-4 grid-rows-2 gap-8 h-full max-h-[95vh] px-4">
+        <div className="w-full max-w-[1400px] grid grid-cols-4 grid-rows-2 gap-4 h-full max-h-[95vh] px-4">
           {posters.map((poster) => (
             <div
               key={poster.id}
@@ -215,7 +215,7 @@ const Poster2 = () => {
               style={{ 
                 aspectRatio: '332/490',
                 width: '100%',
-                maxWidth: '220px',
+                maxWidth: '280px' ,
                 height: 'auto'
               }}
             >
