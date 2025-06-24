@@ -30,27 +30,27 @@ const Poster = () => {
       },
       2: {
         hotspot: { left: 50, top: 30, width: 20, height: 15 },
-        zoomSize: "w-17",
+        zoomSize: "w-20",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -75, y: 15 }
+        zoomOffset: { x: -85, y: 15 }
       },
       3: {
         hotspot: { left: 35, top: 20, width: 30, height: 15 },
-        zoomSize: "w-17",
+        zoomSize: "w-22",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -77, y: -32 }
+        zoomOffset: { x: -92, y: -40 }
       },
       4: {
         hotspot: { left: 40, top: 5, width: 10, height: 20 },
-        zoomSize: "w-20",
+        zoomSize: "w-25",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -50, y:2 }
+        zoomOffset: { x: -62, y:5 }
       },
       5: {
         hotspot: { left: 5, top:70, width: 20, height: 10 },
         zoomSize: "w-20",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -55, y: -25 }
+        zoomOffset: { x: -75, y: -25 }
       },
       6: {
         hotspot: { left: 40, top: 85, width: 20, height: 15 },
@@ -60,15 +60,15 @@ const Poster = () => {
       },
       7: {
         hotspot: { left: 2, top: 70, width: 20, height: 15 },
-        zoomSize: "w-18",
-        zoomHeight: "h-20",
-        zoomOffset: { x: -56, y: -15 }
+        zoomSize: "w-19",
+        zoomHeight: "h-22",
+        zoomOffset: { x: -70, y: -9 }
       },
       8: {
         hotspot: { left: 40, top: 48, width: 15, height: 15 },
         zoomSize: "w-48",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -105, y: 25 }
+        zoomOffset: { x: -120, y: 25 }
       }
     };
 
@@ -429,6 +429,101 @@ const Poster = () => {
                   <div className="font-bold text-xl mb-1">PASSENGERS, 2016</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">The lines and circles are arranged in Morse code that spells out "SOS",</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">a hint at the film's characters' distress.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 5 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">10 CLOVERFIELD LANE, 2016</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The hidden robot is the logo of “Bad Robot Productions”,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">one of the production companies behind the film.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 6 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">THE DARK KNIGHT, 2008</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Rotating the poster 90 degrees reveals the phrase "A Taste for the Theatrical",a quote from the previous film’s ending</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 7 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">CAPTAIN MARVEL, 2019</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Brightening the poster reveals Goose’s tail,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">the cat of the main character Carol Danvers.</div>
+                </div>
+              </div>
+            )}
+            {selectedPoster === 8 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '591px',
+                  height: '92px',
+                  left: '85px',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">PASSENGERS, 2016</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The lines and circles are arranged in Morse code that spells</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">out "SOS", a hint at the film's characters' distress.</div>
                 </div>
               </div>
             )}

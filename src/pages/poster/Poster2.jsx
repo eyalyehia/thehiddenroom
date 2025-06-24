@@ -65,50 +65,50 @@ const Poster2 = () => {
       9: {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
         zoomSize: "w-20",
-        zoomHeight: "h-9",
+        zoomHeight: "h-12",
         zoomOffset: { x: -95, y: 5 }
       },
       10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
-        zoomSize: "w-17",
+        zoomSize: "w-23",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -55, y: -9 }
+        zoomOffset: { x: -61, y: 10 }
       },
       11: {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
         zoomSize: "w-17",
-        zoomHeight: "h-15",
-        zoomOffset: { x: -77, y: 8 }
+        zoomHeight: "h-19",
+        zoomOffset: { x: -77, y: 12 }
       },
       12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
-        zoomSize: "w-12",
-        zoomHeight: "h-17",
-        zoomOffset: { x: -52, y: -25 }
+        zoomSize: "w-17",
+        zoomHeight: "h-22",
+        zoomOffset: { x: -72, y: -35 }
       },
       13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
-        zoomSize: "w-15",
+        zoomSize: "w-20",
         zoomHeight: "h-15",
-        zoomOffset: { x: -65, y: -17 }
+        zoomOffset: { x: -79, y: -10 }
       },
       14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
         zoomSize: "w-20",
-        zoomHeight: "h-auto",
-        zoomOffset: { x: -60, y: 0 }
+        zoomHeight: "h-15",
+        zoomOffset: { x: -75, y: 5 }
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
         zoomSize: "w-20",
         zoomHeight: "h-20",
-        zoomOffset: { x: -70, y: -5 }
+        zoomOffset: { x: -80, y: 15 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
-        zoomSize: "w-21",
-        zoomHeight: "h-18",
-        zoomOffset: { x: -100, y: -7 }
+        zoomSize: "w-25",
+        zoomHeight: "h-20",
+        zoomOffset: { x: -125, y: 2 }
       }
     };
 
