@@ -549,7 +549,7 @@ const Poster2 = () => {
                   position: 'absolute',
                   width: '498px',
                   left: '0',
-                  bottom: '-75px',
+                  bottom: '-110px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -566,7 +566,7 @@ const Poster2 = () => {
                   position: 'absolute',
                   width: '533px',
                   left: '0',
-                  bottom: '-75px',
+                  bottom: '-110px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'

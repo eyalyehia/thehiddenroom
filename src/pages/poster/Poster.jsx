@@ -440,9 +440,9 @@ const Poster = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">PASSENGERS, 2016</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The lines and circles are arranged in Morse code that spells out "SOS",</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a hint at the film's characters' distress.</div>
+                  <div className="font-bold text-xl mb-1">US, 2019</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The scissor handles form two figures facing opposite</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">directions, a nod to the film’s theme of dual identity.</div>
                 </div>
               </div>
             )}
