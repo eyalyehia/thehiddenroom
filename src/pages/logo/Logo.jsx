@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Logo = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
+  const [hoveredLogo, setHoveredLogo] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -13,6 +16,51 @@ const Logo = () => {
 
   const handleNotebookClick = () => {
     navigate('/notebook');
+  };
+
+
+  // Helper configuration for zoomed logos
+  function getLogoZoomConfig(logoId) {
+    const configs = {
+      1: { zoomSize: 'w-17', zoomHeight: 'h-22', zoomOffset: { x: -45, y: -37 } },
+      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -32, y: -47 } },
+      3: { zoomSize: 'w-22', zoomHeight: 'h-15', zoomOffset: { x: -78, y: -80 } },
+      4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 10, y: -15 } },
+      5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: -92, y: -55 } },
+      6: { zoomSize: 'w-20', zoomHeight: 'h-13', zoomOffset: { x: -41, y: -30 } },
+      7: { zoomSize: 'w-29', zoomHeight: 'h-29', zoomOffset: { x: -65, y: -82 } },
+      8: { zoomSize: 'w-16', zoomHeight: 'h-15', zoomOffset: { x: -90, y: -29 } },
+      9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: -35, y: -80 } },
+      10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -100, y:15 } },
+      11: { zoomSize: 'w-15', zoomHeight: 'h-auto', zoomOffset: { x: -80, y: 2 } },
+      12: { zoomSize: 'w-28', zoomHeight: 'h-17', zoomOffset: { x: -75, y: 15 } },
+      13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -62, y: -70 } },
+      14: { zoomSize: 'w-32', zoomHeight: 'h-18', zoomOffset: { x: -65, y: -38 } },
+      15: { zoomSize: 'w-20', zoomHeight: 'h-7', zoomOffset: { x: -80, y:-15 } },
+    };
+    return configs[logoId] || { zoomSize: 'w-40', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: -90 } };
+  }
+
+  const handleLogoEnter = (logoId, event) => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    const rect = event.currentTarget.getBoundingClientRect();
+    setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+    setHoveredLogo(logoId);
+  };
+
+  const handleLogoLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => setHoveredLogo(null), 50);
+  };
+
+  const handleZoomedImageEnter = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+  };
+
+  const handleZoomedImageLeave = () => setHoveredLogo(null);
+
+  const handleLogoClick = (logoId) => {
+    console.log('Logo clicked:', logoId);
+    // TODO: navigate or perform action in future
   };
 
   const handleNextPage = () => {
@@ -51,7 +99,19 @@ const Logo = () => {
         )}
       </button>
       
-      {/* תמונות הלוגואים */}
+      {/* preload zoom images */}
+        <div className="hidden">
+          {Array.from({ length: 15 }, (_, i) => (
+            <img
+              key={`preload-${i}`}
+              src={`/logo/pictures/zoomInBit/${(i + 1).toString().padStart(2, '0')}.png`}
+              alt={`Preload ${i + 1}`}
+              loading="eager"
+            />
+          ))}
+        </div>
+
+        {/* תמונות הלוגואים */}
       {Array.from({ length: 15 }, (_, index) => {
         const logoNum = index + 1;
         // חישוב מיקום - 5 תמונות בשורה
@@ -72,7 +132,7 @@ const Logo = () => {
             key={logoNum}
             src={`/logo/pictures/regular/${logoNum.toString().padStart(2, '0')}.png`}
             alt={`Logo ${logoNum}`}
-            className="absolute cursor-pointer transition-transform duration-200 hover:scale-105"
+            className="absolute cursor-pointer"
             style={{
               width: '168px',
               height: '146px',
@@ -80,10 +140,33 @@ const Logo = () => {
               left: `${left}px`,
               objectFit: 'contain'
             }}
+            onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
+            onMouseLeave={handleLogoLeave}
             loading="lazy"
           />
         );
       })}
+
+      {/* Zoomed image */}
+      {hoveredLogo && (() => {
+        const cfg = getLogoZoomConfig(hoveredLogo);
+        return (
+          <img
+            src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
+            alt={`Zoomed Logo ${hoveredLogo}`}
+            className={`absolute z-50 border-2 border-white bg-black/90 cursor-pointer ${cfg.zoomSize} ${cfg.zoomHeight}`}
+            style={{
+              top: `${mousePosition.y + cfg.zoomOffset.y}px`,
+              left: `${mousePosition.x + cfg.zoomOffset.x}px`,
+              objectFit: 'cover'
+            }}
+            onMouseEnter={handleZoomedImageEnter}
+            onMouseLeave={handleZoomedImageLeave}
+            onClick={() => handleLogoClick(hoveredLogo)}
+            loading="lazy"
+          />
+        );
+      })()}
 
       {/* כפתור היומן */}
       <button
@@ -151,4 +234,4 @@ const Logo = () => {
   );
 };
 
-export default Logo; 
+export default Logo;
