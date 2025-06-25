@@ -18,7 +18,6 @@ const Logo = () => {
     navigate('/notebook');
   };
 
-
   // Helper configuration for zoomed logos
   function getLogoZoomConfig(logoId) {
     const configs = {
@@ -42,21 +41,35 @@ const Logo = () => {
   }
 
   const handleLogoEnter = (logoId, event) => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    
     const rect = event.currentTarget.getBoundingClientRect();
     setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
     setHoveredLogo(logoId);
   };
 
   const handleLogoLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => setHoveredLogo(null), 50);
+    // Add a small delay before removing the hover state
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredLogo(null);
+    }, 50); // 50ms delay to maintain hover during quick mouse movements
   };
 
   const handleZoomedImageEnter = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    // Clear timeout when hovering over zoomed image
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
   };
 
-  const handleZoomedImageLeave = () => setHoveredLogo(null);
+  const handleZoomedImageLeave = () => {
+    setHoveredLogo(null);
+  };
 
   const handleLogoClick = (logoId) => {
     console.log('Logo clicked:', logoId);
@@ -79,6 +92,20 @@ const Logo = () => {
         }}
       >
       
+      {/* תמונות נסתרות לטעינה מיידית */}
+      <div className="hidden">
+        {Array.from({ length: 15 }, (_, i) => (
+          <img
+            key={`preload-${i}`}
+            className="preload-zoom-image"
+            src={`/logo/pictures/zoomInBit/${(i + 1).toString().padStart(2, '0')}.png`}
+            alt={`Preload ${i + 1}`}
+            loading="eager"
+            decoding="sync"
+          />
+        ))}
+      </div>
+      
       {/* כפתור סגירה X */}
       <button
         className="fixed top-6 right-6 transition-opacity z-50 cursor-pointer"
@@ -98,18 +125,6 @@ const Logo = () => {
           </svg>
         )}
       </button>
-      
-      {/* preload zoom images */}
-        <div className="hidden">
-          {Array.from({ length: 15 }, (_, i) => (
-            <img
-              key={`preload-${i}`}
-              src={`/logo/pictures/zoomInBit/${(i + 1).toString().padStart(2, '0')}.png`}
-              alt={`Preload ${i + 1}`}
-              loading="eager"
-            />
-          ))}
-        </div>
 
         {/* תמונות הלוגואים */}
       {Array.from({ length: 15 }, (_, index) => {
@@ -151,20 +166,33 @@ const Logo = () => {
       {hoveredLogo && (() => {
         const cfg = getLogoZoomConfig(hoveredLogo);
         return (
-          <img
-            src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
-            alt={`Zoomed Logo ${hoveredLogo}`}
-            className={`absolute z-50 border-2 border-white bg-black/90 cursor-pointer ${cfg.zoomSize} ${cfg.zoomHeight}`}
+          <div
+            className="fixed z-50 cursor-pointer"
             style={{
-              top: `${mousePosition.y + cfg.zoomOffset.y}px`,
               left: `${mousePosition.x + cfg.zoomOffset.x}px`,
-              objectFit: 'cover'
+              top: `${mousePosition.y + cfg.zoomOffset.y}px`,
+              transform: 'translate3d(0, 0, 0)',
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden'
             }}
             onMouseEnter={handleZoomedImageEnter}
             onMouseLeave={handleZoomedImageLeave}
             onClick={() => handleLogoClick(hoveredLogo)}
-            loading="lazy"
-          />
+          >
+            <img
+              src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
+              alt={`Zoomed Logo ${hoveredLogo}`}
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn`}
+              style={{ 
+                willChange: 'transform, opacity',
+                animation: 'fadeIn 0.1s ease-out forwards',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
+              loading="eager"
+              decoding="sync"
+            />
+          </div>
         );
       })()}
 
