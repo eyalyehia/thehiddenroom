@@ -98,6 +98,13 @@ export const handleClick = (e) => {
       return;
     }
 
+    if (name === "TostitosBag" || obj.name === "Cube008" || 
+        obj.name.includes("cube008") || obj.name.includes("snack") || 
+        obj.name.includes("bag") || obj.name.includes("tostitos")) {
+      window.location.href = '/logo';
+      return;
+    }
+
     if (name === "Book" || obj.name === "Book with glasses" || 
         obj.name.includes("book with glasses") || obj.name.includes("book") || 
         obj.name.includes("glasses")) {
