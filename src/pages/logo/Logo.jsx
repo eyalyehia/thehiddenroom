@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Logo = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
-  const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
+  
   const [hoveredLogo, setHoveredLogo] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const hoverTimeoutRef = useRef(null);
@@ -76,10 +76,7 @@ const Logo = () => {
     // TODO: navigate or perform action in future
   };
 
-  const handleNextPage = () => {
-    // כרגע ללא קישור - יתווסף בעתיד
-    console.log('Next page clicked');
-  };
+  
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -167,7 +164,7 @@ const Logo = () => {
         const cfg = getLogoZoomConfig(hoveredLogo);
         return (
           <div
-            className="fixed z-50 cursor-pointer"
+            className="fixed z-50"
             style={{
               left: `${mousePosition.x + cfg.zoomOffset.x}px`,
               top: `${mousePosition.y + cfg.zoomOffset.y}px`,
@@ -177,21 +174,30 @@ const Logo = () => {
             }}
             onMouseEnter={handleZoomedImageEnter}
             onMouseLeave={handleZoomedImageLeave}
-            onClick={() => handleLogoClick(hoveredLogo)}
           >
-            <img
-              src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
-              alt={`Zoomed Logo ${hoveredLogo}`}
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn`}
-              style={{ 
+            <div
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn cursor-pointer pointer-events-auto flex items-center justify-center`}
+              style={{
                 willChange: 'transform, opacity',
                 animation: 'fadeIn 0.1s ease-out forwards',
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden'
               }}
-              loading="eager"
-              decoding="sync"
-            />
+              onClick={() => handleLogoClick(hoveredLogo)}
+            >
+              <img
+                src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
+                alt={`Zoomed Logo ${hoveredLogo}`}
+                className={`object-cover pointer-events-none`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'block'
+                }}
+                loading="eager"
+                decoding="sync"
+              />
+            </div>
           </div>
         );
       })()}
@@ -237,25 +243,7 @@ const Logo = () => {
         )}
       </button>
 
-      {/* כפתור החץ */}
-      <button
-        className="fixed right-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
-        style={{ width: '29px', height: '45px' }}
-        aria-label="Next Page"
-        onClick={handleNextPage}
-        onMouseEnter={() => setIsHoveringArrowButton(true)}
-        onMouseLeave={() => setIsHoveringArrowButton(false)}
-      >
-        {isHoveringArrowButton ? (
-          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        ) : (
-          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        )}
-      </button>
+      
 
       </div>
     </div>
