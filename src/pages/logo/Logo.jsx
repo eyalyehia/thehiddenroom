@@ -176,7 +176,7 @@ const Logo = () => {
             onMouseLeave={handleZoomedImageLeave}
           >
             <div
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn cursor-pointer pointer-events-auto flex items-center justify-center`}
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn cursor-pointer pointer-events-auto flex items-center justify-center overflow-hidden`}
               style={{
                 willChange: 'transform, opacity',
                 animation: 'fadeIn 0.1s ease-out forwards',
@@ -188,7 +188,7 @@ const Logo = () => {
               <img
                 src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
                 alt={`Zoomed Logo ${hoveredLogo}`}
-                className={`object-cover pointer-events-none`}
+                className="object-cover pointer-events-none"
                 style={{
                   width: '100%',
                   height: '100%',
