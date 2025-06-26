@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const Logo = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
-  
+  const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [hoveredLogo, setHoveredLogo] = useState(null);
+  const [selectedLogo, setSelectedLogo] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
@@ -40,6 +41,124 @@ const Logo = () => {
     return configs[logoId] || { zoomSize: 'w-40', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: -90 } };
   }
 
+  // Configuration for large images in center modal
+  function getLogoModalConfig(logoId) {
+    const configs = {
+      1: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      2: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      3: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      4: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      5: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      6: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      7: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      8: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      9: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      10: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      11: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      12: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      13: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      14: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      15: { 
+        maxWidth: 'max-w-2xl', 
+        maxHeight: 'max-h-[70vh]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      }
+    };
+    return configs[logoId] || { 
+      maxWidth: 'max-w-2xl', 
+      maxHeight: 'max-h-[70vh]',
+      position: 'flex items-center justify-center',
+      marginTop: '0',
+      marginLeft: '0'
+    };
+  }
+
   const handleLogoEnter = (logoId, event) => {
     // Clear any existing timeout
     if (hoverTimeoutRef.current) {
@@ -68,15 +187,19 @@ const Logo = () => {
   };
 
   const handleZoomedImageLeave = () => {
+    // Clear hover immediately when leaving the zoomed image
     setHoveredLogo(null);
   };
 
   const handleLogoClick = (logoId) => {
+    setSelectedLogo(logoId);
     console.log('Logo clicked:', logoId);
-    // TODO: navigate or perform action in future
   };
 
-  
+  const handleNextPage = () => {
+    // כרגע ללא קישור - יתווסף בעתיד
+    console.log('Next page clicked');
+  };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -95,7 +218,7 @@ const Logo = () => {
           <img
             key={`preload-${i}`}
             className="preload-zoom-image"
-            src={`/logo/pictures/zoomInBit/${(i + 1).toString().padStart(2, '0')}.png`}
+            src={`/logo/pictures/zoomIn/${(i + 1).toString().padStart(2, '0')}.png`}
             alt={`Preload ${i + 1}`}
             loading="eager"
             decoding="sync"
@@ -144,7 +267,8 @@ const Logo = () => {
             key={logoNum}
             src={`/logo/pictures/regular/${logoNum.toString().padStart(2, '0')}.png`}
             alt={`Logo ${logoNum}`}
-            className="absolute cursor-pointer"
+            className="absolute cursor-pointer logo-item"
+            data-logo-id={logoNum}
             style={{
               width: '168px',
               height: '146px',
@@ -164,40 +288,34 @@ const Logo = () => {
         const cfg = getLogoZoomConfig(hoveredLogo);
         return (
           <div
-            className="fixed z-50"
+            className="fixed z-50 inline-block"
             style={{
               left: `${mousePosition.x + cfg.zoomOffset.x}px`,
               top: `${mousePosition.y + cfg.zoomOffset.y}px`,
               transform: 'translate3d(0, 0, 0)',
               willChange: 'transform, opacity',
-              backfaceVisibility: 'hidden'
+              backfaceVisibility: 'hidden',
+              width: 'fit-content',
+              height: 'fit-content'
             }}
             onMouseEnter={handleZoomedImageEnter}
             onMouseLeave={handleZoomedImageLeave}
           >
-            <div
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn cursor-pointer pointer-events-auto flex items-center justify-center overflow-hidden`}
-              style={{
+            <img
+              src={`/logo/pictures/zoomIn/${hoveredLogo.toString().padStart(2, '0')}.png`}
+              alt={`Zoomed Logo ${hoveredLogo}`}
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn block cursor-pointer`}
+              style={{ 
                 willChange: 'transform, opacity',
                 animation: 'fadeIn 0.1s ease-out forwards',
                 backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden'
+                WebkitBackfaceVisibility: 'hidden',
+                display: 'block'
               }}
+              loading="eager"
+              decoding="sync"
               onClick={() => handleLogoClick(hoveredLogo)}
-            >
-              <img
-                src={`/logo/pictures/zoomInBit/${hoveredLogo.toString().padStart(2, '0')}.png`}
-                alt={`Zoomed Logo ${hoveredLogo}`}
-                className="object-cover pointer-events-none"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'block'
-                }}
-                loading="eager"
-                decoding="sync"
-              />
-            </div>
+            />
           </div>
         );
       })()}
@@ -243,7 +361,68 @@ const Logo = () => {
         )}
       </button>
 
-      
+      {/* כפתור החץ */}
+      <button
+        className="fixed right-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
+        style={{ width: '29px', height: '45px' }}
+        aria-label="Next Page"
+        onClick={handleNextPage}
+        onMouseEnter={() => setIsHoveringArrowButton(true)}
+        onMouseLeave={() => setIsHoveringArrowButton(false)}
+      >
+        {isHoveringArrowButton ? (
+          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          </svg>
+        ) : (
+          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          </svg>
+        )}
+      </button>
+
+      {selectedLogo && (
+        <div 
+          className={`fixed inset-0 bg-black/80 z-50 p-8 ${getLogoModalConfig(selectedLogo).position}`}
+          onMouseMove={(e) => {
+            const logoElements = document.querySelectorAll('.logo-item');
+            const clickedLogo = Array.from(logoElements).find(
+              (el) => Number(el.getAttribute('data-logo-id')) === selectedLogo
+            );
+            
+            if (clickedLogo) {
+              const rect = clickedLogo.getBoundingClientRect();
+              
+              if (
+                e.clientX < rect.left || 
+                e.clientX > rect.right || 
+                e.clientY < rect.top || 
+                e.clientY > rect.bottom
+              ) {
+                setSelectedLogo(null);
+              }
+            }
+          }}
+          onClick={(e) => {
+            // Close if clicking outside the image
+            if (e.target === e.currentTarget) {
+              setSelectedLogo(null);
+            }
+          }}
+        >
+          <div className={`relative w-full h-auto bg-transparent ${getLogoModalConfig(selectedLogo).maxWidth}`}>
+            <img
+              src={`/logo/pictures/zoomIn/${selectedLogo.toString().padStart(2, '0')}.png`}
+              alt={`Logo ${selectedLogo}`}
+              className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
+              style={{ 
+                marginTop: getLogoModalConfig(selectedLogo).marginTop,
+                marginLeft: getLogoModalConfig(selectedLogo).marginLeft
+              }}
+            />
+          </div>
+        </div>
+      )}
 
       </div>
     </div>
