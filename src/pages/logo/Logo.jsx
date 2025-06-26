@@ -7,6 +7,7 @@ const Logo = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [hoveredLogo, setHoveredLogo] = useState(null);
   const [selectedLogo, setSelectedLogo] = useState(null);
+  const [clickedLogos, setClickedLogos] = useState(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
@@ -45,106 +46,106 @@ const Logo = () => {
   function getLogoModalConfig(logoId) {
     const configs = {
       1: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[385px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       2: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[955.5px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       3: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[931.7px]', 
+        maxHeight: 'max-h-[662.94px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       4: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[693.63px]', 
+        maxHeight: 'max-h-[662.1px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       5: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[679.56px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       6: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[1068.17px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       7: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[618px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       8: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[656px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       9: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[541px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       10: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[1324px]', 
+        maxHeight: 'max-h-[169px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       11: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[721px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       12: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[1093px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       13: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[1056.1px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       14: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[1012px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       15: { 
-        maxWidth: 'max-w-2xl', 
-        maxHeight: 'max-h-[70vh]',
+        maxWidth: 'max-w-[1514px]', 
+        maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
@@ -166,9 +167,13 @@ const Logo = () => {
       hoverTimeoutRef.current = null;
     }
     
-    const rect = event.currentTarget.getBoundingClientRect();
-    setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
-    setHoveredLogo(logoId);
+    if (clickedLogos.has(logoId)) {
+      setSelectedLogo(logoId);
+    } else {
+      const rect = event.currentTarget.getBoundingClientRect();
+      setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      setHoveredLogo(logoId);
+    }
   };
 
   const handleLogoLeave = () => {
@@ -192,6 +197,7 @@ const Logo = () => {
   };
 
   const handleLogoClick = (logoId) => {
+    setClickedLogos(prev => new Set([...prev, logoId]));
     setSelectedLogo(logoId);
     console.log('Logo clicked:', logoId);
   };
@@ -559,7 +565,7 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">WENDY'S</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The word “mom” appears within the collar of the girl’s blouse, suggesting a sense of home-cooked, motherly food.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The word "mom" appears within the collar of the girl's blouse, suggesting a sense of home-cooked, motherly food.</div>
                 </div>
               </div>
             )}
@@ -582,7 +588,7 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">CARREFOUR</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter “C” is hidden in the negative space between the two arrows, reflecting the brand’s initial.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "C" is hidden in the negative space between the two arrows, reflecting the brand's initial.</div>
                 </div>
               </div>
             )}
@@ -605,7 +611,7 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">TOBLERONE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The split “O” with a vertical line suggests an orbital path, visually reflecting the brand name.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The split "O" with a vertical line suggests an orbital path, visually reflecting the brand name.</div>
                 </div>
               </div>
             )}
@@ -628,8 +634,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">BASKIN ROBBINS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The number “31” is hidden within the letters B and R,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a reference to the brand’s original promise of 31 ice cream flavors.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The number "31" is hidden within the letters B and R,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a reference to the brand's original promise of 31 ice cream flavors.</div>
                 </div>
               </div>
             )}
@@ -652,7 +658,7 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">LEVIS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The logo’s shape mimics the back pocket stitching on their jeans, a visual link to the product itself.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The logo's shape mimics the back pocket stitching on their jeans, a visual link to the product itself.</div>
                 </div>
               </div>
             )}
@@ -674,8 +680,8 @@ const Logo = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">HERSHEY’S KISSES</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative space between the “K” and “I”.</div>
+                  <div className="font-bold text-xl mb-1">HERSHEY'S KISSES</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative space between the "K" and "I".</div>
                 </div>
               </div>
             )}
@@ -769,7 +775,7 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">GILLETTE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the “G” and “i” make them look as if</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the "G" and "i" make them look as if</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">sliced by a razor blade.</div>
                 </div>
               </div>
