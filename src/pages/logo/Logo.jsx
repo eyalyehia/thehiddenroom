@@ -420,6 +420,360 @@ const Logo = () => {
                 marginLeft: getLogoModalConfig(selectedLogo).marginLeft
               }}
             />
+            {/* Description under the logo, styled like in Poster.jsx */}
+            {selectedLogo === 1 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">TOBLERONE</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A bear is hidden in the mountain. a reference</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">to Bern, where Toblerone was founded.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 2 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '645px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">TOSTITOS</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letters T-I-T form two figures sharing</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a chip and dipping it into a bowl of salsa.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 3 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '405px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">YOGA AUSTRALIA</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The negative space between the arm and leg is shaped like Australia.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 4 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '448px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">FEDEX</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden arrow is formed in the negative</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">space between the letters E and X.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 5 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '448px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">MY FONTS</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letters "my" are designed to</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">form the image of a hand.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 6 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '594px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">WENDY'S</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The word “mom” appears within the collar of the girl’s blouse, suggesting a sense of home-cooked, motherly food.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 7 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '534px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">CARREFOUR</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter “C” is hidden in the negative space between the two arrows, reflecting the brand’s initial.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 8 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '489px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">TOBLERONE</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The split “O” with a vertical line suggests an orbital path, visually reflecting the brand name.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 9 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '541px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">BASKIN ROBBINS</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The number “31” is hidden within the letters B and R,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a reference to the brand’s original promise of 31 ice cream flavors.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 10 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '519px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">LEVIS</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The logo’s shape mimics the back pocket stitching on their jeans, a visual link to the product itself.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 11 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '489px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">HERSHEY’S KISSES</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative space between the “K” and “I”.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 12 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '489px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">PINTEREST</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter P is designed to resemble a pushpin.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 13 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '515px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">TOUR DE FRANCE</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter R, together with the yellow circle</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">and the letter O, forms the image of a cyclist.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 14 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '489px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">FORMULA 1</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The number 1 is hidden in the negative space between</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">the letter F and the red shape.</div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 15 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '489px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">GILLETTE</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the “G” and “i” make them look as if</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">sliced by a razor blade.</div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
