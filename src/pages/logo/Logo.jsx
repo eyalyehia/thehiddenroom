@@ -432,7 +432,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
+                  width: '580px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -446,8 +446,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">TOBLERONE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A bear is hidden in the mountain. a reference</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">to Bern, where Toblerone was founded.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A bear is hidden in the mountain.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a reference to Bern, where Toblerone was founded.</div>
                 </div>
               </div>
             )}
@@ -456,7 +456,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '645px',
+                  width: '502px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -470,8 +470,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">TOSTITOS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letters T-I-T form two figures sharing</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a chip and dipping it into a bowl of salsa.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letters T-I-T form two figures sharing a chip</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">and dipping it into a bowl of salsa.</div>
                 </div>
               </div>
             )}
@@ -480,7 +480,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '405px',
+                  width: '502px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -494,7 +494,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">YOGA AUSTRALIA</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The negative space between the arm and leg is shaped like Australia.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The negative space between the arm and leg is</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">shaped like Australia.</div>
                 </div>
               </div>
             )}
@@ -503,7 +504,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '448px',
+                  width: '509px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -527,7 +528,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '448px',
+                  width: '590px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -541,8 +542,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">MY FONTS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letters "my" are designed to</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">form the image of a hand.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letters "my" are designed to form the</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">image of a hand.</div>
                 </div>
               </div>
             )}
@@ -551,13 +552,13 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '594px',
+                  width: '597px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
+                  fontWeight: 400,
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   color: '#FFFFFF'
@@ -565,7 +566,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">WENDY'S</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The word "mom" appears within the collar of the girl's blouse, suggesting a sense of home-cooked, motherly food.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The word "mom" appears within the collar of the girl's</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">blouse, suggesting a sense of home-cooked, motherly food.</div>
                 </div>
               </div>
             )}
@@ -574,7 +576,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '534px',
+                  width: '531px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -588,7 +590,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">CARREFOUR</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "C" is hidden in the negative space between the two arrows, reflecting the brand's initial.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "C" is hidden in the negative space between</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">the two arrows, reflecting the brand's initial.</div>
                 </div>
               </div>
             )}
@@ -597,7 +600,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '489px',
+                  width: '470px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -610,8 +613,9 @@ const Logo = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOBLERONE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The split "O" with a vertical line suggests an orbital path, visually reflecting the brand name.</div>
+                  <div className="font-bold text-xl mb-1">ORBIT</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The split "O" with a vertical line suggests an orbital</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">path, visually reflecting the brand name.</div>
                 </div>
               </div>
             )}
@@ -620,7 +624,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '541px',
+                  width: '638px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -634,8 +638,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">BASKIN ROBBINS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The number "31" is hidden within the letters B and R,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a reference to the brand's original promise of 31 ice cream flavors.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The number "31" is hidden within the letters B and R, a reference</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">to the brand's original promise of 31 ice cream flavors.</div>
                 </div>
               </div>
             )}
@@ -644,7 +648,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '519px',
+                  width: '509px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -658,7 +662,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">LEVIS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The logo's shape mimics the back pocket stitching on their jeans, a visual link to the product itself.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The logo's shape mimics the back pocket stitching on their</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">jeans, a visual link to the product itself.</div>
                 </div>
               </div>
             )}
@@ -681,7 +686,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">HERSHEY'S KISSES</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative space between the "K" and "I".</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">space between the "K" and "I".</div>
                 </div>
               </div>
             )}
@@ -690,7 +696,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '489px',
+                  width: '509px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -713,7 +719,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '515px',
+                  width: '509px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -737,7 +743,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '489px',
+                  width: '509px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -761,7 +767,7 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '489px',
+                  width: '446px',
                   height: '92px',
                   left: '0',
                   bottom: '-110px',
@@ -775,8 +781,8 @@ const Logo = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">GILLETTE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the "G" and "i" make them look as if</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">sliced by a razor blade.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the "G" and "i" make them look</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">as if sliced by a razor blade.</div>
                 </div>
               </div>
             )}
