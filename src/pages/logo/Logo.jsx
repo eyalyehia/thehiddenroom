@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Logo = () => {
@@ -13,12 +13,138 @@ const Logo = () => {
   const [imageBlobs, setImageBlobs] = useState({});
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingStage, setLoadingStage] = useState('Initializing...');
+  const [hasStartedLoading, setHasStartedLoading] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(!document.hidden);
+  const [isPerformanceOptimized, setIsPerformanceOptimized] = useState(false);
+  const [isReOptimizing, setIsReOptimizing] = useState(false);
+  const [reOptimizationProgress, setReOptimizationProgress] = useState(0);
+  const [reOptimizationStage, setReOptimizationStage] = useState('');
   const hoverTimeoutRef = useRef(null);
+  const loadingTimeoutsRef = useRef([]);
+  const reOptimizationTimeoutsRef = useRef([]);
   const navigate = useNavigate();
+
+  // Performance optimization when page becomes visible
+  const optimizePerformance = useCallback(() => {
+    if (isPerformanceOptimized || isReOptimizing) return;
+    
+    // Start re-optimization process with visual feedback
+    setIsReOptimizing(true);
+    setReOptimizationProgress(0);
+    setReOptimizationStage('Preparing the site...');
+    
+    // Clear any existing re-optimization timeouts
+    reOptimizationTimeoutsRef.current.forEach(clearTimeout);
+    reOptimizationTimeoutsRef.current = [];
+    
+    // Progressive optimization stages
+    const stages = [
+      { progress: 20, stage: 'Clearing memory...', delay: 150 },
+      { progress: 40, stage: 'Refreshing interactions...', delay: 200 },
+      { progress: 60, stage: 'Optimizing performance...', delay: 200 },
+      { progress: 80, stage: 'Restoring responsiveness...', delay: 150 },
+      { progress: 100, stage: '✅ Ready to go!', delay: 300 }
+    ];
+    
+    let currentStage = 0;
+    
+    const processNextStage = () => {
+      if (currentStage < stages.length) {
+        const stage = stages[currentStage];
+        setReOptimizationProgress(stage.progress);
+        setReOptimizationStage(stage.stage);
+        
+        // Perform actual optimizations at key stages
+        if (currentStage === 0) {
+          // Force garbage collection if available
+          if (window.gc) {
+            window.gc();
+          }
+        } else if (currentStage === 1) {
+          // Clear any pending animations
+          if (hoverTimeoutRef.current) {
+            clearTimeout(hoverTimeoutRef.current);
+            hoverTimeoutRef.current = null;
+          }
+          // Reset interaction states
+          setHoveredLogo(null);
+          setSelectedLogo(null);
+        } else if (currentStage === 2) {
+          setIsPerformanceOptimized(true);
+        }
+        
+        currentStage++;
+        const timeout = setTimeout(processNextStage, stage.delay);
+        reOptimizationTimeoutsRef.current.push(timeout);
+      } else {
+        // Finish optimization
+        const finalTimeout = setTimeout(() => {
+          setIsReOptimizing(false);
+          setIsPerformanceOptimized(false);
+          setReOptimizationProgress(0);
+          setReOptimizationStage('');
+        }, 500);
+        reOptimizationTimeoutsRef.current.push(finalTimeout);
+      }
+    };
+    
+    // Start the process
+    processNextStage();
+  }, [isPerformanceOptimized, isReOptimizing]);
+
+  // Enhanced page visibility handling
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const isVisible = !document.hidden;
+      setIsPageVisible(isVisible);
+      
+      if (isVisible && imagesLoaded) {
+        // Optimize performance when returning to page
+        requestAnimationFrame(() => {
+          optimizePerformance();
+        });
+      }
+    };
+
+    const handleFocus = () => {
+      if (imagesLoaded) {
+        optimizePerformance();
+      }
+    };
+
+    const handleBlur = () => {
+      // Clean up when page loses focus
+      setHoveredLogo(null);
+      setSelectedLogo(null);
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
+      // Stop any ongoing re-optimization
+      reOptimizationTimeoutsRef.current.forEach(clearTimeout);
+      reOptimizationTimeoutsRef.current = [];
+      setIsReOptimizing(false);
+    };
+
+    // Add multiple event listeners for comprehensive handling
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('blur', handleBlur);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('blur', handleBlur);
+    };
+  }, [imagesLoaded, optimizePerformance]);
 
   // Complete image preloading - no page display until all images are fully loaded
   useEffect(() => {
     const loadAllImages = async () => {
+      // Clear any existing timeouts
+      loadingTimeoutsRef.current.forEach(clearTimeout);
+      loadingTimeoutsRef.current = [];
+      
       setLoadingStage('Initializing image loading...');
       const imageCache = {};
       const loadedImages = {};
@@ -41,7 +167,7 @@ const Logo = () => {
           const imageUrl = `/logo/pictures/${type.folder}/${num}.png`;
           const imageKey = `${type.key}-${i}`;
           
-                     const promise = new Promise((resolve) => {
+          const promise = new Promise((resolve) => {
             const img = new Image();
             
             img.onload = () => {
@@ -58,14 +184,16 @@ const Logo = () => {
                   setLoadingProgress(progress);
                   
                   // Update stage based on progress
-                  if (progress <= 33) {
+                  if (progress <= 25) {
                     setLoadingStage('Loading Gallery Images...');
-                  } else if (progress <= 66) {
+                  } else if (progress <= 50) {
                     setLoadingStage('Loading Hover Images...');
-                  } else if (progress < 100) {
+                  } else if (progress <= 75) {
                     setLoadingStage('Loading Modal Images...');
+                  } else if (progress < 100) {
+                    setLoadingStage('Finalizing download...');
                   } else {
-                    setLoadingStage('Finalizing...');
+                    setLoadingStage('Preparing images...');
                   }
                   
                   resolve({ url: blobUrl, img });
@@ -105,60 +233,127 @@ const Logo = () => {
         setLoadingStage('Loading all images...');
         await Promise.all(allImagePromises);
         
-        // Final optimization step
-        setLoadingStage('Optimizing performance...');
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // Ensure all images are decoded and ready
-        const decodePromises = Object.values(loadedImages).map(img => {
-          if (img && img.decode) {
-            return img.decode().catch(() => {}); // Ignore decode errors
-          }
-          return Promise.resolve();
-        });
-        
-        await Promise.all(decodePromises);
-        
+        // Set image blobs first
         setImageBlobs(imageCache);
-        setLoadingStage('Ready! Loading complete.');
         
-                 // Verify all images are truly loaded before showing page
-         setLoadingStage('Verifying image integrity...');
-         let allImagesReady = true;
-         
-         // Double-check all images are loaded
-         for (const [key, img] of Object.entries(loadedImages)) {
-           if (img && (!img.complete || img.naturalWidth === 0)) {
-             console.warn(`Image not fully loaded: ${key}`);
-             allImagesReady = false;
-           }
-         }
-         
-         if (!allImagesReady) {
-           setLoadingStage('Waiting for remaining images...');
-           await new Promise(resolve => setTimeout(resolve, 1000));
-         }
-         
-         setLoadingStage('✅ All images loaded successfully!');
-         await new Promise(resolve => setTimeout(resolve, 1000));
-         setImagesLoaded(true);
+        // Comprehensive verification process
+        setLoadingStage('Verifying all images are ready...');
+        
+        // Wait a moment for blobs to be set
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Verify ALL images are truly loaded and accessible
+        let allImagesVerified = true;
+        const verificationPromises = [];
+        
+        for (const [, img] of Object.entries(loadedImages)) {
+          if (img) {
+            const verifyPromise = new Promise((resolve) => {
+              // Check if image is complete and has dimensions
+              if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                resolve(true);
+              } else {
+                // If not ready, wait for it
+                const checkImage = () => {
+                  if (img.complete && img.naturalWidth > 0) {
+                    resolve(true);
+                  } else {
+                    setTimeout(checkImage, 50);
+                  }
+                };
+                checkImage();
+              }
+            });
+            verificationPromises.push(verifyPromise);
+          }
+        }
+        
+        // Wait for all verifications to complete
+        await Promise.all(verificationPromises);
+        
+        // Double-check image blobs are accessible
+        for (const [imageKey, url] of Object.entries(imageCache)) {
+          if (url.startsWith('blob:')) {
+            try {
+              const testImg = new Image();
+              await new Promise((resolve, reject) => {
+                testImg.onload = resolve;
+                testImg.onerror = reject;
+                testImg.src = url;
+              });
+            } catch (error) {
+              console.warn(`Blob verification failed for ${imageKey}:`, error);
+              allImagesVerified = false;
+            }
+          }
+        }
+        
+        if (!allImagesVerified) {
+          setLoadingStage('Re-checking images...');
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        
+        // Final stage - everything is truly ready
+        setLoadingStage('✅ Everything ready!');
+        
+        // Give a moment for final preparations
+        const finalTimeout = setTimeout(() => {
+          setImagesLoaded(true);
+        }, 500);
+        loadingTimeoutsRef.current.push(finalTimeout);
         
       } catch (error) {
         console.error('Error loading images:', error);
         setLoadingStage('Error occurred, but continuing...');
+        setHasStartedLoading(false); // Reset for retry
         setImagesLoaded(true);
       }
     };
 
-    loadAllImages();
+    // Only load images if they haven't been loaded yet and we haven't started loading
+    if (!imagesLoaded && !hasStartedLoading && Object.keys(imageBlobs).length === 0) {
+      setHasStartedLoading(true);
+      loadAllImages();
+    }
     
     // Cleanup function
     return () => {
+      // Clear all timeouts
+      loadingTimeoutsRef.current.forEach(clearTimeout);
+      loadingTimeoutsRef.current = [];
+      
+      // Clear re-optimization timeouts
+      reOptimizationTimeoutsRef.current.forEach(clearTimeout);
+      reOptimizationTimeoutsRef.current = [];
+      
+      // Clear hover timeout
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array to run only once
+
+  // Separate cleanup effect for blob URLs
+  useEffect(() => {
+    return () => {
+      // Revoke blob URLs when component unmounts
       Object.values(imageBlobs).forEach(url => {
         if (url && url.startsWith('blob:')) {
           URL.revokeObjectURL(url);
         }
       });
+    };
+  }, [imageBlobs]);
+
+  // Clean up hover timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
     };
   }, []);
 
@@ -172,7 +367,7 @@ const Logo = () => {
 
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
-      1: { zoomSize: 'w-17', zoomHeight: 'h-22', zoomOffset: { x: -45, y: -37 } },
+      1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -100, y: -25 } },
       2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -32, y: -47 } },
       3: { zoomSize: 'w-22', zoomHeight: 'h-15', zoomOffset: { x: -78, y: -80 } },
       4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 10, y: -15 } },
@@ -223,6 +418,9 @@ const Logo = () => {
 
   // Optimized event handlers with minimal re-renders
   const handleLogoEnter = useMemo(() => (logoId, event) => {
+    // Only proceed if page is visible and images are loaded
+    if (!isPageVisible || !imagesLoaded || isPerformanceOptimized) return;
+    
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
@@ -235,29 +433,42 @@ const Logo = () => {
       setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
       setHoveredLogo(logoId);
     }
-  }, [clickedLogos]);
+  }, [clickedLogos, imagesLoaded, isPageVisible, isPerformanceOptimized]);
 
   const handleLogoLeave = useMemo(() => () => {
+    // Only proceed if page is visible
+    if (!isPageVisible || isPerformanceOptimized) return;
+    
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredLogo(null);
     }, 30);
-  }, []);
+  }, [isPageVisible, isPerformanceOptimized]);
 
   const handleZoomedImageEnter = useMemo(() => () => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
+    if (!isPageVisible || hoverTimeoutRef.current) {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
     }
-  }, []);
+  }, [isPageVisible]);
 
   const handleZoomedImageLeave = useMemo(() => () => {
-    setHoveredLogo(null);
-  }, []);
+    if (isPageVisible) {
+      setHoveredLogo(null);
+    }
+  }, [isPageVisible]);
 
   const handleLogoClick = useMemo(() => (logoId) => {
+    // Only proceed if page is visible and images are loaded
+    if (!isPageVisible || !imagesLoaded || isPerformanceOptimized) return;
+    
     setClickedLogos(prev => new Set([...prev, logoId]));
     setSelectedLogo(logoId);
-  }, []);
+  }, [imagesLoaded, isPageVisible, isPerformanceOptimized]);
 
   const handleNextPage = () => {
     console.log('Next page clicked');
@@ -265,7 +476,7 @@ const Logo = () => {
 
   // Memoized logo grid for performance
   const logoGrid = useMemo(() => {
-    if (!imagesLoaded) return null;
+    if (!imagesLoaded || !isPageVisible || Object.keys(imageBlobs).length === 0) return null;
     
     return Array.from({ length: 15 }, (_, index) => {
       const logoNum = index + 1;
@@ -293,7 +504,8 @@ const Logo = () => {
             top: `${top}px`,
             left: `${left}px`,
             objectFit: 'contain',
-            imageRendering: 'crisp-edges'
+            imageRendering: 'crisp-edges',
+            pointerEvents: isPerformanceOptimized ? 'none' : 'auto'
           }}
           onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
           onMouseLeave={handleLogoLeave}
@@ -302,7 +514,7 @@ const Logo = () => {
         />
       );
     });
-  }, [imagesLoaded, imageBlobs, handleLogoEnter, handleLogoLeave]);
+  }, [imagesLoaded, imageBlobs, handleLogoEnter, handleLogoLeave, isPageVisible, isPerformanceOptimized]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -315,6 +527,125 @@ const Logo = () => {
         }}
       >
       
+      {/* Re-optimization Screen for returning users */}
+      {isReOptimizing && imagesLoaded && (
+        <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
+          <div className="text-center space-y-8 max-w-md w-full px-8">
+            {/* Welcome Back Title */}
+            <div className="space-y-2">
+              <h1 className="text-4xl font-bold text-white tracking-wider">
+                Welcome Back! 👋
+              </h1>
+              <p className="text-gray-300 text-lg">Preparing the site for you...</p>
+            </div>
+
+            {/* Progress Circle Animation */}
+            <div className="relative w-32 h-32 mx-auto">
+              <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                {/* Background Circle */}
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  stroke="rgba(75, 85, 99, 0.3)"
+                  strokeWidth="8"
+                  fill="none"
+                />
+                {/* Progress Circle */}
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  stroke="url(#reOptimGradient)"
+                  strokeWidth="8"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 50}`}
+                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - reOptimizationProgress / 100)}`}
+                  className="transition-all duration-300 ease-out"
+                />
+                <defs>
+                  <linearGradient id="reOptimGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10B981" />
+                    <stop offset="50%" stopColor="#3B82F6" />
+                    <stop offset="100%" stopColor="#8B5CF6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              {/* Percentage Text */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-3xl font-bold text-white">{reOptimizationProgress}%</span>
+              </div>
+            </div>
+
+            {/* Enhanced Progress Section */}
+            <div className="space-y-6">
+              {/* Input Range Style Progress */}
+              <div className="space-y-4">
+                <div className="relative">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={reOptimizationProgress}
+                    disabled
+                    className="w-full h-4 bg-gray-700 rounded-lg appearance-none cursor-not-allowed"
+                    style={{
+                      background: `linear-gradient(to right, #10B981 0%, #3B82F6 ${reOptimizationProgress/2}%, #8B5CF6 ${reOptimizationProgress}%, #374151 ${reOptimizationProgress}%, #374151 100%)`,
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'none'
+                    }}
+                  />
+                  <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-lg opacity-20"></div>
+                </div>
+                
+                {/* Progress Text with Animation */}
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400 font-medium">
+                    Optimizing Performance
+                  </span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg font-bold text-white">
+                      {reOptimizationProgress}%
+                    </span>
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Beautiful Progress Bar Alternative */}
+              <div className="space-y-2">
+                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden border border-gray-600 shadow-inner">
+                  <div 
+                    className="h-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 transition-all duration-500 ease-out rounded-full relative overflow-hidden"
+                    style={{ width: `${reOptimizationProgress}%` }}
+                  >
+                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                    <div className="absolute right-0 top-0 w-8 h-full bg-white/30 blur-sm animate-pulse"></div>
+                  </div>
+                </div>
+                
+                {/* Loading Stage Text with Icon */}
+                <div className="text-center flex items-center justify-center space-x-2">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-bounce"></div>
+                  <p className="text-gray-300 text-sm font-medium tracking-wide">
+                    {reOptimizationStage}
+                  </p>
+                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Loading Tips */}
+            <div className="text-center">
+              <p className="text-gray-400 text-xs italic">
+                "Preparing a smooth and fast experience for you ✨"
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Beautiful Loading Screen */}
       {!imagesLoaded && (
         <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
@@ -434,9 +765,9 @@ const Logo = () => {
                     animationDelay: `${index * 0.2}s`,
                     animationDuration: '1s'
                   }}
-          />
-        ))}
-      </div>
+                ></div>
+              ))}
+            </div>
 
             {/* Loading Tips */}
             <div className="text-center">
@@ -472,7 +803,7 @@ const Logo = () => {
       {logoGrid}
 
       {/* Instant Zoomed Image Display */}
-      {hoveredLogo && imagesLoaded && (() => {
+      {hoveredLogo && imagesLoaded && isPageVisible && !isPerformanceOptimized && (() => {
         const cfg = getLogoZoomConfig(hoveredLogo);
         const zoomImageSrc = imageBlobs[`zoomInBit2-${hoveredLogo}`] || `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
         
@@ -567,7 +898,7 @@ const Logo = () => {
       </button>
 
       {/* Instant Modal Display */}
-      {selectedLogo && imagesLoaded && (
+      {selectedLogo && imagesLoaded && isPageVisible && (
         <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${getLogoModalConfig(selectedLogo).position}`}
           onMouseMove={(e) => {
@@ -634,7 +965,7 @@ const Logo = () => {
                 </div>
               </div>
             )}
-            {selectedLogo === 2 && (
+            {selectedLogo === 3 && (
               <div 
                 className="absolute text-white"
                 style={{
@@ -658,7 +989,7 @@ const Logo = () => {
                 </div>
               </div>
             )}
-            {selectedLogo === 3 && (
+            {selectedLogo === 2 && (
               <div 
                 className="absolute text-white"
                 style={{
