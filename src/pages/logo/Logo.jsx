@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Logo = () => {
@@ -9,8 +9,158 @@ const Logo = () => {
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [clickedLogos, setClickedLogos] = useState(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [imageBlobs, setImageBlobs] = useState({});
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStage, setLoadingStage] = useState('Initializing...');
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
+
+  // Complete image preloading - no page display until all images are fully loaded
+  useEffect(() => {
+    const loadAllImages = async () => {
+      setLoadingStage('Initializing image loading...');
+      const imageCache = {};
+      const loadedImages = {};
+      let loadedCount = 0;
+
+      const imageTypes = [
+        { folder: 'regular2', key: 'regular2', name: 'Gallery Images' },
+        { folder: 'zoomInBit2', key: 'zoomInBit2', name: 'Hover Images' },
+        { folder: 'zoomIn2', key: 'zoomIn2', name: 'Modal Images' }
+      ];
+
+      const totalImages = imageTypes.length * 15;
+
+      // Create all image promises for complete loading
+      const allImagePromises = [];
+
+      for (const type of imageTypes) {
+        for (let i = 1; i <= 15; i++) {
+          const num = i.toString().padStart(2, '0');
+          const imageUrl = `/logo/pictures/${type.folder}/${num}.png`;
+          const imageKey = `${type.key}-${i}`;
+          
+                     const promise = new Promise((resolve) => {
+            const img = new Image();
+            
+            img.onload = () => {
+              // Create blob URL for optimal performance
+              fetch(imageUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                  const blobUrl = URL.createObjectURL(blob);
+                  imageCache[imageKey] = blobUrl;
+                  loadedImages[imageKey] = img;
+                  loadedCount++;
+                  
+                  const progress = Math.round((loadedCount / totalImages) * 100);
+                  setLoadingProgress(progress);
+                  
+                  // Update stage based on progress
+                  if (progress <= 33) {
+                    setLoadingStage('Loading Gallery Images...');
+                  } else if (progress <= 66) {
+                    setLoadingStage('Loading Hover Images...');
+                  } else if (progress < 100) {
+                    setLoadingStage('Loading Modal Images...');
+                  } else {
+                    setLoadingStage('Finalizing...');
+                  }
+                  
+                  resolve({ url: blobUrl, img });
+                })
+                .catch(() => {
+                  // Fallback to direct image URL
+                  imageCache[imageKey] = imageUrl;
+                  loadedImages[imageKey] = img;
+                  loadedCount++;
+                  
+                  const progress = Math.round((loadedCount / totalImages) * 100);
+                  setLoadingProgress(progress);
+                  resolve({ url: imageUrl, img });
+                });
+            };
+            
+            img.onerror = () => {
+              console.warn(`Failed to load image: ${imageUrl}`);
+              loadedCount++;
+              const progress = Math.round((loadedCount / totalImages) * 100);
+              setLoadingProgress(progress);
+              resolve({ url: imageUrl, img: null });
+            };
+            
+            // Set image source to start loading
+            img.src = imageUrl;
+            img.loading = 'eager';
+            img.decoding = 'sync';
+          });
+          
+          allImagePromises.push(promise);
+        }
+      }
+
+      try {
+        // Wait for ALL images to be completely loaded
+        setLoadingStage('Loading all images...');
+        await Promise.all(allImagePromises);
+        
+        // Final optimization step
+        setLoadingStage('Optimizing performance...');
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Ensure all images are decoded and ready
+        const decodePromises = Object.values(loadedImages).map(img => {
+          if (img && img.decode) {
+            return img.decode().catch(() => {}); // Ignore decode errors
+          }
+          return Promise.resolve();
+        });
+        
+        await Promise.all(decodePromises);
+        
+        setImageBlobs(imageCache);
+        setLoadingStage('Ready! Loading complete.');
+        
+                 // Verify all images are truly loaded before showing page
+         setLoadingStage('Verifying image integrity...');
+         let allImagesReady = true;
+         
+         // Double-check all images are loaded
+         for (const [key, img] of Object.entries(loadedImages)) {
+           if (img && (!img.complete || img.naturalWidth === 0)) {
+             console.warn(`Image not fully loaded: ${key}`);
+             allImagesReady = false;
+           }
+         }
+         
+         if (!allImagesReady) {
+           setLoadingStage('Waiting for remaining images...');
+           await new Promise(resolve => setTimeout(resolve, 1000));
+         }
+         
+         setLoadingStage('✅ All images loaded successfully!');
+         await new Promise(resolve => setTimeout(resolve, 1000));
+         setImagesLoaded(true);
+        
+      } catch (error) {
+        console.error('Error loading images:', error);
+        setLoadingStage('Error occurred, but continuing...');
+        setImagesLoaded(true);
+      }
+    };
+
+    loadAllImages();
+    
+    // Cleanup function
+    return () => {
+      Object.values(imageBlobs).forEach(url => {
+        if (url && url.startsWith('blob:')) {
+          URL.revokeObjectURL(url);
+        }
+      });
+    };
+  }, []);
 
   const handleClose = () => {
     navigate('/');
@@ -20,9 +170,8 @@ const Logo = () => {
     navigate('/notebook');
   };
 
-  // Helper configuration for zoomed logos
-  function getLogoZoomConfig(logoId) {
-    const configs = {
+  // Memoized zoom configurations for better performance
+  const logoZoomConfigs = useMemo(() => ({
       1: { zoomSize: 'w-17', zoomHeight: 'h-22', zoomOffset: { x: -45, y: -37 } },
       2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -32, y: -47 } },
       3: { zoomSize: 'w-22', zoomHeight: 'h-15', zoomOffset: { x: -78, y: -80 } },
@@ -38,130 +187,42 @@ const Logo = () => {
       13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -62, y: -70 } },
       14: { zoomSize: 'w-32', zoomHeight: 'h-18', zoomOffset: { x: -65, y: -38 } },
       15: { zoomSize: 'w-20', zoomHeight: 'h-7', zoomOffset: { x: -80, y:-15 } },
-    };
-    return configs[logoId] || { zoomSize: 'w-40', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: -90 } };
-  }
+  }), []);
 
-  // Configuration for large images in center modal
-  function getLogoModalConfig(logoId) {
-    const configs = {
-      1: { 
-        maxWidth: 'max-w-[873px]', 
-        maxHeight: 'max-h-[664px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      2: { 
-        maxWidth: 'max-w-[873px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      3: { 
-        maxWidth: 'max-w-[783.74px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      4: { 
-        maxWidth: 'max-w-[663px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      5: { 
-        maxWidth: 'max-w-[673px]', 
-        maxHeight: 'max-h-[662px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      6: { 
-        maxWidth: 'max-w-[1519px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      7: { 
-        maxWidth: 'max-w-[809px]', 
-        maxHeight: 'max-h-[664px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      8: { 
-        maxWidth: 'max-w-[644px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      9: { 
-        maxWidth: 'max-w-[521px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      10: { 
-        maxWidth: 'max-w-[1351px]', 
-        maxHeight: 'max-h-[229px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      11: { 
-        maxWidth: 'max-w-[504px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      12: { 
-        maxWidth: 'max-w-[514px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      13: { 
-        maxWidth: 'max-w-[1056px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      14: { 
-        maxWidth: 'max-w-[1709px]', 
-        maxHeight: 'max-h-[663px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      15: { 
-        maxWidth: 'max-w-[953px]', 
-        maxHeight: 'max-h-[662px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      }
-    };
-    return configs[logoId] || { 
+  const logoModalConfigs = useMemo(() => ({
+    1: { maxWidth: 'max-w-[873px]', maxHeight: 'max-h-[664px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    2: { maxWidth: 'max-w-[873px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    3: { maxWidth: 'max-w-[783.74px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    4: { maxWidth: 'max-w-[663px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    5: { maxWidth: 'max-w-[673px]', maxHeight: 'max-h-[662px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    6: { maxWidth: 'max-w-[1519px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    7: { maxWidth: 'max-w-[809px]', maxHeight: 'max-h-[664px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    8: { maxWidth: 'max-w-[644px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    9: { maxWidth: 'max-w-[521px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    10: { maxWidth: 'max-w-[1351px]', maxHeight: 'max-h-[229px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    11: { maxWidth: 'max-w-[504px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    12: { maxWidth: 'max-w-[514px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    13: { maxWidth: 'max-w-[1056px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    14: { maxWidth: 'max-w-[1709px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    15: { maxWidth: 'max-w-[953px]', maxHeight: 'max-h-[662px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' }
+  }), []);
+
+  const getLogoZoomConfig = (logoId) => {
+    return logoZoomConfigs[logoId] || { zoomSize: 'w-40', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: -90 } };
+  };
+
+  const getLogoModalConfig = (logoId) => {
+    return logoModalConfigs[logoId] || { 
       maxWidth: 'max-w-2xl', 
       maxHeight: 'max-h-[70vh]',
       position: 'flex items-center justify-center',
       marginTop: '0',
       marginLeft: '0'
     };
-  }
+  };
 
-  const handleLogoEnter = (logoId, event) => {
-    // Clear any existing timeout
+  // Optimized event handlers with minimal re-renders
+  const handleLogoEnter = useMemo(() => (logoId, event) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
@@ -174,38 +235,74 @@ const Logo = () => {
       setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
       setHoveredLogo(logoId);
     }
-  };
+  }, [clickedLogos]);
 
-  const handleLogoLeave = () => {
-    // Add a small delay before removing the hover state
+  const handleLogoLeave = useMemo(() => () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredLogo(null);
-    }, 50); // 50ms delay to maintain hover during quick mouse movements
-  };
+    }, 30);
+  }, []);
 
-  const handleZoomedImageEnter = () => {
-    // Clear timeout when hovering over zoomed image
+  const handleZoomedImageEnter = useMemo(() => () => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
     }
-  };
+  }, []);
 
-  const handleZoomedImageLeave = () => {
-    // Clear hover immediately when leaving the zoomed image
+  const handleZoomedImageLeave = useMemo(() => () => {
     setHoveredLogo(null);
-  };
+  }, []);
 
-  const handleLogoClick = (logoId) => {
+  const handleLogoClick = useMemo(() => (logoId) => {
     setClickedLogos(prev => new Set([...prev, logoId]));
     setSelectedLogo(logoId);
-    console.log('Logo clicked:', logoId);
-  };
+  }, []);
 
   const handleNextPage = () => {
-    // כרגע ללא קישור - יתווסף בעתיד
     console.log('Next page clicked');
   };
+
+  // Memoized logo grid for performance
+  const logoGrid = useMemo(() => {
+    if (!imagesLoaded) return null;
+    
+    return Array.from({ length: 15 }, (_, index) => {
+      const logoNum = index + 1;
+      const row = Math.floor(index / 5);
+      const col = index % 5;
+      
+      const horizontalSpacing = 200;
+      const leftMargin = 140;
+      
+      const top = 139 + (row * 250);
+      const left = leftMargin + (col * (168 + horizontalSpacing));
+      
+      const imageSrc = imageBlobs[`regular2-${logoNum}`] || `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
+      
+      return (
+        <img
+          key={logoNum}
+          src={imageSrc}
+          alt={`Logo ${logoNum}`}
+          className="absolute cursor-pointer logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
+          data-logo-id={logoNum}
+          style={{
+            width: '168px',
+            height: '146px',
+            top: `${top}px`,
+            left: `${left}px`,
+            objectFit: 'contain',
+            imageRendering: 'crisp-edges'
+          }}
+          onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
+          onMouseLeave={handleLogoLeave}
+          loading="eager"
+          decoding="sync"
+        />
+      );
+    });
+  }, [imagesLoaded, imageBlobs, handleLogoEnter, handleLogoLeave]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -218,19 +315,138 @@ const Logo = () => {
         }}
       >
       
-      {/* תמונות נסתרות לטעינה מיידית */}
-      <div className="hidden">
-        {Array.from({ length: 15 }, (_, i) => (
-          <img
-            key={`preload-${i}`}
-            className="preload-zoom-image"
-            src={`/logo/pictures/zoomInBit2/${(i + 1).toString().padStart(2, '0')}.png`}
-            alt={`Preload ${i + 1}`}
-            loading="eager"
-            decoding="sync"
+      {/* Beautiful Loading Screen */}
+      {!imagesLoaded && (
+        <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
+          <div className="text-center space-y-8 max-w-md w-full px-8">
+            {/* Logo/Title */}
+            <div className="space-y-2">
+              <h1 className="text-4xl font-bold text-white tracking-wider">
+                Hidden<span className="text-blue-400">Logos</span>
+              </h1>
+              <p className="text-gray-300 text-lg">Discovering brand secrets</p>
+            </div>
+
+            {/* Progress Circle Animation */}
+            <div className="relative w-32 h-32 mx-auto">
+              <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                {/* Background Circle */}
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  stroke="rgba(75, 85, 99, 0.3)"
+                  strokeWidth="8"
+                  fill="none"
+                />
+                {/* Progress Circle */}
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  stroke="url(#progressGradient)"
+                  strokeWidth="8"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 50}`}
+                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - loadingProgress / 100)}`}
+                  className="transition-all duration-300 ease-out"
+                />
+                <defs>
+                  <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3B82F6" />
+                    <stop offset="50%" stopColor="#8B5CF6" />
+                    <stop offset="100%" stopColor="#06B6D4" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              {/* Percentage Text */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-3xl font-bold text-white">{loadingProgress}%</span>
+              </div>
+            </div>
+
+            {/* Enhanced Progress Section */}
+            <div className="space-y-6">
+              {/* Input Range Style Progress */}
+              <div className="space-y-4">
+                <div className="relative">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={loadingProgress}
+                    disabled
+                    className="w-full h-4 bg-gray-700 rounded-lg appearance-none cursor-not-allowed"
+                    style={{
+                      background: `linear-gradient(to right, #3B82F6 0%, #8B5CF6 ${loadingProgress/2}%, #06B6D4 ${loadingProgress}%, #374151 ${loadingProgress}%, #374151 100%)`,
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'none'
+                    }}
+                  />
+                  <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-lg opacity-20"></div>
+                </div>
+                
+                {/* Progress Text with Animation */}
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400 font-medium">
+                    Loading Images
+                  </span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg font-bold text-white">
+                      {loadingProgress}%
+                    </span>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Beautiful Progress Bar Alternative */}
+              <div className="space-y-2">
+                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden border border-gray-600 shadow-inner">
+                  <div 
+                    className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 transition-all duration-500 ease-out rounded-full relative overflow-hidden"
+                    style={{ width: `${loadingProgress}%` }}
+                  >
+                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                    <div className="absolute right-0 top-0 w-8 h-full bg-white/30 blur-sm animate-pulse"></div>
+                  </div>
+                </div>
+                
+                {/* Loading Stage Text with Icon */}
+                <div className="text-center flex items-center justify-center space-x-2">
+                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
+                  <p className="text-gray-300 text-sm font-medium tracking-wide">
+                    {loadingStage}
+                  </p>
+                  <div className="w-3 h-3 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Animated Dots */}
+            <div className="flex justify-center space-x-2">
+              {[0, 1, 2].map((index) => (
+                <div
+                  key={index}
+                  className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+                  style={{
+                    animationDelay: `${index * 0.2}s`,
+                    animationDuration: '1s'
+                  }}
           />
         ))}
       </div>
+
+            {/* Loading Tips */}
+            <div className="text-center">
+              <p className="text-gray-400 text-xs italic">
+                "Every logo tells a story... preparing to reveal theirs"
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* כפתור סגירה X */}
       <button
@@ -252,75 +468,38 @@ const Logo = () => {
         )}
       </button>
 
-        {/* תמונות הלוגואים */}
-      {Array.from({ length: 15 }, (_, index) => {
-        const logoNum = index + 1;
-        // חישוב מיקום - 5 תמונות בשורה
-        const row = Math.floor(index / 5);
-        const col = index % 5;
-        
-        // חישוב מרכוז - רוחב דף 1920px
-        // 5 תמונות של 168px + 4 רווחים של 200px = 1640px כולל
-        // margin משמאל: (1920-1640)/2 = 140px
-        const horizontalSpacing = 200;
-        const leftMargin = 140;
-        
-        const top = 139 + (row * 250);
-        const left = leftMargin + (col * (168 + horizontalSpacing));
-        
-        return (
-          <img
-            key={logoNum}
-            src={`/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`}
-            alt={`Logo ${logoNum}`}
-            className="absolute cursor-pointer logo-item"
-            data-logo-id={logoNum}
-            style={{
-              width: '168px',
-              height: '146px',
-              top: `${top}px`,
-              left: `${left}px`,
-              objectFit: 'contain'
-            }}
-            onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
-            onMouseLeave={handleLogoLeave}
-            loading="lazy"
-          />
-        );
-      })}
+      {/* תמונות הלוגואים - Optimized grid */}
+      {logoGrid}
 
-      {/* Zoomed image */}
-      {hoveredLogo && (() => {
+      {/* Instant Zoomed Image Display */}
+      {hoveredLogo && imagesLoaded && (() => {
         const cfg = getLogoZoomConfig(hoveredLogo);
+        const zoomImageSrc = imageBlobs[`zoomInBit2-${hoveredLogo}`] || `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
+        
         return (
           <div
-            className="fixed z-50 inline-block"
+            className="fixed z-50 pointer-events-none"
             style={{
               left: `${mousePosition.x + cfg.zoomOffset.x}px`,
               top: `${mousePosition.y + cfg.zoomOffset.y}px`,
               transform: 'translate3d(0, 0, 0)',
-              willChange: 'transform, opacity',
-              backfaceVisibility: 'hidden',
-              width: 'fit-content',
-              height: 'fit-content'
+              willChange: 'transform',
             }}
-            onMouseEnter={handleZoomedImageEnter}
-            onMouseLeave={handleZoomedImageLeave}
           >
             <img
-              src={`/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`}
+              src={zoomImageSrc}
               alt={`Zoomed Logo ${hoveredLogo}`}
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn block cursor-pointer`}
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 cursor-pointer pointer-events-auto`}
               style={{ 
-                willChange: 'transform, opacity',
-                animation: 'fadeIn 0.1s ease-out forwards',
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden',
-                display: 'block'
+                willChange: 'transform',
+                imageRendering: 'crisp-edges',
+                backfaceVisibility: 'hidden'
               }}
+              onMouseEnter={handleZoomedImageEnter}
+              onMouseLeave={handleZoomedImageLeave}
+              onClick={() => handleLogoClick(hoveredLogo)}
               loading="eager"
               decoding="sync"
-              onClick={() => handleLogoClick(hoveredLogo)}
             />
           </div>
         );
@@ -387,7 +566,8 @@ const Logo = () => {
         )}
       </button>
 
-      {selectedLogo && (
+      {/* Instant Modal Display */}
+      {selectedLogo && imagesLoaded && (
         <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${getLogoModalConfig(selectedLogo).position}`}
           onMouseMove={(e) => {
@@ -410,7 +590,6 @@ const Logo = () => {
             }
           }}
           onClick={(e) => {
-            // Close if clicking outside the image
             if (e.target === e.currentTarget) {
               setSelectedLogo(null);
             }
@@ -418,15 +597,19 @@ const Logo = () => {
         >
           <div className={`relative w-full h-auto bg-transparent ${getLogoModalConfig(selectedLogo).maxWidth}`}>
             <img
-              src={`/logo/pictures/zoomIn2/${selectedLogo.toString().padStart(2, '0')}.png`}
+              src={imageBlobs[`zoomIn2-${selectedLogo}`] || `/logo/pictures/zoomIn2/${selectedLogo.toString().padStart(2, '0')}.png`}
               alt={`Logo ${selectedLogo}`}
               className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
               style={{ 
                 marginTop: getLogoModalConfig(selectedLogo).marginTop,
-                marginLeft: getLogoModalConfig(selectedLogo).marginLeft
+                marginLeft: getLogoModalConfig(selectedLogo).marginLeft,
+                imageRendering: 'crisp-edges'
               }}
+              loading="eager"
+              decoding="sync"
             />
-            {/* Description under the logo, styled like in Poster.jsx */}
+            
+            {/* Logo descriptions */}
             {selectedLogo === 1 && (
               <div 
                 className="absolute text-white"
