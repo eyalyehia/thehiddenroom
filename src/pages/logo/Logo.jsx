@@ -46,106 +46,106 @@ const Logo = () => {
   function getLogoModalConfig(logoId) {
     const configs = {
       1: { 
-        maxWidth: 'max-w-[385px]', 
-        maxHeight: 'max-h-[663px]',
+        maxWidth: 'max-w-[873px]', 
+        maxHeight: 'max-h-[664px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       2: { 
-        maxWidth: 'max-w-[955.5px]', 
+        maxWidth: 'max-w-[873px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       3: { 
-        maxWidth: 'max-w-[931.7px]', 
-        maxHeight: 'max-h-[662.94px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      4: { 
-        maxWidth: 'max-w-[693.63px]', 
-        maxHeight: 'max-h-[662.1px]',
-        position: 'flex items-center justify-center',
-        marginTop: '0',
-        marginLeft: '0'
-      },
-      5: { 
-        maxWidth: 'max-w-[679.56px]', 
+        maxWidth: 'max-w-[783.74px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
+      4: { 
+        maxWidth: 'max-w-[663px]', 
+        maxHeight: 'max-h-[663px]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
+      5: { 
+        maxWidth: 'max-w-[673px]', 
+        maxHeight: 'max-h-[662px]',
+        position: 'flex items-center justify-center',
+        marginTop: '0',
+        marginLeft: '0'
+      },
       6: { 
-        maxWidth: 'max-w-[1068.17px]', 
+        maxWidth: 'max-w-[1519px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       7: { 
-        maxWidth: 'max-w-[618px]', 
-        maxHeight: 'max-h-[663px]',
+        maxWidth: 'max-w-[809px]', 
+        maxHeight: 'max-h-[664px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       8: { 
-        maxWidth: 'max-w-[656px]', 
+        maxWidth: 'max-w-[644px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       9: { 
-        maxWidth: 'max-w-[541px]', 
+        maxWidth: 'max-w-[521px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       10: { 
-        maxWidth: 'max-w-[1324px]', 
-        maxHeight: 'max-h-[169px]',
+        maxWidth: 'max-w-[1351px]', 
+        maxHeight: 'max-h-[229px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       11: { 
-        maxWidth: 'max-w-[721px]', 
+        maxWidth: 'max-w-[504px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       12: { 
-        maxWidth: 'max-w-[1093px]', 
+        maxWidth: 'max-w-[514px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       13: { 
-        maxWidth: 'max-w-[1056.1px]', 
+        maxWidth: 'max-w-[1056px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       14: { 
-        maxWidth: 'max-w-[1012px]', 
+        maxWidth: 'max-w-[1709px]', 
         maxHeight: 'max-h-[663px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
       },
       15: { 
-        maxWidth: 'max-w-[1514px]', 
-        maxHeight: 'max-h-[663px]',
+        maxWidth: 'max-w-[953px]', 
+        maxHeight: 'max-h-[662px]',
         position: 'flex items-center justify-center',
         marginTop: '0',
         marginLeft: '0'
@@ -224,7 +224,7 @@ const Logo = () => {
           <img
             key={`preload-${i}`}
             className="preload-zoom-image"
-            src={`/logo/pictures/zoomIn/${(i + 1).toString().padStart(2, '0')}.png`}
+            src={`/logo/pictures/zoomInBit2/${(i + 1).toString().padStart(2, '0')}.png`}
             alt={`Preload ${i + 1}`}
             loading="eager"
             decoding="sync"
@@ -271,7 +271,7 @@ const Logo = () => {
         return (
           <img
             key={logoNum}
-            src={`/logo/pictures/regular/${logoNum.toString().padStart(2, '0')}.png`}
+            src={`/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`}
             alt={`Logo ${logoNum}`}
             className="absolute cursor-pointer logo-item"
             data-logo-id={logoNum}
@@ -308,7 +308,7 @@ const Logo = () => {
             onMouseLeave={handleZoomedImageLeave}
           >
             <img
-              src={`/logo/pictures/zoomIn/${hoveredLogo.toString().padStart(2, '0')}.png`}
+              src={`/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`}
               alt={`Zoomed Logo ${hoveredLogo}`}
               className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn block cursor-pointer`}
               style={{ 
@@ -418,7 +418,7 @@ const Logo = () => {
         >
           <div className={`relative w-full h-auto bg-transparent ${getLogoModalConfig(selectedLogo).maxWidth}`}>
             <img
-              src={`/logo/pictures/zoomIn/${selectedLogo.toString().padStart(2, '0')}.png`}
+              src={`/logo/pictures/zoomIn2/${selectedLogo.toString().padStart(2, '0')}.png`}
               alt={`Logo ${selectedLogo}`}
               className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
               style={{ 
