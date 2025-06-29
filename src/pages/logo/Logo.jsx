@@ -19,9 +19,11 @@ const Logo = () => {
   const [isReOptimizing, setIsReOptimizing] = useState(false);
   const [reOptimizationProgress, setReOptimizationProgress] = useState(0);
   const [reOptimizationStage, setReOptimizationStage] = useState('');
+  const [hoverImagesReady, setHoverImagesReady] = useState(false);
   const hoverTimeoutRef = useRef(null);
   const loadingTimeoutsRef = useRef([]);
   const reOptimizationTimeoutsRef = useRef([]);
+  const hoverImagesCacheRef = useRef(new Map());
   const navigate = useNavigate();
 
   // Performance optimization when page becomes visible
@@ -138,28 +140,63 @@ const Logo = () => {
     };
   }, [imagesLoaded, optimizePerformance]);
 
-  // Complete image preloading - no page display until all images are fully loaded
+  // SIMPLIFIED & FAST image preloading - direct and efficient
   useEffect(() => {
     const loadAllImages = async () => {
-      // Clear any existing timeouts
-      loadingTimeoutsRef.current.forEach(clearTimeout);
-      loadingTimeoutsRef.current = [];
+      if (imagesLoaded || hasStartedLoading) return;
       
-      setLoadingStage('Initializing image loading...');
+      setHasStartedLoading(true);
+      setLoadingStage('Loading images for smooth experience...');
+      
       const imageCache = {};
-      const loadedImages = {};
       let loadedCount = 0;
+      const totalImages = 45; // 15 images × 3 types
 
+      // Direct image loading without complex phases
+      const loadImageDirect = (imageUrl, imageKey) => {
+        return new Promise((resolve) => {
+            const img = new Image();
+            
+            img.onload = () => {
+            imageCache[imageKey] = imageUrl; // Direct URL - fast and simple
+                  loadedCount++;
+                  const progress = Math.round((loadedCount / totalImages) * 100);
+                  setLoadingProgress(progress);
+                  
+                  if (progress <= 33) {
+              setLoadingStage('📷 Loading gallery images...');
+                  } else if (progress <= 66) {
+              setLoadingStage('⚡ Loading hover images...');
+                  } else if (progress < 100) {
+              setLoadingStage('🔍 Loading zoom images...');
+                  } else {
+              setLoadingStage('✅ Almost ready!');
+            }
+            
+            resolve(true);
+            };
+            
+            img.onerror = () => {
+            imageCache[imageKey] = imageUrl; // Even on error, use the URL
+              loadedCount++;
+            setLoadingProgress(Math.round((loadedCount / totalImages) * 100));
+            resolve(false);
+            };
+            
+          // Simple direct loading
+            img.src = imageUrl;
+        });
+      };
+
+      // Create all image loading promises at once
+      const allPromises = [];
+      
+      // Load all three types of images simultaneously
       const imageTypes = [
-        { folder: 'regular2', key: 'regular2', name: 'Gallery Images' },
-        { folder: 'zoomInBit2', key: 'zoomInBit2', name: 'Hover Images' },
-        { folder: 'zoomIn2', key: 'zoomIn2', name: 'Modal Images' }
+        { folder: 'regular2', key: 'regular2' },
+        { folder: 'zoomInBit2', key: 'zoomInBit2' },
+        { folder: 'zoomIn2', key: 'zoomIn2' }
       ];
-
-      const totalImages = imageTypes.length * 15;
-
-      // Create all image promises for complete loading
-      const allImagePromises = [];
 
       for (const type of imageTypes) {
         for (let i = 1; i <= 15; i++) {
@@ -167,173 +204,48 @@ const Logo = () => {
           const imageUrl = `/logo/pictures/${type.folder}/${num}.png`;
           const imageKey = `${type.key}-${i}`;
           
-          const promise = new Promise((resolve) => {
-            const img = new Image();
-            
-            img.onload = () => {
-              // Create blob URL for optimal performance
-              fetch(imageUrl)
-                .then(response => response.blob())
-                .then(blob => {
-                  const blobUrl = URL.createObjectURL(blob);
-                  imageCache[imageKey] = blobUrl;
-                  loadedImages[imageKey] = img;
-                  loadedCount++;
-                  
-                  const progress = Math.round((loadedCount / totalImages) * 100);
-                  setLoadingProgress(progress);
-                  
-                  // Update stage based on progress
-                  if (progress <= 25) {
-                    setLoadingStage('Loading Gallery Images...');
-                  } else if (progress <= 50) {
-                    setLoadingStage('Loading Hover Images...');
-                  } else if (progress <= 75) {
-                    setLoadingStage('Loading Modal Images...');
-                  } else if (progress < 100) {
-                    setLoadingStage('Finalizing download...');
-                  } else {
-                    setLoadingStage('Preparing images...');
-                  }
-                  
-                  resolve({ url: blobUrl, img });
-                })
-                .catch(() => {
-                  // Fallback to direct image URL
-                  imageCache[imageKey] = imageUrl;
-                  loadedImages[imageKey] = img;
-                  loadedCount++;
-                  
-                  const progress = Math.round((loadedCount / totalImages) * 100);
-                  setLoadingProgress(progress);
-                  resolve({ url: imageUrl, img });
-                });
-            };
-            
-            img.onerror = () => {
-              console.warn(`Failed to load image: ${imageUrl}`);
-              loadedCount++;
-              const progress = Math.round((loadedCount / totalImages) * 100);
-              setLoadingProgress(progress);
-              resolve({ url: imageUrl, img: null });
-            };
-            
-            // Set image source to start loading
-            img.src = imageUrl;
-            img.loading = 'eager';
-            img.decoding = 'sync';
-          });
-          
-          allImagePromises.push(promise);
+          allPromises.push(loadImageDirect(imageUrl, imageKey));
         }
       }
 
       try {
-        // Wait for ALL images to be completely loaded
-        setLoadingStage('Loading all images...');
-        await Promise.all(allImagePromises);
+        // Wait for all images to load
+        await Promise.all(allPromises);
         
-        // Set image blobs first
+        // Set images and mark as ready
         setImageBlobs(imageCache);
+        setHoverImagesReady(true);
+        setLoadingProgress(100);
+        setLoadingStage('🚀 Ready!');
         
-        // Comprehensive verification process
-        setLoadingStage('Verifying all images are ready...');
-        
-        // Wait a moment for blobs to be set
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Verify ALL images are truly loaded and accessible
-        let allImagesVerified = true;
-        const verificationPromises = [];
-        
-        for (const [, img] of Object.entries(loadedImages)) {
-          if (img) {
-            const verifyPromise = new Promise((resolve) => {
-              // Check if image is complete and has dimensions
-              if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
-                resolve(true);
-              } else {
-                // If not ready, wait for it
-                const checkImage = () => {
-                  if (img.complete && img.naturalWidth > 0) {
-                    resolve(true);
-                  } else {
-                    setTimeout(checkImage, 50);
-                  }
-                };
-                checkImage();
-              }
-            });
-            verificationPromises.push(verifyPromise);
-          }
-        }
-        
-        // Wait for all verifications to complete
-        await Promise.all(verificationPromises);
-        
-        // Double-check image blobs are accessible
-        for (const [imageKey, url] of Object.entries(imageCache)) {
-          if (url.startsWith('blob:')) {
-            try {
-              const testImg = new Image();
-              await new Promise((resolve, reject) => {
-                testImg.onload = resolve;
-                testImg.onerror = reject;
-                testImg.src = url;
-              });
-            } catch (error) {
-              console.warn(`Blob verification failed for ${imageKey}:`, error);
-              allImagesVerified = false;
-            }
-          }
-        }
-        
-        if (!allImagesVerified) {
-          setLoadingStage('Re-checking images...');
-          await new Promise(resolve => setTimeout(resolve, 500));
-        }
-        
-        // Final stage - everything is truly ready
-        setLoadingStage('✅ Everything ready!');
-        
-        // Give a moment for final preparations
-        const finalTimeout = setTimeout(() => {
-          setImagesLoaded(true);
-        }, 500);
-        loadingTimeoutsRef.current.push(finalTimeout);
+        // Quick delay then show the page
+        setTimeout(() => {
+         setImagesLoaded(true);
+        }, 300);
         
       } catch (error) {
-        console.error('Error loading images:', error);
-        setLoadingStage('Error occurred, but continuing...');
-        setHasStartedLoading(false); // Reset for retry
+        console.error('Loading error:', error);
+        // Even on error, show what we have
+        setImageBlobs(imageCache);
+        setHoverImagesReady(true);
         setImagesLoaded(true);
       }
     };
 
-    // Only load images if they haven't been loaded yet and we haven't started loading
-    if (!imagesLoaded && !hasStartedLoading && Object.keys(imageBlobs).length === 0) {
-      setHasStartedLoading(true);
-      loadAllImages();
-    }
+    loadAllImages();
     
     // Cleanup function
     return () => {
-      // Clear all timeouts
       loadingTimeoutsRef.current.forEach(clearTimeout);
       loadingTimeoutsRef.current = [];
-      
-      // Clear re-optimization timeouts
       reOptimizationTimeoutsRef.current.forEach(clearTimeout);
       reOptimizationTimeoutsRef.current = [];
-      
-      // Clear hover timeout
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
         hoverTimeoutRef.current = null;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array to run only once
+  }, []); // Run only once
 
   // Separate cleanup effect for blob URLs
   useEffect(() => {
@@ -449,16 +361,16 @@ const Logo = () => {
 
   const handleZoomedImageEnter = useMemo(() => () => {
     if (!isPageVisible || hoverTimeoutRef.current) {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-        hoverTimeoutRef.current = null;
-      }
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
     }
   }, [isPageVisible]);
 
   const handleZoomedImageLeave = useMemo(() => () => {
     if (isPageVisible) {
-      setHoveredLogo(null);
+    setHoveredLogo(null);
     }
   }, [isPageVisible]);
 
@@ -471,7 +383,7 @@ const Logo = () => {
   }, [imagesLoaded, isPageVisible, isPerformanceOptimized]);
 
   const handleNextPage = () => {
-    console.log('Next page clicked');
+    navigate('/logo2');
   };
 
   // Memoized logo grid for performance
@@ -645,7 +557,7 @@ const Logo = () => {
           </div>
         </div>
       )}
-
+      
       {/* Beautiful Loading Screen */}
       {!imagesLoaded && (
         <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
@@ -766,8 +678,8 @@ const Logo = () => {
                     animationDuration: '1s'
                   }}
                 ></div>
-              ))}
-            </div>
+        ))}
+      </div>
 
             {/* Loading Tips */}
             <div className="text-center">
@@ -802,7 +714,7 @@ const Logo = () => {
       {/* תמונות הלוגואים - Optimized grid */}
       {logoGrid}
 
-      {/* Instant Zoomed Image Display */}
+      {/* Instant Zoomed Image Display - SIMPLIFIED */}
       {hoveredLogo && imagesLoaded && isPageVisible && !isPerformanceOptimized && (() => {
         const cfg = getLogoZoomConfig(hoveredLogo);
         const zoomImageSrc = imageBlobs[`zoomInBit2-${hoveredLogo}`] || `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
