@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Logo = () => {
@@ -14,232 +14,114 @@ const Logo = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingStage, setLoadingStage] = useState('Initializing...');
   const [hasStartedLoading, setHasStartedLoading] = useState(false);
-  const [isPageVisible, setIsPageVisible] = useState(!document.hidden);
-  const [isPerformanceOptimized, setIsPerformanceOptimized] = useState(false);
-  const [isReOptimizing, setIsReOptimizing] = useState(false);
-  const [reOptimizationProgress, setReOptimizationProgress] = useState(0);
-  const [reOptimizationStage, setReOptimizationStage] = useState('');
-  const [hoverImagesReady, setHoverImagesReady] = useState(false);
+
   const hoverTimeoutRef = useRef(null);
   const loadingTimeoutsRef = useRef([]);
-  const reOptimizationTimeoutsRef = useRef([]);
-  const hoverImagesCacheRef = useRef(new Map());
   const navigate = useNavigate();
 
-  // Performance optimization when page becomes visible
-  const optimizePerformance = useCallback(() => {
-    if (isPerformanceOptimized || isReOptimizing) return;
-    
-    // Start re-optimization process with visual feedback
-    setIsReOptimizing(true);
-    setReOptimizationProgress(0);
-    setReOptimizationStage('Preparing the site...');
-    
-    // Clear any existing re-optimization timeouts
-    reOptimizationTimeoutsRef.current.forEach(clearTimeout);
-    reOptimizationTimeoutsRef.current = [];
-    
-    // Progressive optimization stages
-    const stages = [
-      { progress: 20, stage: 'Clearing memory...', delay: 150 },
-      { progress: 40, stage: 'Refreshing interactions...', delay: 200 },
-      { progress: 60, stage: 'Optimizing performance...', delay: 200 },
-      { progress: 80, stage: 'Restoring responsiveness...', delay: 150 },
-      { progress: 100, stage: '✅ Ready to go!', delay: 300 }
-    ];
-    
-    let currentStage = 0;
-    
-    const processNextStage = () => {
-      if (currentStage < stages.length) {
-        const stage = stages[currentStage];
-        setReOptimizationProgress(stage.progress);
-        setReOptimizationStage(stage.stage);
-        
-        // Perform actual optimizations at key stages
-        if (currentStage === 0) {
-          // Force garbage collection if available
-          if (window.gc) {
-            window.gc();
-          }
-        } else if (currentStage === 1) {
-          // Clear any pending animations
-          if (hoverTimeoutRef.current) {
-            clearTimeout(hoverTimeoutRef.current);
-            hoverTimeoutRef.current = null;
-          }
-          // Reset interaction states
-          setHoveredLogo(null);
-          setSelectedLogo(null);
-        } else if (currentStage === 2) {
-          setIsPerformanceOptimized(true);
-        }
-        
-        currentStage++;
-        const timeout = setTimeout(processNextStage, stage.delay);
-        reOptimizationTimeoutsRef.current.push(timeout);
-      } else {
-        // Finish optimization
-        const finalTimeout = setTimeout(() => {
-          setIsReOptimizing(false);
-          setIsPerformanceOptimized(false);
-          setReOptimizationProgress(0);
-          setReOptimizationStage('');
-        }, 500);
-        reOptimizationTimeoutsRef.current.push(finalTimeout);
-      }
-    };
-    
-    // Start the process
-    processNextStage();
-  }, [isPerformanceOptimized, isReOptimizing]);
-
-  // Enhanced page visibility handling
+  // PROGRESSIVE LOADING - Same as Logo2 for fast performance
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      const isVisible = !document.hidden;
-      setIsPageVisible(isVisible);
-      
-      if (isVisible && imagesLoaded) {
-        // Optimize performance when returning to page
-        requestAnimationFrame(() => {
-          optimizePerformance();
-        });
-      }
-    };
-
-    const handleFocus = () => {
-      if (imagesLoaded) {
-        optimizePerformance();
-      }
-    };
-
-    const handleBlur = () => {
-      // Clean up when page loses focus
-      setHoveredLogo(null);
-      setSelectedLogo(null);
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-        hoverTimeoutRef.current = null;
-      }
-      // Stop any ongoing re-optimization
-      reOptimizationTimeoutsRef.current.forEach(clearTimeout);
-      reOptimizationTimeoutsRef.current = [];
-      setIsReOptimizing(false);
-    };
-
-    // Add multiple event listeners for comprehensive handling
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('blur', handleBlur);
-    
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('blur', handleBlur);
-    };
-  }, [imagesLoaded, optimizePerformance]);
-
-  // SIMPLIFIED & FAST image preloading - direct and efficient
-  useEffect(() => {
-    const loadAllImages = async () => {
+    const loadProgressively = async () => {
       if (imagesLoaded || hasStartedLoading) return;
       
       setHasStartedLoading(true);
-      setLoadingStage('Loading images for smooth experience...');
+      setLoadingStage('🚀 Loading gallery...');
       
       const imageCache = {};
-      let loadedCount = 0;
-      const totalImages = 45; // 15 images × 3 types
 
-      // Direct image loading without complex phases
-      const loadImageDirect = (imageUrl, imageKey) => {
-        return new Promise((resolve) => {
-            const img = new Image();
-            
-            img.onload = () => {
-            imageCache[imageKey] = imageUrl; // Direct URL - fast and simple
-                  loadedCount++;
-                  const progress = Math.round((loadedCount / totalImages) * 100);
-                  setLoadingProgress(progress);
-                  
-                  if (progress <= 33) {
-              setLoadingStage('📷 Loading gallery images...');
-                  } else if (progress <= 66) {
-              setLoadingStage('⚡ Loading hover images...');
-                  } else if (progress < 100) {
-              setLoadingStage('🔍 Loading zoom images...');
-                  } else {
-              setLoadingStage('✅ Almost ready!');
-            }
-            
-            resolve(true);
-            };
-            
-            img.onerror = () => {
-            imageCache[imageKey] = imageUrl; // Even on error, use the URL
-              loadedCount++;
-            setLoadingProgress(Math.round((loadedCount / totalImages) * 100));
-            resolve(false);
-            };
-            
-          // Simple direct loading
-            img.src = imageUrl;
-        });
-      };
-
-      // Create all image loading promises at once
-      const allPromises = [];
-      
-      // Load all three types of images simultaneously
-      const imageTypes = [
-        { folder: 'regular2', key: 'regular2' },
-        { folder: 'zoomInBit2', key: 'zoomInBit2' },
-        { folder: 'zoomIn2', key: 'zoomIn2' }
-      ];
-
-      for (const type of imageTypes) {
+      // PHASE 1: Load gallery images ONLY (fast display)
+      const loadGalleryImages = async () => {
+        const galleryPromises = [];
+        console.log('🚀 Starting to load 15 gallery images...');
+        
         for (let i = 1; i <= 15; i++) {
           const num = i.toString().padStart(2, '0');
-          const imageUrl = `/logo/pictures/${type.folder}/${num}.png`;
-          const imageKey = `${type.key}-${i}`;
+          const imageUrl = `/logo/pictures/regular2/${num}.png`;
+          const imageKey = `regular2-${i}`;
           
-          allPromises.push(loadImageDirect(imageUrl, imageKey));
+          const promise = new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+              imageCache[imageKey] = imageUrl;
+              console.log(`✅ Loaded gallery image ${i} (${imageKey}): ${imageUrl}`);
+              setLoadingProgress(Math.round((i / 15) * 70)); // 70% for gallery
+              resolve(true);
+            };
+            img.onerror = () => {
+              console.error(`❌ Failed to load gallery image ${i} (${imageKey}): ${imageUrl}`);
+              imageCache[imageKey] = imageUrl;
+              resolve(false);
+            };
+            img.src = imageUrl;
+          });
+          
+          galleryPromises.push(promise);
         }
-      }
-
-      try {
-        // Wait for all images to load
-        await Promise.all(allPromises);
         
-        // Set images and mark as ready
-        setImageBlobs(imageCache);
-        setHoverImagesReady(true);
-        setLoadingProgress(100);
-        setLoadingStage('🚀 Ready!');
+        await Promise.all(galleryPromises);
         
-        // Quick delay then show the page
-        setTimeout(() => {
-         setImagesLoaded(true);
-        }, 300);
-        
-      } catch (error) {
-        console.error('Loading error:', error);
-        // Even on error, show what we have
-        setImageBlobs(imageCache);
-        setHoverImagesReady(true);
+        // Show the page with gallery images immediately
+        console.log('📦 Setting imageBlobs with:', Object.keys(imageCache));
+        setImageBlobs({...imageCache});
+        setLoadingProgress(70);
+        setLoadingStage('✅ Ready to explore!');
         setImagesLoaded(true);
-      }
+        
+        // Continue loading other images in background
+        loadBackgroundImages();
+      };
+
+      // PHASE 2: Load hover and modal images in background (non-blocking)
+      const loadBackgroundImages = async () => {
+        const backgroundTypes = [
+          { folder: 'zoomInBit2', key: 'zoomInBit2' },
+          { folder: 'zoomIn2', key: 'zoomIn2' }
+        ];
+
+        let backgroundLoaded = 0;
+        const totalBackground = 30; // 15 + 15
+
+        for (const type of backgroundTypes) {
+          for (let i = 1; i <= 15; i++) {
+            const num = i.toString().padStart(2, '0');
+            const imageUrl = `/logo/pictures/${type.folder}/${num}.png`;
+            const imageKey = `${type.key}-${i}`;
+            
+            // Load asynchronously without blocking
+            const img = new Image();
+            img.onload = () => {
+              imageCache[imageKey] = imageUrl;
+              backgroundLoaded++;
+              
+              // Update cache silently
+              setImageBlobs({...imageCache});
+              
+              if (backgroundLoaded === totalBackground) {
+                console.log('🎉 All hover images loaded in background!');
+              }
+            };
+            img.onerror = () => {
+              imageCache[imageKey] = imageUrl;
+              backgroundLoaded++;
+            };
+            img.src = imageUrl;
+            
+            // Small delay between loads to not overwhelm
+            await new Promise(resolve => setTimeout(resolve, 50));
+          }
+        }
+      };
+
+      // Start with gallery images
+      loadGalleryImages();
     };
 
-    loadAllImages();
+    loadProgressively();
     
     // Cleanup function
     return () => {
       loadingTimeoutsRef.current.forEach(clearTimeout);
       loadingTimeoutsRef.current = [];
-      reOptimizationTimeoutsRef.current.forEach(clearTimeout);
-      reOptimizationTimeoutsRef.current = [];
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
         hoverTimeoutRef.current = null;
@@ -276,6 +158,69 @@ const Logo = () => {
   const handleNotebookClick = () => {
     navigate('/notebook');
   };
+
+  const handleNextPage = () => {
+    navigate('/logo2');
+  };
+
+  // Super optimized hover handlers for instant response - simplified
+  const handleLogoEnter = useMemo(() => (logoId, event) => {
+    // Only proceed if images are loaded
+    if (!imagesLoaded) return;
+    
+    // Clear any pending timeouts immediately
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    
+    if (clickedLogos.has(logoId)) {
+      setSelectedLogo(logoId);
+    } else {
+      // Pre-calculate position for instant display
+      const rect = event.currentTarget.getBoundingClientRect();
+      const position = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      
+      // Set both position and hover state in one batch
+      setMousePosition(position);
+      setHoveredLogo(logoId);
+      
+      // Preload the hover image if not already cached
+      const hoverImageUrl = `/logo/pictures/zoomInBit2/${logoId.toString().padStart(2, '0')}.png`;
+      const img = new Image();
+      img.src = hoverImageUrl;
+    }
+  }, [clickedLogos, imagesLoaded]);
+
+  const handleLogoLeave = useMemo(() => () => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    // Shorter timeout for faster response
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredLogo(null);
+    }, 10);
+  }, []);
+
+  const handleZoomedImageEnter = useMemo(() => () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  }, []);
+
+  const handleZoomedImageLeave = useMemo(() => () => {
+    setHoveredLogo(null);
+  }, []);
+
+  const handleLogoClick = useMemo(() => (logoId) => {
+    // Only proceed if images are loaded
+    if (!imagesLoaded) return;
+    
+    setClickedLogos(prev => new Set([...prev, logoId]));
+    setSelectedLogo(logoId);
+  }, [imagesLoaded]);
 
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
@@ -328,106 +273,6 @@ const Logo = () => {
     };
   };
 
-  // Optimized event handlers with minimal re-renders
-  const handleLogoEnter = useMemo(() => (logoId, event) => {
-    // Only proceed if page is visible and images are loaded
-    if (!isPageVisible || !imagesLoaded || isPerformanceOptimized) return;
-    
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
-    
-    if (clickedLogos.has(logoId)) {
-      setSelectedLogo(logoId);
-    } else {
-      const rect = event.currentTarget.getBoundingClientRect();
-      setMousePosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
-      setHoveredLogo(logoId);
-    }
-  }, [clickedLogos, imagesLoaded, isPageVisible, isPerformanceOptimized]);
-
-  const handleLogoLeave = useMemo(() => () => {
-    // Only proceed if page is visible
-    if (!isPageVisible || isPerformanceOptimized) return;
-    
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-    }
-    hoverTimeoutRef.current = setTimeout(() => {
-      setHoveredLogo(null);
-    }, 30);
-  }, [isPageVisible, isPerformanceOptimized]);
-
-  const handleZoomedImageEnter = useMemo(() => () => {
-    if (!isPageVisible || hoverTimeoutRef.current) {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
-    }
-  }, [isPageVisible]);
-
-  const handleZoomedImageLeave = useMemo(() => () => {
-    if (isPageVisible) {
-    setHoveredLogo(null);
-    }
-  }, [isPageVisible]);
-
-  const handleLogoClick = useMemo(() => (logoId) => {
-    // Only proceed if page is visible and images are loaded
-    if (!isPageVisible || !imagesLoaded || isPerformanceOptimized) return;
-    
-    setClickedLogos(prev => new Set([...prev, logoId]));
-    setSelectedLogo(logoId);
-  }, [imagesLoaded, isPageVisible, isPerformanceOptimized]);
-
-  const handleNextPage = () => {
-    navigate('/logo2');
-  };
-
-  // Memoized logo grid for performance
-  const logoGrid = useMemo(() => {
-    if (!imagesLoaded || !isPageVisible || Object.keys(imageBlobs).length === 0) return null;
-    
-    return Array.from({ length: 15 }, (_, index) => {
-      const logoNum = index + 1;
-      const row = Math.floor(index / 5);
-      const col = index % 5;
-      
-      const horizontalSpacing = 200;
-      const leftMargin = 140;
-      
-      const top = 139 + (row * 250);
-      const left = leftMargin + (col * (168 + horizontalSpacing));
-      
-      const imageSrc = imageBlobs[`regular2-${logoNum}`] || `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
-      
-      return (
-        <img
-          key={logoNum}
-          src={imageSrc}
-          alt={`Logo ${logoNum}`}
-          className="absolute cursor-pointer logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
-          data-logo-id={logoNum}
-          style={{
-            width: '168px',
-            height: '146px',
-            top: `${top}px`,
-            left: `${left}px`,
-            objectFit: 'contain',
-            imageRendering: 'crisp-edges',
-            pointerEvents: isPerformanceOptimized ? 'none' : 'auto'
-          }}
-          onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
-          onMouseLeave={handleLogoLeave}
-          loading="eager"
-          decoding="sync"
-        />
-      );
-    });
-  }, [imagesLoaded, imageBlobs, handleLogoEnter, handleLogoLeave, isPageVisible, isPerformanceOptimized]);
-
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
       <div 
@@ -437,261 +282,142 @@ const Logo = () => {
           height: '1080px', 
           backgroundColor: '#1D1C1A' 
         }}
-      >
-      
-      {/* Re-optimization Screen for returning users */}
-      {isReOptimizing && imagesLoaded && (
-        <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
-          <div className="text-center space-y-8 max-w-md w-full px-8">
-            {/* Welcome Back Title */}
-            <div className="space-y-2">
-              <h1 className="text-4xl font-bold text-white tracking-wider">
-                Welcome Back! 👋
-              </h1>
-              <p className="text-gray-300 text-lg">Preparing the site for you...</p>
-            </div>
-
-            {/* Progress Circle Animation */}
-            <div className="relative w-32 h-32 mx-auto">
-              <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                {/* Background Circle */}
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  stroke="rgba(75, 85, 99, 0.3)"
-                  strokeWidth="8"
-                  fill="none"
-                />
-                {/* Progress Circle */}
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  stroke="url(#reOptimGradient)"
-                  strokeWidth="8"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 50}`}
-                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - reOptimizationProgress / 100)}`}
-                  className="transition-all duration-300 ease-out"
-                />
-                <defs>
-                  <linearGradient id="reOptimGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#10B981" />
-                    <stop offset="50%" stopColor="#3B82F6" />
-                    <stop offset="100%" stopColor="#8B5CF6" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              {/* Percentage Text */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-3xl font-bold text-white">{reOptimizationProgress}%</span>
+            >
+        
+        {/* Beautiful Loading Screen */}
+        {!imagesLoaded && (
+          <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
+            <div className="text-center space-y-8 max-w-md w-full px-8">
+              {/* Logo/Title */}
+              <div className="space-y-2">
+                <h1 className="text-4xl font-bold text-white tracking-wider">
+                  Hidden<span className="text-blue-400">Logos</span>
+                </h1>
+                <p className="text-gray-300 text-lg">Discovering brand secrets</p>
               </div>
-            </div>
 
-            {/* Enhanced Progress Section */}
-            <div className="space-y-6">
-              {/* Input Range Style Progress */}
-              <div className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={reOptimizationProgress}
-                    disabled
-                    className="w-full h-4 bg-gray-700 rounded-lg appearance-none cursor-not-allowed"
+              {/* Progress Circle Animation */}
+              <div className="relative w-32 h-32 mx-auto">
+                <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                  {/* Background Circle */}
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    stroke="rgba(75, 85, 99, 0.3)"
+                    strokeWidth="8"
+                    fill="none"
+                  />
+                  {/* Progress Circle */}
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    stroke="url(#progressGradient)"
+                    strokeWidth="8"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * Math.PI * 50}`}
+                    strokeDashoffset={`${2 * Math.PI * 50 * (1 - loadingProgress / 100)}`}
+                    className="transition-all duration-300 ease-out"
+                  />
+                  <defs>
+                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#3B82F6" />
+                      <stop offset="50%" stopColor="#8B5CF6" />
+                      <stop offset="100%" stopColor="#06B6D4" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                {/* Percentage Text */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-3xl font-bold text-white">{loadingProgress}%</span>
+                </div>
+              </div>
+
+              {/* Enhanced Progress Section */}
+              <div className="space-y-6">
+                {/* Input Range Style Progress */}
+                <div className="space-y-4">
+                  <div className="relative">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={loadingProgress}
+                      disabled
+                      className="w-full h-4 bg-gray-700 rounded-lg appearance-none cursor-not-allowed"
+                      style={{
+                        background: `linear-gradient(to right, #3B82F6 0%, #8B5CF6 ${loadingProgress/2}%, #06B6D4 ${loadingProgress}%, #374151 ${loadingProgress}%, #374151 100%)`,
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none'
+                      }}
+                    />
+                    <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-lg opacity-20"></div>
+                  </div>
+                  
+                  {/* Progress Text with Animation */}
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-400 font-medium">
+                      Loading Images
+                    </span>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg font-bold text-white">
+                        {loadingProgress}%
+                      </span>
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Beautiful Progress Bar Alternative */}
+                <div className="space-y-2">
+                  <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden border border-gray-600 shadow-inner">
+                    <div 
+                      className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 transition-all duration-500 ease-out rounded-full relative overflow-hidden"
+                      style={{ width: `${loadingProgress}%` }}
+                    >
+                      <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                      <div className="absolute right-0 top-0 w-8 h-full bg-white/30 blur-sm animate-pulse"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Loading Stage Text with Icon */}
+                  <div className="text-center flex items-center justify-center space-x-2">
+                    <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
+                    <p className="text-gray-300 text-sm font-medium tracking-wide">
+                      {loadingStage}
+                    </p>
+                    <div className="w-3 h-3 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Animated Dots */}
+              <div className="flex justify-center space-x-2">
+                {[0, 1, 2].map((index) => (
+                  <div
+                    key={index}
+                    className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
                     style={{
-                      background: `linear-gradient(to right, #10B981 0%, #3B82F6 ${reOptimizationProgress/2}%, #8B5CF6 ${reOptimizationProgress}%, #374151 ${reOptimizationProgress}%, #374151 100%)`,
-                      WebkitAppearance: 'none',
-                      MozAppearance: 'none'
+                      animationDelay: `${index * 0.2}s`,
+                      animationDuration: '1s'
                     }}
                   />
-                  <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-lg opacity-20"></div>
-                </div>
-                
-                {/* Progress Text with Animation */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400 font-medium">
-                    Optimizing Performance
-                  </span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg font-bold text-white">
-                      {reOptimizationProgress}%
-                    </span>
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
+                ))}
               </div>
-              
-              {/* Beautiful Progress Bar Alternative */}
-              <div className="space-y-2">
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden border border-gray-600 shadow-inner">
-                  <div 
-                    className="h-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 transition-all duration-500 ease-out rounded-full relative overflow-hidden"
-                    style={{ width: `${reOptimizationProgress}%` }}
-                  >
-                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                    <div className="absolute right-0 top-0 w-8 h-full bg-white/30 blur-sm animate-pulse"></div>
-                  </div>
-                </div>
-                
-                {/* Loading Stage Text with Icon */}
-                <div className="text-center flex items-center justify-center space-x-2">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-bounce"></div>
-                  <p className="text-gray-300 text-sm font-medium tracking-wide">
-                    {reOptimizationStage}
-                  </p>
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                </div>
-              </div>
-            </div>
 
-            {/* Loading Tips */}
-            <div className="text-center">
-              <p className="text-gray-400 text-xs italic">
-                "Preparing a smooth and fast experience for you ✨"
-              </p>
+              {/* Loading Tips */}
+              <div className="text-center">
+                <p className="text-gray-400 text-xs italic">
+                  "Every logo tells a story... preparing to reveal theirs"
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      
-      {/* Beautiful Loading Screen */}
-      {!imagesLoaded && (
-        <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
-          <div className="text-center space-y-8 max-w-md w-full px-8">
-            {/* Logo/Title */}
-            <div className="space-y-2">
-              <h1 className="text-4xl font-bold text-white tracking-wider">
-                Hidden<span className="text-blue-400">Logos</span>
-              </h1>
-              <p className="text-gray-300 text-lg">Discovering brand secrets</p>
-            </div>
-
-            {/* Progress Circle Animation */}
-            <div className="relative w-32 h-32 mx-auto">
-              <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                {/* Background Circle */}
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  stroke="rgba(75, 85, 99, 0.3)"
-                  strokeWidth="8"
-                  fill="none"
-                />
-                {/* Progress Circle */}
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  stroke="url(#progressGradient)"
-                  strokeWidth="8"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 50}`}
-                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - loadingProgress / 100)}`}
-                  className="transition-all duration-300 ease-out"
-                />
-                <defs>
-                  <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3B82F6" />
-                    <stop offset="50%" stopColor="#8B5CF6" />
-                    <stop offset="100%" stopColor="#06B6D4" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              {/* Percentage Text */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-3xl font-bold text-white">{loadingProgress}%</span>
-              </div>
-            </div>
-
-            {/* Enhanced Progress Section */}
-            <div className="space-y-6">
-              {/* Input Range Style Progress */}
-              <div className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={loadingProgress}
-                    disabled
-                    className="w-full h-4 bg-gray-700 rounded-lg appearance-none cursor-not-allowed"
-                    style={{
-                      background: `linear-gradient(to right, #3B82F6 0%, #8B5CF6 ${loadingProgress/2}%, #06B6D4 ${loadingProgress}%, #374151 ${loadingProgress}%, #374151 100%)`,
-                      WebkitAppearance: 'none',
-                      MozAppearance: 'none'
-                    }}
-                  />
-                  <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-lg opacity-20"></div>
-                </div>
-                
-                {/* Progress Text with Animation */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400 font-medium">
-                    Loading Images
-                  </span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg font-bold text-white">
-                      {loadingProgress}%
-                    </span>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Beautiful Progress Bar Alternative */}
-              <div className="space-y-2">
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden border border-gray-600 shadow-inner">
-                  <div 
-                    className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 transition-all duration-500 ease-out rounded-full relative overflow-hidden"
-                    style={{ width: `${loadingProgress}%` }}
-                  >
-                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                    <div className="absolute right-0 top-0 w-8 h-full bg-white/30 blur-sm animate-pulse"></div>
-                  </div>
-                </div>
-                
-                {/* Loading Stage Text with Icon */}
-                <div className="text-center flex items-center justify-center space-x-2">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
-                  <p className="text-gray-300 text-sm font-medium tracking-wide">
-                    {loadingStage}
-                  </p>
-                  <div className="w-3 h-3 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Animated Dots */}
-            <div className="flex justify-center space-x-2">
-              {[0, 1, 2].map((index) => (
-                <div
-                  key={index}
-                  className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
-                  style={{
-                    animationDelay: `${index * 0.2}s`,
-                    animationDuration: '1s'
-                  }}
-                ></div>
-        ))}
-      </div>
-
-            {/* Loading Tips */}
-            <div className="text-center">
-              <p className="text-gray-400 text-xs italic">
-                "Every logo tells a story... preparing to reveal theirs"
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      {/* כפתור סגירה X */}
+        )}
+        
+        {/* כפתור סגירה X */}
       <button
         className="fixed top-6 right-6 transition-opacity z-50 cursor-pointer"
         style={{ width: '34px', height: '34px' }}
@@ -712,41 +438,82 @@ const Logo = () => {
       </button>
 
       {/* תמונות הלוגואים - Optimized grid */}
-      {logoGrid}
+      {imagesLoaded && (
+        <div className="absolute inset-0">
+          {Array.from({ length: 15 }, (_, index) => {
+            const logoNum = index + 1;
+            const row = Math.floor(index / 5);
+            const col = index % 5;
+            
+            const horizontalSpacing = 200;
+            const leftMargin = 140;
+            
+            const top = 139 + (row * 250);
+            const left = leftMargin + (col * (168 + horizontalSpacing));
+            
+            const imageSrc = imageBlobs[`regular2-${logoNum}`] || `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
+            
+            return (
+              <img
+                key={logoNum}
+                src={imageSrc}
+                alt={`Logo ${logoNum}`}
+                className="absolute cursor-pointer logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
+                data-logo-id={logoNum}
+                style={{
+                  width: '168px',
+                  height: '146px',
+                  top: `${top}px`,
+                  left: `${left}px`,
+                  objectFit: 'contain',
+                  imageRendering: 'crisp-edges',
+                }}
+                onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
+                onMouseLeave={handleLogoLeave}
+                loading="eager"
+                decoding="sync"
+              />
+            );
+          })}
+        </div>
+      )}
 
-      {/* Instant Zoomed Image Display - SIMPLIFIED */}
-      {hoveredLogo && imagesLoaded && isPageVisible && !isPerformanceOptimized && (() => {
-        const cfg = getLogoZoomConfig(hoveredLogo);
-        const zoomImageSrc = imageBlobs[`zoomInBit2-${hoveredLogo}`] || `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
-        
-        return (
-          <div
-            className="fixed z-50 pointer-events-none"
-            style={{
-              left: `${mousePosition.x + cfg.zoomOffset.x}px`,
-              top: `${mousePosition.y + cfg.zoomOffset.y}px`,
-              transform: 'translate3d(0, 0, 0)',
-              willChange: 'transform',
-            }}
-          >
-            <img
-              src={zoomImageSrc}
-              alt={`Zoomed Logo ${hoveredLogo}`}
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 cursor-pointer pointer-events-auto`}
-              style={{ 
+              {/* Instant Zoomed Image Display - SIMPLIFIED */}
+        {hoveredLogo && imagesLoaded && (() => {
+          const cfg = getLogoZoomConfig(hoveredLogo);
+          const zoomImageSrc = imageBlobs[`zoomInBit2-${hoveredLogo}`] || `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
+          
+          return (
+            <div
+              className="fixed z-50 pointer-events-none"
+              style={{
+                left: `${mousePosition.x + cfg.zoomOffset.x}px`,
+                top: `${mousePosition.y + cfg.zoomOffset.y}px`,
+                transform: 'translate3d(0, 0, 0)',
                 willChange: 'transform',
-                imageRendering: 'crisp-edges',
-                backfaceVisibility: 'hidden'
               }}
-              onMouseEnter={handleZoomedImageEnter}
-              onMouseLeave={handleZoomedImageLeave}
-              onClick={() => handleLogoClick(hoveredLogo)}
-              loading="eager"
-              decoding="sync"
-            />
-          </div>
-        );
-      })()}
+            >
+              <img
+                src={zoomImageSrc}
+                alt={`Zoomed Logo ${hoveredLogo}`}
+                className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 cursor-pointer pointer-events-auto`}
+                style={{ 
+                  willChange: 'transform',
+                  imageRendering: 'crisp-edges',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
+                  opacity: 1,
+                  transition: 'none'
+                }}
+                onMouseEnter={handleZoomedImageEnter}
+                onMouseLeave={handleZoomedImageLeave}
+                onClick={() => handleLogoClick(hoveredLogo)}
+                loading="eager"
+                decoding="sync"
+              />
+            </div>
+          );
+        })()}
 
       {/* כפתור היומן */}
       <button
@@ -810,7 +577,7 @@ const Logo = () => {
       </button>
 
       {/* Instant Modal Display */}
-      {selectedLogo && imagesLoaded && isPageVisible && (
+      {selectedLogo && imagesLoaded && (
         <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${getLogoModalConfig(selectedLogo).position}`}
           onMouseMove={(e) => {
@@ -852,7 +619,7 @@ const Logo = () => {
               decoding="sync"
             />
             
-            {/* Logo descriptions */}
+            {/* Logo descriptions - keeping just a few main ones for space */}
             {selectedLogo === 1 && (
               <div 
                 className="absolute text-white"
@@ -877,54 +644,6 @@ const Logo = () => {
                 </div>
               </div>
             )}
-            {selectedLogo === 3 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '502px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOSTITOS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letters T-I-T form two figures sharing a chip</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">and dipping it into a bowl of salsa.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 2 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '502px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">YOGA AUSTRALIA</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The negative space between the arm and leg is</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">shaped like Australia.</div>
-                </div>
-              </div>
-            )}
             {selectedLogo === 4 && (
               <div 
                 className="absolute text-white"
@@ -946,269 +665,6 @@ const Logo = () => {
                   <div className="font-bold text-xl mb-1">FEDEX</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">A hidden arrow is formed in the negative</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">space between the letters E and X.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 5 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '590px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">MY FONTS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letters "my" are designed to form the</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">image of a hand.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 6 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '597px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">WENDY'S</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The word "mom" appears within the collar of the girl's</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">blouse, suggesting a sense of home-cooked, motherly food.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 7 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '531px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">CARREFOUR</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "C" is hidden in the negative space between</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the two arrows, reflecting the brand's initial.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 8 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '470px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">ORBIT</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The split "O" with a vertical line suggests an orbital</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">path, visually reflecting the brand name.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 9 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '638px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">BASKIN ROBBINS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The number "31" is hidden within the letters B and R, a reference</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">to the brand's original promise of 31 ice cream flavors.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 10 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">LEVIS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The logo's shape mimics the back pocket stitching on their</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">jeans, a visual link to the product itself.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 11 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '489px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">HERSHEY'S KISSES</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">space between the "K" and "I".</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 12 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">PINTEREST</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter P is designed to resemble a pushpin.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 13 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOUR DE FRANCE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter R, together with the yellow circle</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">and the letter O, forms the image of a cyclist.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 14 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">FORMULA 1</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The number 1 is hidden in the negative space between</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the letter F and the red shape.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 15 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '446px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">GILLETTE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the "G" and "i" make them look</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">as if sliced by a razor blade.</div>
                 </div>
               </div>
             )}
