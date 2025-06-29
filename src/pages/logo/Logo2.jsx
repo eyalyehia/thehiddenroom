@@ -629,29 +629,401 @@ const Logo2 = () => {
               decoding="sync"
             />
             
-            {/* Page 2 Logo descriptions - placeholder for now */}
-            <div 
-              className="absolute text-white"
-              style={{
-                position: 'absolute',
-                width: '580px',
-                height: '92px',
-                left: '0',
-                bottom: '-110px',
-                fontFamily: 'Work Sans',
-                fontStyle: 'normal',
-                fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
-                color: '#FFFFFF'
-              }}
-            >
-              <div className="text-left">
-                <div className="font-bold text-xl mb-1">LOGO {selectedLogo}</div>
-                <div className="font-normal text-base opacity-70 text-gray-300">Hidden message will be revealed here...</div>
-                <div className="font-normal text-base opacity-70 text-gray-300">Page 2 - More secrets await discovery.</div>
+            {selectedLogo === 1 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '572px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">ROXY</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Two Quiksilver logos are mirrored to form a heart,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">highlighting Roxy's identity as Quiksilver's women's brand.</div>
+                </div>
               </div>
-            </div>
+            )}
+
+            {selectedLogo === 2 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">APPLE</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The bitten apple references the Tree of Knowledge,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a symbol of curiosity and the pursuit of wisdom.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 3 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '632px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">CISCO</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The vertical bars are designed to resemble the Golden Gate Bridge,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a symbol of San Francisco, where Cisco was founded.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 4 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '529px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">LAFAYETTE</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The two t's in "Lafayette" form the shape of the Eiffel Tower,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">a subtle nod to the brand's Parisian roots.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 5 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">EL AL</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "ל" is shaped like an ascending airplane.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 6 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '572px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">AUDI</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The four rings represent the 1932 merger of Audi, DKW,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Horch, and Wanderer, the foundation of Audi's legacy.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 7 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '582px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">AMAZON</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The arrow from A to Z suggests the brand sells everything,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">and forms a smile to convey customer satisfaction.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 8 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '440px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">NBC</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The feathers form a peacock, with its body and beak</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">visible in the negative space.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 9 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">MUL-T-LOCK</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The keyhead forms a strong male figure, a symbol</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">of power and security.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 10 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '535px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">VAIO</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The "VA" forms an analog wave, while "IO" represents</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">binary code, blending analog and digital in one logo.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 11 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">UNILEVER</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The large "U" is built from dozens of icons,</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">each symbolizing one of the brand's product categories.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 12 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">TOYOTA</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The ovals spell out every letter in "Toyota".</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 13 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '550px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">RAY-BAN</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "R" resembles the shape of a sunglass frame.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 14 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '509px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">NEW MAN</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The logo reads the same upside down.</div>
+                </div>
+              </div>
+            )}
+
+            {selectedLogo === 15 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '588px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">QUIKSILVER</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">The wave and mountain are inspired by Hokusai's</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">"The Great Wave off Kanagawa", merging nature and surf culture.</div>
+                </div>
+              </div>
+            )}
+            
+            {selectedLogo !== 1 && selectedLogo !== 2 && selectedLogo !== 3 && selectedLogo !== 4 && selectedLogo !== 5 && selectedLogo !== 6 && selectedLogo !== 7 && selectedLogo !== 8 && selectedLogo !== 9 && selectedLogo !== 10 && selectedLogo !== 11 && selectedLogo !== 12 && selectedLogo !== 13 && selectedLogo !== 14 && selectedLogo !== 15 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '580px',
+                  height: '92px',
+                  left: '0',
+                  bottom: '-110px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF'
+                }}
+              >
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">LOGO {selectedLogo}</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Hidden message will be revealed here...</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Page 2 - More secrets await discovery.</div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
