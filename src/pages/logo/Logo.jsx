@@ -225,8 +225,8 @@ const Logo = () => {
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
       1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -100, y: -25 } },
-      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -32, y: -47 } },
-      3: { zoomSize: 'w-22', zoomHeight: 'h-15', zoomOffset: { x: -78, y: -80 } },
+      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -65, y: -80 } },
+      3: { zoomSize: 'w-19', zoomHeight: 'h-19', zoomOffset: { x: -45, y: -35 } },
       4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 10, y: -15 } },
       5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: -92, y: -55 } },
       6: { zoomSize: 'w-20', zoomHeight: 'h-13', zoomOffset: { x: -41, y: -30 } },

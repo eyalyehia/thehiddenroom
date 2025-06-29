@@ -223,21 +223,21 @@ const Logo2 = () => {
 
   // Memoized zoom configurations for better performance (same as page 1 for consistency)
   const logoZoomConfigs = useMemo(() => ({
-      1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -100, y: -25 } },
-      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -32, y: -47 } },
-      3: { zoomSize: 'w-22', zoomHeight: 'h-15', zoomOffset: { x: -78, y: -80 } },
-      4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 10, y: -15 } },
-      5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: -92, y: -55 } },
-      6: { zoomSize: 'w-20', zoomHeight: 'h-13', zoomOffset: { x: -41, y: -30 } },
-      7: { zoomSize: 'w-29', zoomHeight: 'h-29', zoomOffset: { x: -65, y: -82 } },
-      8: { zoomSize: 'w-16', zoomHeight: 'h-15', zoomOffset: { x: -90, y: -29 } },
-      9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: -35, y: -80 } },
-      10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -100, y:15 } },
-      11: { zoomSize: 'w-15', zoomHeight: 'h-auto', zoomOffset: { x: -80, y: 2 } },
-      12: { zoomSize: 'w-28', zoomHeight: 'h-17', zoomOffset: { x: -75, y: 15 } },
-      13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -62, y: -70 } },
-      14: { zoomSize: 'w-32', zoomHeight: 'h-18', zoomOffset: { x: -65, y: -38 } },
-      15: { zoomSize: 'w-20', zoomHeight: 'h-7', zoomOffset: { x: -80, y:-15 } },
+      1: { zoomSize: 'w-25', zoomHeight: 'h-21', zoomOffset: { x: -80, y:-50 } },
+      2: { zoomSize: 'w-5', zoomHeight: 'h-28', zoomOffset: { x: 38, y:-40 } },
+      3: { zoomSize: 'w-53', zoomHeight: 'h-15', zoomOffset: { x: -98, y: -50 } },
+      4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 20, y: -40 } },
+      5: { zoomSize: 'w-12', zoomHeight: 'h-10', zoomOffset: { x: -68, y: -19 } },
+      6: { zoomSize: 'w-65', zoomHeight: 'h-25', zoomOffset: { x: -135, y: -80 } },
+      7: { zoomSize: 'w-40', zoomHeight: 'h-10', zoomOffset: { x: -90, y: -10 } },
+      8: { zoomSize: 'w-45', zoomHeight: 'h-25', zoomOffset: { x: -90, y: -85 } },
+      9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: -90, y: -45 } },
+      10: { zoomSize: 'w-25', zoomHeight: 'h-12', zoomOffset: { x: -90, y:-35 } },
+      11: { zoomSize: 'w-35', zoomHeight: 'h-auto', zoomOffset: { x: -70, y: -95 } },
+      12: { zoomSize: 'w-24', zoomHeight: 'h-14', zoomOffset: { x: -135, y: -30 } },
+      13: { zoomSize: 'w-10', zoomHeight: 'h-27', zoomOffset: { x: 15, y: -55 } },
+      14: { zoomSize: 'w-20', zoomHeight: 'h-12', zoomOffset: { x: 5, y: -45 } },
+      15: { zoomSize: 'w-45', zoomHeight: 'h-23', zoomOffset: { x: -135, y:-25 } },
   }), []);
 
   const logoModalConfigs = useMemo(() => ({
