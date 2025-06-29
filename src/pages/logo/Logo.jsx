@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'; // Removed unused useCallback
 import { useNavigate } from 'react-router-dom';
+import { isPointInClickableArea, getClickableAreas } from '../../components/constant/clickableAreas';
 
 // Memoized image component to prevent unnecessary re-renders
 const MemoizedImage = React.memo(({ src, alt, className, onClick }) => (
@@ -178,10 +179,20 @@ const Logo = () => {
     navigate('/logo2');
   };
 
-  // Super optimized hover handlers for instant response - simplified
+  // Super optimized hover handlers for instant response with clickable area checking
   const handleLogoEnter = useMemo(() => (logoId, event) => {
     // Only proceed if images are loaded
     if (!imagesLoaded) return;
+    
+    // Get mouse position relative to the image
+    const rect = event.currentTarget.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    // Check if mouse is in clickable area
+    if (!isPointInClickableArea(logoId, mouseX, mouseY, rect.width, rect.height)) {
+      return; // Don't show hover if not in clickable area
+    }
     
     // Clear any pending timeouts immediately
     if (hoverTimeoutRef.current) {
@@ -193,7 +204,6 @@ const Logo = () => {
       setSelectedLogo(logoId);
     } else {
       // Pre-calculate position for instant display
-      const rect = event.currentTarget.getBoundingClientRect();
       const position = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
       
       // Set both position and hover state in one batch
@@ -229,13 +239,78 @@ const Logo = () => {
     setHoveredLogo(null);
   }, []);
 
-  const handleLogoClick = useMemo(() => (logoId) => {
+  // Handle mouse movement on logo to check clickable areas continuously
+  const handleLogoMouseMove = useMemo(() => (logoId, event) => {
+    if (!imagesLoaded) return;
+    
+    const rect = event.currentTarget.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    // Check if mouse is in clickable area
+    const inClickableArea = isPointInClickableArea(logoId, mouseX, mouseY, rect.width, rect.height);
+    
+    // Change cursor based on clickable area
+    event.currentTarget.style.cursor = inClickableArea ? 'pointer' : 'default';
+    
+    // If we were hovering and moved out of clickable area, hide hover
+    if (hoveredLogo === logoId && !inClickableArea) {
+      setHoveredLogo(null);
+    }
+    // If we weren't hovering and moved into clickable area, show hover
+    else if (hoveredLogo !== logoId && inClickableArea && !clickedLogos.has(logoId)) {
+      const position = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      setMousePosition(position);
+      setHoveredLogo(logoId);
+    }
+  }, [imagesLoaded, hoveredLogo, clickedLogos]);
+
+  const handleLogoClick = useMemo(() => (logoId, event) => {
     // Only proceed if images are loaded
     if (!imagesLoaded) return;
+    
+    // Get click position relative to the image
+    const rect = event.currentTarget.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const clickY = event.clientY - rect.top;
+    
+    // Check if click is in clickable area
+    if (!isPointInClickableArea(logoId, clickX, clickY, rect.width, rect.height)) {
+      return; // Don't handle click if not in clickable area
+    }
     
     setClickedLogos(prev => new Set([...prev, logoId]));
     setSelectedLogo(logoId);
   }, [imagesLoaded]);
+
+// Add debug mode state for showing clickable areas
+  const [showClickableAreas, setShowClickableAreas] = useState(false);
+
+  // Debug function to show clickable areas 
+  const renderClickableAreasDebug = (logoId, top, left) => {
+    if (!showClickableAreas) return null;
+    
+    const areas = getClickableAreas(logoId);
+    const imageWidth = 168;
+    const imageHeight = 146;
+    
+    return areas.map((area, index) => (
+      <div
+        key={`debug-${logoId}-${index}`}
+        style={{
+          position: 'absolute',
+          left: `${left + (area.x * imageWidth)}px`,
+          top: `${top + (area.y * imageHeight)}px`,
+          width: `${area.width * imageWidth}px`,
+          height: `${area.height * imageHeight}px`,
+          border: '2px solid rgba(255, 0, 0, 0.8)',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+          pointerEvents: 'none',
+          zIndex: 15,
+        }}
+      />
+    ));
+  };
 
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
@@ -452,6 +527,14 @@ const Logo = () => {
         )}
       </button>
 
+      {/* כפתור לתצוגת אזורים לחיצים */}
+      <button
+        className="fixed top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
+        onClick={() => setShowClickableAreas(!showClickableAreas)}
+      >
+        {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
+      </button>
+
       {/* תמונות הלוגואים - Optimized grid */}
       {imagesLoaded && (
         <div className="absolute inset-0">
@@ -469,25 +552,31 @@ const Logo = () => {
             const imageSrc = imageBlobs[`regular2-${logoNum}`] || `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
             
             return (
-              <img
-                key={logoNum}
-                src={imageSrc}
-                alt={`Logo ${logoNum}`}
-                className="absolute cursor-pointer logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
-                data-logo-id={logoNum}
-                style={{
-                  width: '168px',
-                  height: '146px',
-                  top: `${top}px`,
-                  left: `${left}px`,
-                  objectFit: 'contain',
-                  imageRendering: 'crisp-edges',
-                }}
-                onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
-                onMouseLeave={handleLogoLeave}
-                loading="eager"
-                decoding="sync"
-              />
+              <React.Fragment key={logoNum}>
+                <img
+                  src={imageSrc}
+                  alt={`Logo ${logoNum}`}
+                  className="absolute logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
+                  data-logo-id={logoNum}
+                  style={{
+                    width: '168px',
+                    height: '146px',
+                    top: `${top}px`,
+                    left: `${left}px`,
+                    objectFit: 'contain',
+                    imageRendering: 'crisp-edges',
+                    cursor: 'default', // Default cursor, will change based on clickable areas
+                  }}
+                  onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
+                  onMouseLeave={handleLogoLeave}
+                  onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
+                  onClick={(e) => handleLogoClick(logoNum, e)}
+                  loading="eager"
+                  decoding="sync"
+                />
+                {/* Render clickable areas debug overlay */}
+                {renderClickableAreasDebug(logoNum, top, left)}
+              </React.Fragment>
             );
           })}
         </div>
@@ -522,7 +611,7 @@ const Logo = () => {
                 }}
                 onMouseEnter={handleZoomedImageEnter}
                 onMouseLeave={handleZoomedImageLeave}
-                onClick={() => handleLogoClick(hoveredLogo)}
+                onClick={(e) => handleLogoClick(hoveredLogo, e)}
                 loading="eager"
                 decoding="sync"
               />
