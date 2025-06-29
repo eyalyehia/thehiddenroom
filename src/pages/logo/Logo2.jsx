@@ -1,5 +1,19 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react'; // Removed unused useCallback
 import { useNavigate } from 'react-router-dom';
+
+// Memoized image component to prevent unnecessary re-renders
+const MemoizedImage = React.memo(({ src, alt, className, onClick }) => (
+  <img 
+    src={src} 
+    alt={alt || 'Logo'}
+    className={className} 
+    onClick={onClick}
+    loading="lazy"
+    decoding="async"
+    width="100%"
+    height="auto"
+  />
+));
 
 const Logo2 = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
@@ -21,8 +35,10 @@ const Logo2 = () => {
 
 
 
-  // PROGRESSIVE LOADING - Show gallery images first, then load hover images in background
+  // PROGRESSIVE LOADING - Optimized image loading with cleanup
   useEffect(() => {
+    let isMounted = true;
+    
     const loadProgressively = async () => {
       if (imagesLoaded || hasStartedLoading) return;
       
@@ -66,8 +82,10 @@ const Logo2 = () => {
         setLoadingStage('✅ Ready to explore!');
         setImagesLoaded(true);
         
-        // Continue loading other images in background
-        loadBackgroundImages();
+        // Continue loading other images in background if component is still mounted
+        if (isMounted) {
+          loadBackgroundImages();
+        }
       };
 
       // PHASE 2: Load hover and modal images in background (non-blocking)
@@ -119,6 +137,7 @@ const Logo2 = () => {
     
     // Cleanup function
     return () => {
+      isMounted = false;
       loadingTimeoutsRef.current.forEach(clearTimeout);
       loadingTimeoutsRef.current = [];
       if (hoverTimeoutRef.current) {
@@ -126,7 +145,7 @@ const Logo2 = () => {
         hoverTimeoutRef.current = null;
       }
     };
-  }, []); // Run only once
+  }, [hasStartedLoading, imagesLoaded]); // Add dependencies to satisfy ESLint
 
   // Separate cleanup effect for blob URLs
   useEffect(() => {

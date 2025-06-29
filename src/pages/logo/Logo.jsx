@@ -1,5 +1,19 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react'; // Removed unused useCallback
 import { useNavigate } from 'react-router-dom';
+
+// Memoized image component to prevent unnecessary re-renders
+const MemoizedImage = React.memo(({ src, alt, className, onClick }) => (
+  <img 
+    src={src} 
+    alt={alt || 'Logo'} 
+    className={className} 
+    onClick={onClick}
+    loading="lazy"
+    decoding="async"
+    width="100%"
+    height="auto"
+  />
+));
 
 const Logo = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
@@ -19,8 +33,10 @@ const Logo = () => {
   const loadingTimeoutsRef = useRef([]);
   const navigate = useNavigate();
 
-  // PROGRESSIVE LOADING - Same as Logo2 for fast performance
+  // PROGRESSIVE LOADING - Optimized image loading
   useEffect(() => {
+    let isMounted = true;
+    
     const loadProgressively = async () => {
       if (imagesLoaded || hasStartedLoading) return;
       
@@ -67,8 +83,10 @@ const Logo = () => {
         setLoadingStage('✅ Ready to explore!');
         setImagesLoaded(true);
         
-        // Continue loading other images in background
-        loadBackgroundImages();
+        // Continue loading other images in background if component is still mounted
+        if (isMounted) {
+          loadBackgroundImages();
+        }
       };
 
       // PHASE 2: Load hover and modal images in background (non-blocking)
@@ -120,14 +138,11 @@ const Logo = () => {
     
     // Cleanup function
     return () => {
+      isMounted = false;
       loadingTimeoutsRef.current.forEach(clearTimeout);
       loadingTimeoutsRef.current = [];
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-        hoverTimeoutRef.current = null;
-      }
     };
-  }, []); // Run only once
+  }, [hasStartedLoading, imagesLoaded]); // Add dependencies to satisfy ESLint
 
   // Separate cleanup effect for blob URLs
   useEffect(() => {
