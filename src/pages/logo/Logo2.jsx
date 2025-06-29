@@ -34,7 +34,7 @@ const Logo2 = () => {
       // PHASE 1: Load gallery images ONLY (fast display)
       const loadGalleryImages = async () => {
         const galleryPromises = [];
-        console.log('🚀 Starting to load 15 gallery images...');
+
         
         for (let i = 1; i <= 15; i++) {
           const num = i.toString().padStart(2, '0');
@@ -45,12 +45,10 @@ const Logo2 = () => {
             const img = new Image();
             img.onload = () => {
               imageCache[imageKey] = imageUrl;
-              console.log(`✅ Loaded gallery image ${i} (${imageKey}): ${imageUrl}`);
               setLoadingProgress(Math.round((i / 15) * 70)); // 70% for gallery
               resolve(true);
             };
             img.onerror = () => {
-              console.error(`❌ Failed to load gallery image ${i} (${imageKey}): ${imageUrl}`);
               imageCache[imageKey] = imageUrl;
               resolve(false);
             };
@@ -63,7 +61,6 @@ const Logo2 = () => {
         await Promise.all(galleryPromises);
         
         // Show the page with gallery images immediately
-        console.log('📦 Setting imageBlobs with:', Object.keys(imageCache));
         setImageBlobs({...imageCache});
         setLoadingProgress(70);
         setLoadingStage('✅ Ready to explore!');
@@ -277,12 +274,7 @@ const Logo2 = () => {
 
   // Memoized logo grid for performance
   const logoGrid = useMemo(() => {
-    if (!imagesLoaded || Object.keys(imageBlobs).length === 0) {
-      console.log('🔄 Grid not ready - imagesLoaded:', imagesLoaded, 'imageBlobs keys:', Object.keys(imageBlobs).length);
-      return null;
-    }
-    
-    console.log('🎯 Creating grid with imageBlobs:', Object.keys(imageBlobs).filter(key => key.includes('page2regular')));
+    if (!imagesLoaded || Object.keys(imageBlobs).length === 0) return null;
     
     return Array.from({ length: 15 }, (_, index) => {
       const logoNum = index + 1;
@@ -297,13 +289,7 @@ const Logo2 = () => {
       
       const imageSrc = imageBlobs[`page2regular-${logoNum}`] || `/logo/pictures/page2regular/${logoNum.toString().padStart(2, '0')}.png`;
       
-      // Debug info for all images
-      console.log(`🖼️ Logo ${logoNum}: row=${row}, col=${col}, top=${top}px, left=${left}px, src=${imageSrc.includes('blob') ? 'blob URL' : imageSrc}`);
-      
-      // Special check for image 13
-      if (logoNum === 13) {
-        console.log(`🔍 SPECIAL CHECK - Logo 13: Available in imageBlobs?`, !!imageBlobs[`page2regular-${logoNum}`]);
-      }
+
       
       return (
         <img
