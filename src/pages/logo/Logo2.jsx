@@ -23,7 +23,7 @@ const Logo2 = () => {
   const [hoveredLogo, setHoveredLogo] = useState(null);
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [clickedLogos, setClickedLogos] = useState(new Set());
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
 
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const Logo2 = () => {
   const [showClickableAreas, setShowClickableAreas] = useState(false);
 
   // Hover handler for logo hotspots - simplified to match poster behavior
-  const handleLogoEnter = useMemo(() => (logoId, event) => {
+  const handleLogoEnter = useMemo(() => (logoId) => {
     // Clear any existing timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
@@ -65,11 +65,6 @@ const Logo2 = () => {
       setSelectedLogo(logoId);
     } else {
       setHoveredLogo(logoId);
-      const rect = event.currentTarget.getBoundingClientRect();
-      setMousePosition({ 
-        x: rect.right + 10,
-        y: rect.top
-      });
     }
   }, [clickedLogos]);
 
@@ -81,16 +76,7 @@ const Logo2 = () => {
     }, 50); // 50ms delay to maintain hover during quick mouse movements
   }, []);
 
-  const handleZoomedImageEnter = useMemo(() => () => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
-  }, []);
 
-  const handleZoomedImageLeave = useMemo(() => () => {
-    setHoveredLogo(null);
-  }, []);
 
   // Handle mouse movement on logo to check clickable areas continuously
   const handleLogoMouseMove = useMemo(() => (logoId, event) => {
@@ -110,8 +96,6 @@ const Logo2 = () => {
     }
     // If we weren't hovering and moved into clickable area, show hover
     else if (hoveredLogo !== logoId && inClickableArea && !clickedLogos.has(logoId)) {
-      const position = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      setMousePosition(position);
       setHoveredLogo(logoId);
     }
   }, [hoveredLogo, clickedLogos]);
@@ -232,7 +216,7 @@ const Logo2 = () => {
               transition: 'transform 0.1s ease-out',
               cursor: 'default', // Default cursor, will change based on clickable areas
             }}
-            onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
+            onMouseEnter={() => handleLogoEnter(logoNum)}
             onMouseLeave={handleLogoLeave}
             onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
             onClick={(e) => handleLogoClick(logoNum, e)}
@@ -349,17 +333,30 @@ const Logo2 = () => {
       {/* תמונות הלוגואים - Logo Grid */}
       {logoGrid}
 
-      {/* Instant Zoomed Image Display */}
-      {hoveredLogo && (() => {
+      {/* Instant Zoomed Image Display - FIXED POSITION */}
+      {hoveredLogo && !selectedLogo && (() => {
         const cfg = getLogoZoomConfig(hoveredLogo);
         const zoomImageSrc = `/logo/pictures/page2zoomBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
         
+        // Calculate fixed position based on logo grid position
+        const logoIndex = hoveredLogo - 1;
+        const row = Math.floor(logoIndex / 5);
+        const col = logoIndex % 5;
+        const horizontalSpacing = 200;
+        const leftMargin = 140;
+        const logoTop = 139 + (row * 250);
+        const logoLeft = leftMargin + (col * (168 + horizontalSpacing));
+        
+        // Fixed position relative to the logo itself
+        const fixedLeft = logoLeft + 84; // Center of logo (168/2)
+        const fixedTop = logoTop + 73;   // Center of logo (146/2)
+        
         return (
           <div
-            className="fixed z-50 pointer-events-none"
+            className="fixed z-40 pointer-events-none"
             style={{
-              left: `${mousePosition.x + cfg.zoomOffset.x}px`,
-              top: `${mousePosition.y + cfg.zoomOffset.y}px`,
+              left: `${fixedLeft + cfg.zoomOffset.x}px`,
+              top: `${fixedTop + cfg.zoomOffset.y}px`,
               transform: 'translate3d(0, 0, 0)',
               willChange: 'transform',
             }}
@@ -367,7 +364,7 @@ const Logo2 = () => {
             <img
               src={zoomImageSrc}
               alt={`Zoomed Logo ${hoveredLogo}`}
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 cursor-pointer pointer-events-auto`}
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 pointer-events-none`}
               style={{ 
                 willChange: 'transform',
                 imageRendering: 'crisp-edges',
@@ -376,9 +373,6 @@ const Logo2 = () => {
                 opacity: 1,
                 transition: 'none'
               }}
-              onMouseEnter={handleZoomedImageEnter}
-              onMouseLeave={handleZoomedImageLeave}
-              onClick={(e) => handleLogoClick(hoveredLogo, e)}
               loading="eager"
               decoding="sync"
             />

@@ -23,7 +23,7 @@ const Logo = () => {
   const [hoveredLogo, setHoveredLogo] = useState(null);
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [clickedLogos, setClickedLogos] = useState(new Set());
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
 
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const Logo = () => {
   };
 
   // Hover handler for logo hotspots - simplified to match poster behavior
-  const handleLogoEnter = useMemo(() => (logoId, event) => {
+  const handleLogoEnter = useMemo(() => (logoId) => {
     // Clear any existing timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
@@ -62,11 +62,6 @@ const Logo = () => {
       setSelectedLogo(logoId);
     } else {
       setHoveredLogo(logoId);
-      const rect = event.currentTarget.getBoundingClientRect();
-      setMousePosition({ 
-        x: rect.right + 10,
-        y: rect.top
-      });
     }
   }, [clickedLogos]);
 
@@ -78,16 +73,7 @@ const Logo = () => {
     }, 50); // 50ms delay to maintain hover during quick mouse movements
   }, []);
 
-  const handleZoomedImageEnter = useMemo(() => () => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
-  }, []);
 
-  const handleZoomedImageLeave = useMemo(() => () => {
-    setHoveredLogo(null);
-  }, []);
 
   // Handle mouse movement on logo to check clickable areas continuously
   const handleLogoMouseMove = useMemo(() => (logoId, event) => {
@@ -107,8 +93,6 @@ const Logo = () => {
     }
     // If we weren't hovering and moved into clickable area, show hover
     else if (hoveredLogo !== logoId && inClickableArea && !clickedLogos.has(logoId)) {
-      const position = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      setMousePosition(position);
       setHoveredLogo(logoId);
     }
   }, [hoveredLogo, clickedLogos]);
@@ -149,21 +133,21 @@ const Logo = () => {
 
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
-      1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -100, y: -25 } },
-      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -65, y: -80 } },
-      3: { zoomSize: 'w-19', zoomHeight: 'h-19', zoomOffset: { x: -45, y: -35 } },
-      4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 10, y: -15 } },
-      5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: -92, y: -55 } },
-      6: { zoomSize: 'w-20', zoomHeight: 'h-13', zoomOffset: { x: -41, y: -30 } },
-      7: { zoomSize: 'w-29', zoomHeight: 'h-29', zoomOffset: { x: -65, y: -82 } },
-      8: { zoomSize: 'w-16', zoomHeight: 'h-15', zoomOffset: { x: -90, y: -29 } },
-      9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: -35, y: -80 } },
-      10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -100, y:15 } },
-      11: { zoomSize: 'w-15', zoomHeight: 'h-auto', zoomOffset: { x: -80, y: 2 } },
-      12: { zoomSize: 'w-28', zoomHeight: 'h-17', zoomOffset: { x: -75, y: 15 } },
-      13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -62, y: -70 } },
-      14: { zoomSize: 'w-32', zoomHeight: 'h-18', zoomOffset: { x: -65, y: -38 } },
-      15: { zoomSize: 'w-20', zoomHeight: 'h-7', zoomOffset: { x: -80, y:-15 } },
+      1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -39, y: -25 } },
+      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -10, y: -80 } },
+      3: { zoomSize: 'w-19', zoomHeight: 'h-19', zoomOffset: { x: 30, y: -35 } },
+      4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 55, y: -15 } },
+      5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: -50, y: -55 } },
+      6: { zoomSize: 'w-20', zoomHeight: 'h-13', zoomOffset: { x: 18, y: -30 } },
+      7: { zoomSize: 'w-40', zoomHeight: 'h-29', zoomOffset: { x: -20, y: -82 } },
+      8: { zoomSize: 'w-16', zoomHeight: 'h-15', zoomOffset: { x: -46, y: -29 } },
+      9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: 20, y: -80 } },
+      10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -45, y:15 } },
+      11: { zoomSize: 'w-15', zoomHeight: 'h-auto', zoomOffset: { x: -40, y: 2 } },
+      12: { zoomSize: 'w-20', zoomHeight: 'h-25', zoomOffset: { x: -70, y:-40 } },
+      13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -0, y: -73 } },
+      14: { zoomSize: 'w-37', zoomHeight: 'h-18', zoomOffset: { x: -10, y: -38 } },
+      15: { zoomSize: 'w-20', zoomHeight: 'h-7', zoomOffset: { x: -30, y:-15 } },
   }), []);
 
   const logoModalConfigs = useMemo(() => ({
@@ -268,7 +252,7 @@ const Logo = () => {
                   imageRendering: 'crisp-edges',
                   cursor: 'default', // Default cursor, will change based on clickable areas
                 }}
-                onMouseEnter={(e) => handleLogoEnter(logoNum, e)}
+                onMouseEnter={() => handleLogoEnter(logoNum)}
                 onMouseLeave={handleLogoLeave}
                 onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
                 onClick={(e) => handleLogoClick(logoNum, e)}
@@ -282,17 +266,30 @@ const Logo = () => {
         })}
       </div>
 
-              {/* Instant Zoomed Image Display - SIMPLIFIED */}
-        {hoveredLogo && (() => {
+              {/* Instant Zoomed Image Display - FIXED POSITION */}
+        {hoveredLogo && !selectedLogo && (() => {
           const cfg = getLogoZoomConfig(hoveredLogo);
           const zoomImageSrc = `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
           
+          // Calculate fixed position based on logo grid position
+          const logoIndex = hoveredLogo - 1;
+          const row = Math.floor(logoIndex / 5);
+          const col = logoIndex % 5;
+          const horizontalSpacing = 200;
+          const leftMargin = 140;
+          const logoTop = 139 + (row * 250);
+          const logoLeft = leftMargin + (col * (168 + horizontalSpacing));
+          
+          // Fixed position relative to the logo itself
+          const fixedLeft = logoLeft + 84; // Center of logo (168/2)
+          const fixedTop = logoTop + 73;   // Center of logo (146/2)
+          
           return (
             <div
-              className="fixed z-50 pointer-events-none"
+              className="fixed z-40 pointer-events-none"
               style={{
-                left: `${mousePosition.x + cfg.zoomOffset.x}px`,
-                top: `${mousePosition.y + cfg.zoomOffset.y}px`,
+                left: `${fixedLeft + cfg.zoomOffset.x}px`,
+                top: `${fixedTop + cfg.zoomOffset.y}px`,
                 transform: 'translate3d(0, 0, 0)',
                 willChange: 'transform',
               }}
@@ -300,7 +297,7 @@ const Logo = () => {
               <img
                 src={zoomImageSrc}
                 alt={`Zoomed Logo ${hoveredLogo}`}
-                className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 cursor-pointer pointer-events-auto`}
+                className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 pointer-events-none`}
                 style={{ 
                   willChange: 'transform',
                   imageRendering: 'crisp-edges',
@@ -309,9 +306,6 @@ const Logo = () => {
                   opacity: 1,
                   transition: 'none'
                 }}
-                onMouseEnter={handleZoomedImageEnter}
-                onMouseLeave={handleZoomedImageLeave}
-                onClick={(e) => handleLogoClick(hoveredLogo, e)}
                 loading="eager"
                 decoding="sync"
               />
