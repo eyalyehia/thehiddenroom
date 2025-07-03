@@ -16,10 +16,13 @@
     "@tailwindcss/vite": "^4.1.6",
     "firebase": "^11.9.0",
     "leva": "^0.10.0",
+    "placeholder": "^1.2.3",
+    "plaiceholder": "^3.0.0",
     "postprocessing": "^6.37.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0",
+    "sharp": "^0.34.2",
     "styled-components": "^6.1.18",
     "tailwindcss": "^4.1.6",
     "three": "^0.176.0"

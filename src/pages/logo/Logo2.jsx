@@ -24,141 +24,9 @@ const Logo2 = () => {
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [clickedLogos, setClickedLogos] = useState(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [imageBlobs, setImageBlobs] = useState({});
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingStage, setLoadingStage] = useState('Initializing...');
-  const [hasStartedLoading, setHasStartedLoading] = useState(false);
 
   const hoverTimeoutRef = useRef(null);
-  const loadingTimeoutsRef = useRef([]);
   const navigate = useNavigate();
-
-
-
-  // PROGRESSIVE LOADING - Optimized image loading with cleanup
-  useEffect(() => {
-    let isMounted = true;
-    
-    const loadProgressively = async () => {
-      if (imagesLoaded || hasStartedLoading) return;
-      
-      setHasStartedLoading(true);
-      setLoadingStage('🚀 Loading gallery...');
-      
-      const imageCache = {};
-
-      // PHASE 1: Load gallery images ONLY (fast display)
-      const loadGalleryImages = async () => {
-        const galleryPromises = [];
-
-        
-        for (let i = 1; i <= 15; i++) {
-          const num = i.toString().padStart(2, '0');
-          const imageUrl = `/logo/pictures/page2regular/${num}.png`;
-          const imageKey = `page2regular-${i}`;
-          
-          const promise = new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => {
-              imageCache[imageKey] = imageUrl;
-              setLoadingProgress(Math.round((i / 15) * 70)); // 70% for gallery
-              resolve(true);
-            };
-            img.onerror = () => {
-              imageCache[imageKey] = imageUrl;
-              resolve(false);
-            };
-            img.src = imageUrl;
-          });
-          
-          galleryPromises.push(promise);
-        }
-        
-        await Promise.all(galleryPromises);
-        
-        // Show the page with gallery images immediately
-        setImageBlobs({...imageCache});
-        setLoadingProgress(70);
-        setLoadingStage('✅ Ready to explore!');
-        setImagesLoaded(true);
-        
-        // Continue loading other images in background if component is still mounted
-        if (isMounted) {
-          loadBackgroundImages();
-        }
-      };
-
-      // PHASE 2: Load hover and modal images in background (non-blocking)
-      const loadBackgroundImages = async () => {
-        const backgroundTypes = [
-          { folder: 'page2zoomBit2', key: 'page2zoomBit2' },
-          { folder: 'page2zoomIn', key: 'page2zoomIn' }
-        ];
-
-        let backgroundLoaded = 0;
-        const totalBackground = 30; // 15 + 15
-
-        for (const type of backgroundTypes) {
-          for (let i = 1; i <= 15; i++) {
-            const num = i.toString().padStart(2, '0');
-            const imageUrl = `/logo/pictures/${type.folder}/${num}.png`;
-            const imageKey = `${type.key}-${i}`;
-            
-            // Load asynchronously without blocking
-            const img = new Image();
-            img.onload = () => {
-              imageCache[imageKey] = imageUrl;
-              backgroundLoaded++;
-              
-              // Update cache silently
-              setImageBlobs({...imageCache});
-              
-              if (backgroundLoaded === totalBackground) {
-                console.log('🎉 All hover images loaded in background!');
-              }
-            };
-            img.onerror = () => {
-              imageCache[imageKey] = imageUrl;
-              backgroundLoaded++;
-            };
-            img.src = imageUrl;
-            
-            // Small delay between loads to not overwhelm
-            await new Promise(resolve => setTimeout(resolve, 50));
-          }
-        }
-      };
-
-      // Start with gallery images
-      loadGalleryImages();
-    };
-
-    loadProgressively();
-    
-    // Cleanup function
-    return () => {
-      isMounted = false;
-      loadingTimeoutsRef.current.forEach(clearTimeout);
-      loadingTimeoutsRef.current = [];
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-        hoverTimeoutRef.current = null;
-      }
-    };
-  }, [hasStartedLoading, imagesLoaded]); // Add dependencies to satisfy ESLint
-
-  // Separate cleanup effect for blob URLs
-  useEffect(() => {
-    return () => {
-      // Revoke blob URLs when component unmounts
-      Object.values(imageBlobs).forEach(url => {
-        if (url && url.startsWith('blob:')) {
-          URL.revokeObjectURL(url);
-        }
-      });
-    };
-  }, [imageBlobs]);
 
   // Clean up hover timeout on unmount
   useEffect(() => {
@@ -185,53 +53,32 @@ const Logo2 = () => {
   // Add debug mode state for showing clickable areas
   const [showClickableAreas, setShowClickableAreas] = useState(false);
 
-  // Super optimized hover handlers for instant response with clickable area checking
+  // Hover handler for logo hotspots - simplified to match poster behavior
   const handleLogoEnter = useMemo(() => (logoId, event) => {
-    // Only proceed if images are loaded
-    if (!imagesLoaded) return;
-    
-    // Get mouse position relative to the image
-    const rect = event.currentTarget.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-    
-    // Check if mouse is in clickable area
-    if (!isPointInClickableArea(logoId, mouseX, mouseY, rect.width, rect.height, 2)) {
-      return; // Don't show hover if not in clickable area
-    }
-    
-    // Clear any pending timeouts immediately
+    // Clear any existing timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
     }
-    
+
     if (clickedLogos.has(logoId)) {
       setSelectedLogo(logoId);
     } else {
-      // Pre-calculate position for instant display
-      const position = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      
-      // Set both position and hover state in one batch
-      setMousePosition(position);
       setHoveredLogo(logoId);
-      
-      // Preload the hover image if not already cached
-      const hoverImageUrl = `/logo/pictures/page2zoomBit2/${logoId.toString().padStart(2, '0')}.png`;
-      const img = new Image();
-      img.src = hoverImageUrl;
+      const rect = event.currentTarget.getBoundingClientRect();
+      setMousePosition({ 
+        x: rect.right + 10,
+        y: rect.top
+      });
     }
-  }, [clickedLogos, imagesLoaded]);
+  }, [clickedLogos]);
 
   const handleLogoLeave = useMemo(() => () => {
-    // Clear any existing timeout
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-    }
-    // Shorter timeout for faster response
+    // Add a small delay before removing the hover state
+    // This helps when moving quickly between hotspots
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredLogo(null);
-    }, 10);
+    }, 50); // 50ms delay to maintain hover during quick mouse movements
   }, []);
 
   const handleZoomedImageEnter = useMemo(() => () => {
@@ -247,8 +94,6 @@ const Logo2 = () => {
 
   // Handle mouse movement on logo to check clickable areas continuously
   const handleLogoMouseMove = useMemo(() => (logoId, event) => {
-    if (!imagesLoaded) return;
-    
     const rect = event.currentTarget.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
@@ -269,25 +114,12 @@ const Logo2 = () => {
       setMousePosition(position);
       setHoveredLogo(logoId);
     }
-  }, [imagesLoaded, hoveredLogo, clickedLogos]);
+  }, [hoveredLogo, clickedLogos]);
 
-  const handleLogoClick = useMemo(() => (logoId, event) => {
-    // Only proceed if images are loaded
-    if (!imagesLoaded) return;
-    
-    // Get click position relative to the image
-    const rect = event.currentTarget.getBoundingClientRect();
-    const clickX = event.clientX - rect.left;
-    const clickY = event.clientY - rect.top;
-    
-    // Check if click is in clickable area
-    if (!isPointInClickableArea(logoId, clickX, clickY, rect.width, rect.height, 2)) {
-      return; // Don't handle click if not in clickable area
-    }
-    
+  const handleLogoClick = useMemo(() => (logoId) => {
     setClickedLogos(prev => new Set([...prev, logoId]));
     setSelectedLogo(logoId);
-  }, [imagesLoaded]);
+  }, []);
 
   // Debug function to show clickable areas 
   const renderClickableAreasDebug = (logoId, top, left) => {
@@ -368,8 +200,6 @@ const Logo2 = () => {
 
   // Memoized logo grid for performance
   const logoGrid = useMemo(() => {
-    if (!imagesLoaded || Object.keys(imageBlobs).length === 0) return null;
-    
     return Array.from({ length: 15 }, (_, index) => {
       const logoNum = index + 1;
       const row = Math.floor(index / 5);
@@ -381,7 +211,7 @@ const Logo2 = () => {
       const top = 139 + (row * 250);
       const left = leftMargin + (col * (168 + horizontalSpacing));
       
-      const imageSrc = imageBlobs[`page2regular-${logoNum}`] || `/logo/pictures/page2regular/${logoNum.toString().padStart(2, '0')}.png`;
+      const imageSrc = `/logo/pictures/page2regular/${logoNum.toString().padStart(2, '0')}.png`;
       
       return (
         <React.Fragment key={logoNum}>
@@ -414,7 +244,7 @@ const Logo2 = () => {
         </React.Fragment>
       );
     });
-  }, [imagesLoaded, imageBlobs, handleLogoEnter, handleLogoLeave, handleLogoMouseMove, handleLogoClick, renderClickableAreasDebug]);
+  }, [handleLogoEnter, handleLogoLeave, handleLogoMouseMove, handleLogoClick, renderClickableAreasDebug]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -426,142 +256,6 @@ const Logo2 = () => {
           backgroundColor: '#1D1C1A'
         }}
       >
-      
-
-
-      {/* Beautiful Loading Screen */}
-      {!imagesLoaded && (
-        <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center z-50">
-          <div className="text-center space-y-8 max-w-md w-full px-8">
-            {/* Logo/Title */}
-            <div className="space-y-2">
-              <h1 className="text-4xl font-bold text-white tracking-wider">
-                Hidden<span className="text-blue-400">Logos</span> 
-                <span className="text-2xl text-gray-400 ml-2">Page 2</span>
-              </h1>
-              <p className="text-gray-300 text-lg">More brand secrets await discovery</p>
-            </div>
-
-            {/* Progress Circle Animation */}
-            <div className="relative w-32 h-32 mx-auto">
-              <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                {/* Background Circle */}
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  stroke="rgba(75, 85, 99, 0.3)"
-                  strokeWidth="8"
-                  fill="none"
-                />
-                {/* Progress Circle */}
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  stroke="url(#progressGradient)"
-                  strokeWidth="8"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 50}`}
-                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - loadingProgress / 100)}`}
-                  className="transition-all duration-300 ease-out"
-                />
-                <defs>
-                  <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3B82F6" />
-                    <stop offset="50%" stopColor="#8B5CF6" />
-                    <stop offset="100%" stopColor="#06B6D4" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              {/* Percentage Text */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-3xl font-bold text-white">{loadingProgress}%</span>
-              </div>
-            </div>
-
-            {/* Enhanced Progress Section */}
-            <div className="space-y-6">
-              {/* Input Range Style Progress */}
-              <div className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={loadingProgress}
-                    disabled
-                    className="w-full h-4 bg-gray-700 rounded-lg appearance-none cursor-not-allowed"
-                    style={{
-                      background: `linear-gradient(to right, #3B82F6 0%, #8B5CF6 ${loadingProgress/2}%, #06B6D4 ${loadingProgress}%, #374151 ${loadingProgress}%, #374151 100%)`,
-                      WebkitAppearance: 'none',
-                      MozAppearance: 'none'
-                    }}
-                  />
-                  <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-lg opacity-20"></div>
-                </div>
-                
-                {/* Progress Text with Animation */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400 font-medium">
-                    Loading Images
-                  </span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg font-bold text-white">
-                      {loadingProgress}%
-                    </span>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Beautiful Progress Bar Alternative */}
-              <div className="space-y-2">
-                <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden border border-gray-600 shadow-inner">
-                  <div 
-                    className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 transition-all duration-500 ease-out rounded-full relative overflow-hidden"
-                    style={{ width: `${loadingProgress}%` }}
-                  >
-                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                    <div className="absolute right-0 top-0 w-8 h-full bg-white/30 blur-sm animate-pulse"></div>
-                  </div>
-                </div>
-                
-                {/* Loading Stage Text with Icon */}
-                <div className="text-center flex items-center justify-center space-x-2">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
-                  <p className="text-gray-300 text-sm font-medium tracking-wide">
-                    {loadingStage}
-                  </p>
-                  <div className="w-3 h-3 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Animated Dots */}
-            <div className="flex justify-center space-x-2">
-              {[0, 1, 2].map((index) => (
-                <div
-                  key={index}
-                  className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
-                  style={{
-                    animationDelay: `${index * 0.2}s`,
-                    animationDuration: '1s'
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Loading Tips */}
-            <div className="text-center">
-              <p className="text-gray-400 text-xs italic">
-                "Page 2 - Even more hidden secrets revealed..."
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
       
       {/* כפתור לתצוגת אזורים לחיצים */}
       <button
@@ -656,9 +350,9 @@ const Logo2 = () => {
       {logoGrid}
 
       {/* Instant Zoomed Image Display */}
-      {hoveredLogo && imagesLoaded && (() => {
+      {hoveredLogo && (() => {
         const cfg = getLogoZoomConfig(hoveredLogo);
-        const zoomImageSrc = imageBlobs[`page2zoomBit2-${hoveredLogo}`] || `/logo/pictures/page2zoomBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
+        const zoomImageSrc = `/logo/pictures/page2zoomBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
         
         return (
           <div
@@ -693,7 +387,7 @@ const Logo2 = () => {
       })()}
 
       {/* Instant Modal Display */}
-      {selectedLogo && imagesLoaded && (
+      {selectedLogo && (
         <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${getLogoModalConfig(selectedLogo).position}`}
           onMouseMove={(e) => {
@@ -723,7 +417,7 @@ const Logo2 = () => {
         >
           <div className={`relative w-full h-auto bg-transparent ${getLogoModalConfig(selectedLogo).maxWidth}`}>
             <img
-              src={imageBlobs[`page2zoomIn-${selectedLogo}`] || `/logo/pictures/page2zoomIn/${selectedLogo.toString().padStart(2, '0')}.png`}
+              src={`/logo/pictures/page2zoomIn/${selectedLogo.toString().padStart(2, '0')}.png`}
               alt={`Logo ${selectedLogo}`}
               className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
               style={{ 
