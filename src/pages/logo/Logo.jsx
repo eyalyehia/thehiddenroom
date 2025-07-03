@@ -134,15 +134,15 @@ const Logo = () => {
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
       1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -89, y: -25 } },
-      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -10, y: -80 } },
+      2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -70, y: -80 } },
       3: { zoomSize: 'w-19', zoomHeight: 'h-19', zoomOffset: { x: -20, y: -35 } },
       4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 5, y: -15 } },
-      5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: 0, y: -55 } },
+      5: { zoomSize: 'w-26', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: -55 } },
       6: { zoomSize: 'w-20', zoomHeight: 'h-13', zoomOffset: { x: -40, y: -30 } },
       7: { zoomSize: 'w-40', zoomHeight: 'h-29', zoomOffset: { x: -80, y: -82 } },
       8: { zoomSize: 'w-16', zoomHeight: 'h-15', zoomOffset: { x: -96, y: -29 } },
       9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: -40, y: -80 } },
-      10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -45, y:15 } },
+      10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -100, y:15 } },
       11: { zoomSize: 'w-15', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: 2 } },
       12: { zoomSize: 'w-20', zoomHeight: 'h-25', zoomOffset: { x: -90, y:-40 } },
       13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -60, y: -73 } },
