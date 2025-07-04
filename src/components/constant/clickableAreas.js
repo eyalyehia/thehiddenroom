@@ -53,25 +53,22 @@ export const LOGO_CLICKABLE_AREAS_PAGE1 = {
 
 export const LOGO_CLICKABLE_AREAS_PAGE2 = {
   1: [
-    { x: 0.1, y: 0.2, width: 0.5, height: 0.6 }
+    { x: 0.1, y: 0.17, width: 0.5, height: 0.6 }
   ],
   2: [
-    { x: 0.1, y: 0.1, width: 0.8, height: 0.4 },
-    { x: 0.3, y: 0.6, width: 0.4, height: 0.3 }
+    { x: 0.70, y: 0.2, width: 0.15, height: 0.80 }
   ],
   3: [
-    { x: 0.05, y: 0.05, width: 0.9, height: 0.9 }
+    { x: -0.10, y: 0.15, width: 1.15, height: 0.5 }
   ],
   4: [
-    { x: 0.25, y: 0.1, width: 0.5, height: 0.4 },
-    { x: 0.25, y: 0.5, width: 0.5, height: 0.4 }
+    { x: 0.60, y: 0.1, width: 0.40, height: 0.80 },
   ],
   5: [
-    { x: 0.2, y: 0.3, width: 0.6, height: 0.4 }
+    { x: 0, y: 0.35, width: 0.35, height: 0.35 }
   ],
   6: [
-    { x: 0.05, y: 0.2, width: 0.4, height: 0.6 },
-    { x: 0.55, y: 0.2, width: 0.4, height: 0.6 }
+    { x: 0.05, y: 0.2, width: 0.4, height: 0.6 }
   ],
   7: [
     { x: 0.1, y: 0.25, width: 0.8, height: 0.5 }

@@ -17,8 +17,7 @@ const Computer = () => {
   };
 
   const handleNextPage = () => {
-    // נוכל להוסיף נווט לעמוד הבא בעתיד
-    console.log('Navigate to next page');
+    navigate('/computer2');
   };
 
   return (
@@ -113,11 +112,48 @@ const Computer = () => {
           )}
         </button>
 
-        {/* תוכן העמוד - כאן נוכל להוסיף תוכן בעתיד */}
-        <div className="flex items-center justify-center h-full">
-          <div className="text-white text-center">
-            <h1 className="text-4xl font-bold mb-4">Computer Page</h1>
-            <p className="text-xl opacity-70">התוכן של עמוד המחשב יתווסף כאן</p>
+        {/* תמונות משחקי וידיאו - רשת 2x2 */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-2 gap-4">
+            {/* תמונה 1 - למעלה משמאל */}
+            <div>
+              <img
+                src="/computer/pictures/page1/main/1.png"
+                alt="Game 1"
+                style={{ width: '806px', height: '453px' }}
+                className="object-cover"
+              />
+            </div>
+            
+            {/* תמונה 2 - למעלה מימין */}
+            <div>
+              <img
+                src="/computer/pictures/page1/main/2.png"
+                alt="Game 2"
+                style={{ width: '806px', height: '453px' }}
+                className="object-cover"
+              />
+            </div>
+            
+            {/* תמונה 3 - למטה משמאל */}
+            <div>
+              <img
+                src="/computer/pictures/page1/main/3.png"
+                alt="Game 3"
+                style={{ width: '806px', height: '453px' }}
+                className="object-cover"
+              />
+            </div>
+            
+            {/* תמונה 4 - למטה מימין */}
+            <div>
+              <img
+                src="/computer/pictures/page1/main/4.png"
+                alt="Game 4"
+                style={{ width: '806px', height: '453px' }}
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
 

@@ -105,7 +105,6 @@ export const getInteractiveObjectInfo = (object) => {
 
   // בדיקה לפי שם האובייקט
   const objectName = object.name.toLowerCase();
-  const parentName = object.parent ? object.parent.name.toLowerCase() : "";
 
   if (object.name === "Poster" || object.name.includes("Poster") || object.name === "Plane012" || object.name === "Plane014") {
     key = "Poster";
@@ -134,7 +133,10 @@ export const getInteractiveObjectInfo = (object) => {
     key = "Book";
     description = "ספר עם משקפיים";
   } else if (objectName.includes("computer") || objectName.includes("monitor") || 
-             objectName.includes("screen")) {
+             objectName.includes("screen") || 
+             (object.name.startsWith("Plane") && !object.name.includes("Plane012") && 
+              !object.name.includes("Plane013") && !object.name.includes("Plane014") && 
+              !object.name.includes("Plane002_1"))) {
     key = "ComputerScreen";
     description = "מסך מחשב";
   } else {

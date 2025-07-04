@@ -105,6 +105,12 @@ export const handleClick = (e) => {
       return;
     }
 
+    if (name === "ComputerScreen" || obj.name.toLowerCase().includes("computer") || 
+        obj.name.toLowerCase().includes("monitor") || obj.name.toLowerCase().includes("screen")) {
+      window.location.href = '/computer';
+      return;
+    }
+
     if (name === "Book" || obj.name === "Book with glasses" || 
         obj.name.includes("book with glasses") || obj.name.includes("book") || 
         obj.name.includes("glasses")) {
