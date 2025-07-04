@@ -5,6 +5,10 @@ const Computer2 = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [isHoveringFirstImage, setIsHoveringFirstImage] = useState(false);
+  const [isHoveringSecondImage, setIsHoveringSecondImage] = useState(false);
+  const [isHoveringThirdImage, setIsHoveringThirdImage] = useState(false);
+  const [isHoveringFourthImage, setIsHoveringFourthImage] = useState(false);
   
   const navigate = useNavigate();
 
@@ -120,8 +124,17 @@ const Computer2 = () => {
               <img
                 src="/computer/pictures/page2/main/1.jpg"
                 alt="Game 1"
-                style={{ width: '765px', height: '318px' }}
+                style={{ 
+                  width: isHoveringFirstImage ? '805px' : '765px',
+                  height: isHoveringFirstImage ? '338px' : '318px',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  transform: isHoveringFirstImage ? 'scale(1.05)' : 'scale(1)',
+                  zIndex: isHoveringFirstImage ? '10' : '1'
+                }}
                 className="object-cover"
+                onMouseEnter={() => setIsHoveringFirstImage(true)}
+                onMouseLeave={() => setIsHoveringFirstImage(false)}
               />
             </div>
             
@@ -130,8 +143,17 @@ const Computer2 = () => {
               <img
                 src="/computer/pictures/page2/main/2.jpg"
                 alt="Game 2"
-                style={{ width: '765px', height: '318px' }}
+                style={{ 
+                  width: isHoveringSecondImage ? '805px' : '765px',
+                  height: isHoveringSecondImage ? '338px' : '318px',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  transform: isHoveringSecondImage ? 'scale(1.05)' : 'scale(1)',
+                  zIndex: isHoveringSecondImage ? '10' : '1'
+                }}
                 className="object-cover"
+                onMouseEnter={() => setIsHoveringSecondImage(true)}
+                onMouseLeave={() => setIsHoveringSecondImage(false)}
               />
             </div>
             
@@ -140,8 +162,17 @@ const Computer2 = () => {
               <img
                 src="/computer/pictures/page2/main/3.jpg"
                 alt="Game 3"
-                style={{ width: '765px', height: '318px' }}
+                style={{ 
+                  width: isHoveringThirdImage ? '805px' : '765px',
+                  height: isHoveringThirdImage ? '338px' : '318px',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  transform: isHoveringThirdImage ? 'scale(1.05)' : 'scale(1)',
+                  zIndex: isHoveringThirdImage ? '10' : '1'
+                }}
                 className="object-cover"
+                onMouseEnter={() => setIsHoveringThirdImage(true)}
+                onMouseLeave={() => setIsHoveringThirdImage(false)}
               />
             </div>
             
@@ -150,8 +181,17 @@ const Computer2 = () => {
               <img
                 src="/computer/pictures/page2/main/4.jpg"
                 alt="Game 4"
-                style={{ width: '765px', height: '318px' }}
+                style={{ 
+                  width: isHoveringFourthImage ? '805px' : '765px',
+                  height: isHoveringFourthImage ? '338px' : '318px',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  transform: isHoveringFourthImage ? 'scale(1.05)' : 'scale(1)',
+                  zIndex: isHoveringFourthImage ? '10' : '1'
+                }}
                 className="object-cover"
+                onMouseEnter={() => setIsHoveringFourthImage(true)}
+                onMouseLeave={() => setIsHoveringFourthImage(false)}
               />
             </div>
           </div>
