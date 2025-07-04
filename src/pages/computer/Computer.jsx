@@ -24,6 +24,10 @@ const Computer = () => {
     navigate('/computer2');
   };
 
+  const handleGame1Click = () => {
+    navigate('/game1');
+  };
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
       <div 
@@ -135,6 +139,7 @@ const Computer = () => {
                 className="object-cover"
                 onMouseEnter={() => setIsHoveringFirstImage(true)}
                 onMouseLeave={() => setIsHoveringFirstImage(false)}
+                onClick={handleGame1Click}
               />
             </div>
             
