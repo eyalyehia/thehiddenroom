@@ -1,20 +1,54 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'; // Removed unused useCallback
 import { useNavigate } from 'react-router-dom';
 import { isPointInClickableArea, getClickableAreas } from '../../components/constant/clickableAreas';
+import getBase64 from '../../components/common/getBase64';
 
-// Memoized image component to prevent unnecessary re-renders
-const MemoizedImage = React.memo(({ src, alt, className, onClick }) => (
-  <img 
-    src={src} 
-    alt={alt || 'Logo'} 
-    className={className} 
-    onClick={onClick}
-    loading="lazy"
-    decoding="async"
-    width="100%"
-    height="auto"
-  />
-));
+// Memoized image component with loading state
+const MemoizedImage = React.memo(({ src, alt, className, onClick, style, ...props }) => {
+  const [loading, setLoading] = useState(true);
+  const [base64, setBase64] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadImage = async () => {
+      try {
+        const base64Data = await getBase64(src);
+        if (isMounted) {
+          setBase64(base64Data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error loading image:', error);
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadImage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [src]);
+
+  return (
+    <img 
+      src={loading ? base64 : src}
+      alt={alt || 'Logo'} 
+      className={`${className} ${loading ? 'blur-sm' : ''}`}
+      onClick={onClick}
+      loading="lazy"
+      decoding="async"
+      style={{
+        ...style,
+        transition: 'filter 0.3s ease-in-out',
+      }}
+      {...props}
+    />
+  );
+});
 
 const Logo = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
@@ -24,9 +58,41 @@ const Logo = () => {
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [clickedLogos, setClickedLogos] = useState(new Set());
 
-
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
+
+  // Load placeholders for all images
+  useEffect(() => {
+    const loadPlaceholders = async () => {
+      const newPlaceholders = {};
+      
+      // Load placeholders for regular logos
+      for (let i = 1; i <= 15; i++) {
+        const num = i.toString().padStart(2, '0');
+        const regularPath = `/logo/pictures/regular2/${num}.png`;
+        const zoomInPath = `/logo/pictures/zoomIn2/${num}.png`;
+        const zoomBitPath = `/logo/pictures/zoomInBit2/${num}.png`;
+        
+        try {
+          const [regularBase64, zoomInBase64, zoomBitBase64] = await Promise.all([
+            getBase64(regularPath),
+            getBase64(zoomInPath),
+            getBase64(zoomBitPath)
+          ]);
+          
+          newPlaceholders[regularPath] = regularBase64;
+          newPlaceholders[zoomInPath] = zoomInBase64;
+          newPlaceholders[zoomBitPath] = zoomBitBase64;
+        } catch (error) {
+          console.error(`Error loading placeholders for logo ${i}:`, error);
+        }
+      }
+      
+      setPlaceholders(newPlaceholders);
+    };
+
+    loadPlaceholders();
+  }, []);
 
   // Clean up hover timeout on unmount
   useEffect(() => {
@@ -72,8 +138,6 @@ const Logo = () => {
       setHoveredLogo(null);
     }, 50); // 50ms delay to maintain hover during quick mouse movements
   }, []);
-
-
 
   // Handle mouse movement on logo to check clickable areas continuously
   const handleLogoMouseMove = useMemo(() => (logoId, event) => {
@@ -221,7 +285,7 @@ const Logo = () => {
         {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
       </button>
 
-      {/* תמונות הלוגואים - Optimized grid */}
+      {/* תמונות הלוגואים - Optimized grid with loading states */}
       <div className="absolute inset-0">
         {Array.from({ length: 15 }, (_, index) => {
           const logoNum = index + 1;
@@ -238,7 +302,7 @@ const Logo = () => {
           
           return (
             <React.Fragment key={logoNum}>
-              <img
+              <MemoizedImage
                 src={imageSrc}
                 alt={`Logo ${logoNum}`}
                 className="absolute logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
@@ -250,16 +314,13 @@ const Logo = () => {
                   left: `${left}px`,
                   objectFit: 'contain',
                   imageRendering: 'crisp-edges',
-                  cursor: 'default', // Default cursor, will change based on clickable areas
+                  cursor: 'default',
                 }}
                 onMouseEnter={() => handleLogoEnter(logoNum)}
                 onMouseLeave={handleLogoLeave}
                 onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
                 onClick={(e) => handleLogoClick(logoNum, e)}
-                loading="eager"
-                decoding="sync"
               />
-              {/* Render clickable areas debug overlay */}
               {renderClickableAreasDebug(logoNum, top, left)}
             </React.Fragment>
           );
@@ -271,7 +332,6 @@ const Logo = () => {
           const cfg = getLogoZoomConfig(hoveredLogo);
           const zoomImageSrc = `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
           
-          // Calculate fixed position based on logo grid position
           const logoIndex = hoveredLogo - 1;
           const row = Math.floor(logoIndex / 5);
           const col = logoIndex % 5;
@@ -280,9 +340,8 @@ const Logo = () => {
           const logoTop = 139 + (row * 250);
           const logoLeft = leftMargin + (col * (168 + horizontalSpacing));
           
-          // Fixed position relative to the logo itself
-          const fixedLeft = logoLeft + 84; // Center of logo (168/2)
-          const fixedTop = logoTop + 73;   // Center of logo (146/2)
+          const fixedLeft = logoLeft + 84;
+          const fixedTop = logoTop + 73;
           
           return (
             <div
@@ -294,7 +353,7 @@ const Logo = () => {
                 willChange: 'transform',
               }}
             >
-              <img
+              <MemoizedImage
                 src={zoomImageSrc}
                 alt={`Zoomed Logo ${hoveredLogo}`}
                 className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border border-white shadow-2xl bg-black/90 pointer-events-none`}
@@ -306,8 +365,6 @@ const Logo = () => {
                   opacity: 1,
                   transition: 'none'
                 }}
-                loading="eager"
-                decoding="sync"
               />
             </div>
           );
@@ -374,7 +431,7 @@ const Logo = () => {
         )}
       </button>
 
-      {/* Instant Modal Display */}
+      {/* Instant Modal Display with placeholder */}
       {selectedLogo && (
         <div 
           className={`fixed inset-0 bg-black/80 z-50 p-8 ${getLogoModalConfig(selectedLogo).position}`}
@@ -404,7 +461,7 @@ const Logo = () => {
           }}
         >
           <div className={`relative w-full h-auto bg-transparent ${getLogoModalConfig(selectedLogo).maxWidth}`}>
-            <img
+            <MemoizedImage
               src={`/logo/pictures/zoomIn2/${selectedLogo.toString().padStart(2, '0')}.png`}
               alt={`Logo ${selectedLogo}`}
               className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
@@ -413,8 +470,6 @@ const Logo = () => {
                 marginLeft: getLogoModalConfig(selectedLogo).marginLeft,
                 imageRendering: 'crisp-edges'
               }}
-              loading="eager"
-              decoding="sync"
             />
             
             {/* Logo descriptions */}
