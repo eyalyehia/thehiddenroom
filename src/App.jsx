@@ -12,6 +12,10 @@ import Game1 from './pages/game_page1/Game1'
 import Game2 from './pages/game_page1/Game2'
 import Game3 from './pages/game_page1/Game3'
 import Game4 from './pages/game_page1/Game4'
+import Game5 from './pages/computer/game_page2/Game5'
+import Game6 from './pages/computer/game_page2/Game6'
+import Game7 from './pages/computer/game_page2/Game7'
+import Game8 from './pages/computer/game_page2/Game8'
 
 const App = () => {
   return (
@@ -28,6 +32,10 @@ const App = () => {
         <Route path="/game2" element={<Game2 />} />
         <Route path="/game3" element={<Game3 />} />
         <Route path="/game4" element={<Game4 />} />
+        <Route path="/game5" element={<Game5 />} />
+        <Route path="/game6" element={<Game6 />} />
+        <Route path="/game7" element={<Game7 />} />
+        <Route path="/game8" element={<Game8 />} />
         <Route path="/" element={<HomePage3d />} />
       </Routes>
     </Router>
