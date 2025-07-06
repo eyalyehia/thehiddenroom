@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getBase64 from '../../components/common/getBase64';
 
 const Poster = () => {
   const [hoveredPoster, setHoveredPoster] = useState(null);
@@ -11,6 +12,8 @@ const Poster = () => {
   const hoverTimeoutRef = useRef(null);
   const currentHotspotRef = useRef(null);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
+  const [imagePreviews, setImagePreviews] = useState({});
+  const [posterImagesLoaded, setPosterImagesLoaded] = useState({});
   const navigate = useNavigate();
 
   const posters = Array.from({ length: 8 }, (_, index) => ({
@@ -19,6 +22,32 @@ const Poster = () => {
     alt: `Poster ${index + 1}`,
     hotspots: getHotspotsForPoster(index + 1)
   }));
+
+  // Generate base64 previews for all poster images
+  useEffect(() => {
+    const loadImagePreviews = async () => {
+      const previews = {};
+      const loaded = {};
+      
+      for (const poster of posters) {
+        const preview = await getBase64(poster.src);
+        if (preview) {
+          previews[poster.id] = preview;
+          
+          // Preload the actual image
+          const img = new Image();
+          img.src = poster.src;
+          img.onload = () => {
+            loaded[poster.id] = true;
+            setPosterImagesLoaded(prev => ({...prev, ...loaded}));
+          };
+        }
+      }
+      setImagePreviews(previews);
+    };
+
+    loadImagePreviews();
+  }, []);
 
   function getPosterZoomConfig(posterId) {
     const configs = {
@@ -197,10 +226,13 @@ const Poster = () => {
             >
               <div className="relative w-full h-full">
                 <img
-                  src={poster.src}
+                  src={imagePreviews[poster.id] || poster.src}
                   alt={poster.alt}
-                  className="h-full w-full object-cover transition-transform duration-300"
-                  style={{ maxHeight: '100%', maxWidth: '100%' }}
+                  className="w-full h-full object-cover transition-all duration-300"
+                  style={{
+                    filter: posterImagesLoaded[poster.id] ? 'none' : 'blur(20px)',
+                    transform: posterImagesLoaded[poster.id] ? 'scale(1)' : 'scale(1.05)'
+                  }}
                 />
 
                 {poster.hotspots.map((hotspot, hotspotIndex) => (

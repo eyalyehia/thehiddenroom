@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getBase64 from '../../components/common/getBase64';
 
 const Poster2 = () => {
   const [hoveredPoster, setHoveredPoster] = useState(null);
@@ -14,6 +15,8 @@ const Poster2 = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImages, setLoadedImages] = useState(new Set());
   const [imageElements, setImageElements] = useState({});
+  const [imagePreviews, setImagePreviews] = useState({});
+  const [posterImagesLoaded, setPosterImagesLoaded] = useState({});
   const navigate = useNavigate();
 
   // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר עם cache
@@ -49,12 +52,37 @@ const Poster2 = () => {
     preloadImages();
   }, []);
 
+  // Generate base64 previews for all poster images
+  useEffect(() => {
+    const loadImagePreviews = async () => {
+      const previews = {};
+      const loaded = {};
+      
+      for (const poster of posters) {
+        const preview = await getBase64(poster.src);
+        if (preview) {
+          previews[poster.id] = preview;
+          
+          // Preload the actual image
+          const img = new Image();
+          img.src = poster.src;
+          img.onload = () => {
+            loaded[poster.id] = true;
+            setPosterImagesLoaded({...loaded});
+          };
+        }
+      }
+      setImagePreviews(previews);
+    };
+
+    loadImagePreviews();
+  }, []);
+
   // רשימת הפוסטרים 9-16
   const posters = Array.from({ length: 8 }, (_, index) => ({
-    id: index + 9, // מתחיל מ-9
+    id: index + 9,
     src: `/poster/pictures/regular/${(index + 9).toString().padStart(2, '0')}.jpg`,
     alt: `Poster ${index + 9}`,
-    // הגדרת אזורי הגדלה לכל פוסטר (באחוזים מהתמונה)
     hotspots: getHotspotsForPoster(index + 9)
   }));
 
@@ -232,10 +260,13 @@ const Poster2 = () => {
             >
               <div className="relative w-full h-full">
                 <img
-                  src={poster.src}
+                  src={imagePreviews[poster.id] || poster.src}
                   alt={poster.alt}
-                  className="h-full w-full object-cover transition-transform duration-300"
-                  style={{ maxHeight: '100%', maxWidth: '100%' }}
+                  className="w-full h-full object-cover transition-all duration-300"
+                  style={{
+                    filter: posterImagesLoaded[poster.id] ? 'none' : 'blur(20px)',
+                    transform: posterImagesLoaded[poster.id] ? 'scale(1)' : 'scale(1.05)'
+                  }}
                 />
 {/* 🎯 מדד חזותי - מסגרת המראה את האזור האקטיבי */}
                 {/* {poster.hotspots.map((hotspot, hotspotIndex) => (
