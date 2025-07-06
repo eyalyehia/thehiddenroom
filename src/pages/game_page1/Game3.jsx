@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Game3 = () => {
   const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
   const handleNextClick = () => {
@@ -14,16 +15,205 @@ const Game3 = () => {
     navigate('/game2');
   };
 
+  const handleImageClick = (index) => {
+    setSelectedImage(selectedImage === index ? null : index);
+  };
+
+  // Image paths
+  const imagePaths = [
+    '/computer/pictures/page1/game3/regular/01.png',
+    '/computer/pictures/page1/game3/regular/02.png',
+    '/computer/pictures/page1/game3/regular/03.png',
+    '/computer/pictures/page1/game3/regular/04.png'
+  ];
+
   return (
     <div 
       style={{ 
         position: 'relative',
         width: '1920px',
         height: '1080px',
-        background: '#1D1C1A'
+        background: '#1D1C1A',
+        padding: '154px 186px',
+        boxSizing: 'border-box',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '66px',
+        alignItems: 'start'
       }}
     >
-      {/* חץ ימינה למעלה */}
+      {/* Images Grid with Captions */}
+      <div style={{ position: 'relative', gridColumn: '1 / 3', display: 'contents' }}>
+        {/* Top Left Image */}
+        <div style={{ position: 'relative', marginBottom: '20px' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 0 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(0)}
+          >
+            <img 
+              src={imagePaths[0]}
+              alt="Game 3 screenshot 1"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '600px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            APPROXIMATELY 5–6 HOURS INTO THE GAME
+          </div>
+        </div>
+
+        {/* Top Right Image */}
+        <div style={{ position: 'relative', marginBottom: '20px', marginLeft: '23px' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 1 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(1)}
+          >
+            <img 
+              src={imagePaths[1]}
+              alt="Game 3 screenshot 2"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '700px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            AVAILABLE A FEW HOURS INTO THE GAME DURING FREE EXPLORATION
+          </div>
+        </div>
+
+        {/* Bottom Left Image */}
+        <div style={{ position: 'relative' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 2 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(2)}
+          >
+            <img 
+              src={imagePaths[2]}
+              alt="Game 3 screenshot 3"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '700px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            CAN BE FOUND EARLY IN THE GAME DURING FREE RIDE NEAR THE BRIDGE
+          </div>
+        </div>
+
+        {/* Bottom Right Image */}
+        <div style={{ position: 'relative', marginLeft: '23px' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 3 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(3)}
+          >
+            <img 
+              src={imagePaths[3]}
+              alt="Game 3 screenshot 4"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '600px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            APPROXIMATELY 15–20 MINUTES INTO THE GAME
+          </div>
+        </div>
+      </div>
+
+      {/* Next Arrow */}
       <button
         style={{
           position: 'absolute',
@@ -34,7 +224,8 @@ const Game3 = () => {
           background: 'none',
           border: 'none',
           cursor: 'pointer',
-          padding: 0
+          padding: 0,
+          zIndex: 10
         }}
         onClick={handleNextClick}
         onMouseEnter={() => setIsHoveringNextButton(true)}
@@ -51,7 +242,7 @@ const Game3 = () => {
         )}
       </button>
 
-      {/* חץ שמאלה למעלה */}
+      {/* Back Arrow */}
       <button
         style={{
           position: 'absolute',
@@ -63,7 +254,8 @@ const Game3 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          transform: 'scaleX(-1)' // הופך את החץ לכיוון שמאל
+          transform: 'scaleX(-1)',
+          zIndex: 10
         }}
         onClick={handleBackClick}
         onMouseEnter={() => setIsHoveringBackButton(true)}
@@ -83,4 +275,4 @@ const Game3 = () => {
   );
 };
 
-export default Game3; 
+export default Game3;

@@ -28,6 +28,18 @@ const Computer = () => {
     navigate('/game1');
   };
 
+  const handleGame2Click = () => {
+    navigate('/game2');
+  };
+
+  const handleGame3Click = () => {
+    navigate('/game3');
+  };
+
+  const handleGame4Click = () => {
+    navigate('/game4');
+  };
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
       <div 
@@ -159,6 +171,7 @@ const Computer = () => {
                 className="object-cover"
                 onMouseEnter={() => setIsHoveringSecondImage(true)}
                 onMouseLeave={() => setIsHoveringSecondImage(false)}
+                onClick={handleGame2Click}
               />
             </div>
             
@@ -178,6 +191,7 @@ const Computer = () => {
                 className="object-cover"
                 onMouseEnter={() => setIsHoveringThirdImage(true)}
                 onMouseLeave={() => setIsHoveringThirdImage(false)}
+                onClick={handleGame3Click}
               />
             </div>
             
@@ -197,6 +211,7 @@ const Computer = () => {
                 className="object-cover"
                 onMouseEnter={() => setIsHoveringFourthImage(true)}
                 onMouseLeave={() => setIsHoveringFourthImage(false)}
+                onClick={handleGame4Click}
               />
             </div>
           </div>

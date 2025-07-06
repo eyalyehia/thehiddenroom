@@ -88,6 +88,7 @@ const Logo = () => {
         }
       }
       
+      // eslint-disable-next-line no-undef
       setPlaceholders(newPlaceholders);
     };
 

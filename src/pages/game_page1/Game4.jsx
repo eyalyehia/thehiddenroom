@@ -3,11 +3,24 @@ import { useNavigate } from 'react-router-dom';
 
 const Game4 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
   const handleBackClick = () => {
     navigate('/game3');
   };
+
+  const handleImageClick = (index) => {
+    setSelectedImage(selectedImage === index ? null : index);
+  };
+
+  // Image paths
+  const imagePaths = [
+    '/computer/pictures/page1/game4/regular/01.png',
+    '/computer/pictures/page1/game4/regular/02.png',
+    '/computer/pictures/page1/game4/regular/03.png',
+    '/computer/pictures/page1/game4/regular/04.png'
+  ];
 
   return (
     <div 
@@ -15,10 +28,187 @@ const Game4 = () => {
         position: 'relative',
         width: '1920px',
         height: '1080px',
-        background: '#1D1C1A'
+        background: '#1D1C1A',
+        padding: '154px 186px',
+        boxSizing: 'border-box',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '66px',
+        alignItems: 'start'
       }}
     >
-      {/* חץ שמאלה למעלה */}
+      {/* Images Grid with Captions */}
+      <div style={{ position: 'relative', gridColumn: '1 / 3', display: 'contents' }}>
+        {/* Top Left Image */}
+        <div style={{ position: 'relative', marginBottom: '20px' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 0 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(0)}
+          >
+            <img 
+              src={imagePaths[0]}
+              alt="Game 4 screenshot 1"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '600px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            APPROXIMATELY 20–30 MINUTES INTO THE GAME
+          </div>
+        </div>
+
+        {/* Top Right Image */}
+        <div style={{ position: 'relative', marginBottom: '20px', marginLeft: '23px' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 1 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(1)}
+          >
+            <img 
+              src={imagePaths[1]}
+              alt="Game 4 screenshot 2"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '600px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            APPROXIMATELY 3–5 HOURS INTO THE GAME
+          </div>
+        </div>
+
+        {/* Bottom Left Image */}
+        <div style={{ position: 'relative' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 2 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(2)}
+          >
+            <img 
+              src={imagePaths[2]}
+              alt="Game 4 screenshot 3"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '600px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            UNLOCKED AROUND 6–7 HOURS INTO THE GAME
+          </div>
+        </div>
+
+        {/* Bottom Right Image */}
+        <div style={{ position: 'relative', marginLeft: '23px' }}>
+          <div 
+            style={{
+              width: '765px',
+              height: '318px',
+              overflow: 'hidden',
+              position: 'relative',
+              border: selectedImage === 3 ? '2px solid #3498db' : 'none',
+              boxSizing: 'border-box',
+              marginBottom: '10px'
+            }}
+            onClick={() => handleImageClick(3)}
+          >
+            <img 
+              src={imagePaths[3]}
+              alt="Game 4 screenshot 4"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            fontFamily: 'Work Sans',
+            fontStyle: 'normal',
+            fontWeight: 900,
+            fontSize: '20px',
+            lineHeight: '128.04%',
+            color: '#FFFFFF',
+            width: '600px',
+            height: '26px',
+            left: '0',
+            top: '333px' // 318px (image height) + 15px gap
+          }}>
+            APPROXIMATELY 6–8 HOURS INTO THE GAME
+          </div>
+        </div>
+      </div>
+
+      {/* Back Arrow */}
       <button
         style={{
           position: 'absolute',
@@ -30,7 +220,8 @@ const Game4 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          transform: 'scaleX(-1)' // הופך את החץ לכיוון שמאל
+          transform: 'scaleX(-1)',
+          zIndex: 10
         }}
         onClick={handleBackClick}
         onMouseEnter={() => setIsHoveringBackButton(true)}
@@ -50,4 +241,4 @@ const Game4 = () => {
   );
 };
 
-export default Game4; 
+export default Game4;
