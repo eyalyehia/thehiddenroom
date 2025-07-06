@@ -36,8 +36,8 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
       try {
         const url = await getModelUrl();
         setModelUrl(url);
-      } catch (error) {
-        // console.error("שגיאה בטעינת URL המודל:", error);
+      } catch (_err) {
+        // console.error("שגיאה בטעינת URL המודל:", _err);
         if (setModelLoaded) setModelLoaded(false);
       }
     };
@@ -58,8 +58,8 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
       if (setLoadingProgress) setLoadingProgress(percent);
     };
 
-    const handleError = (error) => {
-      // console.error("שגיאה בטעינת המודל:", error);
+    const handleError = (_err) => {
+      // console.error("שגיאה בטעינת המודל:", _err);
       if (setModelLoaded) setModelLoaded(false);
     };
 
@@ -92,7 +92,12 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
 
     gltfScene.traverse((object) => {
       if (object.isMesh) {
-        // console.log(`מצאתי mesh: "${object.name}"`);
+        // לוג זמני לזיהוי הטובלרון
+        if (object.name && (object.name.toLowerCase().includes("toblerone") || 
+                           object.name.toLowerCase().includes("cube") ||
+                           object.name.toLowerCase().includes("טובלרון"))) {
+          console.log(`מצאתי אובייקט שעשוי להיות טובלרון: "${object.name}"`);
+        }
         
         // אופטימיזציות ביצועים
         object.castShadow = false;
@@ -105,7 +110,15 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
         // שיפור מראה החומרים
         improveMaterialAppearance(object);
 
-        const isInteractive = INTERACTIVE_OBJECTS.some(name => 
+        // בדיקה מיוחדת לטובלרון
+        const isToblerone = object.name === "Cube" && 
+                           !object.name.toLowerCase().includes("wall") && 
+                           !object.name.toLowerCase().includes("window") && 
+                           !object.name.toLowerCase().includes("frame") &&
+                           object.position && 
+                           object.position.y > -2 && object.position.y < 2; // בדיקת גובה סביר לטובלרון על השולחן
+        
+        const isInteractive = isToblerone || INTERACTIVE_OBJECTS.some(name => 
           object.name === name || 
           object.name.includes(name) ||
           (object.parent && object.parent.name.includes(name))
@@ -117,7 +130,18 @@ const Model = ({ setHovered, setModelLoaded, setLoadingProgress }) => {
         }
 
         if (isInteractive) {
-          const { key, description } = getInteractiveObjectInfo(object);
+          let key, description;
+          
+          // אם זה הטובלרון, הגדר אותו ישירות
+          if (isToblerone) {
+            key = "Toblerone";
+            description = "טובלרון";
+          } else {
+            const result = getInteractiveObjectInfo(object);
+            key = result.key;
+            description = result.description;
+          }
+          
           // console.log(`אובייקט אינטראקטיבי נמצא: "${object.name}" -> ${key} (${description})`);
 
           object.userData.name = key;

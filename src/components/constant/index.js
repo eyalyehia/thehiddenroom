@@ -5,7 +5,8 @@ export const INTERACTIVE_OBJECTS = [
   "Plane002_1", // הטלוויזיה השנייה
   "Plane012", // הפוסטר השמאלי
   "Plane014", // הפוסטר הימני
-  "Cube008", // החטיף
+  "Toblerone", // הטובלרון (שם חלופי)
+  "toblerone", // הטובלרון (אותיות קטנות)
   "base", // הג'ויסטיק
   "Plane013", // יומן
   "Cube300_1", // יומן על השולחן
@@ -44,7 +45,7 @@ export const ELEMENTS_MAP = {
   "DeskLamp": "מנורת שולחן",
   "Gamepad": "שלט / ג'ויסטיק על השולחן",
   "Keyboard": "מקלדת",
-  "TostitosBag": "שקית חטיף טוסטיטוס",
+  "Toblerone": "טובלרון",
   "Desk": "שולחן",
   "Chair": "כיסא",
   "Poster_OnceUponATime": "פוסטר שמאלי - סרט הוליוודי",

@@ -98,9 +98,10 @@ export const handleClick = (e) => {
       return;
     }
 
-    if (name === "TostitosBag" || obj.name === "Cube008" || 
-        obj.name.includes("cube008") || obj.name.includes("snack") || 
-        obj.name.includes("bag") || obj.name.includes("tostitos")) {
+    if (name === "Toblerone" || 
+        (obj.name === "Cube" && !obj.name.toLowerCase().includes("wall") && 
+         !obj.name.toLowerCase().includes("window") && !obj.name.toLowerCase().includes("frame")) || 
+        obj.name.includes("toblerone") || obj.name.includes("טובלרון")) {
       window.location.href = '/logo';
       return;
     }

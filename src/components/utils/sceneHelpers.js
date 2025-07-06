@@ -113,11 +113,10 @@ export const getInteractiveObjectInfo = (object) => {
              object.name.includes("TV") || object.name === "Plane002_1") {
     key = "TV";
     description = "טלויזיה";
-  } else if (object.name === "Cube008" || objectName.includes("cube008") || 
-             objectName.includes("snack") || objectName.includes("bag") ||
-             objectName.includes("tostitos")) {
-    key = "TostitosBag";
-    description = "שקית חטיף";
+  } else if ((object.name === "Cube" && !objectName.includes("wall") && !objectName.includes("window") && !objectName.includes("frame")) || 
+             objectName.includes("toblerone") || objectName.includes("טובלרון")) {
+    key = "Toblerone";
+    description = "טובלרון";
   } else if (object.name === "base" || objectName.includes("base") || 
              objectName.includes("gamepad") || objectName.includes("controller")) {
     key = "Gamepad";
