@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getBase64 from '../../components/common/getBase64';
+import { POSTER_CLICKABLE_AREAS_PAGE1 } from '../../components/constant/clickableAreas';
 
 const Poster = () => {
   const [hoveredPoster, setHoveredPoster] = useState(null);
@@ -9,6 +10,7 @@ const Poster = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
+  const [showDebugAreas, setShowDebugAreas] = useState(false);
   const hoverTimeoutRef = useRef(null);
   const currentHotspotRef = useRef(null);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
@@ -173,8 +175,80 @@ const Poster = () => {
     setHoveredPoster(null);
   };
 
+  // Add new function to render debug areas
+  const renderClickableAreasDebug = (posterId) => {
+    if (!showDebugAreas) return null;
+    
+    const areas = POSTER_CLICKABLE_AREAS_PAGE1[posterId] || [];
+    
+    return areas.map((area, index) => (
+      <div
+        key={`debug-${index}`}
+        className="absolute pointer-events-none"
+        style={{
+          left: `${area.x * 100}%`,
+          top: `${area.y * 100}%`,
+          width: `${area.width * 100}%`,
+          height: `${area.height * 100}%`,
+          border: '2px solid rgba(255, 0, 0, 0.5)',
+          background: 'rgba(255, 0, 0, 0.15)',
+          boxShadow: 'inset 0 0 20px rgba(255, 0, 0, 0.3)',
+          backdropFilter: 'blur(2px)',
+          zIndex: 10
+        }}
+      >
+        <div 
+          className="absolute -top-6 left-0 px-2 py-1 text-xs font-bold"
+          style={{
+            background: 'rgba(255, 0, 0, 0.8)',
+            color: 'white',
+            borderRadius: '4px',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          אזור #{posterId}
+        </div>
+      </div>
+    ));
+  };
+
+  // Add keyboard listener for debug mode
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'd' || e.key === 'ד') {
+        setShowDebugAreas(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   return (
     <div className="min-h-screen w-full relative overflow-hidden" style={{ backgroundColor: '#1D1C1A' }}>
+      {/* Debug Button - Update style to match logo pages */}
+      <button
+        className="fixed top-20 right-6 text-white px-4 py-2 rounded-md z-50 transition-all duration-200 flex items-center gap-2"
+        onClick={() => setShowDebugAreas(prev => !prev)}
+        style={{ 
+          direction: 'rtl',
+          background: showDebugAreas ? 'rgba(255, 0, 0, 0.8)' : 'rgba(255, 0, 0, 0.5)',
+          boxShadow: showDebugAreas ? '0 0 10px rgba(255, 0, 0, 0.5)' : 'none'
+        }}
+      >
+        <span>{showDebugAreas ? 'הסתר' : 'הצג'} אזורי לחיצה</span>
+        {showDebugAreas ? (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+          </svg>
+        )}
+      </button>
+
       {/* תמונות נסתרות לטעינה מיידית */}
       <div className="hidden">
         {Array.from({ length: 8 }, (_, i) => (
@@ -234,6 +308,9 @@ const Poster = () => {
                     transform: posterImagesLoaded[poster.id] ? 'scale(1)' : 'scale(1.05)'
                   }}
                 />
+
+                {/* Add debug areas */}
+                {renderClickableAreasDebug(poster.id)}
 
                 {poster.hotspots.map((hotspot, hotspotIndex) => (
                   <div
@@ -474,7 +551,7 @@ const Poster = () => {
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">US, 2019</div>
                   <div className="font-normal text-base opacity-70 text-gray-300">The scissor handles form two figures facing opposite</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">directions, a nod to the film’s theme of dual identity.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">directions, a nod to the film's theme of dual identity.</div>
                 </div>
               </div>
             )}

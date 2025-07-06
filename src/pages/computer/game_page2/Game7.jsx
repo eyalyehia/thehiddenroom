@@ -193,6 +193,7 @@ const Game7 = () => {
               transition: 'filter 0.5s ease-out',
             }}
           />
+          
         </div>
         <div style={{
           fontFamily: 'Work Sans',

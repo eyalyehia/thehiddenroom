@@ -101,6 +101,60 @@ export const LOGO_CLICKABLE_AREAS_PAGE2 = {
   ]
 };
 
+export const POSTER_CLICKABLE_AREAS_PAGE1 = {
+  1: [
+    { x: 0.33, y: 0.4, width: 0.35, height: 0.22 }
+  ],
+  2: [
+    { x: 0.50, y: 0.30, width: 0.20, height: 0.15 }
+  ],
+  3: [
+    { x: 0.35, y: 0.20, width: 0.30, height: 0.15 }
+  ],
+  4: [
+    { x: 0.40, y: 0.05, width: 0.10, height: 0.20 }
+  ],
+  5: [
+    { x: 0.05, y: 0.70, width: 0.20, height: 0.10 }
+  ],
+  6: [
+    { x: 0.40, y: 0.85, width: 0.20, height: 0.15 }
+  ],
+  7: [
+    { x: 0.02, y: 0.70, width: 0.20, height: 0.15 }
+  ],
+  8: [
+    { x: 0.40, y: 0.48, width: 0.15, height: 0.15 }
+  ]
+};
+
+export const POSTER_CLICKABLE_AREAS_PAGE2 = {
+  9: [
+    { x: 0.57, y: 0.01, width: 0.40, height: 0.10 }
+  ],
+  10: [
+    { x: 0.20, y: 0.20, width: 0.20, height: 0.20 }
+  ],
+  11: [
+    { x: 0.70, y: 0.20, width: 0.20, height: 0.10 }
+  ],
+  12: [
+    { x: 0.02, y: 0.80, width: 0.20, height: 0.10 }
+  ],
+  13: [
+    { x: 0.70, y: 0.30, width: 0.20, height: 0.10 }
+  ],
+  14: [
+    { x: 0.40, y: 0.60, width: 0.15, height: 0.15 }
+  ],
+  15: [
+    { x: 0.40, y: 0.50, width: 0.20, height: 0.15 }
+  ],
+  16: [
+    { x: 0.15, y: 0.35, width: 0.35, height: 0.20 }
+  ]
+};
+
 export const LOGO_CLICKABLE_AREAS = LOGO_CLICKABLE_AREAS_PAGE1;
 
 export const isPointInClickableArea = (logoId, x, y, imageWidth, imageHeight, page = 1) => {
