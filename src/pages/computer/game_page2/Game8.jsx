@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getBase64 from '../../../components/common/getBase64';
 
 const Game8 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreviews, setImagePreviews] = useState({});
+  const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
+
+  const imagePaths = [
+    "/computer/pictures/page2/game4/regular/01.png",
+    "/computer/pictures/page2/game4/regular/02.png",
+    "/computer/pictures/page2/game4/regular/03.png",
+    "/computer/pictures/page2/game4/regular/04.png",
+  ];
 
   useEffect(() => {
     // Set document background color when component mounts
@@ -25,7 +36,36 @@ const Game8 = () => {
     navigate('/game7');
   };
 
+  const handleImageClick = (index) => {
+    setSelectedImage(selectedImage === index ? null : index);
+  };
 
+  // Generate base64 previews for all images
+  useEffect(() => {
+    const loadImagePreviews = async () => {
+      const previews = {};
+      const loaded = {};
+      
+      for (let i = 0; i < imagePaths.length; i++) {
+        const path = imagePaths[i];
+        const preview = await getBase64(path);
+        if (preview) {
+          previews[path] = preview;
+          setImagePreviews({...previews});
+          
+          // Preload the actual image
+          const img = new Image();
+          img.src = path;
+          img.onload = () => {
+            loaded[path] = true;
+            setImagesLoaded({...loaded});
+          };
+        }
+      }
+    };
+
+    loadImagePreviews();
+  }, []);
 
   return (
     <div style={{
@@ -56,12 +96,14 @@ const Game8 = () => {
           position: 'relative'
         }}>
           <img 
-            src="/computer/pictures/page2/game4/regular/01.png" 
+            src={imagePaths[0]} 
             alt="Game 1" 
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
+              transition: 'filter 0.5s ease-out',
             }}
           />
         </div>
@@ -95,12 +137,14 @@ const Game8 = () => {
           position: 'relative'
         }}>
           <img 
-            src="/computer/pictures/page2/game4/regular/02.png" 
+            src={imagePaths[1]} 
             alt="Game 2" 
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              filter: imagesLoaded[imagePaths[1]] ? 'none' : 'blur(20px)',
+              transition: 'filter 0.5s ease-out',
             }}
           />
         </div>
@@ -134,12 +178,14 @@ const Game8 = () => {
           position: 'relative'
         }}>
           <img 
-            src="/computer/pictures/page2/game4/regular/03.png" 
+            src={imagePaths[2]} 
             alt="Game 3" 
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              filter: imagesLoaded[imagePaths[2]] ? 'none' : 'blur(20px)',
+              transition: 'filter 0.5s ease-out',
             }}
           />
         </div>
@@ -173,12 +219,14 @@ const Game8 = () => {
           position: 'relative'
         }}>
           <img 
-            src="/computer/pictures/page2/game4/regular/04.png" 
+            src={imagePaths[3]} 
             alt="Game 4" 
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              filter: imagesLoaded[imagePaths[3]] ? 'none' : 'blur(20px)',
+              transition: 'filter 0.5s ease-out',
             }}
           />
         </div>

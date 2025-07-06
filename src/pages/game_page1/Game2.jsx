@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getBase64 from '../../components/common/getBase64';
 
 const Game2 = () => {
   const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreviews, setImagePreviews] = useState({});
+  const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
   const handleNextClick = () => {
@@ -18,6 +21,33 @@ const Game2 = () => {
   const handleImageClick = (index) => {
     setSelectedImage(selectedImage === index ? null : index);
   };
+
+  // Generate base64 previews for all images
+  useEffect(() => {
+    const loadImagePreviews = async () => {
+      const previews = {};
+      const loaded = {};
+      
+      for (let i = 0; i < imagePaths.length; i++) {
+        const path = imagePaths[i];
+        const preview = await getBase64(path);
+        if (preview) {
+          previews[path] = preview;
+          setImagePreviews({...previews});
+          
+          // Preload the actual image
+          const img = new Image();
+          img.src = path;
+          img.onload = () => {
+            loaded[path] = true;
+            setImagesLoaded({...loaded});
+          };
+        }
+      }
+    };
+
+    loadImagePreviews();
+  }, []);
 
   // Image paths
   const imagePaths = [
@@ -65,6 +95,8 @@ const Game2 = () => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
+                transition: 'filter 0.5s ease-out',
                 display: 'block'
               }}
             />
@@ -107,6 +139,8 @@ const Game2 = () => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
+                transition: 'filter 0.5s ease-out',
                 display: 'block'
               }}
             />
@@ -149,6 +183,8 @@ const Game2 = () => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
+                transition: 'filter 0.5s ease-out',
                 display: 'block'
               }}
             />
@@ -191,6 +227,8 @@ const Game2 = () => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
+                transition: 'filter 0.5s ease-out',
                 display: 'block'
               }}
             />
