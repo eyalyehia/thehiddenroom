@@ -19,7 +19,7 @@ export const getModelUrl = async () => {
       return cachedModelUrl;
     }
 
-    const modelRef = ref(storage, 'dor1000.glb');
+    const modelRef = ref(storage, 'dor10000.glb');
     const url = await getDownloadURL(modelRef);
     
     // שמירה בcache
