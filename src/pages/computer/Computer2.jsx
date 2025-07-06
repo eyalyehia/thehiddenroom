@@ -132,88 +132,130 @@ const Computer2 = () => {
           )}
         </button>
 
-        {/* תמונות משחקי וידיאו עמוד 2 - רשת 2x2 */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-4">
-            {/* תמונה 1 - למעלה משמאל */}
-            <div>
-              <img
-                src="/computer/pictures/page2/main/1.jpg"
-                alt="Game 1"
-                style={{ 
-                  width: isHoveringFirstImage ? '805px' : '765px',
-                  height: isHoveringFirstImage ? '338px' : '318px',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  transform: isHoveringFirstImage ? 'scale(1.05)' : 'scale(1)',
-                  zIndex: isHoveringFirstImage ? '10' : '1'
-                }}
-                className="object-cover"
-                onMouseEnter={() => setIsHoveringFirstImage(true)}
-                onMouseLeave={() => setIsHoveringFirstImage(false)}
-                onClick={handleGame5Click}
-              />
-            </div>
-            
-            {/* תמונה 2 - למעלה מימין */}
-            <div>
-              <img
-                src="/computer/pictures/page2/main/2.jpg"
-                alt="Game 2"
-                style={{ 
-                  width: isHoveringSecondImage ? '805px' : '765px',
-                  height: isHoveringSecondImage ? '338px' : '318px',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  transform: isHoveringSecondImage ? 'scale(1.05)' : 'scale(1)',
-                  zIndex: isHoveringSecondImage ? '10' : '1'
-                }}
-                className="object-cover"
-                onMouseEnter={() => setIsHoveringSecondImage(true)}
-                onMouseLeave={() => setIsHoveringSecondImage(false)}
-                onClick={handleGame6Click}
-              />
-            </div>
-            
-            {/* תמונה 3 - למטה משמאל */}
-            <div>
-              <img
-                src="/computer/pictures/page2/main/3.jpg"
-                alt="Game 3"
-                style={{ 
-                  width: isHoveringThirdImage ? '805px' : '765px',
-                  height: isHoveringThirdImage ? '338px' : '318px',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  transform: isHoveringThirdImage ? 'scale(1.05)' : 'scale(1)',
-                  zIndex: isHoveringThirdImage ? '10' : '1'
-                }}
-                className="object-cover"
-                onMouseEnter={() => setIsHoveringThirdImage(true)}
-                onMouseLeave={() => setIsHoveringThirdImage(false)}
-                onClick={handleGame7Click}
-              />
-            </div>
-            
-            {/* תמונה 4 - למטה מימין */}
-            <div>
-              <img
-                src="/computer/pictures/page2/main/4.jpg"
-                alt="Game 4"
-                style={{ 
-                  width: isHoveringFourthImage ? '805px' : '765px',
-                  height: isHoveringFourthImage ? '338px' : '318px',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  transform: isHoveringFourthImage ? 'scale(1.05)' : 'scale(1)',
-                  zIndex: isHoveringFourthImage ? '10' : '1'
-                }}
-                className="object-cover"
-                onMouseEnter={() => setIsHoveringFourthImage(true)}
-                onMouseLeave={() => setIsHoveringFourthImage(false)}
-                onClick={handleGame8Click}
-              />
-            </div>
+        {/* Game Images Grid */}
+        <div 
+          style={{
+            position: 'absolute',
+            width: '1920px',
+            height: '1080px',
+            left: '0px',
+            top: '0px'
+          }}
+        >
+          {/* Top Left Image - Far Cry 6 */}
+          <div 
+            style={{
+              position: 'absolute',
+              width: '805px',
+              height: '453px',
+              left: '155px',
+              top: '87px',
+              cursor: 'pointer',
+              overflow: 'hidden',
+              transform: isHoveringFirstImage ? 'scale(1.02)' : 'scale(1)',
+              transition: 'transform 0.3s ease',
+              zIndex: isHoveringFirstImage ? 10 : 1
+            }}
+            onMouseEnter={() => setIsHoveringFirstImage(true)}
+            onMouseLeave={() => setIsHoveringFirstImage(false)}
+            onClick={handleGame5Click}
+          >
+            <img 
+              src="/computer/pictures/page2/main/1.jpg" 
+              alt="Game 1"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+
+          {/* Top Right Image - Rogue Company */}
+          <div 
+            style={{
+              position: 'absolute',
+              width: '806px',
+              height: '453px',
+              left: '960px',
+              top: '87px',
+              cursor: 'pointer',
+              overflow: 'hidden',
+              transform: isHoveringSecondImage ? 'scale(1.02)' : 'scale(1)',
+              transition: 'transform 0.3s ease',
+              zIndex: isHoveringSecondImage ? 10 : 1
+            }}
+            onMouseEnter={() => setIsHoveringSecondImage(true)}
+            onMouseLeave={() => setIsHoveringSecondImage(false)}
+            onClick={handleGame6Click}
+          >
+            <img 
+              src="/computer/pictures/page2/main/2.jpg" 
+              alt="Game 2"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+
+          {/* Bottom Left Image - GTA V */}
+          <div 
+            style={{
+              position: 'absolute',
+              width: '805px',
+              height: '453px',
+              left: '155px',
+              top: '540px',
+              cursor: 'pointer',
+              overflow: 'hidden',
+              transform: isHoveringThirdImage ? 'scale(1.02)' : 'scale(1)',
+              transition: 'transform 0.3s ease',
+              zIndex: isHoveringThirdImage ? 10 : 1
+            }}
+            onMouseEnter={() => setIsHoveringThirdImage(true)}
+            onMouseLeave={() => setIsHoveringThirdImage(false)}
+            onClick={handleGame7Click}
+          >
+            <img 
+              src="/computer/pictures/page2/main/3.jpg" 
+              alt="Game 3"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+
+          {/* Bottom Right Image - Uncharted */}
+          <div 
+            style={{
+              position: 'absolute',
+              width: '806px',
+              height: '453px',
+              left: '960px',
+              top: '540px',
+              cursor: 'pointer',
+              overflow: 'hidden',
+              transform: isHoveringFourthImage ? 'scale(1.02)' : 'scale(1)',
+              transition: 'transform 0.3s ease',
+              zIndex: isHoveringFourthImage ? 10 : 1
+            }}
+            onMouseEnter={() => setIsHoveringFourthImage(true)}
+            onMouseLeave={() => setIsHoveringFourthImage(false)}
+            onClick={handleGame8Click}
+          >
+            <img 
+              src="/computer/pictures/page2/main/4.jpg" 
+              alt="Game 4"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
           </div>
         </div>
 
