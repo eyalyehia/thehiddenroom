@@ -16,6 +16,10 @@ import Game5 from './pages/computer/game_page2/Game5'
 import Game6 from './pages/computer/game_page2/Game6'
 import Game7 from './pages/computer/game_page2/Game7'
 import Game8 from './pages/computer/game_page2/Game8'
+import InsideGame1 from './pages/game_page1/inside_game1/InsideGame1'
+import InsideGame1_2 from './pages/game_page1/inside_game1/InsideGame1.2'
+import InsideGame1_3 from './pages/game_page1/inside_game1/InsideGame1.3'
+import InsideGame1_4 from './pages/game_page1/inside_game1/InsideGame1.4'
 
 const App = () => {
   return (
@@ -36,6 +40,10 @@ const App = () => {
         <Route path="/game6" element={<Game6 />} />
         <Route path="/game7" element={<Game7 />} />
         <Route path="/game8" element={<Game8 />} />
+        <Route path="/inside-game1" element={<InsideGame1 />} />
+        <Route path="/inside-game1-2" element={<InsideGame1_2 />} />
+        <Route path="/inside-game1-3" element={<InsideGame1_3 />} />
+        <Route path="/inside-game1-4" element={<InsideGame1_4 />} />
         <Route path="/" element={<HomePage3d />} />
       </Routes>
     </Router>

@@ -81,7 +81,7 @@ const Game1 = () => {
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => handleImageClick(0)}
+            onClick={() => navigate('/inside-game1')}
           >
             <img 
               src={imagePaths[0]}
@@ -126,7 +126,7 @@ const Game1 = () => {
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => handleImageClick(1)}
+            onClick={() => navigate('/inside-game1-2')}
           >
             <img 
               src={imagePaths[1]}
@@ -171,7 +171,7 @@ const Game1 = () => {
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => handleImageClick(2)}
+            onClick={() => navigate('/inside-game1-3')}
           >
             <img 
               src={imagePaths[2]}
@@ -216,7 +216,7 @@ const Game1 = () => {
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => handleImageClick(3)}
+            onClick={() => navigate('/inside-game1-4')}
           >
             <img 
               src={imagePaths[3]}

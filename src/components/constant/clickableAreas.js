@@ -106,52 +106,52 @@ export const POSTER_CLICKABLE_AREAS_PAGE1 = {
     { x: 0.33, y: 0.4, width: 0.35, height: 0.22 }
   ],
   2: [
-    { x: 0.50, y: 0.30, width: 0.20, height: 0.15 }
+    { x: 0.45, y: 0.30, width: 0.30, height: 0.25 }
   ],
   3: [
-    { x: 0.35, y: 0.20, width: 0.30, height: 0.15 }
+    { x: 0.3, y: 0.10, width: 0.38, height: 0.15 }
   ],
   4: [
-    { x: 0.40, y: 0.05, width: 0.10, height: 0.20 }
+    { x: 0.38, y: 0, width: 0.3, height: 0.25 }
   ],
   5: [
-    { x: 0.05, y: 0.70, width: 0.20, height: 0.10 }
+    { x: 0.05, y: 0.6, width: 0.35, height: 0.25 }
   ],
   6: [
-    { x: 0.40, y: 0.85, width: 0.20, height: 0.15 }
+    { x: 0.3, y: 0.85, width: 0.4, height: 0.15 }
   ],
   7: [
-    { x: 0.02, y: 0.70, width: 0.20, height: 0.15 }
+    { x: 0.02, y: 0.6, width: 0.4, height: 0.2 }
   ],
   8: [
-    { x: 0.40, y: 0.48, width: 0.15, height: 0.15 }
+    { x: 0.25, y: 0.4, width: 0.5, height: 0.25 }
   ]
 };
 
 export const POSTER_CLICKABLE_AREAS_PAGE2 = {
   9: [
-    { x: 0.57, y: 0.01, width: 0.40, height: 0.10 }
+    { x: 0.50, y: 0.01, width: 0.5, height: 0.10 }
   ],
   10: [
-    { x: 0.20, y: 0.20, width: 0.20, height: 0.20 }
+    { x: 0.2, y: 0.1, width: 0.4, height: 0.35 }
   ],
   11: [
-    { x: 0.70, y: 0.20, width: 0.20, height: 0.10 }
+    { x: 0.70, y: 0.15, width: 0.25, height: 0.25 }
   ],
   12: [
-    { x: 0.02, y: 0.80, width: 0.20, height: 0.10 }
+    { x: 0.02, y: 0.6, width: 0.3, height: 0.2 }
   ],
   13: [
-    { x: 0.70, y: 0.30, width: 0.20, height: 0.10 }
+    { x: 0.62, y: 0.22, width: 0.3, height: 0.2 }
   ],
   14: [
-    { x: 0.40, y: 0.60, width: 0.15, height: 0.15 }
+    { x: 0.35, y: 0.58, width: 0.35, height: 0.12 }
   ],
   15: [
-    { x: 0.40, y: 0.50, width: 0.20, height: 0.15 }
+    { x: 0.35, y: 0.50, width: 0.32, height: 0.25 }
   ],
   16: [
-    { x: 0.15, y: 0.35, width: 0.35, height: 0.20 }
+    { x: 0, y: 0.39, width: 0.5, height: 0.20 }
   ]
 };
 
