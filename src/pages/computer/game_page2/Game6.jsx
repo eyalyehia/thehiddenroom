@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getBase64 from '../../../components/common/getBase64';
 
 const Game6 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreviews, setImagePreviews] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
@@ -33,35 +30,23 @@ const Game6 = () => {
     };
   }, []);
 
-  const handleImageClick = (index) => {
-    setSelectedImage(selectedImage === index ? null : index);
-  };
-
-  // Generate base64 previews for all images
+  // Preload images
   useEffect(() => {
-    const loadImagePreviews = async () => {
-      const previews = {};
+    const loadImages = async () => {
       const loaded = {};
       
       for (let i = 0; i < imagePaths.length; i++) {
         const path = imagePaths[i];
-        const preview = await getBase64(path);
-        if (preview) {
-          previews[path] = preview;
-          setImagePreviews({...previews});
-          
-          // Preload the actual image
-          const img = new Image();
-          img.src = path;
-          img.onload = () => {
-            loaded[path] = true;
-            setImagesLoaded({...loaded});
-          };
-        }
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+          loaded[path] = true;
+          setImagesLoaded({...loaded});
+        };
       }
     };
 
-    loadImagePreviews();
+    loadImages();
   }, []);
 
   const handleBackClick = () => {
@@ -94,7 +79,8 @@ const Game6 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game6')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -135,7 +121,8 @@ const Game6 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game6-1')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -176,7 +163,8 @@ const Game6 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game6-2')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -217,7 +205,8 @@ const Game6 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game6-3')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -249,6 +238,7 @@ const Game6 = () => {
           FIND 5 CLUES TO REVEAL THE VAMPIRE'S LOCATION.
         </div>
       </div>
+
       {/* Left Navigation Arrow - Top Left */}
       <div 
         style={{

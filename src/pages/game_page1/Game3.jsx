@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getBase64 from '../../components/common/getBase64';
 
 const Game3 = () => {
   const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreviews, setImagePreviews] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
@@ -18,31 +15,21 @@ const Game3 = () => {
     navigate('/game2');
   };
 
-  const handleImageClick = (index) => {
-    setSelectedImage(selectedImage === index ? null : index);
-  };
-
   // Generate base64 previews for all images
   useEffect(() => {
     const loadImagePreviews = async () => {
-      const previews = {};
       const loaded = {};
       
       for (let i = 0; i < imagePaths.length; i++) {
         const path = imagePaths[i];
-        const preview = await getBase64(path);
-        if (preview) {
-          previews[path] = preview;
-          setImagePreviews({...previews});
-          
-          // Preload the actual image
-          const img = new Image();
-          img.src = path;
-          img.onload = () => {
-            loaded[path] = true;
-            setImagesLoaded({...loaded});
-          };
-        }
+        
+        // Preload the actual image
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+          loaded[path] = true;
+          setImagesLoaded({...loaded});
+        };
       }
     };
 
@@ -82,11 +69,12 @@ const Game3 = () => {
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
-              border: selectedImage === 0 ? '2px solid #3498db' : 'none',
+              border: 'none',
               boxSizing: 'border-box',
-              marginBottom: '10px'
+              marginBottom: '10px',
+              cursor: 'pointer'
             }}
-            onClick={() => handleImageClick(0)}
+            onClick={() => navigate('/inside-game3')}
           >
             <img 
               src={imagePaths[0]}
@@ -112,7 +100,7 @@ const Game3 = () => {
             width: '600px',
             height: '26px',
             left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            top: '333px'
           }}>
             APPROXIMATELY 5–6 HOURS INTO THE GAME
           </div>
@@ -126,11 +114,12 @@ const Game3 = () => {
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
-              border: selectedImage === 1 ? '2px solid #3498db' : 'none',
+              border: 'none',
               boxSizing: 'border-box',
-              marginBottom: '10px'
+              marginBottom: '10px',
+              cursor: 'pointer'
             }}
-            onClick={() => handleImageClick(1)}
+            onClick={() => navigate('/inside-game3-1')}
           >
             <img 
               src={imagePaths[1]}
@@ -156,7 +145,7 @@ const Game3 = () => {
             width: '700px',
             height: '26px',
             left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            top: '333px'
           }}>
             AVAILABLE A FEW HOURS INTO THE GAME DURING FREE EXPLORATION
           </div>
@@ -170,11 +159,12 @@ const Game3 = () => {
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
-              border: selectedImage === 2 ? '2px solid #3498db' : 'none',
+              border: 'none',
               boxSizing: 'border-box',
-              marginBottom: '10px'
+              marginBottom: '10px',
+              cursor: 'pointer'
             }}
-            onClick={() => handleImageClick(2)}
+            onClick={() => navigate('/inside-game3-2')}
           >
             <img 
               src={imagePaths[2]}
@@ -200,7 +190,7 @@ const Game3 = () => {
             width: '700px',
             height: '26px',
             left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            top: '333px'
           }}>
             CAN BE FOUND EARLY IN THE GAME DURING FREE RIDE NEAR THE BRIDGE
           </div>
@@ -214,11 +204,12 @@ const Game3 = () => {
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
-              border: selectedImage === 3 ? '2px solid #3498db' : 'none',
+              border: 'none',
               boxSizing: 'border-box',
-              marginBottom: '10px'
+              marginBottom: '10px',
+              cursor: 'pointer'
             }}
-            onClick={() => handleImageClick(3)}
+            onClick={() => navigate('/inside-game3-3')}
           >
             <img 
               src={imagePaths[3]}
@@ -244,7 +235,7 @@ const Game3 = () => {
             width: '600px',
             height: '26px',
             left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            top: '333px'
           }}>
             APPROXIMATELY 15–20 MINUTES INTO THE GAME
           </div>

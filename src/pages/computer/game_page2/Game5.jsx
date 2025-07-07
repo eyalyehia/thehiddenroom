@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getBase64 from '../../../components/common/getBase64';
 
 const imagePaths = [
   "/computer/pictures/page2/game1/regular/01.png",
@@ -11,9 +10,6 @@ const imagePaths = [
 
 const Game5 = () => {
   const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
-  const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreviews, setImagePreviews] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
@@ -33,35 +29,23 @@ const Game5 = () => {
     };
   }, []);
 
-  const handleImageClick = (index) => {
-    setSelectedImage(selectedImage === index ? null : index);
-  };
-
-  // Generate base64 previews for all images
+  // Preload images
   useEffect(() => {
-    const loadImagePreviews = async () => {
-      const previews = {};
+    const loadImages = async () => {
       const loaded = {};
       
       for (let i = 0; i < imagePaths.length; i++) {
         const path = imagePaths[i];
-        const preview = await getBase64(path);
-        if (preview) {
-          previews[path] = preview;
-          setImagePreviews({...previews});
-          
-          // Preload the actual image
-          const img = new Image();
-          img.src = path;
-          img.onload = () => {
-            loaded[path] = true;
-            setImagesLoaded({...loaded});
-          };
-        }
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+          loaded[path] = true;
+          setImagesLoaded({...loaded});
+        };
       }
     };
 
-    loadImagePreviews();
+    loadImages();
   }, []);
 
   const handleNextClick = () => {
@@ -90,7 +74,8 @@ const Game5 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game5')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -131,7 +116,8 @@ const Game5 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game5-1')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -172,7 +158,8 @@ const Game5 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game5-2')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -213,7 +200,8 @@ const Game5 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game5-3')}>
         <div style={{
           width: '100%',
           height: '318px',

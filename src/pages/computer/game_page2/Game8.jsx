@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getBase64 from '../../../components/common/getBase64';
 
 const Game8 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreviews, setImagePreviews] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
@@ -36,35 +33,23 @@ const Game8 = () => {
     navigate('/game7');
   };
 
-  const handleImageClick = (index) => {
-    setSelectedImage(selectedImage === index ? null : index);
-  };
-
-  // Generate base64 previews for all images
+  // Preload images
   useEffect(() => {
-    const loadImagePreviews = async () => {
-      const previews = {};
+    const loadImages = async () => {
       const loaded = {};
       
       for (let i = 0; i < imagePaths.length; i++) {
         const path = imagePaths[i];
-        const preview = await getBase64(path);
-        if (preview) {
-          previews[path] = preview;
-          setImagePreviews({...previews});
-          
-          // Preload the actual image
-          const img = new Image();
-          img.src = path;
-          img.onload = () => {
-            loaded[path] = true;
-            setImagesLoaded({...loaded});
-          };
-        }
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+          loaded[path] = true;
+          setImagesLoaded({...loaded});
+        };
       }
     };
 
-    loadImagePreviews();
+    loadImages();
   }, []);
 
   return (
@@ -89,7 +74,8 @@ const Game8 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game8')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -130,7 +116,8 @@ const Game8 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game8-1')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -171,7 +158,8 @@ const Game8 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game8-2')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -212,7 +200,8 @@ const Game8 = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
-      }}>
+      }}
+      onClick={() => navigate('/inside-game8-3')}>
         <div style={{
           width: '100%',
           height: '318px',
@@ -244,6 +233,7 @@ const Game8 = () => {
           APPROXIMATELY 6–8 HOURS INTO THE GAME
         </div>
       </div>
+
       {/* Left Navigation Arrow - Top Left */}
       <div 
         style={{
@@ -267,8 +257,6 @@ const Game8 = () => {
           />
         </svg>
       </div>
-
-      {/* No right arrow in Game8 */}
     </div>
   );
 };
