@@ -232,6 +232,62 @@ export const COMPUTER_GAME_CLICKABLE_AREAS = {
     4: [
       { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
     ]
+  },
+  game5: {
+    1: [
+      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ]
+  },
+  game6: {
+    1: [
+      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ]
+  },
+  game7: {
+    1: [
+      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ]
+  },
+  game8: {
+    1: [
+      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ]
   }
 };
 
