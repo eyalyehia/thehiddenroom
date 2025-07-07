@@ -174,4 +174,82 @@ export const isPointInClickableArea = (logoId, x, y, imageWidth, imageHeight, pa
 
 export const getClickableAreas = (logoId, page = 1) => {
   return page === 2 ? (LOGO_CLICKABLE_AREAS_PAGE2[logoId] || []) : (LOGO_CLICKABLE_AREAS_PAGE1[logoId] || []);
+};
+
+export const COMPUTER_GAME_CLICKABLE_AREAS = {
+  game1: {
+    1: [
+      { x: 0.5, y: 0.2, width: 0.25, height: 0.3 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.4 }
+    ],
+    3: [
+      { x: 0.35, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.45, y: 0.3, width: 0.3, height: 0.35 }
+    ]
+  },
+  game2: {
+    1: [
+      { x: 0.4, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    2: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ]
+  },
+  game3: {
+    1: [
+      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ]
+  },
+  game4: {
+    1: [
+      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+    ],
+    2: [
+      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+    ],
+    3: [
+      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+    ],
+    4: [
+      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+    ]
+  }
+};
+
+export const isPointInComputerGameArea = (gameId, imageId, x, y, imageWidth, imageHeight) => {
+  const areas = COMPUTER_GAME_CLICKABLE_AREAS[gameId]?.[imageId];
+  if (!areas) return true;
+  
+  const relativeX = x / imageWidth;
+  const relativeY = y / imageHeight;
+  
+  return areas.some(area => {
+    return relativeX >= area.x && 
+           relativeX <= area.x + area.width &&
+           relativeY >= area.y && 
+           relativeY <= area.y + area.height;
+  });
+};
+
+export const getComputerGameClickableAreas = (gameId, imageId) => {
+  return COMPUTER_GAME_CLICKABLE_AREAS[gameId]?.[imageId] || [];
 }; 
