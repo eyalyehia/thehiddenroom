@@ -170,7 +170,7 @@ const InsideGame1 = () => {
           padding: 0,
           zIndex: 40
         }}
-        onClick={() => navigate('/inside-game1-2')}
+        onClick={() => navigate('/game1')}
         onMouseEnter={() => setIsHoveringArrowButton(true)}
         onMouseLeave={() => setIsHoveringArrowButton(false)}
       >

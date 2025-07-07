@@ -49,7 +49,7 @@ const Game5 = () => {
   }, []);
 
   const handleNextClick = () => {
-    navigate('/game6');
+    navigate('/computer2');
   };
 
   return (

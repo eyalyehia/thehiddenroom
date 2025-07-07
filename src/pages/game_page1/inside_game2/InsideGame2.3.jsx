@@ -4,7 +4,7 @@ import { isPointInComputerGameArea, getComputerGameClickableAreas } from '../../
 import getBase64 from '../../../components/common/getBase64';
 
 const InsideGame2_3 = () => {
-  const [isHoveringLeftArrow, setIsHoveringLeftArrow] = useState(false);
+  const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -156,26 +156,25 @@ const InsideGame2_3 = () => {
         </div>
       )}
 
-      {/* Left Navigation Arrow */}
+      {/* Navigation Button */}
       <button
         style={{
           position: 'absolute',
           width: '29px',
           height: '45px',
-          left: '30px',
+          right: '30px',
           top: '30px',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          transform: 'scaleX(-1)', // הופך את החץ לכיוון שמאל
           zIndex: 40
         }}
-        onClick={() => navigate('/inside-game2-2')}
-        onMouseEnter={() => setIsHoveringLeftArrow(true)}
-        onMouseLeave={() => setIsHoveringLeftArrow(false)}
+        onClick={() => navigate('/game2')}
+        onMouseEnter={() => setIsHoveringButton(true)}
+        onMouseLeave={() => setIsHoveringButton(false)}
       >
-        {isHoveringLeftArrow ? (
+        {isHoveringButton ? (
           <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>

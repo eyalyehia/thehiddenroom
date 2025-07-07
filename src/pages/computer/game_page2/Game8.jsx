@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Game8 = () => {
-  const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
@@ -29,8 +29,8 @@ const Game8 = () => {
     };
   }, []);
 
-  const handleBackClick = () => {
-    navigate('/game7');
+  const handleButtonClick = () => {
+    navigate('/computer2');
   };
 
   // Preload images
@@ -234,23 +234,23 @@ const Game8 = () => {
         </div>
       </div>
 
-      {/* Left Navigation Arrow - Top Left */}
+      {/* Navigation Arrow - Top Right */}
       <div 
         style={{
           position: 'absolute',
-          left: '50px',
+          right: '50px',
           top: '50px',
           cursor: 'pointer',
           zIndex: 10
         }}
-        onMouseEnter={() => setIsHoveringBackButton(true)}
-        onMouseLeave={() => setIsHoveringBackButton(false)}
-        onClick={handleBackClick}
+        onMouseEnter={() => setIsHoveringButton(true)}
+        onMouseLeave={() => setIsHoveringButton(false)}
+        onClick={handleButtonClick}
       >
         <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path 
-            d="M24.6045 47L1 24.524L24.6045 2L31 8.354L14.797 24.47L31 40.646L24.6045 47Z" 
-            fill={isHoveringBackButton ? 'white' : 'none'} 
+            d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" 
+            fill={isHoveringButton ? 'white' : 'none'} 
             stroke="white" 
             strokeWidth="2" 
             strokeMiterlimit="10"

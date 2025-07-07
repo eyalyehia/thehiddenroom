@@ -10,7 +10,7 @@ const Game1 = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate('/game2');
+    navigate('/computer');
   };
 
   const handleImageClick = (index) => {

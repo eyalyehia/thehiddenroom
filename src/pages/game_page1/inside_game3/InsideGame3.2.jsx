@@ -4,8 +4,7 @@ import { isPointInComputerGameArea, getComputerGameClickableAreas } from '../../
 import getBase64 from '../../../components/common/getBase64';
 
 const InsideGame3_2 = () => {
-  const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
-  const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -157,7 +156,7 @@ const InsideGame3_2 = () => {
         </div>
       )}
       
-      {/* Next Arrow */}
+      {/* Navigation Button */}
       <button
         style={{
           position: 'absolute',
@@ -171,41 +170,11 @@ const InsideGame3_2 = () => {
           padding: 0,
           zIndex: 40
         }}
-        onClick={() => navigate('/inside-game3-3')}
-        onMouseEnter={() => setIsHoveringNextButton(true)}
-        onMouseLeave={() => setIsHoveringNextButton(false)}
+        onClick={() => navigate('/game3')}
+        onMouseEnter={() => setIsHoveringButton(true)}
+        onMouseLeave={() => setIsHoveringButton(false)}
       >
-        {isHoveringNextButton ? (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="black" stroke="black" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        ) : (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="black" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        )}
-      </button>
-
-      {/* Back Arrow */}
-      <button
-        style={{
-          position: 'absolute',
-          width: '33px',
-          height: '49px',
-          left: '30px',
-          top: '30px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          transform: 'scaleX(-1)',
-          zIndex: 40
-        }}
-        onClick={() => navigate('/inside-game3-1')}
-        onMouseEnter={() => setIsHoveringBackButton(true)}
-        onMouseLeave={() => setIsHoveringBackButton(false)}
-      >
-        {isHoveringBackButton ? (
+        {isHoveringButton ? (
           <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="black" stroke="black" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
