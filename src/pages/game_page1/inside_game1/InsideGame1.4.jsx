@@ -3,37 +3,79 @@ import { useNavigate } from 'react-router-dom';
 import { isPointInComputerGameArea, getComputerGameClickableAreas } from '../../../components/constant/clickableAreas';
 import getBase64 from '../../../components/common/getBase64';
 
+// Memoized image component with loading state
+const MemoizedImage = React.memo(({ src, alt, className, onClick, style, ...props }) => {
+  const [loading, setLoading] = useState(true);
+  const [base64, setBase64] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadImage = async () => {
+      try {
+        const base64Data = await getBase64(src);
+        if (isMounted) {
+          setBase64(base64Data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error loading image:', error);
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadImage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [src]);
+
+  return (
+    <img 
+      src={loading ? base64 : src}
+      alt={alt || 'Image'} 
+      className={`${className} ${loading ? 'blur-sm' : ''}`}
+      onClick={onClick}
+      loading="lazy"
+      decoding="async"
+      style={{
+        ...style,
+        transition: 'filter 0.3s ease-in-out',
+      }}
+      {...props}
+    />
+  );
+});
+
 const InsideGame1_4 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
-  // קונפיגורציה לתמונות מוגדלות
-  const zoomConfigs = useMemo(() => ({
-    4: { 
-      zoomSize: 'w-[450px]', 
-      zoomHeight: 'h-[310px]', 
-      zoomOffset: { x: 120, y: -150 } 
-    }
+  // קונפיגורציה לתמונה מוגדלת
+  const zoomConfig = useMemo(() => ({
+    zoomSize: 'w-[450px]', 
+    zoomHeight: 'h-[310px]', 
+    zoomOffset: { x: 120, y: -150 }
   }), []);
 
-  useEffect(() => {
-    const loadImages = async () => {
-      try {
-        await Promise.all([
-          getBase64('/computer/pictures/page1/game1/regular/04.png'),
-          getBase64('/computer/pictures/page1/game1/zoonBitIn/04.png')
-        ]);
-      } catch (error) {
-        console.error('Error loading images:', error);
-      }
-    };
+  // קונפיגורציה למודאל
+  const modalConfig = useMemo(() => ({
+    maxWidth: 'max-w-[1079px]',
+    maxHeight: 'max-h-[663px]',
+    position: 'flex items-center justify-center',
+    marginTop: '0',
+    marginLeft: '0'
+  }), []);
 
-    loadImages();
-  }, []);
+  const handleImageClick = () => {
+    setSelectedImage(4);
+  };
 
   const handleMouseMove = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -81,95 +123,118 @@ const InsideGame1_4 = () => {
     }}>
       {/* כפתור להצגת אזורים לחיצים */}
       <button
-        style={{
-          position: 'absolute',
-          top: '20px',
-          left: '20px',
-          padding: '8px 16px',
-          backgroundColor: 'red',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          zIndex: 20
-        }}
+        className="absolute top-5 left-5 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
         onClick={() => setShowClickableAreas(!showClickableAreas)}
       >
         {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
       </button>
 
       <div 
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '100%'
-        }}
+        className="relative w-full h-full"
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <img 
+        <MemoizedImage
           src="/computer/pictures/page1/game1/regular/04.png"
           alt="Easter egg 04"
+          className="w-full h-full object-cover"
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: imageLoaded ? 'none' : 'blur(20px)',
-            transition: 'filter 0.3s ease-in-out',
-            cursor: isHovering ? 'pointer' : 'default'
+            cursor: isHovering ? 'pointer' : 'default',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            willChange: 'transform',
+            transition: 'all 0.3s ease-in-out'
           }}
-          onLoad={() => setImageLoaded(true)}
         />
         {renderClickableAreasDebug()}
       </div>
       
       {/* תמונה מוגדלת בעת hover */}
-      {isHovering && (
+      {isHovering && !selectedImage && (
         <div
+          className="fixed z-40 cursor-pointer"
           style={{
-            position: 'fixed',
-            left: '50%',
-            top: '50%',
-            transform: `translate(${zoomConfigs[4].zoomOffset.x}px, ${zoomConfigs[4].zoomOffset.y}px)`,
-            zIndex: 30,
-            pointerEvents: 'none',
-            width: zoomConfigs[4].zoomSize.replace('w-[', '').replace('px]', '') + 'px',
-            height: zoomConfigs[4].zoomHeight.replace('h-[', '').replace('px]', '') + 'px',
-            cursor: 'pointer',
-            boxSizing: 'border-box',
-            border: '2px solid #FFFFFF'
+            left: `50%`,
+            top: `50%`,
+            transform: `translate(${zoomConfig.zoomOffset.x}px, ${zoomConfig.zoomOffset.y}px)`,
+            willChange: 'transform',
+            pointerEvents: 'auto'
           }}
+          onClick={handleImageClick}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
         >
-          <img
+          <MemoizedImage
             src="/computer/pictures/page1/game1/zoonBitIn/04.png"
             alt="Zoomed Easter egg"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-              transition: 'filter 0.3s ease-in-out',
-              cursor: 'pointer'
+            className={`${zoomConfig.zoomSize} ${zoomConfig.zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
+            style={{ 
+              willChange: 'transform, opacity',
+              imageRendering: 'crisp-edges',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+              opacity: 1,
+              transition: 'all 0.3s ease-in-out'
             }}
-            onLoad={() => setZoomImageLoaded(true)}
           />
+        </div>
+      )}
+
+      {/* Modal Display */}
+      {selectedImage && (
+        <div 
+          className={`fixed inset-0 bg-black/80 z-50 p-8 ${modalConfig.position}`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setSelectedImage(null);
+            }
+          }}
+          style={{
+            animation: 'fadeIn 0.3s ease-in-out'
+          }}
+        >
+          <div className={`relative w-full h-auto bg-transparent ${modalConfig.maxWidth} mx-auto`}>
+            <MemoizedImage
+              src="/computer/pictures/page1/game1/zoomIn/04.png"
+              alt="Full screen Easter egg"
+              className={`w-full h-auto object-cover ${modalConfig.maxHeight} border border-white shadow-2xl`}
+              style={{ 
+                imageRendering: 'crisp-edges',
+                animation: 'scaleIn 0.3s ease-in-out'
+              }}
+            />
+            
+            <div 
+              className="absolute text-white"
+              style={{
+                position: 'absolute',
+                width: '645px',
+                height: '92px',
+                left: '0',
+                bottom: '-110px',
+                fontFamily: 'Work Sans',
+                fontStyle: 'normal',
+                fontWeight: 900,
+                fontSize: '20px',
+                lineHeight: '128.04%',
+                color: '#FFFFFF',
+                animation: 'fadeIn 0.5s ease-in-out'
+              }}
+            >
+              <div className="text-left">
+                <div className="font-bold text-xl mb-1">APPROXIMATELY 1 HOUR AND 13 MINUTES INTO THE GAME</div>
+                <div className="font-normal text-base opacity-70 text-gray-300">
+                  A toy giraffe appears in a basement, a nod to the memorable giraffe scene Ellie and Joel shared in the first game.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
       {/* Navigation Button */}
       <button
-        style={{
-          position: 'absolute',
-          width: '29px',
-          height: '45px',
-          right: '30px',
-          top: '30px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          zIndex: 40
-        }}
+        className="absolute top-[30px] right-[30px] w-[29px] h-[45px] bg-transparent border-none cursor-pointer p-0 z-50"
         onClick={() => navigate('/game1')}
         onMouseEnter={() => setIsHoveringButton(true)}
         onMouseLeave={() => setIsHoveringButton(false)}

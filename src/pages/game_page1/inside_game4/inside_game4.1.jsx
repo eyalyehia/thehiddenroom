@@ -3,37 +3,73 @@ import { useNavigate } from 'react-router-dom';
 import { isPointInComputerGameArea, getComputerGameClickableAreas } from '../../../components/constant/clickableAreas';
 import getBase64 from '../../../components/common/getBase64';
 
+// Memoized image component with loading state
+const MemoizedImage = React.memo(({ src, alt, className, onClick, style, ...props }) => {
+  const [loading, setLoading] = useState(true);
+  const [base64, setBase64] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadImage = async () => {
+      try {
+        const base64Data = await getBase64(src);
+        if (isMounted) {
+          setBase64(base64Data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error loading image:', error);
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadImage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [src]);
+
+  return (
+    <img 
+      src={loading ? base64 : src}
+      alt={alt || 'Image'} 
+      className={`${className} ${loading ? 'blur-sm' : ''}`}
+      onClick={onClick}
+      loading="lazy"
+      decoding="async"
+      style={{
+        ...style,
+        transition: 'filter 0.3s ease-in-out',
+      }}
+      {...props}
+    />
+  );
+});
+
 const InsideGame4_1 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
-  // קונפיגורציה לתמונות מוגדלות
-  const zoomConfigs = useMemo(() => ({
-    2: { 
-      zoomSize: 'w-[450px]', 
-      zoomHeight: 'h-[310px]', 
-      zoomOffset: { x: 120, y: -150 } 
-    }
+  // קונפיגורציה לתמונה מוגדלת
+  const zoomConfig = useMemo(() => ({
+    zoomSize: 'w-[450px]',
+    zoomHeight: 'h-[310px]',
+    zoomOffset: { x: 120, y: -150 }
   }), []);
 
-  useEffect(() => {
-    const loadImages = async () => {
-      try {
-        await Promise.all([
-          getBase64('/computer/pictures/page1/game4/regular/02.png'),
-          getBase64('/computer/pictures/page1/game4/zoomBitIn/02.png')
-        ]);
-      } catch (error) {
-        console.error('Error loading images:', error);
-      }
-    };
-
-    loadImages();
-  }, []);
+  // קונפיגורציה למודאל
+  const modalConfig = useMemo(() => ({
+    width: '795px',
+    height: '663px',
+    position: 'flex items-center justify-center'
+  }), []);
 
   const handleMouseMove = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -47,6 +83,10 @@ const InsideGame4_1 = () => {
     } else {
       setIsHovering(false);
     }
+  };
+
+  const handleImageClick = () => {
+    setSelectedImage(2);
   };
 
   const renderClickableAreasDebug = () => {
@@ -72,104 +112,129 @@ const InsideGame4_1 = () => {
   };
 
   return (
-    <div style={{ 
-      position: 'relative',
-      width: '100vw',
-      height: '100vh',
-      overflow: 'hidden',
-      background: '#1D1C1A'
-    }}>
+    <div className="relative w-[1920px] h-[1080px] bg-[#1D1C1A] overflow-hidden">
       {/* כפתור להצגת אזורים לחיצים */}
       <button
-        style={{
-          position: 'absolute',
-          top: '20px',
-          left: '20px',
-          padding: '8px 16px',
-          backgroundColor: 'red',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          zIndex: 20
-        }}
+        className="absolute top-5 left-5 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
         onClick={() => setShowClickableAreas(!showClickableAreas)}
       >
         {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
       </button>
 
       <div 
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '100%'
-        }}
+        className="relative w-full h-full"
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <img
+        <MemoizedImage
           src="/computer/pictures/page1/game4/regular/02.png"
-          alt="Game 4 Inside 2"
+          alt="Game 4 Detail 2"
+          className="w-full h-full object-cover"
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: imageLoaded ? 'none' : 'blur(20px)',
-            transition: 'filter 0.3s ease-in-out',
-            cursor: isHovering ? 'pointer' : 'default'
+            cursor: isHovering ? 'pointer' : 'default',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            willChange: 'transform',
+            transition: 'all 0.3s ease-in-out'
           }}
-          onLoad={() => setImageLoaded(true)}
         />
         {renderClickableAreasDebug()}
       </div>
       
       {/* תמונה מוגדלת בעת hover */}
-      {isHovering && (
+      {isHovering && !selectedImage && (
         <div
+          className="fixed z-40 cursor-pointer"
           style={{
-            position: 'fixed',
-            left: '50%',
-            top: '50%',
-            transform: `translate(${zoomConfigs[2].zoomOffset.x}px, ${zoomConfigs[2].zoomOffset.y}px)`,
-            zIndex: 30,
-            pointerEvents: 'none',
-            width: zoomConfigs[2].zoomSize.replace('w-[', '').replace('px]', '') + 'px',
-            height: zoomConfigs[2].zoomHeight.replace('h-[', '').replace('px]', '') + 'px',
-            cursor: 'pointer',
-            boxSizing: 'border-box',
-            border: '2px solid #FFFFFF'
+            left: `50%`,
+            top: `50%`,
+            transform: `translate(${zoomConfig.zoomOffset.x}px, ${zoomConfig.zoomOffset.y}px)`,
+            willChange: 'transform',
+            pointerEvents: 'auto'
           }}
+          onClick={handleImageClick}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
         >
-          <img
+          <MemoizedImage
             src="/computer/pictures/page1/game4/zoomBitIn/02.png"
             alt="Zoomed Game 4"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-              transition: 'filter 0.3s ease-in-out',
-              cursor: 'pointer'
+            className={`${zoomConfig.zoomSize} ${zoomConfig.zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
+            style={{ 
+              willChange: 'transform, opacity',
+              imageRendering: 'crisp-edges',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+              opacity: 1,
+              transition: 'all 0.3s ease-in-out'
             }}
-            onLoad={() => setZoomImageLoaded(true)}
           />
         </div>
       )}
 
-      {/* Navigation Button */}
+      {/* Modal Display */}
+      {selectedImage && (
+        <div 
+          className={`fixed inset-0 bg-black/80 z-50 p-8 ${modalConfig.position}`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setSelectedImage(null);
+            }
+          }}
+          style={{
+            animation: 'fadeIn 0.3s ease-in-out'
+          }}
+        >
+          <div className="relative" style={{ width: modalConfig.width, height: modalConfig.height }}>
+            <MemoizedImage
+              src="/computer/pictures/page1/game4/zoomIn/02.png"
+              alt="Full screen Game 4"
+              className="w-full h-full object-cover"
+              style={{ 
+                imageRendering: 'crisp-edges',
+                animation: 'scaleIn 0.3s ease-in-out'
+              }}
+            />
+            
+            <div 
+              style={{
+                position: 'absolute',
+                left: '0',
+                bottom: '-92px',
+                width: '649px',
+                color: '#FFFFFF',
+                fontFamily: 'Work Sans',
+                textAlign: 'left'
+              }}
+            >
+              <div 
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 900,
+                  lineHeight: '128.04%',
+                  marginBottom: '4px'
+                }}
+              >
+                APPROXIMATELY 3–5 HOURS INTO THE GAME
+              </div>
+              <div 
+                style={{
+                  fontSize: '16px',
+                  lineHeight: '128.04%',
+                  opacity: 0.7
+                }}
+              >
+                Throughout the game, you can collect books that reference other PlayStation titles, each one styled as a poem with subtle nods to iconic games.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Navigation Arrow */}
       <button
-        style={{
-          position: 'absolute',
-          width: '33px',
-          height: '49px',
-          right: '30px',
-          top: '30px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          zIndex: 40
-        }}
+        className="absolute right-[30px] top-[30px] bg-transparent border-none cursor-pointer p-0 z-[60]"
+        style={{ width: '29px', height: '45px' }}
         onClick={() => navigate('/game4')}
         onMouseEnter={() => setIsHoveringButton(true)}
         onMouseLeave={() => setIsHoveringButton(false)}
@@ -184,6 +249,24 @@ const InsideGame4_1 = () => {
           </svg>
         )}
       </button>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+          from { 
+            transform: scale(0.95);
+            opacity: 0;
+          }
+          to { 
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 };
