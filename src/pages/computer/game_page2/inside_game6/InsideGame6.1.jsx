@@ -9,6 +9,7 @@ const InsideGame61 = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -25,7 +26,8 @@ const InsideGame61 = () => {
       try {
         await Promise.all([
           getBase64('/computer/pictures/page2/game2/regular/02.png'),
-          getBase64('/computer/pictures/page2/game2/zoomBitIn/02.png')
+          getBase64('/computer/pictures/page2/game2/zoomBitIn/02.png'),
+          getBase64('/computer/pictures/page2/game2/zoomIn/02.png')
         ]);
       } catch (error) {
         console.error('Error loading images:', error);
@@ -46,6 +48,12 @@ const InsideGame61 = () => {
       setIsHovering(true);
     } else {
       setIsHovering(false);
+    }
+  };
+
+  const handleClick = () => {
+    if (isHovering) {
+      setShowModal(true);
     }
   };
 
@@ -106,6 +114,7 @@ const InsideGame61 = () => {
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
+        onClick={handleClick}
       >
         <img
           src="/computer/pictures/page2/game2/regular/02.png"
@@ -156,6 +165,72 @@ const InsideGame61 = () => {
         </div>
       )}
 
+      {/* מודאל תמונה מוגדלת */}
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '914px',
+              height: '663px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src="/computer/pictures/page2/game2/zoomIn/02.png"
+              alt="Full size Game 6"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
+            />
+            <div
+              style={{
+                color: '#FFFFFF',
+                fontFamily: 'Work Sans',
+                textAlign: 'left',
+                marginTop: '20px'
+              }}
+            >
+              <div style={{ 
+                fontSize: '20px',
+                fontWeight: '900',
+                lineHeight: '128.04%',
+                marginBottom: '10px'
+              }}>
+                APPROXIMATELY 2-4 HOURS INTO THE GAME
+              </div>
+              <div style={{
+                fontSize: '16px',
+                fontWeight: 'normal',
+                lineHeight: '1.4'
+              }}>
+                You can find a small snowy cabin that mirrors Kratos's home from God of War. Inside, there are subtle props that reference his story and past.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation Button */}
       <button
         style={{
@@ -168,7 +243,7 @@ const InsideGame61 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          zIndex: 40
+          zIndex: 1000
         }}
         onClick={() => navigate('/game6')}
         onMouseEnter={() => setIsHoveringButton(true)}

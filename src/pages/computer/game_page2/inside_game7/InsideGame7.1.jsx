@@ -9,6 +9,7 @@ const InsideGame71 = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -25,7 +26,8 @@ const InsideGame71 = () => {
       try {
         await Promise.all([
           getBase64('/computer/pictures/page2/game3/regular/02.png'),
-          getBase64('/computer/pictures/page2/game3/zoomBitIn/02.png')
+          getBase64('/computer/pictures/page2/game3/zoomBitIn/02.png'),
+          getBase64('/computer/pictures/page2/game3/zoomIn/02.png')
         ]);
       } catch (error) {
         console.error('Error loading images:', error);
@@ -46,6 +48,12 @@ const InsideGame71 = () => {
       setIsHovering(true);
     } else {
       setIsHovering(false);
+    }
+  };
+
+  const handleClick = () => {
+    if (isHovering) {
+      setShowModal(true);
     }
   };
 
@@ -106,6 +114,7 @@ const InsideGame71 = () => {
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
+        onClick={handleClick}
       >
         <img
           src="/computer/pictures/page2/game3/regular/02.png"
@@ -156,6 +165,72 @@ const InsideGame71 = () => {
         </div>
       )}
 
+      {/* מודאל תמונה מוגדלת */}
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '838px',
+              height: '664px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src="/computer/pictures/page2/game3/zoomIn/02.png"
+              alt="Full size Game 7"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
+            />
+            <div
+              style={{
+                color: '#FFFFFF',
+                fontFamily: 'Work Sans',
+                textAlign: 'left',
+                marginTop: '20px'
+              }}
+            >
+              <div style={{ 
+                fontSize: '20px',
+                fontWeight: '900',
+                lineHeight: '128.04%',
+                marginBottom: '10px'
+              }}>
+                APPROXIMATELY 3-4 HOURS INTO THE GAME
+              </div>
+              <div style={{
+                fontSize: '16px',
+                fontWeight: 'normal',
+                lineHeight: '1.4'
+              }}>
+                On the edge of a mountain, during the late-night hours in the game, you can see the ghost of a woman. If you wait long enough, you might even hear her scream.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation Button */}
       <button
         style={{
@@ -168,7 +243,7 @@ const InsideGame71 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          zIndex: 40
+          zIndex: 1000
         }}
         onClick={() => navigate('/game7')}
         onMouseEnter={() => setIsHoveringButton(true)}

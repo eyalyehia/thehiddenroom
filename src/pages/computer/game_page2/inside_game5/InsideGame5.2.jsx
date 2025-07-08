@@ -7,8 +7,10 @@ const InsideGame5_2 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [modalImageLoaded, setModalImageLoaded] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -25,7 +27,8 @@ const InsideGame5_2 = () => {
       try {
         await Promise.all([
           getBase64('/computer/pictures/page2/game1/regular/03.png'),
-          getBase64('/computer/pictures/page2/game1/zoomBitIn/03.png')
+          getBase64('/computer/pictures/page2/game1/zoomBitIn/03.png'),
+          getBase64('/computer/pictures/page2/game1/zoomIn/03.png')
         ]);
       } catch (error) {
         console.error('Error loading images:', error);
@@ -46,6 +49,12 @@ const InsideGame5_2 = () => {
       setIsHovering(true);
     } else {
       setIsHovering(false);
+    }
+  };
+
+  const handleZoomClick = () => {
+    if (isHovering) {
+      setShowModal(true);
     }
   };
 
@@ -106,6 +115,7 @@ const InsideGame5_2 = () => {
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
+        onClick={handleZoomClick}
       >
         <img
           src="/computer/pictures/page2/game1/regular/03.png"
@@ -156,6 +166,66 @@ const InsideGame5_2 = () => {
         </div>
       )}
 
+      {/* מודאל תמונה מוגדלת */}
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 50,
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '424px',
+              height: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src="/computer/pictures/page2/game1/zoomIn/03.png"
+              alt="Modal Game 5"
+              style={{
+                width: '100%',
+                height: '663px',
+                objectFit: 'contain',
+                filter: modalImageLoaded ? 'none' : 'blur(20px)',
+                transition: 'filter 0.3s ease-in-out'
+              }}
+              onLoad={() => setModalImageLoaded(true)}
+            />
+            <div
+              style={{
+                marginTop: '20px',
+                color: '#FFFFFF',
+                fontFamily: 'Work Sans',
+                fontSize: '20px',
+                textAlign: 'left',
+                width: '100%',
+              }}
+            >
+              <div style={{ fontWeight: 900, marginBottom: '10px' }}>
+                APPROXIMATELY 2 HOURS INTO THE GAME
+              </div>
+              <div style={{ fontSize: '16px', lineHeight: '1.4' }}>
+                At one point in the game, you can find a television that briefly displays villains from past Far Cry games.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation Button */}
       <button
         style={{
@@ -168,7 +238,7 @@ const InsideGame5_2 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          zIndex: 40
+          zIndex: 1000
         }}
         onClick={() => navigate('/game5')}
         onMouseEnter={() => setIsHoveringButton(true)}

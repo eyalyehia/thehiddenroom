@@ -9,6 +9,7 @@ const InsideGame8_3 = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -25,7 +26,8 @@ const InsideGame8_3 = () => {
       try {
         await Promise.all([
           getBase64('/computer/pictures/page2/game4/regular/04.png'),
-          getBase64('/computer/pictures/page2/game4/zoomBitIn/04.png')
+          getBase64('/computer/pictures/page2/game4/zoomBitIn/04.png'),
+          getBase64('/computer/pictures/page2/game4/zoomIn/04.png')
         ]);
       } catch (error) {
         console.error('Error loading images:', error);
@@ -46,6 +48,12 @@ const InsideGame8_3 = () => {
       setIsHovering(true);
     } else {
       setIsHovering(false);
+    }
+  };
+
+  const handleClick = () => {
+    if (isHovering) {
+      setShowModal(true);
     }
   };
 
@@ -106,6 +114,7 @@ const InsideGame8_3 = () => {
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
+        onClick={handleClick}
       >
         <img
           src="/computer/pictures/page2/game4/regular/04.png"
@@ -156,6 +165,72 @@ const InsideGame8_3 = () => {
         </div>
       )}
 
+      {/* מודאל תמונה מוגדלת */}
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '704px',
+              height: '663px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src="/computer/pictures/page2/game4/zoomIn/04.png"
+              alt="Full size Game 8"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
+            />
+            <div
+              style={{
+                color: '#FFFFFF',
+                fontFamily: 'Work Sans',
+                textAlign: 'left',
+                marginTop: '20px'
+              }}
+            >
+              <div style={{ 
+                fontSize: '20px',
+                fontWeight: '900',
+                lineHeight: '128.04%',
+                marginBottom: '10px'
+              }}>
+                APPROXIMATELY 6 HOURS INTO THE GAME
+              </div>
+              <div style={{
+                fontSize: '16px',
+                fontWeight: 'normal',
+                lineHeight: '1.4'
+              }}>
+                Deep underwater, you can find a sunken ship containing a skeleton with a Clicker-style fungal head, a reference to The Last of Us.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation Button */}
       <button
         style={{
@@ -168,7 +243,7 @@ const InsideGame8_3 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          zIndex: 40
+          zIndex: 1000
         }}
         onClick={() => navigate('/game8')}
         onMouseEnter={() => setIsHoveringButton(true)}

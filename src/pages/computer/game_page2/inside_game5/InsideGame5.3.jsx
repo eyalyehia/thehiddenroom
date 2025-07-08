@@ -7,8 +7,10 @@ const InsideGame5_3 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
+  const [modalImageLoaded, setModalImageLoaded] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -25,7 +27,8 @@ const InsideGame5_3 = () => {
       try {
         await Promise.all([
           getBase64('/computer/pictures/page2/game1/regular/04.png'),
-          getBase64('/computer/pictures/page2/game1/zoomBitIn/04.png')
+          getBase64('/computer/pictures/page2/game1/zoomBitIn/04.png'),
+          getBase64('/computer/pictures/page2/game1/zoomIn/04.png')
         ]);
       } catch (error) {
         console.error('Error loading images:', error);
@@ -46,6 +49,12 @@ const InsideGame5_3 = () => {
       setIsHovering(true);
     } else {
       setIsHovering(false);
+    }
+  };
+
+  const handleZoomClick = () => {
+    if (isHovering) {
+      setShowModal(true);
     }
   };
 
@@ -106,6 +115,7 @@ const InsideGame5_3 = () => {
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
+        onClick={handleZoomClick}
       >
         <img
           src="/computer/pictures/page2/game1/regular/04.png"
@@ -156,6 +166,69 @@ const InsideGame5_3 = () => {
         </div>
       )}
 
+      {/* מודאל תמונה מוגדלת */}
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 50,
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '809px',
+              height: '663px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src="/computer/pictures/page2/game1/zoomIn/04.png"
+              alt="Modal Game 5"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                filter: modalImageLoaded ? 'none' : 'blur(20px)',
+                transition: 'filter 0.3s ease-in-out'
+              }}
+              onLoad={() => setModalImageLoaded(true)}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '-120px',
+                left: '0',
+                color: '#FFFFFF',
+                fontFamily: 'Work Sans',
+                fontSize: '20px',
+                textAlign: 'left',
+                width: '100%',
+                padding: '20px'
+              }}
+            >
+              <div style={{ fontWeight: 900, marginBottom: '10px' }}>
+                APPROXIMATELY 3-5 HOURS INTO THE GAME
+              </div>
+              <div style={{ fontSize: '16px', maxWidth: '80%' }}>
+                On a small island, there's a tall tower styled like Assassin's Creed. At the top, you hear the eagle screech and spot a hay pile below.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation Button */}
       <button
         style={{
@@ -168,7 +241,7 @@ const InsideGame5_3 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          zIndex: 40
+          zIndex: 1000
         }}
         onClick={() => navigate('/game5')}
         onMouseEnter={() => setIsHoveringButton(true)}
