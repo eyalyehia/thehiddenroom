@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Tv = () => {
+const Tv2 = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
-  const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
+  const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [showNotebookModal, setShowNotebookModal] = useState(false);
   const navigate = useNavigate();
 
@@ -18,9 +18,9 @@ const Tv = () => {
     setShowNotebookModal(true);
   };
 
-  // Function to navigate to next page
-  const handleNextPage = () => {
-    navigate('/tv2');
+  // Function to navigate to previous page
+  const handleBackClick = () => {
+    navigate('/tv');
   };
 
   return (
@@ -240,27 +240,27 @@ const Tv = () => {
           </svg>
         </button>
 
-        {/* Arrow Button - Right Side */}
+        {/* Back Button - Left Side */}
         <button
-          className="fixed right-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
+          className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
           style={{ 
             width: '29px', 
             height: '45px',
             opacity: showNotebookModal ? '0' : '1',
             pointerEvents: showNotebookModal ? 'none' : 'auto'
           }}
-          aria-label="Next Page"
-          onClick={handleNextPage}
-          onMouseEnter={() => setIsHoveringArrowButton(true)}
-          onMouseLeave={() => setIsHoveringArrowButton(false)}
+          aria-label="Back"
+          onClick={handleBackClick}
+          onMouseEnter={() => setIsHoveringBackButton(true)}
+          onMouseLeave={() => setIsHoveringBackButton(false)}
         >
-          {isHoveringArrowButton ? (
+          {isHoveringBackButton ? (
             <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M21.81 1.5L1.5 22.5L21.81 43.5L27.5 37.94L12.97 22.55L27.5 7.06L21.81 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
             </svg>
           ) : (
             <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M21.81 1.5L1.5 22.5L21.81 43.5L27.5 37.94L12.97 22.55L27.5 7.06L21.81 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
             </svg>
           )}
         </button>
@@ -268,8 +268,8 @@ const Tv = () => {
         {/* Page Content */}
         <div className="flex items-center justify-center w-full h-full">
           <div className="text-white text-center">
-            <h1 className="text-4xl font-bold mb-4">עמוד סרטי קולנוע</h1>
-            <p className="text-lg opacity-75">תוכן הדף יתווסף כאן</p>
+            <h1 className="text-4xl font-bold mb-4">עמוד סרטי קולנוע - עמוד 2</h1>
+            <p className="text-lg opacity-75">תוכן הדף השני יתווסף כאן</p>
           </div>
         </div>
       </div>
@@ -277,4 +277,4 @@ const Tv = () => {
   );
 };
 
-export default Tv; 
+export default Tv2; 

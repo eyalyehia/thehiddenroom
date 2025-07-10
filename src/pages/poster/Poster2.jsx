@@ -19,6 +19,7 @@ const Poster2 = () => {
   const [imageElements, setImageElements] = useState({});
   const [imagePreviews, setImagePreviews] = useState({});
   const [posterImagesLoaded, setPosterImagesLoaded] = useState({});
+  const [showNotebookModal, setShowNotebookModal] = useState(false);
   const navigate = useNavigate();
 
   // Preload כל תמונות הזום בטעינת הקומפוננטה - משופר עם cache
@@ -167,7 +168,7 @@ const Poster2 = () => {
 
   // פונקציה למעבר לעמוד היומן
   const handleNotebookClick = () => {
-    navigate('/notebook');
+    setShowNotebookModal(true);
   };
 
   // פונקציה לטיפול בהעברת עכבר על אזור הגדלה - משופרת
@@ -368,6 +369,77 @@ const Poster2 = () => {
           ))}
         </div>
       </div>
+
+      {/* Notebook Modal */}
+      {showNotebookModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ backgroundColor: 'rgba(29, 28, 26, 0.9)' }}
+          onClick={() => setShowNotebookModal(false)}
+        >
+          <div className="w-full h-full relative">
+            {/* Close Button */}
+            <button
+              className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              aria-label="Close"
+              onClick={() => setShowNotebookModal(false)}
+              onMouseEnter={() => setIsHoveringCloseButton(true)}
+              onMouseLeave={() => setIsHoveringCloseButton(false)}
+            >
+              {isHoveringCloseButton ? (
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26.7411 1.79167L32.2083 7.28371L22.6641 17.0169L32.2083 26.7151L26.7151 32.2083L17.0169 22.6641L7.28371 32.2083L1.79167 26.7151L11.4199 17.0169L1.79167 7.28371L7.41111 1.79167C7.41111 1.79167 13.9592 8.16621 17.0297 11.2325L26.7411 1.79167Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              ) : (
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26.7411 1.79167L32.2083 7.28371L22.6641 17.0169L32.2083 26.7151L26.7151 32.2083L17.0169 22.6641L7.28371 32.2083L1.79167 26.7151L11.4199 17.0169L1.79167 7.28371L7.41111 1.79167C7.41111 1.79167 13.9592 8.16621 17.0297 11.2325L26.7411 1.79167Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              )}
+            </button>
+
+            {/* Content Container */}
+            <div className="absolute" style={{ left: '122px' }}>
+              {/* Title */}
+              <h1 
+                style={{
+                  position: 'absolute',
+                  top: '122px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 700,
+                  fontSize: '39px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF',
+                  width: '728px',
+                  height: '50px'
+                }}
+              >
+                HIDDEN DETAILS IN POSTER DESIGNS
+              </h1>
+              
+              {/* Description */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: '172px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  fontSize: '32px',
+                  lineHeight: '100%',
+                  color: '#FFFFFF',
+                  width: '827px',
+                  height: '221px'
+                }}
+              >
+                <div style={{ marginBottom: '0' }}>Each poster contains a hidden detail.</div>
+                <div style={{ marginTop: '0' }}>move your cursor to uncover it.</div>
+                <div style={{ marginTop: '0' }}>can you spot them all?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* כפתור יומן */}
       <button

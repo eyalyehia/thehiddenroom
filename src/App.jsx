@@ -5,6 +5,7 @@ import Poster from './pages/poster/Poster'
 import Poster2 from './pages/poster/Poster2'
 import NootBookIcon from './pages/poster/NootBookIcon'
 import Tv from './pages/tv/Tv'
+import Tv2 from './pages/tv/Tv2'
 import Logo from './pages/logo/Logo'
 import Logo2 from './pages/logo/Logo2'
 import Computer from './pages/computer/Computer'
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="/poster2" element={<Poster2 />} />
         <Route path="/notebook" element={<NootBookIcon />} />
         <Route path="/tv" element={<Tv />} />
+        <Route path="/tv2" element={<Tv2 />} />
         <Route path="/logo" element={<Logo />} />
         <Route path="/logo2" element={<Logo2 />} />
         <Route path="/computer" element={<Computer />} />

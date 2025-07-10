@@ -16,6 +16,7 @@ const Poster = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [imagePreviews, setImagePreviews] = useState({});
   const [posterImagesLoaded, setPosterImagesLoaded] = useState({});
+  const [showNotebookModal, setShowNotebookModal] = useState(false);
   const navigate = useNavigate();
 
   const posters = Array.from({ length: 8 }, (_, index) => ({
@@ -124,7 +125,7 @@ const Poster = () => {
   };
 
   const handleNotebookClick = () => {
-    navigate('/notebook');
+    setShowNotebookModal(true);
   };
 
   // Enhanced hover detection for better user experience
@@ -249,6 +250,81 @@ const Poster = () => {
         )}
       </button>
 
+      {/* Notebook Modal */}
+      {showNotebookModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-start justify-start"
+          style={{ backgroundColor: 'rgba(29, 28, 26, 0.9)' }}
+          onClick={() => setShowNotebookModal(false)}
+        >
+          <div 
+            className="w-full h-full relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              aria-label="Close"
+              onClick={() => setShowNotebookModal(false)}
+              onMouseEnter={() => setIsHoveringCloseButton(true)}
+              onMouseLeave={() => setIsHoveringCloseButton(false)}
+            >
+              {isHoveringCloseButton ? (
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              ) : (
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              )}
+            </button>
+
+            {/* Content Container */}
+            <div className="absolute" style={{ left: '122px' }}>
+              {/* Title */}
+              <h1 
+                style={{
+                  position: 'absolute',
+                  top: '122px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 700,
+                  fontSize: '39px',
+                  lineHeight: '128.04%',
+                  color: '#FFFFFF',
+                  width: '728px',
+                  height: '50px'
+                }}
+              >
+                HIDDEN DETAILS IN POSTER DESIGNS
+              </h1>
+              
+              {/* Description */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: '172px',
+                  fontFamily: 'Work Sans',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  fontSize: '32px',
+                  lineHeight: '100%',
+                  letterSpacing: '0%',
+                  color: '#FFFFFF',
+                  width: '827px',
+                  height: '221px'
+                }}
+              >
+                <div style={{ marginBottom: '0' }}>Each poster contains a hidden detail.</div>
+                <div style={{ marginTop: '0' }}>move your cursor to uncover it.</div>
+                <div style={{ marginTop: '0' }}>can you spot them all?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* תמונות נסתרות לטעינה מיידית */}
       <div className="hidden">
         {Array.from({ length: 8 }, (_, i) => (
@@ -267,7 +343,12 @@ const Poster = () => {
       
       <button
         className="fixed top-6 right-6 transition-opacity z-50 cursor-pointer"
-        style={{ width: '34px', height: '34px' }}
+        style={{ 
+          width: '34px', 
+          height: '34px',
+          opacity: showNotebookModal ? '0' : '1',
+          pointerEvents: showNotebookModal ? 'none' : 'auto'
+        }}
         aria-label="Close"
         onClick={handleClose}
         onMouseEnter={() => setIsHoveringCloseButton(true)}
@@ -374,9 +455,15 @@ const Poster = () => {
         )}
       </button>
 
+      {/* כפתור חץ לעמוד הבא */}
       <button
         className="fixed right-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
-        style={{ width: '29px', height: '45px' }}
+        style={{ 
+          width: '29px', 
+          height: '45px',
+          opacity: showNotebookModal ? '0' : '1',
+          pointerEvents: showNotebookModal ? 'none' : 'auto'
+        }}
         aria-label="Next Page"
         onClick={handleNextPage}
         onMouseEnter={() => setIsHoveringArrowButton(true)}
