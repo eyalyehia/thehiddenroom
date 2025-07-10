@@ -141,8 +141,8 @@ const Computer2 = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: '0',
-            maxWidth: '1280px',
-            maxHeight: '640px',
+            maxWidth: '1612px', // 806px * 2 for two columns
+            maxHeight: '906px', // 453px * 2 for two rows
             width: '100%',
             height: 'auto',
             aspectRatio: '2/1'
