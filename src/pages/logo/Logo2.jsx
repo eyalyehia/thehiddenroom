@@ -264,10 +264,8 @@ const Logo2 = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
       <div 
-        className="relative overflow-hidden" 
+        className="relative overflow-hidden w-full h-screen" 
         style={{ 
-          width: '1920px', 
-          height: '1080px', 
           backgroundColor: '#1D1C1A'
         }}
       >

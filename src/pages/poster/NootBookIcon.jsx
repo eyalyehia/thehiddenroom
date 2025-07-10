@@ -11,7 +11,7 @@ const NootBookIcon = () => {
   };
 
   return (
-    <div className="relative w-[1920px] h-[1080px] bg-[#1D1C1A] overflow-hidden flex items-center justify-center">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#1D1C1A] relative overflow-hidden">
       {/* Close Button */}
       <button
         className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
