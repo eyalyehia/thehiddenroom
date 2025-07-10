@@ -179,16 +179,16 @@ export const getClickableAreas = (logoId, page = 1) => {
 export const COMPUTER_GAME_CLICKABLE_AREAS = {
   game1: {
     1: [
-      { x: 0.5, y: 0.2, width: 0.25, height: 0.3 }
+      { x: 0.5, y: 0.2, width: 0.25, height: 0.50 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.4 }
+      { x: 0.45, y: 0.50, width: 0.55, height: 0.4 }
     ],
     3: [
-      { x: 0.35, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.38, y: 0.50, width: 0.3, height: 0.60 }
     ],
     4: [
-      { x: 0.45, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.40, y: 0.05, width: 0.35, height: 0.60 }
     ]
   },
   game2: {
