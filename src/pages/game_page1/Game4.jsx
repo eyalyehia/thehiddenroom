@@ -39,202 +39,75 @@ const Game4 = () => {
     '/computer/pictures/page1/game4/regular/04.png'
   ];
 
+  // Image configurations for the grid
+  const imageConfigs = [
+    { path: imagePaths[0], caption: 'APPROXIMATELY 20–30 MINUTES INTO THE GAME', route: '/inside-game4' },
+    { path: imagePaths[1], caption: 'APPROXIMATELY 3–5 HOURS INTO THE GAME', route: '/inside-game4-1' },
+    { path: imagePaths[2], caption: 'UNLOCKED AROUND 6–7 HOURS INTO THE GAME', route: '/inside-game4-2' },
+    { path: imagePaths[3], caption: 'APPROXIMATELY 6–8 HOURS INTO THE GAME', route: '/inside-game4-3' }
+  ];
+
   return (
     <div 
+      className="relative overflow-hidden w-full h-screen" 
       style={{ 
-        position: 'relative',
-        width: '1920px',
-        height: '1080px',
-        background: '#1D1C1A',
-        padding: '154px 186px',
-        boxSizing: 'border-box',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '66px',
-        alignItems: 'start'
+        backgroundColor: '#1D1C1A' 
       }}
     >
       {/* Images Grid with Captions */}
-      <div style={{ position: 'relative', gridColumn: '1 / 3', display: 'contents' }}>
-        {/* Top Left Image */}
-        <div style={{ position: 'relative', marginBottom: '20px' }}>
-          <div 
-            style={{
-              width: '765px',
-              height: '318px',
-              overflow: 'hidden',
-              position: 'relative',
-              border: 'none',
-              boxSizing: 'border-box',
-              marginBottom: '10px',
-              cursor: 'pointer'
-            }}
-            onClick={() => navigate('/inside-game4')}
-          >
-            <img 
-              src={imagePaths[0]}
-              alt="Game 4 screenshot 1"
+      <div style={{ 
+        position: 'relative', 
+        display: 'grid', 
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '1fr 1fr',
+        gap: '20px',
+        padding: '40px',
+        height: '100%',
+        alignItems: 'center',
+        justifyItems: 'center'
+      }}>
+        {/* Images rendered in 2x2 grid */}
+        {imageConfigs.map((config, index) => (
+          <div key={index} style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+            <div 
               style={{
                 width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
-                transition: 'filter 0.5s ease-out',
-                display: 'block'
+                height: '318px',
+                overflow: 'hidden',
+                position: 'relative',
+                                 border: 'none',
+                boxSizing: 'border-box',
+                marginBottom: '10px'
               }}
-            />
+              onClick={() => navigate(config.route)}
+            >
+              <img 
+                src={config.path}
+                alt={`Game 4 screenshot ${index + 1}`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  cursor: 'pointer',
+                  filter: imagesLoaded[config.path] ? 'none' : 'blur(20px)',
+                  transition: 'filter 0.5s ease-out',
+                  display: 'block'
+                }}
+              />
+            </div>
+            <div style={{
+              fontFamily: 'Work Sans',
+              fontStyle: 'normal',
+              fontWeight: 900,
+              fontSize: '20px',
+              lineHeight: '128.04%',
+              color: '#FFFFFF',
+              marginTop: '10px'
+            }}>
+              {config.caption}
+            </div>
           </div>
-          <div style={{
-            position: 'absolute',
-            fontFamily: 'Work Sans',
-            fontStyle: 'normal',
-            fontWeight: 900,
-            fontSize: '20px',
-            lineHeight: '128.04%',
-            color: '#FFFFFF',
-            width: '600px',
-            height: '26px',
-            left: '0',
-            top: '333px'
-          }}>
-            APPROXIMATELY 20–30 MINUTES INTO THE GAME
-          </div>
-        </div>
-
-        {/* Top Right Image */}
-        <div style={{ position: 'relative', marginBottom: '20px', marginLeft: '23px' }}>
-          <div 
-            style={{
-              width: '765px',
-              height: '318px',
-              overflow: 'hidden',
-              position: 'relative',
-              border: 'none',
-              boxSizing: 'border-box',
-              marginBottom: '10px',
-              cursor: 'pointer'
-            }}
-            onClick={() => navigate('/inside-game4-1')}
-          >
-            <img 
-              src={imagePaths[1]}
-              alt="Game 4 screenshot 2"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
-                transition: 'filter 0.5s ease-out',
-                display: 'block'
-              }}
-            />
-          </div>
-          <div style={{
-            position: 'absolute',
-            fontFamily: 'Work Sans',
-            fontStyle: 'normal',
-            fontWeight: 900,
-            fontSize: '20px',
-            lineHeight: '128.04%',
-            color: '#FFFFFF',
-            width: '600px',
-            height: '26px',
-            left: '0',
-            top: '333px'
-          }}>
-            APPROXIMATELY 3–5 HOURS INTO THE GAME
-          </div>
-        </div>
-
-        {/* Bottom Left Image */}
-        <div style={{ position: 'relative' }}>
-          <div 
-            style={{
-              width: '765px',
-              height: '318px',
-              overflow: 'hidden',
-              position: 'relative',
-              border: 'none',
-              boxSizing: 'border-box',
-              marginBottom: '10px',
-              cursor: 'pointer'
-            }}
-            onClick={() => navigate('/inside-game4-2')}
-          >
-            <img 
-              src={imagePaths[2]}
-              alt="Game 4 screenshot 3"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
-                transition: 'filter 0.5s ease-out',
-                display: 'block'
-              }}
-            />
-          </div>
-          <div style={{
-            position: 'absolute',
-            fontFamily: 'Work Sans',
-            fontStyle: 'normal',
-            fontWeight: 900,
-            fontSize: '20px',
-            lineHeight: '128.04%',
-            color: '#FFFFFF',
-            width: '600px',
-            height: '26px',
-            left: '0',
-            top: '333px'
-          }}>
-            UNLOCKED AROUND 6–7 HOURS INTO THE GAME
-          </div>
-        </div>
-
-        {/* Bottom Right Image */}
-        <div style={{ position: 'relative', marginLeft: '23px' }}>
-          <div 
-            style={{
-              width: '765px',
-              height: '318px',
-              overflow: 'hidden',
-              position: 'relative',
-              border: 'none',
-              boxSizing: 'border-box',
-              marginBottom: '10px',
-              cursor: 'pointer'
-            }}
-            onClick={() => navigate('/inside-game4-3')}
-          >
-            <img 
-              src={imagePaths[3]}
-              alt="Game 4 screenshot 4"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
-                transition: 'filter 0.5s ease-out',
-                display: 'block'
-              }}
-            />
-          </div>
-          <div style={{
-            position: 'absolute',
-            fontFamily: 'Work Sans',
-            fontStyle: 'normal',
-            fontWeight: 900,
-            fontSize: '20px',
-            lineHeight: '128.04%',
-            color: '#FFFFFF',
-            width: '600px',
-            height: '26px',
-            left: '0',
-            top: '333px'
-          }}>
-            APPROXIMATELY 6–8 HOURS INTO THE GAME
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* Navigation Arrow */}

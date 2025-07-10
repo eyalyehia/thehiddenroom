@@ -53,185 +53,68 @@ const Game8 = () => {
   }, []);
 
   return (
-    <div style={{
-      position: 'relative',
-      width: '1920px',
-      height: '1080px',
-      backgroundColor: '#1D1C1A',
-      margin: 0,
-      padding: '100px 150px',
-      overflow: 'hidden',
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '40px',
-      boxSizing: 'border-box'
-    }}>
-      {/* Image 1 - Top Left */}
-      <div style={{
-        width: '765px',
-        position: 'relative',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px'
+    <div 
+      className="relative overflow-hidden w-full h-screen" 
+      style={{ 
+        backgroundColor: '#1D1C1A' 
       }}
-      onClick={() => navigate('/inside-game8')}>
-        <div style={{
-          width: '100%',
-          height: '318px',
-          position: 'relative'
-        }}>
-          <img 
-            src={imagePaths[0]} 
-            alt="Game 1" 
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: imagesLoaded[imagePaths[0]] ? 'none' : 'blur(20px)',
-              transition: 'filter 0.5s ease-out',
-            }}
-          />
-        </div>
-        <div style={{
-          fontFamily: 'Work Sans',
-          fontStyle: 'normal',
-          fontWeight: 900,
-          fontSize: '20px',
-          lineHeight: '128.04%',
-          color: '#FFFFFF',
-          textAlign: 'left',
-          paddingLeft: '10px',
-          marginTop: '10px'
-        }}>
-          APPROXIMATELY 20–30 MINUTES INTO THE GAME
-        </div>
-      </div>
+    >
+      {/* Images Grid with Captions */}
+      <div style={{ 
+        position: 'relative', 
+        display: 'grid', 
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '1fr 1fr',
+        gap: '20px',
+        padding: '40px',
+        height: '100%',
+        alignItems: 'center',
+        justifyItems: 'center'
+      }}>
+        {imagePaths.map((imagePath, index) => {
+          const captions = [
+            'APPROXIMATELY 20–30 MINUTES INTO THE GAME',
+            'APPROXIMATELY 3–5 HOURS INTO THE GAME',
+            'UNLOCKED AROUND 6–7 HOURS INTO THE GAME',
+            'APPROXIMATELY 6–8 HOURS INTO THE GAME'
+          ];
+          const routes = ['/inside-game8', '/inside-game8-1', '/inside-game8-2', '/inside-game8-3'];
 
-      {/* Image 2 - Top Right */}
-      <div style={{
-        width: '765px',
-        position: 'relative',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px'
-      }}
-      onClick={() => navigate('/inside-game8-1')}>
-        <div style={{
-          width: '100%',
-          height: '318px',
-          position: 'relative'
-        }}>
-          <img 
-            src={imagePaths[1]} 
-            alt="Game 2" 
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: imagesLoaded[imagePaths[1]] ? 'none' : 'blur(20px)',
-              transition: 'filter 0.5s ease-out',
-            }}
-          />
-        </div>
-        <div style={{
-          fontFamily: 'Work Sans',
-          fontStyle: 'normal',
-          fontWeight: 900,
-          fontSize: '20px',
-          lineHeight: '128.04%',
-          color: '#FFFFFF',
-          textAlign: 'left',
-          paddingLeft: '10px',
-          marginTop: '10px'
-        }}>
-          APPROXIMATELY 3–5 HOURS INTO THE GAME
-        </div>
-      </div>
-
-      {/* Image 3 - Bottom Left */}
-      <div style={{
-        width: '765px',
-        position: 'relative',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px'
-      }}
-      onClick={() => navigate('/inside-game8-2')}>
-        <div style={{
-          width: '100%',
-          height: '318px',
-          position: 'relative'
-        }}>
-          <img 
-            src={imagePaths[2]} 
-            alt="Game 3" 
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: imagesLoaded[imagePaths[2]] ? 'none' : 'blur(20px)',
-              transition: 'filter 0.5s ease-out',
-            }}
-          />
-        </div>
-        <div style={{
-          fontFamily: 'Work Sans',
-          fontStyle: 'normal',
-          fontWeight: 900,
-          fontSize: '20px',
-          lineHeight: '128.04%',
-          color: '#FFFFFF',
-          textAlign: 'left',
-          paddingLeft: '10px',
-          marginTop: '10px'
-        }}>
-          UNLOCKED AROUND 6–7 HOURS INTO THE GAME
-        </div>
-      </div>
-
-      {/* Image 4 - Bottom Right */}
-      <div style={{
-        width: '765px',
-        position: 'relative',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px'
-      }}
-      onClick={() => navigate('/inside-game8-3')}>
-        <div style={{
-          width: '100%',
-          height: '318px',
-          position: 'relative'
-        }}>
-          <img 
-            src={imagePaths[3]} 
-            alt="Game 4" 
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: imagesLoaded[imagePaths[3]] ? 'none' : 'blur(20px)',
-              transition: 'filter 0.5s ease-out',
-            }}
-          />
-        </div>
-        <div style={{
-          fontFamily: 'Work Sans',
-          fontStyle: 'normal',
-          fontWeight: 900,
-          fontSize: '20px',
-          lineHeight: '128.04%',
-          color: '#FFFFFF',
-          textAlign: 'left',
-          paddingLeft: '10px',
-          marginTop: '10px'
-        }}>
-          APPROXIMATELY 6–8 HOURS INTO THE GAME
-        </div>
+          return (
+            <div key={index} style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+              <div style={{
+                width: '100%',
+                height: '318px',
+                position: 'relative',
+                cursor: 'pointer'
+              }}
+              onClick={() => navigate(routes[index])}>
+                <img 
+                  src={imagePath} 
+                  alt={`Game ${index + 1}`} 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: imagesLoaded[imagePath] ? 'none' : 'blur(20px)',
+                    transition: 'filter 0.5s ease-out',
+                  }}
+                />
+              </div>
+              <div style={{
+                fontFamily: 'Work Sans',
+                fontStyle: 'normal',
+                fontWeight: 900,
+                fontSize: '20px',
+                lineHeight: '128.04%',
+                color: '#FFFFFF',
+                marginTop: '10px'
+              }}>
+                {captions[index]}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Navigation Arrow - Top Right */}

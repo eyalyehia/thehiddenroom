@@ -54,26 +54,28 @@ const Game1 = () => {
 
   return (
     <div 
+      className="relative overflow-hidden w-full h-screen" 
       style={{ 
-        position: 'relative',
-        width: '1920px',
-        height: '1080px',
-        background: '#1D1C1A',
-        padding: '154px 186px',
-        boxSizing: 'border-box',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '66px',
-        alignItems: 'start'
+        backgroundColor: '#1D1C1A' 
       }}
     >
       {/* Images Grid with Captions */}
-      <div style={{ position: 'relative', gridColumn: '1 / 3', display: 'contents' }}>
+      <div style={{ 
+        position: 'relative', 
+        display: 'grid', 
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '1fr 1fr',
+        gap: '20px',
+        padding: '40px',
+        height: '100%',
+        alignItems: 'center',
+        justifyItems: 'center'
+      }}>
         {/* Top Left Image */}
-        <div style={{ position: 'relative', marginBottom: '20px' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
           <div 
             style={{
-              width: '765px',
+              width: '100%',
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
@@ -98,27 +100,23 @@ const Game1 = () => {
             />
           </div>
           <div style={{
-            position: 'absolute',
             fontFamily: 'Work Sans',
             fontStyle: 'normal',
             fontWeight: 900,
             fontSize: '20px',
             lineHeight: '128.04%',
             color: '#FFFFFF',
-            width: '461px',
-            height: '26px',
-            left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            marginTop: '10px'
           }}>
             APPROXIMATELY 15 MINUTES INTO THE GAME
           </div>
         </div>
 
         {/* Top Right Image */}
-        <div style={{ position: 'relative', marginBottom: '20px', marginLeft: '23px' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
           <div 
             style={{
-              width: '765px',
+              width: '100%',
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
@@ -143,27 +141,23 @@ const Game1 = () => {
             />
           </div>
           <div style={{
-            position: 'absolute',
             fontFamily: 'Work Sans',
             fontStyle: 'normal',
             fontWeight: 900,
             fontSize: '20px',
             lineHeight: '128.04%',
             color: '#FFFFFF',
-            width: '462px',
-            height: '26px',
-            left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            marginTop: '10px'
           }}>
             APPROXIMATELY 17 MINUTES INTO THE GAME
           </div>
         </div>
 
         {/* Bottom Left Image */}
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
           <div 
             style={{
-              width: '765px',
+              width: '100%',
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
@@ -188,27 +182,23 @@ const Game1 = () => {
             />
           </div>
           <div style={{
-            position: 'absolute',
             fontFamily: 'Work Sans',
             fontStyle: 'normal',
             fontWeight: 900,
             fontSize: '20px',
             lineHeight: '128.04%',
             color: '#FFFFFF',
-            width: '603px',
-            height: '26px',
-            left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            marginTop: '10px'
           }}>
             APPROXIMATELY 2 HOURS AND 41 MINUTES INTO THE GAME
           </div>
         </div>
 
         {/* Bottom Right Image */}
-        <div style={{ position: 'relative', marginLeft: '23px' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
           <div 
             style={{
-              width: '765px',
+              width: '100%',
               height: '318px',
               overflow: 'hidden',
               position: 'relative',
@@ -233,17 +223,13 @@ const Game1 = () => {
             />
           </div>
           <div style={{
-            position: 'absolute',
             fontFamily: 'Work Sans',
             fontStyle: 'normal',
             fontWeight: 900,
             fontSize: '20px',
             lineHeight: '128.04%',
             color: '#FFFFFF',
-            width: '586px',
-            height: '26px',
-            left: '0',
-            top: '333px' // 318px (image height) + 15px gap
+            marginTop: '10px'
           }}>
             APPROXIMATELY 1 HOUR AND 13 MINUTES INTO THE GAME
           </div>

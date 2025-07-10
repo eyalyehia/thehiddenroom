@@ -5,10 +5,6 @@ const Computer = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
-  const [isHoveringFirstImage, setIsHoveringFirstImage] = useState(false);
-  const [isHoveringSecondImage, setIsHoveringSecondImage] = useState(false);
-  const [isHoveringThirdImage, setIsHoveringThirdImage] = useState(false);
-  const [isHoveringFourthImage, setIsHoveringFourthImage] = useState(false);
   
   const navigate = useNavigate();
 
@@ -24,29 +20,24 @@ const Computer = () => {
     navigate('/computer2');
   };
 
-  const handleGame1Click = () => {
-    navigate('/game1');
-  };
+  const imageConfigs = [
+    { path: '/computer/pictures/page1/main/1.png', alt: 'Game 1', route: '/game1' },
+    { path: '/computer/pictures/page1/main/2.png', alt: 'Game 2', route: '/game2' },
+    { path: '/computer/pictures/page1/main/3.png', alt: 'Game 3', route: '/game3' },
+    { path: '/computer/pictures/page1/main/4.png', alt: 'Game 4', route: '/game4' },
+  ];
 
-  const handleGame2Click = () => {
-    navigate('/game2');
-  };
+  const [imagesLoaded, setImagesLoaded] = useState({});
 
-  const handleGame3Click = () => {
-    navigate('/game3');
-  };
-
-  const handleGame4Click = () => {
-    navigate('/game4');
+  const handleImageLoad = (path) => {
+    setImagesLoaded(prev => ({ ...prev, [path]: true }));
   };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
       <div 
-        className="relative overflow-hidden" 
+        className="relative overflow-hidden w-full h-screen" 
         style={{ 
-          width: '1920px', 
-          height: '1080px', 
           backgroundColor: '#1D1C1A' 
         }}
       >
@@ -132,7 +123,7 @@ const Computer = () => {
           )}
         </button>
 
-        {/* Game Images Grid */}
+        {/* Images Grid with Captions */}
         <div 
           style={{
             position: 'absolute',
@@ -140,152 +131,164 @@ const Computer = () => {
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'flex-start',
+            justifyContent: 'center',
             alignItems: 'center',
-            padding: '25px'
+            padding: '40px'
           }}
         >
-          {/* Row 1 */}
+          {/* Container for 2x2 grid */}
           <div style={{
             display: 'flex',
+            flexDirection: 'column',
             gap: '0',
-            margin: '0',
-            padding: '0',
-            lineHeight: '0',
-            fontSize: '0'
+            maxWidth: '1280px',
+            maxHeight: '640px',
+            width: '100%',
+            height: 'auto',
+            aspectRatio: '2/1'
           }}>
-            {/* Image 1 - Top Left */}
-            <div 
-              style={{
-                width: '640px',
-                height: '320px',
-                cursor: 'pointer',
-                overflow: 'hidden',
-                transform: isHoveringFirstImage ? 'scale(1.02)' : 'scale(1)',
-                transition: 'transform 0.3s ease',
-                zIndex: isHoveringFirstImage ? 10 : 1,
-                margin: '0',
-                padding: '0',
-                lineHeight: '0',
-                fontSize: '0',
-                flexShrink: 0
-              }}
-              onMouseEnter={() => setIsHoveringFirstImage(true)}
-              onMouseLeave={() => setIsHoveringFirstImage(false)}
-              onClick={handleGame1Click}
-            >
-              <img 
-                src="/computer/pictures/page1/main/1.png" 
-                alt="Game 1"
+            {/* Row 1 */}
+            <div style={{
+              display: 'flex',
+              gap: '0',
+              margin: '0',
+              padding: '0',
+              lineHeight: '0',
+              fontSize: '0',
+              width: '100%',
+              height: '50%'
+            }}>
+              {/* Image 1 - Top Left */}
+              <div 
                 style={{
-                  width: '100%',
+                  width: '50%',
                   height: '100%',
-                  objectFit: 'cover'
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  margin: '0',
+                  padding: '0',
+                  lineHeight: '0',
+                  fontSize: '0',
+                  flexShrink: 0
                 }}
-              />
-            </div>
+                onClick={() => navigate(imageConfigs[0].route)}
+              >
+                <img 
+                  src={imageConfigs[0].path}
+                  alt={imageConfigs[0].alt}
+                  onLoad={() => handleImageLoad(imageConfigs[0].path)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: imagesLoaded[imageConfigs[0].path] ? 'none' : 'blur(20px)',
+                    transition: 'filter 0.5s ease-out',
+                    display: 'block'
+                  }}
+                />
+              </div>
 
-            {/* Image 2 - Top Right */}
-            <div 
-              style={{
-                width: '640px',
-                height: '320px',
-                cursor: 'pointer',
-                overflow: 'hidden',
-                transform: isHoveringSecondImage ? 'scale(1.02)' : 'scale(1)',
-                transition: 'transform 0.3s ease',
-                zIndex: isHoveringSecondImage ? 10 : 1,
-                margin: '0',
-                padding: '0',
-                lineHeight: '0',
-                fontSize: '0',
-                flexShrink: 0
-              }}
-              onMouseEnter={() => setIsHoveringSecondImage(true)}
-              onMouseLeave={() => setIsHoveringSecondImage(false)}
-              onClick={handleGame2Click}
-            >
-              <img 
-                src="/computer/pictures/page1/main/2.png" 
-                alt="Game 2"
+              {/* Image 2 - Top Right */}
+              <div 
                 style={{
-                  width: '100%',
+                  width: '50%',
                   height: '100%',
-                  objectFit: 'cover'
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  margin: '0',
+                  padding: '0',
+                  lineHeight: '0',
+                  fontSize: '0',
+                  flexShrink: 0
                 }}
-              />
+                onClick={() => navigate(imageConfigs[1].route)}
+              >
+                <img 
+                  src={imageConfigs[1].path}
+                  alt={imageConfigs[1].alt}
+                  onLoad={() => handleImageLoad(imageConfigs[1].path)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: imagesLoaded[imageConfigs[1].path] ? 'none' : 'blur(20px)',
+                    transition: 'filter 0.5s ease-out',
+                    display: 'block'
+                  }}
+                />
+              </div>
             </div>
-          </div>
-          
-          {/* Row 2 */}
-          <div style={{
-            display: 'flex',
-            gap: '0',
-            margin: '0',
-            padding: '0',
-            lineHeight: '0',
-            fontSize: '0'
-          }}>
-            {/* Image 3 - Bottom Left */}
-            <div 
-              style={{
-                width: '640px',
-                height: '320px',
-                cursor: 'pointer',
-                overflow: 'hidden',
-                transform: isHoveringThirdImage ? 'scale(1.02)' : 'scale(1)',
-                transition: 'transform 0.3s ease',
-                zIndex: isHoveringThirdImage ? 10 : 1,
-                margin: '0',
-                padding: '0',
-                lineHeight: '0',
-                fontSize: '0',
-                flexShrink: 0
-              }}
-              onMouseEnter={() => setIsHoveringThirdImage(true)}
-              onMouseLeave={() => setIsHoveringThirdImage(false)}
-              onClick={handleGame3Click}
-            >
-              <img 
-                src="/computer/pictures/page1/main/3.png" 
-                alt="Game 3"
+            
+            {/* Row 2 */}
+            <div style={{
+              display: 'flex',
+              gap: '0',
+              margin: '0',
+              padding: '0',
+              lineHeight: '0',
+              fontSize: '0',
+              width: '100%',
+              height: '50%'
+            }}>
+              {/* Image 3 - Bottom Left */}
+              <div 
                 style={{
-                  width: '100%',
+                  width: '50%',
                   height: '100%',
-                  objectFit: 'cover'
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  margin: '0',
+                  padding: '0',
+                  lineHeight: '0',
+                  fontSize: '0',
+                  flexShrink: 0
                 }}
-              />
-            </div>
+                onClick={() => navigate(imageConfigs[2].route)}
+              >
+                <img 
+                  src={imageConfigs[2].path}
+                  alt={imageConfigs[2].alt}
+                  onLoad={() => handleImageLoad(imageConfigs[2].path)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: imagesLoaded[imageConfigs[2].path] ? 'none' : 'blur(20px)',
+                    transition: 'filter 0.5s ease-out',
+                    display: 'block'
+                  }}
+                />
+              </div>
 
-            {/* Image 4 - Bottom Right */}
-            <div 
-              style={{
-                width: '640px',
-                height: '320px',
-                cursor: 'pointer',
-                overflow: 'hidden',
-                transform: isHoveringFourthImage ? 'scale(1.02)' : 'scale(1)',
-                transition: 'transform 0.3s ease',
-                zIndex: isHoveringFourthImage ? 10 : 1,
-                margin: '0',
-                padding: '0',
-                lineHeight: '0',
-                fontSize: '0',
-                flexShrink: 0
-              }}
-              onMouseEnter={() => setIsHoveringFourthImage(true)}
-              onMouseLeave={() => setIsHoveringFourthImage(false)}
-              onClick={handleGame4Click}
-            >
-              <img 
-                src="/computer/pictures/page1/main/4.png" 
-                alt="Game 4"
+              {/* Image 4 - Bottom Right */}
+              <div 
                 style={{
-                  width: '100%',
+                  width: '50%',
                   height: '100%',
-                  objectFit: 'cover'
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  margin: '0',
+                  padding: '0',
+                  lineHeight: '0',
+                  fontSize: '0',
+                  flexShrink: 0
                 }}
-              />
+                onClick={() => navigate(imageConfigs[3].route)}
+              >
+                <img 
+                  src={imageConfigs[3].path}
+                  alt={imageConfigs[3].alt}
+                  onLoad={() => handleImageLoad(imageConfigs[3].path)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: imagesLoaded[imageConfigs[3].path] ? 'none' : 'blur(20px)',
+                    transition: 'filter 0.5s ease-out',
+                    display: 'block'
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -59,9 +59,9 @@ const InsideGame2 = () => {
 
   // קונפיגורציה לתמונה מוגדלת
   const zoomConfig = useMemo(() => ({
-    zoomSize: 'w-[450px]', 
-    zoomHeight: 'h-[310px]', 
-    zoomOffset: { x: 120, y: -150 }
+    zoomSize: 'w-[700px]', 
+    zoomHeight: 'h-[400px]', 
+    zoomOffset: { x: -770, y: -150 }
   }), []);
 
   // קונפיגורציה למודאל
@@ -129,7 +129,7 @@ const InsideGame2 = () => {
   };
 
   return (
-    <div className="relative w-[1920px] h-[1080px] bg-white overflow-hidden">
+    <div className="relative w-full h-screen bg-white overflow-hidden">
       {/* כפתור להצגת אזורים לחיצים */}
       <button
         className="absolute top-5 left-5 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
