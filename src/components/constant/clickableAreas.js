@@ -193,44 +193,44 @@ export const COMPUTER_GAME_CLICKABLE_AREAS = {
   },
   game2: {
     1: [
-      { x: 0.4, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.15, y: 0.20, width: 0.45, height: 0.55 }
     ],
     2: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.35, y: 0.05, width: 0.35, height: 0.55 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.29, y: 0.30, width: 0.45, height: 0.65 }
     ],
     4: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.3, y: 0.3, width: 0.36, height: 0.6 }
     ]
   },
   game3: {
     1: [
-      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+      { x: 0.38, y: 0.1, width: 0.35, height: 0.55 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.25, y: 0.05, width: 0.4, height: 0.60 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.38, y: 0.6, width: 0.3, height: 0.4 }
     ],
     4: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.1, y: 0.22, width: 0.35, height: 0.35 }
     ]
   },
   game4: {
     1: [
-      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+      { x: 0.45, y: 0.42, width: 0.25, height: 0.4 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.4, y: 0.15, width: 0.20, height: 0.65 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.05, y: 0.02, width: 0.15, height: 0.65 }
     ],
     4: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.50, y: 0.35, width: 0.35, height: 0.65 }
     ]
   },
   game5: {
