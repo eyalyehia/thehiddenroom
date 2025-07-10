@@ -138,7 +138,7 @@ const Poster2 = () => {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
         zoomSize: "w-32",
         zoomHeight: "h-20",
-        zoomOffset: { x: -160, y: 35 }
+        zoomOffset: { x: -160, y:20 }
       }
     };
 
@@ -488,7 +488,7 @@ const Poster2 = () => {
             <img
               src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
               alt={`Poster ${selectedPoster}`}
-              className="w-full h-auto object-cover max-h-[70vh] border border-white shadow-2xl"
+              className="w-full h-auto object-cover max-h-[70vh] shadow-2xl"
             />
             {selectedPoster === 9 && (
               <div 

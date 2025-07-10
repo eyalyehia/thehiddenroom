@@ -174,7 +174,7 @@ export const isPointInClickableArea = (logoId, x, y, imageWidth, imageHeight, pa
 
 export const getClickableAreas = (logoId, page = 1) => {
   return page === 2 ? (LOGO_CLICKABLE_AREAS_PAGE2[logoId] || []) : (LOGO_CLICKABLE_AREAS_PAGE1[logoId] || []);
-};
+}; 
 
 export const COMPUTER_GAME_CLICKABLE_AREAS = {
   game1: {

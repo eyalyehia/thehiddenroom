@@ -229,7 +229,7 @@ const InsideGame1 = () => {
             <MemoizedImage
               src="/computer/pictures/page1/game1/zoomIn/01.png"
               alt="Full screen Easter egg"
-              className={`w-full h-auto object-cover ${modalConfig.maxHeight} border border-white shadow-2xl`}
+              className={`w-full h-auto object-cover ${modalConfig.maxHeight} shadow-2xl`}
               style={{ 
                 imageRendering: 'crisp-edges',
                 animation: 'scaleIn 0.3s ease-in-out'
@@ -273,12 +273,12 @@ const InsideGame1 = () => {
         onMouseLeave={() => setIsHoveringArrowButton(false)}
       >
         {isHoveringArrowButton ? (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         ) : (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         )}
       </button>

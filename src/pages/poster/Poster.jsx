@@ -63,7 +63,7 @@ const Poster = () => {
         hotspot: { left: 50, top: 30, width: 20, height: 15 },
         zoomSize: "w-27",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -119, y: 10 }
+        zoomOffset: { x: -115, y: 0 }
       },
       3: {
         hotspot: { left: 35, top: 20, width: 30, height: 15 },
@@ -456,7 +456,7 @@ const Poster = () => {
             <img
               src={`/poster/pictures/zoomIn/${selectedPoster.toString().padStart(2, '0')}.png`}
               alt={`Poster ${selectedPoster}`}
-              className={`w-full h-auto object-cover ${selectedPoster === 6 ? 'max-h-[20vh]' : selectedPoster === 8 ? 'max-h-[10vh] max-w-[470px]' : 'max-h-[70vh]'} border border-white shadow-2xl`}
+              className={`w-full h-auto object-cover ${selectedPoster === 6 ? 'max-h-[20vh]' : selectedPoster === 8 ? 'max-h-[10vh] max-w-[470px]' : 'max-h-[70vh]'} shadow-2xl`}
               style={selectedPoster === 8 ? { marginLeft: '84px' } : {}}
             />
             {selectedPoster === 1 && (

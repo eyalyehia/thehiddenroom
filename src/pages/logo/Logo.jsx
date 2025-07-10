@@ -465,7 +465,7 @@ const Logo = () => {
             <MemoizedImage
               src={`/logo/pictures/zoomIn2/${selectedLogo.toString().padStart(2, '0')}.png`}
               alt={`Logo ${selectedLogo}`}
-              className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
+              className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} shadow-2xl`}
               style={{ 
                 marginTop: getLogoModalConfig(selectedLogo).marginTop,
                 marginLeft: getLogoModalConfig(selectedLogo).marginLeft,

@@ -5,7 +5,7 @@ import getBase64 from '../../components/common/getBase64';
 const Game1 = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreviews, setImagePreviews] = useState({});
+  const [_imagePreviews, setImagePreviews] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState({});
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const Game1 = () => {
     navigate('/computer');
   };
 
-  const handleImageClick = (index) => {
+  const _handleImageClick = (index) => {
     setSelectedImage(selectedImage === index ? null : index);
   };
 
@@ -254,8 +254,8 @@ const Game1 = () => {
       <button
         style={{
           position: 'absolute',
-          width: '33px',
-          height: '49px',
+          width: '29px',
+          height: '45px',
           right: '30px',
           top: '30px',
           background: 'none',
@@ -269,12 +269,12 @@ const Game1 = () => {
         onMouseLeave={() => setIsHoveringArrowButton(false)}
       >
         {isHoveringArrowButton ? (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         ) : (
-          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
           </svg>
         )}
       </button>

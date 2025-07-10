@@ -168,7 +168,7 @@ const Logo2 = () => {
   // Memoized zoom configurations for better performance (same as page 1 for consistency)
   const logoZoomConfigs = useMemo(() => ({
       1: { zoomSize: 'w-25', zoomHeight: 'h-21', zoomOffset: { x: -80, y:-50 } },
-      2: { zoomSize: 'w-5', zoomHeight: 'h-28', zoomOffset: { x: 38, y:-40 } },
+      2: { zoomSize: 'w-9', zoomHeight: 'h-32', zoomOffset: { x: 35, y:-46 } },
       3: { zoomSize: 'w-53', zoomHeight: 'h-15', zoomOffset: { x: -98, y: -50 } },
       4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 20, y: -40 } },
       5: { zoomSize: 'w-12', zoomHeight: 'h-10', zoomOffset: { x: -68, y: -19 } },
@@ -440,7 +440,7 @@ const Logo2 = () => {
             <MemoizedImage
               src={`/logo/pictures/page2zoomIn/${selectedLogo.toString().padStart(2, '0')}.png`}
               alt={`Logo ${selectedLogo}`}
-              className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} border border-white shadow-2xl`}
+              className={`w-full h-auto object-cover ${getLogoModalConfig(selectedLogo).maxHeight} shadow-2xl`}
               style={{ 
                 marginTop: getLogoModalConfig(selectedLogo).marginTop,
                 marginLeft: getLogoModalConfig(selectedLogo).marginLeft,

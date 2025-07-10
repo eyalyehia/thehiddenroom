@@ -106,6 +106,13 @@ export const handleClick = (e) => {
       return;
     }
 
+    if (name === "TV" || obj.name === "TV_1" || obj.name === "TV_2" || 
+        obj.name === "Plane002_1" || obj.name.toLowerCase().includes("tv") ||
+        obj.name.toLowerCase().includes("television")) {
+      window.location.href = '/tv';
+      return;
+    }
+
     if (name === "ComputerScreen" || obj.name.toLowerCase().includes("computer") || 
         obj.name.toLowerCase().includes("monitor") || obj.name.toLowerCase().includes("screen")) {
       window.location.href = '/computer';
