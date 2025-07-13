@@ -102,7 +102,12 @@ const Game4 = () => {
               fontSize: '20px',
               lineHeight: '128.04%',
               color: '#FFFFFF',
-              marginTop: '10px'
+              marginTop: '10px',
+              maxHeight: '40px',
+              overflow: 'hidden',
+              display: '-webkit-box',
+              WebkitLineClamp: '2',
+              WebkitBoxOrient: 'vertical'
             }}>
               {config.caption}
             </div>

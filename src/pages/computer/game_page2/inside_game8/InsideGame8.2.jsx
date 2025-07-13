@@ -204,27 +204,34 @@ const InsideGame8_2 = () => {
               }}
             />
             <div
+              className="absolute text-white"
               style={{
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left',
-                marginTop: '20px'
+                position: 'absolute',
+                width: '907px',
+                left: '0',
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
+              <div className="text-left">
               <div style={{ 
+                  fontWeight: 900,
                 fontSize: '20px',
-                fontWeight: '900',
                 lineHeight: '128.04%',
-                marginBottom: '10px'
-              }}>
-                APPROXIMATELY 5–6 HOURS INTO THE GAME
-              </div>
+                  marginBottom: '0'
+                }}>APPROXIMATELY 5–6 HOURS INTO THE GAME</div>
               <div style={{
-                fontSize: '16px',
-                fontWeight: 'normal',
-                lineHeight: '1.4'
-              }}>
-                During Chapter 11, you encounter a series of pirate portraits. One of them, labeled "Guy Wood," is a tribute to Guybrush Threepwood from the video game Monkey Island.
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>During Chapter 11, you encounter a series of pirate portraits. One of them, labeled "Guy Wood," is a tribute to Guybrush Threepwood from the video game Monkey Island.</div>
               </div>
             </div>
           </div>

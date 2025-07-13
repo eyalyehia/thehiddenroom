@@ -204,27 +204,34 @@ const InsideGame62 = () => {
               }}
             />
             <div
+              className="absolute text-white"
               style={{
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left',
-                marginTop: '20px'
+                position: 'absolute',
+                width: '907px',
+                left: '0',
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
+              <div className="text-left">
               <div style={{ 
+                  fontWeight: 900,
                 fontSize: '20px',
-                fontWeight: '900',
                 lineHeight: '128.04%',
-                marginBottom: '10px'
-              }}>
-                APPROXIMATELY 4 HOURS INTO THE GAME
-              </div>
+                  marginBottom: '0'
+                }}>APPROXIMATELY 4 HOURS INTO THE GAME</div>
               <div style={{
-                fontSize: '16px',
-                fontWeight: 'normal',
-                lineHeight: '1.4'
-              }}>
-                A small graffiti appears on a train car, featuring the Ukrainian flag, a red heart, and the logo of Guerrilla Games, the studio behind the game.
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A small graffiti appears on a train car, featuring the Ukrainian flag, a red heart, and the logo of Guerrilla Games, the studio behind the game.</div>
               </div>
             </div>
           </div>

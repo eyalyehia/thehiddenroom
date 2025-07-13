@@ -197,34 +197,35 @@ const InsideGame2_2 = () => {
             />
             
             <div 
+              className="absolute text-white"
               style={{
                 position: 'absolute',
+                width: '645px',
                 left: '0',
-                bottom: '-92px',
-                width: '649px',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div 
-                style={{
-                  fontSize: '20px',
+              <div className="text-left">
+                <div style={{
                   fontWeight: 900,
+                  fontSize: '20px',
                   lineHeight: '128.04%',
-                  marginBottom: '4px'
-                }}
-              >
-                APPROXIMATELY 20 MINUTES INTO THE GAME
-              </div>
-              <div 
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '128.04%',
-                  opacity: 0.7
-                }}
-              >
-                The green mask references "Undead Nightmare", an expansion to the first game where removing it from a tomb triggered a zombie outbreak.
+                  marginBottom: '0'
+                }}>APPROXIMATELY 3 HOURS INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  height: '40px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A collection of space-themed posters in Ellie's room
+hints at her dream of becoming an astronaut.</div>
               </div>
             </div>
           </div>

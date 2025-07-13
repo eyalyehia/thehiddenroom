@@ -234,146 +234,146 @@ const Computer2 = () => {
             aspectRatio: '2/1'
           }}>
             {/* Row 1 */}
-            <div style={{
-              display: 'flex',
-              gap: '0',
-              margin: '0',
-              padding: '0',
-              lineHeight: '0',
+          <div style={{
+            display: 'flex',
+            gap: '0',
+            margin: '0',
+            padding: '0',
+            lineHeight: '0',
               fontSize: '0',
               width: '100%',
               height: '50%'
-            }}>
-              {/* Image 1 - Top Left */}
-              <div 
-                style={{
+          }}>
+            {/* Image 1 - Top Left */}
+            <div 
+              style={{
                   width: '50%',
                   height: '100%',
-                  cursor: 'pointer',
-                  overflow: 'hidden',
-                  margin: '0',
-                  padding: '0',
-                  lineHeight: '0',
-                  fontSize: '0',
-                  flexShrink: 0
-                }}
+                cursor: 'pointer',
+                overflow: 'hidden',
+                margin: '0',
+                padding: '0',
+                lineHeight: '0',
+                fontSize: '0',
+                flexShrink: 0
+              }}
                 onClick={() => navigate(imageConfigs[0].route)}
-              >
-                <img 
+            >
+              <img 
                   src={imageConfigs[0].path}
                   alt={imageConfigs[0].alt}
                   onLoad={() => handleImageLoad(imageConfigs[0].path)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
+                style={{
+                  width: '100%',
+                  height: '100%',
                     objectFit: 'cover',
                     filter: imagesLoaded[imageConfigs[0].path] ? 'none' : 'blur(20px)',
                     transition: 'filter 0.5s ease-out',
                     display: 'block'
-                  }}
-                />
-              </div>
+                }}
+              />
+            </div>
 
-              {/* Image 2 - Top Right */}
-              <div 
-                style={{
+            {/* Image 2 - Top Right */}
+            <div 
+              style={{
                   width: '50%',
                   height: '100%',
-                  cursor: 'pointer',
-                  overflow: 'hidden',
-                  margin: '0',
-                  padding: '0',
-                  lineHeight: '0',
-                  fontSize: '0',
-                  flexShrink: 0
-                }}
+                cursor: 'pointer',
+                overflow: 'hidden',
+                margin: '0',
+                padding: '0',
+                lineHeight: '0',
+                fontSize: '0',
+                flexShrink: 0
+              }}
                 onClick={() => navigate(imageConfigs[1].route)}
-              >
-                <img 
+            >
+              <img 
                   src={imageConfigs[1].path}
                   alt={imageConfigs[1].alt}
                   onLoad={() => handleImageLoad(imageConfigs[1].path)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
+                style={{
+                  width: '100%',
+                  height: '100%',
                     objectFit: 'cover',
                     filter: imagesLoaded[imageConfigs[1].path] ? 'none' : 'blur(20px)',
                     transition: 'filter 0.5s ease-out',
                     display: 'block'
-                  }}
-                />
-              </div>
+                }}
+              />
             </div>
-            
-            {/* Row 2 */}
-            <div style={{
-              display: 'flex',
-              gap: '0',
-              margin: '0',
-              padding: '0',
-              lineHeight: '0',
+          </div>
+          
+          {/* Row 2 */}
+          <div style={{
+            display: 'flex',
+            gap: '0',
+            margin: '0',
+            padding: '0',
+            lineHeight: '0',
               fontSize: '0',
               width: '100%',
               height: '50%'
-            }}>
-              {/* Image 3 - Bottom Left */}
-              <div 
-                style={{
+          }}>
+            {/* Image 3 - Bottom Left */}
+            <div 
+              style={{
                   width: '50%',
                   height: '100%',
-                  cursor: 'pointer',
-                  overflow: 'hidden',
-                  margin: '0',
-                  padding: '0',
-                  lineHeight: '0',
-                  fontSize: '0',
-                  flexShrink: 0
-                }}
+                cursor: 'pointer',
+                overflow: 'hidden',
+                margin: '0',
+                padding: '0',
+                lineHeight: '0',
+                fontSize: '0',
+                flexShrink: 0
+              }}
                 onClick={() => navigate(imageConfigs[2].route)}
-              >
-                <img 
+            >
+              <img 
                   src={imageConfigs[2].path}
                   alt={imageConfigs[2].alt}
                   onLoad={() => handleImageLoad(imageConfigs[2].path)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
+                style={{
+                  width: '100%',
+                  height: '100%',
                     objectFit: 'cover',
                     filter: imagesLoaded[imageConfigs[2].path] ? 'none' : 'blur(20px)',
                     transition: 'filter 0.5s ease-out',
                     display: 'block'
-                  }}
-                />
-              </div>
+                }}
+              />
+            </div>
 
-              {/* Image 4 - Bottom Right */}
-              <div 
-                style={{
+            {/* Image 4 - Bottom Right */}
+            <div 
+              style={{
                   width: '50%',
                   height: '100%',
-                  cursor: 'pointer',
-                  overflow: 'hidden',
-                  margin: '0',
-                  padding: '0',
-                  lineHeight: '0',
-                  fontSize: '0',
-                  flexShrink: 0
-                }}
+                cursor: 'pointer',
+                overflow: 'hidden',
+                margin: '0',
+                padding: '0',
+                lineHeight: '0',
+                fontSize: '0',
+                flexShrink: 0
+              }}
                 onClick={() => navigate(imageConfigs[3].route)}
-              >
-                <img 
+            >
+              <img 
                   src={imageConfigs[3].path}
                   alt={imageConfigs[3].alt}
                   onLoad={() => handleImageLoad(imageConfigs[3].path)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
+                style={{
+                  width: '100%',
+                  height: '100%',
                     objectFit: 'cover',
                     filter: imagesLoaded[imageConfigs[3].path] ? 'none' : 'blur(20px)',
                     transition: 'filter 0.5s ease-out',
                     display: 'block'
-                  }}
-                />
+                }}
+              />
               </div>
             </div>
           </div>

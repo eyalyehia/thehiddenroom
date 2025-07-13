@@ -197,34 +197,34 @@ const InsideGame4_3 = () => {
             />
             
             <div 
+              className="absolute text-white"
               style={{
                 position: 'absolute',
+                width: '907px',
                 left: '0',
-                bottom: '-92px',
-                width: '649px',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div 
-                style={{
-                  fontSize: '20px',
+              <div className="text-left">
+                <div style={{
                   fontWeight: 900,
+                  fontSize: '20px',
                   lineHeight: '128.04%',
-                  marginBottom: '4px'
-                }}
-              >
-                APPROXIMATELY 6–8 HOURS INTO THE GAME
-              </div>
-              <div 
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '128.04%',
-                  opacity: 0.7
-                }}
-              >
-                A dwarf character is based on composer Bear McCreary, who also provides his voice and composed the game's music.
+                  marginBottom: '0'
+                }}>APPROXIMATELY 6–8 HOURS INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A dwarf character is based on composer Bear McCreary, who also provides his voice and composed the game's music.</div>
               </div>
             </div>
           </div>

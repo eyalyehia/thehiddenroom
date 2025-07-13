@@ -197,34 +197,35 @@ const InsideGame3_2 = () => {
             />
             
             <div 
+              className="absolute text-white"
               style={{
                 position: 'absolute',
+                width: '645px',
                 left: '0',
-                bottom: '-92px',
-                width: '649px',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div 
-                style={{
-                  fontSize: '20px',
+              <div className="text-left">
+                <div style={{
                   fontWeight: 900,
+                  fontSize: '20px',
                   lineHeight: '128.04%',
-                  marginBottom: '4px'
-                }}
-              >
-                CAN BE FOUND EARLY IN THE GAME DURING FREE RIDE NEAR THE BRIDGE
-              </div>
-              <div 
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '128.04%',
-                  opacity: 0.7
-                }}
-              >
-                While exploring the city, you'll find a man jumping off a bridge, leaving a note: "When life gives you lemons, you make lemonade. life gave me Syphilis."
+                  marginBottom: '0'
+                }}>APPROXIMATELY 3 HOURS AND 45 MINUTES INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  height: '40px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A broken watch in Joel's drawer is the same one Sarah gave him,
+which he still wears despite it being broken.</div>
               </div>
             </div>
           </div>

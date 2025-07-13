@@ -203,23 +203,31 @@ const InsideGame1_2 = () => {
               style={{
                 position: 'absolute',
                 width: '645px',
-                height: '92px',
                 left: '0',
-                bottom: '-110px',
-                fontFamily: 'Work Sans',
-                fontStyle: 'normal',
-                fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
-                color: '#FFFFFF',
-                animation: 'fadeIn 0.5s ease-in-out'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
               <div className="text-left">
-                <div className="font-bold text-xl mb-1">APPROXIMATELY 17 MINUTES INTO THE GAME</div>
-                <div className="font-normal text-base opacity-70 text-gray-300">
-                  Old Naughty Dog games, like Uncharted and Jak and Daxter, appear near the PlayStation 3 by the TV.
-                </div>
+                <div style={{
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
+                }}>APPROXIMATELY 17 MINUTES INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  height: '40px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>Old Naughty Dog games, like Uncharted and Jak and Daxter,
+appear near the PlayStation 3 by the TV.</div>
               </div>
             </div>
           </div>

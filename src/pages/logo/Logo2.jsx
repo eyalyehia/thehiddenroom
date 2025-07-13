@@ -452,22 +452,44 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '572px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-105px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">ROXY</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Two Quiksilver logos are mirrored to form a heart,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">highlighting Roxy's identity as Quiksilver's women's brand.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>ROXY</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    // מרחק בין התמונה לכותרת 
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>Two Quiksilver logos are mirrored to form a heart,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>highlighting Roxy's identity as Quiksilver's women's brand.</div>
                 </div>
               </div>
             )}
@@ -477,22 +499,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">APPLE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The bitten apple references the Tree of Knowledge,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a symbol of curiosity and the pursuit of wisdom.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>APPLE</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The bitten apple references the Tree of Knowledge, </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>a symbol of curiosity and the pursuit of wisdom.</div>
                 </div>
               </div>
             )}
@@ -502,22 +545,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '632px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">CISCO</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The vertical bars are designed to resemble the Golden Gate Bridge,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a symbol of San Francisco, where Cisco was founded.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>CISCO</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The vertical bars are designed to resemble the Golden Gate </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Bridge, a symbol of San Francisco, where Cisco was founded.</div>
                 </div>
               </div>
             )}
@@ -527,22 +591,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '529px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">LAFAYETTE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The two t's in "Lafayette" form the shape of the Eiffel Tower,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a subtle nod to the brand's Parisian roots.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>LAFAYETTE</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The two t's in "Lafayette" form the shape of the Eiffel </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Tower, a subtle nod to the brand's Parisian roots.</div>
                 </div>
               </div>
             )}
@@ -552,21 +637,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">EL AL</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "ל" is shaped like an ascending airplane.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>EL AL</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The letter “ל” is shaped like an ascending airplane.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}></div> */}
                 </div>
               </div>
             )}
@@ -576,22 +683,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '572px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">AUDI</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The four rings represent the 1932 merger of Audi, DKW,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Horch, and Wanderer, the foundation of Audi's legacy.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>AUDI</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The four rings represent the 1932 merger of Audi, DKW, </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Horch, and Wanderer, the foundation of Audi's legacy.</div>
                 </div>
               </div>
             )}
@@ -601,22 +729,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '582px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">AMAZON</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The arrow from A to Z suggests the brand sells everything,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">and forms a smile to convey customer satisfaction.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>AMAZON</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The arrow from A to Z suggests the brand sells everything, </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>and forms a smile to convey customer satisfaction.</div>
                 </div>
               </div>
             )}
@@ -626,22 +775,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '440px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">NBC</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The feathers form a peacock, with its body and beak</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">visible in the negative space.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>NBC</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The feathers form a peacock, with its body </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>and beak visible in the negative space.</div>
                 </div>
               </div>
             )}
@@ -651,22 +821,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">MUL-T-LOCK</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The keyhead forms a strong male figure, a symbol</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">of power and security.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>MUL-T-LOCK</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The keyhead forms a strong male </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>figure, a symbol of power and security.</div>
                 </div>
               </div>
             )}
@@ -676,22 +867,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '535px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">VAIO</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The "VA" forms an analog wave, while "IO" represents</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">binary code, blending analog and digital in one logo.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>VAIO</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The "VA" forms an analog wave, while "IO" represents </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>binary code, blending analog and digital in one logo.</div>
                 </div>
               </div>
             )}
@@ -701,22 +913,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">UNILEVER</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The large "U" is built from dozens of icons,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">each symbolizing one of the brand's product categories.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>UNILEVER</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The large "U" is built from dozens of icons, each </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>symbolizing one of the brand's product categories.</div>
                 </div>
               </div>
             )}
@@ -726,21 +959,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOYOTA</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The ovals spell out every letter in "Toyota".</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>TOYOTA</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The ovals spell out every letter in “Toyota”.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>"Toyota".</div> */}
                 </div>
               </div>
             )}
@@ -750,21 +1005,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '550px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">RAY-BAN</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "R" resembles the shape of a sunglass frame.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>RAY-BAN</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The letter “R” resembles the shape of a sunglass frame.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>resemble the shape of a sunglass frame.</div> */}
                 </div>
               </div>
             )}
@@ -774,21 +1051,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">NEW MAN</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The logo reads the same upside down.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>NEW MAN</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The logo reads the same upside down.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>upside down.</div> */}
                 </div>
               </div>
             )}
@@ -798,22 +1097,43 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '588px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
+                  width: '907px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
                   color: '#FFFFFF'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">QUIKSILVER</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The wave and mountain are inspired by Hokusai's</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">"The Great Wave off Kanagawa", merging nature and surf culture.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>QUIKSILVER</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    whiteSpace: 'pre-line'
+                  }}>The wave and mountain are inspired by Hokusai's "The ,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    height: '20px',
+                    marginTop: '-5px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Great Wave off Kanagawa" merging nature and surf culture.</div>
                 </div>
               </div>
             )}
@@ -826,7 +1146,7 @@ const Logo2 = () => {
                   width: '580px',
                   height: '92px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-80px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,

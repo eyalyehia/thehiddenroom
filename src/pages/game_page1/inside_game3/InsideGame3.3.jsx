@@ -197,34 +197,35 @@ const InsideGame3_3 = () => {
             />
             
             <div 
+              className="absolute text-white"
               style={{
                 position: 'absolute',
+                width: '645px',
                 left: '0',
-                bottom: '-92px',
-                width: '649px',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div 
-                style={{
-                  fontSize: '20px',
+              <div className="text-left">
+                <div style={{
                   fontWeight: 900,
+                  fontSize: '20px',
                   lineHeight: '128.04%',
-                  marginBottom: '4px'
-                }}
-              >
-                APPROXIMATELY 15–20 MINUTES INTO THE GAME
-              </div>
-              <div 
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '128.04%',
-                  opacity: 0.7
-                }}
-              >
-                "Hotel Corleone" is a reference to The movie "Godfather", named after the iconic Corleone family.
+                  marginBottom: '0'
+                }}>APPROXIMATELY 4 HOURS INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  height: '40px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A collection of vinyl records in Joel's room includes
+several famous country artists he mentioned in the first game.</div>
               </div>
             </div>
           </div>

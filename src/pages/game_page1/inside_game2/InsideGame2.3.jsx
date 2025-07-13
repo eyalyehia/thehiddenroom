@@ -197,34 +197,35 @@ const InsideGame2_3 = () => {
             />
             
             <div 
+              className="absolute text-white"
               style={{
                 position: 'absolute',
+                width: '645px',
                 left: '0',
-                bottom: '-92px',
-                width: '649px',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div 
-                style={{
-                  fontSize: '20px',
+              <div className="text-left">
+                <div style={{
                   fontWeight: 900,
+                  fontSize: '20px',
                   lineHeight: '128.04%',
-                  marginBottom: '4px'
-                }}
-              >
-                FIND 5 CLUES TO REVEAL THE VAMPIRE'S LOCATION
-              </div>
-              <div 
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '128.04%',
-                  opacity: 0.7
-                }}
-              >
-                If you find 5 clues around the city, you'll discover the location of a vampire drinking a man's blood in a dark alley at midnight.
+                  marginBottom: '0'
+                }}>APPROXIMATELY 3 HOURS AND 15 MINUTES INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  height: '40px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A sketch in Ellie's journal shows her practicing guitar chords,
+reflecting Joel's influence on her life.</div>
               </div>
             </div>
           </div>

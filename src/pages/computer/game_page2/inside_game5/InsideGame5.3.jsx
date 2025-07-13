@@ -206,23 +206,34 @@ const InsideGame5_3 = () => {
               onLoad={() => setModalImageLoaded(true)}
             />
             <div
+              className="absolute text-white"
               style={{
                 position: 'absolute',
-                bottom: '-120px',
+                width: '907px',
                 left: '0',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                fontSize: '20px',
-                textAlign: 'left',
-                width: '100%',
-                padding: '20px'
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div style={{ fontWeight: 900, marginBottom: '10px' }}>
-                APPROXIMATELY 3-5 HOURS INTO THE GAME
-              </div>
-              <div style={{ fontSize: '16px', maxWidth: '80%' }}>
-                On a small island, there's a tall tower styled like Assassin's Creed. At the top, you hear the eagle screech and spot a hay pile below.
+              <div className="text-left">
+                <div style={{
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
+                }}>APPROXIMATELY 3-5 HOURS INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>On a small island, there's a tall tower styled like Assassin's Creed. At the top, you hear the eagle screech and spot a hay pile below.</div>
               </div>
             </div>
           </div>

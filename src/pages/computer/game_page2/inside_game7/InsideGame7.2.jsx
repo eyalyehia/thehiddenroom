@@ -203,28 +203,35 @@ const InsideGame72 = () => {
                 objectFit: 'contain'
               }}
             />
-            <div
+            <div 
+              className="absolute text-white"
               style={{
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left',
-                marginTop: '20px'
+                position: 'absolute',
+                width: '907px',
+                left: '0',
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div style={{ 
-                fontSize: '20px',
-                fontWeight: '900',
-                lineHeight: '128.04%',
-                marginBottom: '10px'
-              }}>
-                APPROXIMATELY 40 MINUTES INTO THE GAME
-              </div>
-              <div style={{
-                fontSize: '16px',
-                fontWeight: 'normal',
-                lineHeight: '1.4'
-              }}>
-                In an abandoned motel, you can spot a clown running away from you. If you chase him, you'll eventually find a group of creepy clowns dancing in one of the rooms.
+              <div className="text-left">
+                <div style={{
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
+                }}>APPROXIMATELY 40 MINUTES INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>In an abandoned motel, you can spot a clown running away from you. If you chase him, you'll eventually find a group of creepy clowns dancing in one of the rooms.</div>
               </div>
             </div>
           </div>

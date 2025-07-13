@@ -307,18 +307,19 @@ const Poster = () => {
                   top: '172px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
-                  fontWeight: 400,
-                  fontSize: '32px',
-                  lineHeight: '100%',
-                  letterSpacing: '0%',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
                   color: '#FFFFFF',
-                  width: '827px',
-                  height: '221px'
+                  width: '532px'
                 }}
               >
-                <div style={{ marginBottom: '0' }}>Each poster contains a hidden detail.</div>
-                <div style={{ marginTop: '0' }}>move your cursor to uncover it.</div>
-                <div style={{ marginTop: '0' }}>can you spot them all?</div>
+                <div className="text-left">
+                  <div className="font-bold text-xl mb-1">HIDDEN DETAILS IN POSTER DESIGNS</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">Each poster contains a hidden detail.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">move your cursor to uncover it.</div>
+                  <div className="font-normal text-base opacity-70 text-gray-300">can you spot them all?</div>
+                </div>
               </div>
             </div>
           </div>
@@ -551,22 +552,34 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">THE SILENCE OF THE LAMBS, 1991</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The skull on the moth's back is made of seven nude</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">women, in a composition based on Salvador Dalí's art.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>THE SILENCE OF THE LAMBS, 1991</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>The skull on the moth's back is made of seven nude </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>women, in a composition based on Salvador Dalí's art.</div>
                 </div>
               </div>
             )}
@@ -575,10 +588,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -589,8 +601,20 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">ONCE UPON A TIME IN HOLLYWOOD, 2019</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Quentin Tarantino, the director, appears with a camera,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">even though he doesn't appear in the film itself.</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>Quentin Tarantino, the director, appears with a camera,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>even though he doesn't appear in the film itself.</div>
                 </div>
               </div>
             )}
@@ -599,10 +623,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '645px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -613,8 +636,20 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">UNDER THE SILVER LAKE, 2018</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Hidden figures like a pirate and a mermaid appear throughout</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the poster, a nod to the film's theme of hidden clues.</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>Hidden figures like a pirate and a mermaid appear throughout</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>the poster, a nod to the film's theme of hidden clues.</div>
                 </div>
               </div>
             )}
@@ -623,10 +658,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -637,8 +671,20 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">US, 2019</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The scissor handles form two figures facing opposite</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">directions, a nod to the film's theme of dual identity.</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>The scissor handles form two figures facing opposite </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>directions, a nod to the film's theme of dual identity.</div>
                 </div>
               </div>
             )}
@@ -647,10 +693,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -661,8 +706,21 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">10 CLOVERFIELD LANE, 2016</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The hidden robot is the logo of "Bad Robot Productions",</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">one of the production companies behind the film.</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    // marginBottom: '-5px'
+                  }}>The hidden robot is the logo of "Bad Robot Productions",</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>one of the production companies behind the film.</div>
                 </div>
               </div>
             )}
@@ -671,10 +729,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -685,7 +742,21 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">THE DARK KNIGHT, 2008</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Rotating the poster 90 degrees reveals the phrase "A Taste for the Theatrical",a quote from the previous film's ending</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    // marginBottom: '-5px'
+                  }}>Rotating the poster 90 degrees reveals the phrase "A Taste </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>for the Theatrical", a quote from the previous film's ending</div>
                 </div>
               </div>
             )}
@@ -694,10 +765,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
+                  bottom: '-85px',
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -708,8 +778,21 @@ const Poster = () => {
               >
                 <div className="text-left">
                   <div className="font-bold text-xl mb-1">CAPTAIN MARVEL, 2019</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Brightening the poster reveals Goose's tail,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the cat of the main character Carol Danvers.</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    // marginBottom: '-5px'
+                  }}>Brightening the poster reveals Goose's tail,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>the cat of the main character Carol Danvers.</div>
                 </div>
               </div>
             )}
@@ -718,10 +801,9 @@ const Poster = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '591px',
-                  height: '92px',
-                  left: '85px',
-                  bottom: '-110px',
+                  width: '907px',
+                  left: '84px',  // מיושר עם התמונה
+                  bottom: '-85px', // מרחק גדול יותר מהתמונה
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   fontWeight: 900,
@@ -731,9 +813,22 @@ const Poster = () => {
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">PASSENGERS, 2016</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The lines and circles are arranged in Morse code that spells</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">out "SOS", a hint at the film's characters' distress.</div>
+                  <div className="font-bold text-xl mb-2">PASSENGERS, 2016</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '4px'
+                  }}>The lines and circles are arranged in Morse code that</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>spells out "SOS" a hint at the film's characters' distress.</div>
                 </div>
               </div>
             )}

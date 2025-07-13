@@ -203,28 +203,35 @@ const InsideGame71 = () => {
                 objectFit: 'contain'
               }}
             />
-            <div
+            <div 
+              className="absolute text-white"
               style={{
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left',
-                marginTop: '20px'
+                position: 'absolute',
+                width: '907px',
+                left: '0',
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div style={{ 
-                fontSize: '20px',
-                fontWeight: '900',
-                lineHeight: '128.04%',
-                marginBottom: '10px'
-              }}>
-                APPROXIMATELY 3-4 HOURS INTO THE GAME
-              </div>
-              <div style={{
-                fontSize: '16px',
-                fontWeight: 'normal',
-                lineHeight: '1.4'
-              }}>
-                On the edge of a mountain, during the late-night hours in the game, you can see the ghost of a woman. If you wait long enough, you might even hear her scream.
+              <div className="text-left">
+                <div style={{
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
+                }}>APPROXIMATELY 3-4 HOURS INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>On the edge of a mountain, during the late-night hours in the game, you can see the ghost of a woman. If you wait long enough, you might even hear her scream.</div>
               </div>
             </div>
           </div>

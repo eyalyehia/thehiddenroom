@@ -204,27 +204,35 @@ const InsideGame8 = () => {
               }}
             />
             <div
+              className="absolute text-white"
               style={{
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                textAlign: 'left',
-                marginTop: '20px'
+                position: 'absolute',
+                width: '907px',
+                left: '0',
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
+              <div className="text-left">
               <div style={{ 
+                  fontWeight: 900,
                 fontSize: '20px',
-                fontWeight: '900',
                 lineHeight: '128.04%',
-                marginBottom: '10px'
-              }}>
-                APPROXIMATELY 5–6 HOURS INTO THE GAME
-              </div>
+                  marginBottom: '0'
+                }}>APPROXIMATELY 8 HOURS INTO THE GAME</div>
               <div style={{
-                fontSize: '16px',
-                fontWeight: 'normal',
-                lineHeight: '1.4'
-              }}>
-                If you pet a lemur at the market, it will jump on your back and steal an apple from your hand a few seconds later.
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A photo of Joel and Sarah at a soccer game
+can be found in his desk drawer.</div>
               </div>
             </div>
           </div>

@@ -476,46 +476,54 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '580px',
-                  height: '92px',
+                  width: '460px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOBLERONE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A bear is hidden in the mountain.</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a reference to Bern, where Toblerone was founded.</div>
-                </div>
-              </div>
-            )}
-            {selectedLogo === 3 && (
-              <div 
-                className="absolute text-white"
-                style={{
-                  position: 'absolute',
-                  width: '502px',
-                  height: '92px',
-                  left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
-                }}
-              >
-                <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOSTITOS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letters T-I-T form two figures sharing a chip</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">and dipping it into a bowl of salsa.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>TOBLERONE</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>A bear is hidden in the mountain.</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>
+a reference to Bern, where Toblerone was founded.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -524,22 +532,104 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '502px',
-                  height: '92px',
+                  width: '440px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">YOGA AUSTRALIA</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The negative space between the arm and leg is</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">shaped like Australia.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>YOGA AUSTRALIA</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The negative space between the arm</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>and leg is shaped like Australia.</div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {selectedLogo === 3 && (
+              <div 
+                className="absolute text-white"
+                style={{
+                  position: 'absolute',
+                  width: '632px',
+                  left: '0',
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
+                }}
+              >
+                <div className="text-left">
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>TOSTITOS</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letters T-I-T form two figures sharing</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>a chip and dipping it into a bowl of salsa.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -548,22 +638,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
+                  width: '440px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">FEDEX</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden arrow is formed in the negative</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">space between the letters E and X.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>FEDEX</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>A hidden arrow is formed in the negative</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>space between the letters E and X.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -572,22 +691,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '590px',
-                  height: '92px',
+                  width: '440px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">MY FONTS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letters "my" are designed to form the</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">image of a hand.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>MY FONTS</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letters "my" are designed </div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>to form the image of a hand.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -596,22 +744,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '597px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">WENDY'S</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The word "mom" appears within the collar of the girl's</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">blouse, suggesting a sense of home-cooked, motherly food.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>WENDY'S</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The word "mom" appears within the collar of the girl's </div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>blouse, suggesting a sense of home-cooked, motherly food.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -620,22 +797,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '531px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">CARREFOUR</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter "C" is hidden in the negative space between</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the two arrows, reflecting the brand's initial.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>CARREFOUR</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letter "C" is hidden in the negative space</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>between the two arrows, reflecting the brand's initial.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -644,22 +850,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '470px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">ORBIT</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The split "O" with a vertical line suggests an orbital</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">path, visually reflecting the brand name.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>ORBIT</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The split "O" with a vertical line suggests an orbital</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>path, visually reflecting the brand name.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -668,22 +903,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '638px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">BASKIN ROBBINS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The number "31" is hidden within the letters B and R, a reference</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">to the brand's original promise of 31 ice cream flavors.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>BASKIN ROBBINS</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The number "31" is hidden within the letters B and R,</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>a reference to the brand's original promise of 31 ice cream flavors.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -692,22 +956,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">LEVIS</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The logo's shape mimics the back pocket stitching on their</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">jeans, a visual link to the product itself.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>LEVIS</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The logo's shape mimics the back pocket stitching</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}> on their jeans, a visual link to the product itself.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -716,22 +1009,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '489px',
-                  height: '92px',
+                  width: '440px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">HERSHEY'S KISSES</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A hidden chocolate kiss is formed in the negative</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">space between the "K" and "I".</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>HERSHEY'S KISSES</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>A hidden chocolate kiss is formed in the negative</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>space between the "K" and "I".</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -740,21 +1062,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
+                  width: '440px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">PINTEREST</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter P is designed to resemble a pushpin.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>PINTEREST</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letter P is designed to resemble a pushpin.</div>
+                    {/* <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}></div> */}
+                  </div>
                 </div>
               </div>
             )}
@@ -763,22 +1115,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">TOUR DE FRANCE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The letter R, together with the yellow circle</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">and the letter O, forms the image of a cyclist.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>TOUR DE FRANCE</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letter R, together with the yellow circle</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>and the letter O, forms the image of a cyclist.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -787,22 +1168,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '509px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">FORMULA 1</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The number 1 is hidden in the negative space between</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the letter F and the red shape.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>FORMULA 1</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The number 1 is hidden in the negative space</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>between the letter F and the red shape.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -811,22 +1221,51 @@ const Logo = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '446px',
-                  height: '92px',
+                  width: '632px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-80px',
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">GILLETTE</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">Diagonal cuts in the "G" and "i" make them look</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">as if sliced by a razor blade.</div>
+                  <div style={{
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
+                  }}>GILLETTE</div>
+                  <div style={{
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>Diagonal cuts in the "G" and "i" make </div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>them look as if sliced by a razor blade.</div>
+                  </div>
                 </div>
               </div>
             )}

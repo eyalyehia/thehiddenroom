@@ -206,20 +206,35 @@ const InsideGame5 = () => {
               onLoad={() => setModalImageLoaded(true)}
             />
             <div
+              className="absolute text-white"
               style={{
-                marginTop: '20px',
-                color: '#FFFFFF',
-                fontFamily: 'Work Sans',
-                fontSize: '20px',
-                textAlign: 'left',
-                width: '100%',
+                position: 'absolute',
+                width: '907px',
+                left: '0',
+                bottom: '-80px',
+                fontFamily: 'Work Sans'
               }}
             >
-              <div style={{ fontWeight: 900, marginBottom: '10px' }}>
-                APPROXIMATELY 7 HOURS INTO THE GAME
-              </div>
-              <div style={{ fontSize: '16px', lineHeight: '1.4' }}>
-                A missing person poster written in Hebrew appears on a bulletin board. Scanning its barcode redirects you to Rick Astley's "Never Gonna Give You Up."
+              <div className="text-left">
+                <div style={{
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
+                }}>APPROXIMATELY 5 HOURS INTO THE GAME</div>
+                <div style={{
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  height: '40px',
+                  lineHeight: '20px',
+                  opacity: 0.7,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'pre-line'
+                }}>A drawing of Riley, Ellie's best friend from the first game,
+can be found in Ellie's journal.</div>
               </div>
             </div>
           </div>

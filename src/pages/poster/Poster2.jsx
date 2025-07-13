@@ -567,22 +567,35 @@ const Poster2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '816px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">VALERIAN AND THE CITY OF A THOUSAND PLANETS, 2017</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The name "Korben's" is a reference to Korben Dallas, the protagonist of The</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">"Fifth Element" (1997). It's a subtle nod from Luc Besson, who directed both films.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>VALERIAN AND THE CITY OF A THOUSAND PLANETS, 2017</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>The name “Korben’s“ is a reference to Korben Dallas, the protagonist of The</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>“Fifth Element“ (1997). It’s a subtle nod from Luc Besson, who directed both films.</div>
                 </div>
               </div>
             )}
@@ -591,21 +604,35 @@ const Poster2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '629px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">HALLOWEEN, 1978</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The hand holding the knife forms a screaming face.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>HALLOWEEN, 1978</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>The hand holding the knife forms a screaming face.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>referencing the film's reality-bending narrative.</div> */}
                 </div>
               </div>
             )}
@@ -614,21 +641,35 @@ const Poster2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '369px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">BRAVE, 2012</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A bear hides among the rocks, a hint at the story's central threat.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>BRAVE, 2012</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>A bear hides among the rocks,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>a hint at the story’s central threat.</div>
                 </div>
               </div>
             )}
@@ -637,22 +678,35 @@ const Poster2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '527px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">MOTHER!, 2017</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">A framed portrait of Javier Bardem is hidden among the leaves,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">a detail that also appears later in the film.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>MOTHER!, 2017</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>A framed portrait of Javier Bardem is hidden among</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}> the leaves, a detail that also appears later in the film.</div>
                 </div>
               </div>
             )}
@@ -661,22 +715,35 @@ const Poster2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '568px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">AVENGERS: INFINITY WAR, 2018</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">As the first major film shot entirely with IMAX cameras,</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">the word "IMAX" is subtly hidden multiple times.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>AVENGERS: INFINITY WAR, 2018</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>As the first major film shot entirely with IMAX cameras,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}> the word “IMAX” is subtly hidden multiple times.</div>
                 </div>
               </div>
             )}
@@ -685,57 +752,110 @@ const Poster2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '699px',
-                  height: '92px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
                 <div className="text-left">
-                  <div className="font-bold text-xl mb-1">GREMLINS, 1984</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">The logo of "Amblin Entertainment", Steven Spielberg's production company</div>
-                  <div className="font-normal text-base opacity-70 text-gray-300">and the film's producer, is hidden in the button of the jeans.</div>
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>GREMLINS, 1984</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>The logo of “Amblin Entertainment“, Steven Spielberg’s production </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}>company and the film’s producer, is hidden in the button of the jeans.</div>
                 </div>
               </div>
             )}
             {selectedPoster === 15 && (
               <div 
-                className="absolute text-white bg-black/60 p-4 rounded-lg"
+                className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '498px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
-                <div className="font-bold text-xl mb-2">TEXAS CHAINSAW MASSACRE, 2022</div>
-                <div className="font-normal text-base opacity-90">Beneath Leatherface's bottom lip, a silhouette of his iconic figure holding a chainsaw is hidden.</div>
+                <div className="text-left">
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>TEXAS CHAINSAW MASSACRE, 2022</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>Beneath Leatherface’s bottom lip, a silhouette of his</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}> iconic figure holding a chainsaw is hidden.</div>
+                </div>
               </div>
             )}
             {selectedPoster === 16 && (
               <div 
-                className="absolute text-white bg-black/60 p-4 rounded-lg"
+                className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '533px',
+                  width: '907px',
                   left: '0',
-                  bottom: '-110px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  color: '#FFFFFF'
+                  bottom: '-85px'
                 }}
               >
-                <div className="font-bold text-xl mb-4">TOY STORY 4, 2019</div>
-                <div className="font-normal text-base opacity-90">In the picture hanging on the wall, familiar characters from the movie "Up" can be seen playing cards.</div>
+                <div className="text-left">
+                  <div style={{
+                    fontFamily: 'Work Sans',
+                    fontStyle: 'normal',
+                    fontWeight: 900,
+                    fontSize: '20px',
+                    lineHeight: '128.04%',
+                    color: '#FFFFFF',
+                  }}>TOY STORY 4, 2019</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%',
+                    marginBottom: '0px'
+                  }}>In the picture hanging on the wall, familiar characters</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    opacity: 0.7,
+                    letterSpacing: '0%'
+                  }}> from the movie “Up“ can be seen playing cards.</div>
+                </div>
               </div>
             )}
             {/* X button removed as requested
