@@ -35,6 +35,14 @@ const Tv2 = () => {
       setTimeout(() => {
         navigate('/tv/move_6/main/move6');
       }, 300);
+    } else if (imageId === 3) {
+      setTimeout(() => {
+        navigate('/tv/move_7/main/move7');
+      }, 300);
+    } else if (imageId === 4) {
+      setTimeout(() => {
+        navigate('/tv/move_8/main/move8');
+      }, 300);
     } else {
       setTimeout(() => {
         setSelectedImage(null);

@@ -12,6 +12,8 @@ import Move3 from './pages/tv/move_3/main/Move3'
 import Move4 from './pages/tv/move_4/main/Move4';
 import Move5 from './pages/tv/move_5/main/Move5';
 import Move6 from './pages/tv/move_6/main/Move6';
+import Move7 from './pages/tv/move_7/main/Move7';
+import Move8 from './pages/tv/move_8/main/Move8';
 import Logo from './pages/logo/Logo'
 import Logo2 from './pages/logo/Logo2'
 import Computer from './pages/computer/Computer'
@@ -66,12 +68,14 @@ const App = () => {
         <Route path="/notebook" element={<NootBookIcon />} />
         <Route path="/tv" element={<Tv />} />
         <Route path="/tv2" element={<Tv2 />} />
-        <Route path="/tv/move_1/main/move1" element={<Move1 />} />
+        <Route path="/tv/move_1/main/Move1" element={<Move1 />} />
         <Route path="/tv/move_2/main/Move2" element={<Move2 />} />
         <Route path="/tv/move_3/main/Move3" element={<Move3 />} />
         <Route path="/tv/move_4/main/move4" element={<Move4 />} />
         <Route path="/tv/move_5/main/move5" element={<Move5 />} />
         <Route path="/tv/move_6/main/move6" element={<Move6 />} />
+        <Route path="/tv/move_7/main/move7" element={<Move7 />} />
+        <Route path="/tv/move_8/main/move8" element={<Move8 />} />
         <Route path="/logo" element={<Logo />} />
         <Route path="/logo2" element={<Logo2 />} />
         <Route path="/computer" element={<Computer />} />
