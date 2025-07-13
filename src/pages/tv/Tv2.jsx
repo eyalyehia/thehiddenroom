@@ -27,9 +27,19 @@ const Tv2 = () => {
   // Function to handle image click
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
-    setTimeout(() => {
-      setSelectedImage(null);
-    }, 300);
+    if (imageId === 1) {
+      setTimeout(() => {
+        navigate('/tv/move_5/main/move5');
+      }, 300);
+    } else if (imageId === 2) {
+      setTimeout(() => {
+        navigate('/tv/move_6/main/move6');
+      }, 300);
+    } else {
+      setTimeout(() => {
+        setSelectedImage(null);
+      }, 300);
+    }
   };
 
   return (
