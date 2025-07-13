@@ -6,6 +6,7 @@ const Tv = () => {
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [showNotebookModal, setShowNotebookModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
   // Function to navigate back to home
@@ -21,6 +22,14 @@ const Tv = () => {
   // Function to navigate to next page
   const handleNextPage = () => {
     navigate('/tv2');
+  };
+
+  // Function to handle image click
+  const handleImageClick = (imageId) => {
+    setSelectedImage(imageId);
+    setTimeout(() => {
+      setSelectedImage(null);
+    }, 300);
   };
 
   return (
@@ -265,11 +274,78 @@ const Tv = () => {
           )}
         </button>
 
-        {/* Page Content */}
-        <div className="flex items-center justify-center w-full h-full">
-          <div className="text-white text-center">
-            <h1 className="text-4xl font-bold mb-4">עמוד סרטי קולנוע</h1>
-            <p className="text-lg opacity-75">תוכן הדף יתווסף כאן</p>
+        {/* Images Container */}
+        <div className="flex items-center justify-center w-full h-full ">
+          {/* Image 1 */}
+          <div 
+            className="relative cursor-pointer transition-opacity duration-300"
+            onClick={() => handleImageClick(1)}
+            style={{
+              width: '412px',
+              height: '927px',
+              opacity: selectedImage === 1 ? 0 : 1,
+              transition: 'opacity 300ms ease-out'
+            }}
+          >
+            <img 
+              src="/tv/pictures/tv1/01.png"
+              alt="Movie Scene 1"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Image 2 */}
+          <div 
+            className="relative cursor-pointer transition-opacity duration-300"
+            onClick={() => handleImageClick(2)}
+            style={{
+              width: '412px',
+              height: '927px',
+              opacity: selectedImage === 2 ? 0 : 1,
+              transition: 'opacity 300ms ease-out'
+            }}
+          >
+            <img 
+              src="/tv/pictures/tv1/02.png"
+              alt="Movie Scene 2"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Image 3 */}
+          <div 
+            className="relative cursor-pointer transition-opacity duration-300"
+            onClick={() => handleImageClick(3)}
+            style={{
+              width: '412px',
+              height: '927px',
+              opacity: selectedImage === 3 ? 0 : 1,
+              transition: 'opacity 300ms ease-out'
+            }}
+          >
+            <img 
+              src="/tv/pictures/tv1/03.png"
+              alt="Movie Scene 3"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Image 4 */}
+          <div 
+            className="relative cursor-pointer transition-opacity duration-300"
+            onClick={() => handleImageClick(4)}
+            style={{
+              width: '412px',
+              height: '927px',
+              opacity: selectedImage === 4 ? 0 : 1,
+              transition: 'opacity 300ms ease-out'
+            }}
+          >
+            <img 
+              src="/tv/pictures/tv1/04.png"
+              alt="Movie Scene 4"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>
