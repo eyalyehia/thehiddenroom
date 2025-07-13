@@ -15,6 +15,15 @@ const Move1 = () => {
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
     setTimeout(() => {
+      if (imageId === 1) {
+        navigate('/tv/move_1/sections/inMove1');
+      } else if (imageId === 2) {
+        navigate('/tv/move_1/sections/inMove2');
+      } else if (imageId === 3) {
+        navigate('/tv/move_1/sections/inMove3');
+      } else if (imageId === 4) {
+        navigate('/tv/move_1/sections/inMove4');
+      }
       setSelectedImage(null);
     }, 300);
   };

@@ -7,7 +7,15 @@ import NootBookIcon from './pages/poster/NootBookIcon'
 import Tv from './pages/tv/Tv'
 import Tv2 from './pages/tv/Tv2'
 import Move1 from './pages/tv/move_1/main/Move1'
+import InMove1 from './pages/tv/move_1/sections/InMove1'
+import InMove2 from './pages/tv/move_1/sections/InMove2'
+import InMove3 from './pages/tv/move_1/sections/InMove3'
+import InMove4 from './pages/tv/move_1/sections/InMove4'
 import Move2 from './pages/tv/move_2/main/Move2'
+import InMove2_1 from './pages/tv/move_2/sections/InMove2_1'
+import InMove2_2 from './pages/tv/move_2/sections/InMove2_2'
+import InMove2_3 from './pages/tv/move_2/sections/InMove2_3'
+import InMove2_4 from './pages/tv/move_2/sections/InMove2_4'
 import Move3 from './pages/tv/move_3/main/Move3'
 import Move4 from './pages/tv/move_4/main/Move4';
 import Move5 from './pages/tv/move_5/main/Move5';
@@ -69,7 +77,15 @@ const App = () => {
         <Route path="/tv" element={<Tv />} />
         <Route path="/tv2" element={<Tv2 />} />
         <Route path="/tv/move_1/main/Move1" element={<Move1 />} />
+        <Route path="/tv/move_1/sections/inMove1" element={<InMove1 />} />
+        <Route path="/tv/move_1/sections/inMove2" element={<InMove2 />} />
+        <Route path="/tv/move_1/sections/inMove3" element={<InMove3 />} />
+        <Route path="/tv/move_1/sections/inMove4" element={<InMove4 />} />
         <Route path="/tv/move_2/main/Move2" element={<Move2 />} />
+        <Route path="/tv/move_2/sections/InMove2.1" element={<InMove2_1 />} />
+        <Route path="/tv/move_2/sections/InMove2.2" element={<InMove2_2 />} />
+        <Route path="/tv/move_2/sections/InMove2.3" element={<InMove2_3 />} />
+        <Route path="/tv/move_2/sections/InMove2.4" element={<InMove2_4 />} />
         <Route path="/tv/move_3/main/Move3" element={<Move3 />} />
         <Route path="/tv/move_4/main/move4" element={<Move4 />} />
         <Route path="/tv/move_5/main/move5" element={<Move5 />} />
