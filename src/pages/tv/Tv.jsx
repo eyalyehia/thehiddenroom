@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getBase64 from '../../components/common/getBase64';
 
 const Tv = () => {
   const [isHoveringCloseButton, setIsHoveringCloseButton] = useState(false);
@@ -7,7 +8,33 @@ const Tv = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [showNotebookModal, setShowNotebookModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState({
+    image1: '',
+    image2: '',
+    image3: '',
+    image4: ''
+  });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const [img1, img2, img3, img4] = await Promise.all([
+        getBase64('/tv/pictures/tv1/01.png'),
+        getBase64('/tv/pictures/tv1/02.png'),
+        getBase64('/tv/pictures/tv1/03.png'),
+        getBase64('/tv/pictures/tv1/04.png')
+      ]);
+
+      setImages({
+        image1: img1,
+        image2: img2,
+        image3: img3,
+        image4: img4
+      });
+    };
+
+    loadImages();
+  }, []);
 
   // Function to navigate back to home
   const handleClose = () => {
@@ -312,7 +339,7 @@ const Tv = () => {
             }}
           >
             <img 
-              src="/tv/pictures/tv1/01.png"
+              src={images.image1 || "/tv/pictures/tv1/01.png"}
               alt="Movie Scene 1"
               className="w-full h-full object-cover"
             />
@@ -330,7 +357,7 @@ const Tv = () => {
             }}
           >
             <img 
-              src="/tv/pictures/tv1/02.png"
+              src={images.image2 || "/tv/pictures/tv1/02.png"}
               alt="Movie Scene 2"
               className="w-full h-full object-cover"
             />
@@ -348,7 +375,7 @@ const Tv = () => {
             }}
           >
             <img 
-              src="/tv/pictures/tv1/03.png"
+              src={images.image3 || "/tv/pictures/tv1/03.png"}
               alt="Movie Scene 3"
               className="w-full h-full object-cover"
             />
@@ -366,7 +393,7 @@ const Tv = () => {
             }}
           >
             <img 
-              src="/tv/pictures/tv1/04.png"
+              src={images.image4 || "/tv/pictures/tv1/04.png"}
               alt="Movie Scene 4"
               className="w-full h-full object-cover"
             />
