@@ -27,9 +27,33 @@ const Tv = () => {
   // Function to handle image click
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
-    setTimeout(() => {
-      setSelectedImage(null);
-    }, 300);
+    
+    if (imageId === 1) {
+      // Add fade out effect before navigation
+      setTimeout(() => {
+        navigate('/tv/move_1/main/move1');
+      }, 300);
+    } else if (imageId === 2) {
+      // Navigate to Move2 page
+      setTimeout(() => {
+        navigate('/tv/move_2/main/move2');
+      }, 300);
+    } else if (imageId === 3) {
+      // Navigate to Move3 page
+      setTimeout(() => {
+        navigate('/tv/move_3/main/Move3');
+      }, 300);
+    } else if (imageId === 4) {
+      // Navigate to Move4 page
+      setTimeout(() => {
+        navigate('/tv/move_4/main/move4');
+      }, 300);
+    } else {
+      // Regular fade effect for other images
+      setTimeout(() => {
+        setSelectedImage(null);
+      }, 300);
+    }
   };
 
   return (
