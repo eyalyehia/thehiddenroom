@@ -43,6 +43,23 @@ const Move4 = () => {
     setSelectedImage(imageId);
     setTimeout(() => {
       setSelectedImage(null);
+      // Navigate to the corresponding page
+      switch(imageId) {
+        case 1:
+          navigate('/tv/move_4/sections/InMove4_1');
+          break;
+        case 2:
+          navigate('/tv/move_4/sections/InMove4_2');
+          break;
+        case 3:
+          navigate('/tv/move_4/sections/InMove4_3');
+          break;
+        case 4:
+          navigate('/tv/move_4/sections/InMove4_4');
+          break;
+        default:
+          break;
+      }
     }, 300);
   };
 

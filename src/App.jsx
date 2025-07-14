@@ -66,6 +66,14 @@ import InsideGame8 from './pages/computer/game_page2/inside_game8/InsideGame8'
 import InsideGame8_1 from './pages/computer/game_page2/inside_game8/InsideGame8.1'
 import InsideGame8_2 from './pages/computer/game_page2/inside_game8/InsideGame8.2'
 import InsideGame8_3 from './pages/computer/game_page2/inside_game8/InsideGame8.3'
+import InMove3_1 from './pages/tv/move_3/sections/InMove3_1'
+import InMove3_2 from './pages/tv/move_3/sections/InMove3_2'
+import InMove3_3 from './pages/tv/move_3/sections/InMove3_3'
+import InMove3_4 from './pages/tv/move_3/sections/InMove3_4'
+import InMove4_1 from './pages/tv/move_4/sections/InMove4_1'
+import InMove4_2 from './pages/tv/move_4/sections/InMove4_2'
+import InMove4_3 from './pages/tv/move_4/sections/InMove4_3'
+import InMove4_4 from './pages/tv/move_4/sections/InMove4_4'
 
 const App = () => {
   return (
@@ -87,7 +95,15 @@ const App = () => {
         <Route path="/tv/move_2/sections/InMove2.3" element={<InMove2_3 />} />
         <Route path="/tv/move_2/sections/InMove2.4" element={<InMove2_4 />} />
         <Route path="/tv/move_3/main/Move3" element={<Move3 />} />
+        <Route path="/tv/move_3/sections/InMove3_1" element={<InMove3_1 />} />
+        <Route path="/tv/move_3/sections/InMove3_2" element={<InMove3_2 />} />
+        <Route path="/tv/move_3/sections/InMove3_3" element={<InMove3_3 />} />
+        <Route path="/tv/move_3/sections/InMove3_4" element={<InMove3_4 />} />
         <Route path="/tv/move_4/main/move4" element={<Move4 />} />
+        <Route path="/tv/move_4/sections/InMove4_1" element={<InMove4_1 />} />
+        <Route path="/tv/move_4/sections/InMove4_2" element={<InMove4_2 />} />
+        <Route path="/tv/move_4/sections/InMove4_3" element={<InMove4_3 />} />
+        <Route path="/tv/move_4/sections/InMove4_4" element={<InMove4_4 />} />
         <Route path="/tv/move_5/main/move5" element={<Move5 />} />
         <Route path="/tv/move_6/main/move6" element={<Move6 />} />
         <Route path="/tv/move_7/main/move7" element={<Move7 />} />
