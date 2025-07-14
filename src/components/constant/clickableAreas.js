@@ -309,3 +309,139 @@ export const isPointInComputerGameArea = (gameId, imageId, x, y, imageWidth, ima
 export const getComputerGameClickableAreas = (gameId, imageId) => {
   return COMPUTER_GAME_CLICKABLE_AREAS[gameId]?.[imageId] || [];
 }; 
+
+export const TV_MOVE1_CLICKABLE_AREAS = {
+  1: [
+    { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+  ],
+  2: [
+    { x: 0.3, y: 0.2, width: 0.4, height: 0.5 }
+  ],
+  3: [
+    { x: 0.4, y: 0.15, width: 0.3, height: 0.6 }
+  ],
+  4: [
+    { x: 0.35, y: 0.25, width: 0.35, height: 0.45 }
+  ]
+};
+
+export const isPointInTvMove1Area = (imageId, x, y, imageWidth, imageHeight) => {
+  const areas = TV_MOVE1_CLICKABLE_AREAS[imageId];
+  if (!areas) return true;
+  
+  const relativeX = x / imageWidth;
+  const relativeY = y / imageHeight;
+  
+  return areas.some(area => {
+    return relativeX >= area.x && 
+           relativeX <= area.x + area.width &&
+           relativeY >= area.y && 
+           relativeY <= area.y + area.height;
+  });
+};
+
+export const getTvMove1ClickableAreas = (imageId) => {
+  return TV_MOVE1_CLICKABLE_AREAS[imageId] || [];
+}; 
+
+export const TV_MOVE2_CLICKABLE_AREAS = {
+  1: [
+    { x: 0.35, y: 0.25, width: 0.213, height: 0.19 }
+  ],
+  2: [
+    { x: 0.3, y: 0.2, width: 0.875, height: 0.336 }
+  ],
+  3: [
+    { x: 0.4, y: 0.15, width: 0.358, height: 0.241 }
+  ],
+  4: [
+    { x: 0.35, y: 0.25, width: 0.464, height: 0.327 }
+  ]
+};
+
+export const TV_MOVE3_CLICKABLE_AREAS = {
+  1: [
+    { x: 0.35, y: 0.25, width: 0.282, height: 0.381 }
+  ],
+  2: [
+    { x: 0.3, y: 0.2, width: 0.362, height: 1.045 }
+  ],
+  3: [
+    { x: 0.4, y: 0.15, width: 0.394, height: 0.04 }
+  ],
+  4: [
+    { x: 0.35, y: 0.25, width: 0.435, height: 0.418 }
+  ]
+};
+
+export const TV_MOVE4_CLICKABLE_AREAS = {
+  1: [
+    { x: 0.35, y: 0.25, width: 0.183, height: 0.126 }
+  ],
+  2: [
+    { x: 0.3, y: 0.2, width: 0.325, height: 0.459 }
+  ],
+  3: [
+    { x: 0.4, y: 0.15, width: 0.244, height: 0.212 }
+  ],
+  4: [
+    { x: 0.35, y: 0.25, width: 0.311, height: 0.356 }
+  ]
+};
+
+export const isPointInTvMove2Area = (imageId, x, y, imageWidth, imageHeight) => {
+  const areas = TV_MOVE2_CLICKABLE_AREAS[imageId];
+  if (!areas) return true;
+  
+  const relativeX = x / imageWidth;
+  const relativeY = y / imageHeight;
+  
+  return areas.some(area => {
+    return relativeX >= area.x && 
+           relativeX <= area.x + area.width &&
+           relativeY >= area.y && 
+           relativeY <= area.y + area.height;
+  });
+};
+
+export const getTvMove2ClickableAreas = (imageId) => {
+  return TV_MOVE2_CLICKABLE_AREAS[imageId] || [];
+};
+
+export const isPointInTvMove3Area = (imageId, x, y, imageWidth, imageHeight) => {
+  const areas = TV_MOVE3_CLICKABLE_AREAS[imageId];
+  if (!areas) return true;
+  
+  const relativeX = x / imageWidth;
+  const relativeY = y / imageHeight;
+  
+  return areas.some(area => {
+    return relativeX >= area.x && 
+           relativeX <= area.x + area.width &&
+           relativeY >= area.y && 
+           relativeY <= area.y + area.height;
+  });
+};
+
+export const getTvMove3ClickableAreas = (imageId) => {
+  return TV_MOVE3_CLICKABLE_AREAS[imageId] || [];
+};
+
+export const isPointInTvMove4Area = (imageId, x, y, imageWidth, imageHeight) => {
+  const areas = TV_MOVE4_CLICKABLE_AREAS[imageId];
+  if (!areas) return true;
+  
+  const relativeX = x / imageWidth;
+  const relativeY = y / imageHeight;
+  
+  return areas.some(area => {
+    return relativeX >= area.x && 
+           relativeX <= area.x + area.width &&
+           relativeY >= area.y && 
+           relativeY <= area.y + area.height;
+  });
+};
+
+export const getTvMove4ClickableAreas = (imageId) => {
+  return TV_MOVE4_CLICKABLE_AREAS[imageId] || [];
+}; 

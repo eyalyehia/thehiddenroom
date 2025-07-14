@@ -38,7 +38,7 @@ const Move8 = () => {
   };
 
   const handleBackClick = () => {
-    navigate('/tv/tv2');
+    navigate('/tv2');
   };
 
   return (
