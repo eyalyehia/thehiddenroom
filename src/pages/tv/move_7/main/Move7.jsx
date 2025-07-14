@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import getBase64 from '../../../../components/common/getBase64';
 
 const Move7 = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [images, setImages] = useState({
     image1: '',
@@ -33,15 +32,12 @@ const Move7 = () => {
     loadImages();
   }, []);
 
-  const handleImageClick = (imageId) => {
-    setSelectedImage(imageId);
-    setTimeout(() => {
-      setSelectedImage(null);
-    }, 300);
+  const handleImageClick = (imageNumber) => {
+    navigate(`/tv/move_7/sections/InMove7_${imageNumber}`);
   };
 
   const handleBackClick = () => {
-    navigate('/tv/tv2');
+    navigate('/tv2');
   };
 
   return (
@@ -73,13 +69,11 @@ const Move7 = () => {
             {/* Image 1 */}
             <div className="relative">
               <div 
-                className="cursor-pointer transition-opacity duration-300"
+                className="cursor-pointer"
                 onClick={() => handleImageClick(1)}
                 style={{
                   width: '766px',
-                  height: '317px',
-                  opacity: selectedImage === 1 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
+                  height: '317px'
                 }}
               >
                 <img 
@@ -109,13 +103,11 @@ const Move7 = () => {
             {/* Image 2 */}
             <div className="relative">
               <div 
-                className="cursor-pointer transition-opacity duration-300"
+                className="cursor-pointer"
                 onClick={() => handleImageClick(2)}
                 style={{
                   width: '766px',
-                  height: '317px',
-                  opacity: selectedImage === 2 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
+                  height: '317px'
                 }}
               >
                 <img 
@@ -148,13 +140,11 @@ const Move7 = () => {
             {/* Image 3 */}
             <div className="relative">
               <div 
-                className="cursor-pointer transition-opacity duration-300"
+                className="cursor-pointer"
                 onClick={() => handleImageClick(3)}
                 style={{
                   width: '771px',
-                  height: '319px',
-                  opacity: selectedImage === 3 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
+                  height: '319px'
                 }}
               >
                 <img 
@@ -184,13 +174,11 @@ const Move7 = () => {
             {/* Image 4 */}
             <div className="relative">
               <div 
-                className="cursor-pointer transition-opacity duration-300"
+                className="cursor-pointer"
                 onClick={() => handleImageClick(4)}
                 style={{
                   width: '765px',
-                  height: '319px',
-                  opacity: selectedImage === 4 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
+                  height: '319px'
                 }}
               >
                 <img 

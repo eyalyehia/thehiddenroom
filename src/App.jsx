@@ -17,11 +17,11 @@ import InMove2_2 from './pages/tv/move_2/sections/InMove2_2'
 import InMove2_3 from './pages/tv/move_2/sections/InMove2_3'
 import InMove2_4 from './pages/tv/move_2/sections/InMove2_4'
 import Move3 from './pages/tv/move_3/main/Move3'
-import Move4 from './pages/tv/move_4/main/Move4';
-import Move5 from './pages/tv/move_5/main/Move5';
-import Move6 from './pages/tv/move_6/main/Move6';
-import Move7 from './pages/tv/move_7/main/Move7';
-import Move8 from './pages/tv/move_8/main/Move8';
+import Move4 from './pages/tv/move_4/main/Move4'
+import Move5 from './pages/tv/move_5/main/Move5'
+import Move6 from './pages/tv/move_6/main/Move6'
+import Move7 from './pages/tv/move_7/main/Move7'
+import Move8 from './pages/tv/move_8/main/Move8'
 import Logo from './pages/logo/Logo'
 import Logo2 from './pages/logo/Logo2'
 import Computer from './pages/computer/Computer'
@@ -74,6 +74,22 @@ import InMove4_1 from './pages/tv/move_4/sections/InMove4_1'
 import InMove4_2 from './pages/tv/move_4/sections/InMove4_2'
 import InMove4_3 from './pages/tv/move_4/sections/InMove4_3'
 import InMove4_4 from './pages/tv/move_4/sections/InMove4_4'
+import InMove5_1 from './pages/tv/move_5/sections/InMove5_1'
+import InMove5_2 from './pages/tv/move_5/sections/InMove5_2'
+import InMove5_3 from './pages/tv/move_5/sections/InMove5_3'
+import InMove5_4 from './pages/tv/move_5/sections/InMove5_4'
+import InMove6_1 from './pages/tv/move_6/sections/InMove6_1'
+import InMove6_2 from './pages/tv/move_6/sections/InMove6_2'
+import InMove6_3 from './pages/tv/move_6/sections/InMove6_3'
+import InMove6_4 from './pages/tv/move_6/sections/InMove6_4'
+import InMove7_1 from './pages/tv/move_7/sections/InMove7_1'
+import InMove7_2 from './pages/tv/move_7/sections/InMove7_2'
+import InMove7_3 from './pages/tv/move_7/sections/InMove7_3'
+import InMove7_4 from './pages/tv/move_7/sections/InMove7_4'
+import InMove8_1 from './pages/tv/move_8/sections/InMove8_1'
+import InMove8_2 from './pages/tv/move_8/sections/InMove8_2'
+import InMove8_3 from './pages/tv/move_8/sections/InMove8_3'
+import InMove8_4 from './pages/tv/move_8/sections/InMove8_4'
 
 const App = () => {
   return (
@@ -105,9 +121,25 @@ const App = () => {
         <Route path="/tv/move_4/sections/InMove4_3" element={<InMove4_3 />} />
         <Route path="/tv/move_4/sections/InMove4_4" element={<InMove4_4 />} />
         <Route path="/tv/move_5/main/move5" element={<Move5 />} />
+        <Route path="/tv/move_5/sections/InMove5_1" element={<InMove5_1 />} />
+        <Route path="/tv/move_5/sections/InMove5_2" element={<InMove5_2 />} />
+        <Route path="/tv/move_5/sections/InMove5_3" element={<InMove5_3 />} />
+        <Route path="/tv/move_5/sections/InMove5_4" element={<InMove5_4 />} />
         <Route path="/tv/move_6/main/move6" element={<Move6 />} />
+        <Route path="/tv/move_6/sections/InMove6_1" element={<InMove6_1 />} />
+        <Route path="/tv/move_6/sections/InMove6_2" element={<InMove6_2 />} />
+        <Route path="/tv/move_6/sections/InMove6_3" element={<InMove6_3 />} />
+        <Route path="/tv/move_6/sections/InMove6_4" element={<InMove6_4 />} />
         <Route path="/tv/move_7/main/move7" element={<Move7 />} />
+        <Route path="/tv/move_7/sections/InMove7_1" element={<InMove7_1 />} />
+        <Route path="/tv/move_7/sections/InMove7_2" element={<InMove7_2 />} />
+        <Route path="/tv/move_7/sections/InMove7_3" element={<InMove7_3 />} />
+        <Route path="/tv/move_7/sections/InMove7_4" element={<InMove7_4 />} />
         <Route path="/tv/move_8/main/move8" element={<Move8 />} />
+        <Route path="/tv/move_8/sections/InMove8_1" element={<InMove8_1 />} />
+        <Route path="/tv/move_8/sections/InMove8_2" element={<InMove8_2 />} />
+        <Route path="/tv/move_8/sections/InMove8_3" element={<InMove8_3 />} />
+        <Route path="/tv/move_8/sections/InMove8_4" element={<InMove8_4 />} />
         <Route path="/logo" element={<Logo />} />
         <Route path="/logo2" element={<Logo2 />} />
         <Route path="/computer" element={<Computer />} />

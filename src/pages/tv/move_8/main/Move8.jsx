@@ -34,10 +34,7 @@ const Move8 = () => {
   }, []);
 
   const handleImageClick = (imageId) => {
-    setSelectedImage(imageId);
-    setTimeout(() => {
-      setSelectedImage(null);
-    }, 300);
+    navigate(`/tv/move_8/sections/InMove8_${imageId}`);
   };
 
   const handleBackClick = () => {

@@ -43,6 +43,23 @@ const Move5 = () => {
     setSelectedImage(imageId);
     setTimeout(() => {
       setSelectedImage(null);
+      // Navigate to the corresponding page
+      switch(imageId) {
+        case 1:
+          navigate('/tv/move_5/sections/InMove5_1');
+          break;
+        case 2:
+          navigate('/tv/move_5/sections/InMove5_2');
+          break;
+        case 3:
+          navigate('/tv/move_5/sections/InMove5_3');
+          break;
+        case 4:
+          navigate('/tv/move_5/sections/InMove5_4');
+          break;
+        default:
+          break;
+      }
     }, 300);
   };
 

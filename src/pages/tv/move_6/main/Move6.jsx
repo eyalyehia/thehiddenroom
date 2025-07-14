@@ -4,7 +4,6 @@ import getBase64 from '../../../../components/common/getBase64';
 
 const Move6 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState({
     image1: '',
     image2: '',
@@ -39,11 +38,8 @@ const Move6 = () => {
   };
 
   // Function to handle image click
-  const handleImageClick = (imageId) => {
-    setSelectedImage(imageId);
-    setTimeout(() => {
-      setSelectedImage(null);
-    }, 300);
+  const handleImageClick = (imageNumber) => {
+    navigate(`/tv/move_6/sections/InMove6_${imageNumber}`);
   };
 
   // Common text style
@@ -86,12 +82,8 @@ const Move6 = () => {
         <div className="flex gap-8">
           {/* Top Left Image */}
           <div 
-            className="relative cursor-pointer transition-opacity duration-300"
+            className="relative cursor-pointer"
             onClick={() => handleImageClick(1)}
-            style={{
-              opacity: selectedImage === 1 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
-            }}
           >
             <div 
               style={{
@@ -116,12 +108,8 @@ const Move6 = () => {
 
           {/* Top Right Image */}
           <div 
-            className="relative cursor-pointer transition-opacity duration-300"
+            className="relative cursor-pointer"
             onClick={() => handleImageClick(2)}
-            style={{
-              opacity: selectedImage === 2 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
-            }}
           >
             <div 
               style={{
@@ -149,12 +137,8 @@ const Move6 = () => {
         <div className="flex gap-8">
           {/* Bottom Left Image */}
           <div 
-            className="relative cursor-pointer transition-opacity duration-300"
+            className="relative cursor-pointer"
             onClick={() => handleImageClick(3)}
-            style={{
-              opacity: selectedImage === 3 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
-            }}
           >
             <div 
               style={{
@@ -179,12 +163,8 @@ const Move6 = () => {
 
           {/* Bottom Right Image */}
           <div 
-            className="relative cursor-pointer transition-opacity duration-300"
+            className="relative cursor-pointer"
             onClick={() => handleImageClick(4)}
-            style={{
-              opacity: selectedImage === 4 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
-            }}
           >
             <div 
               style={{
