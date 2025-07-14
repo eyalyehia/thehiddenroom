@@ -1,50 +1,169 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { isPointInTvMove8Area, getTvMove8ClickableAreas } from '../../../../components/constant/clickableAreas';
 import getBase64 from '../../../../components/common/getBase64';
 
 const InMove8_2 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [showClickableAreas, setShowClickableAreas] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState(null);
   const [image, setImage] = useState('');
+  const [hoverImage, setHoverImage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadImage = async () => {
-      const img = await getBase64('/tv/pictures/tv2/move-8/regular/02.png');
-      setImage(img);
+    const loadImages = async () => {
+      const [mainImg, hoverImg] = await Promise.all([
+        getBase64('/tv/pictures/tv2/move-8/regular/02.png'),
+        getBase64('/tv/pictures/tv2/move-8/zoomBit/02.png')
+      ]);
+      setImage(mainImg);
+      setHoverImage(hoverImg);
     };
-    loadImage();
+    loadImages();
   }, []);
 
   const handleBackClick = () => {
     navigate('/tv/move_8/main/move8');
   };
 
+  // Hover configurations
+  const imageZoomConfigs = useMemo(() => ({
+    2: { zoomSize: 'w-[175px]', zoomHeight: 'h-[222px]', zoomOffset: { x: -40, y: -30 } }
+  }), []);
+
+  const getImageZoomConfig = (imageId) => {
+    return imageZoomConfigs[imageId] || { 
+      zoomSize: 'w-[175px]', 
+      zoomHeight: 'h-[222px]', 
+      zoomOffset: { x: -40, y: -30 } 
+    };
+  };
+
+  const handleImageMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    const inClickableArea = isPointInTvMove8Area(2, mouseX, mouseY, rect.width, rect.height);
+    
+    if (inClickableArea) {
+      setHoveredImage(2);
+    } else {
+      setHoveredImage(null);
+    }
+  };
+
+  // Debug function to show clickable areas
+  const renderClickableAreasDebug = () => {
+    if (!showClickableAreas) return null;
+    
+    const areas = getTvMove8ClickableAreas(2);
+    
+    return areas.map((area, index) => (
+      <div
+        key={`debug-${index}`}
+        style={{
+          position: 'absolute',
+          left: `${area.x * 100}%`,
+          top: `${area.y * 100}%`,
+          width: `${area.width * 100}%`,
+          height: `${area.height * 100}%`,
+          border: '2px solid rgba(255, 0, 0, 0.8)',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+          pointerEvents: 'none',
+          zIndex: 15,
+        }}
+      />
+    ));
+  };
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
-      <div className="relative w-full h-screen">
-        <button
-          className="absolute top-6 right-6 transition-opacity z-50 cursor-pointer"
-          style={{ width: '29px', height: '45px' }}
-          onClick={handleBackClick}
-          onMouseEnter={() => setIsHoveringBackButton(true)}
-          onMouseLeave={() => setIsHoveringBackButton(false)}
-        >
-          {isHoveringBackButton ? (
-            <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-            </svg>
-          ) : (
-            <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-            </svg>
-          )}
-        </button>
+    <div className="relative w-full h-screen" style={{ backgroundColor: '#1D1C1A' }}>
+      {/* Debug Button */}
+      <button
+        className="absolute top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
+        onClick={() => setShowClickableAreas(!showClickableAreas)}
+      >
+        {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
+      </button>
+
+      {/* Back Button */}
+      <button
+        className="absolute top-6 right-6 transition-opacity z-50 cursor-pointer"
+        style={{ width: '29px', height: '45px' }}
+        onClick={handleBackClick}
+        onMouseEnter={() => setIsHoveringBackButton(true)}
+        onMouseLeave={() => setIsHoveringBackButton(false)}
+      >
+        {isHoveringBackButton ? (
+          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          </svg>
+        ) : (
+          <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+          </svg>
+        )}
+      </button>
+
+      {/* Full Screen Image with Mouse Move Detection */}
+      <div 
+        className="relative w-full h-full"
+        onMouseMove={handleImageMouseMove}
+        onMouseLeave={() => setHoveredImage(null)}
+      >
         <img 
           src={image || "/tv/pictures/tv2/move-8/regular/02.png"}
-          alt="Scene 2 Full Screen"
+          alt="Full Screen Scene"
           className="w-full h-full object-cover"
         />
+        {renderClickableAreasDebug()}
+        {/* Add clickable area overlay */}
+        {getTvMove8ClickableAreas(2).map((area, index) => (
+          <div
+            key={`clickable-${index}`}
+            className="absolute cursor-pointer"
+            style={{
+              left: `${area.x * 100}%`,
+              top: `${area.y * 100}%`,
+              width: `${area.width * 100}%`,
+              height: `${area.height * 100}%`,
+              pointerEvents: 'auto',
+              zIndex: 10,
+            }}
+          />
+        ))}
       </div>
+
+      {/* Hover Image */}
+      {hoveredImage && (() => {
+        const cfg = getImageZoomConfig(hoveredImage);
+        return (
+          <div
+            className="absolute z-40 pointer-events-none"
+            style={{
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <img
+              src={hoverImage || "/tv/pictures/tv2/move-8/zoomBit/02.png"}
+              alt="Hover Scene"
+              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border-2 border-white`}
+              style={{ 
+                transition: 'opacity 300ms ease-out',
+                opacity: 1,
+                willChange: 'transform',
+                imageRendering: 'crisp-edges',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+              }}
+            />
+          </div>
+        );
+      })()}
     </div>
   );
 };
