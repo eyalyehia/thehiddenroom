@@ -9,22 +9,30 @@ const InMove2_3 = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [image, setImage] = useState('');
   const [hoverImage, setHoverImage] = useState('');
+  const [zoomImage, setZoomImage] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadImages = async () => {
-      const [mainImg, hoverImg] = await Promise.all([
+      const [mainImg, hoverImg, zoomImg] = await Promise.all([
         getBase64('/tv/pictures/tv1/move-2/regular/03.png'),
-        getBase64('/tv/pictures/tv1/move-2/zoomBit/03.png')
+        getBase64('/tv/pictures/tv1/move-2/zoomBit/03.png'),
+        getBase64('/tv/pictures/tv1/move-2/zoomIn/03.png')
       ]);
       setImage(mainImg);
       setHoverImage(hoverImg);
+      setZoomImage(zoomImg);
     };
     loadImages();
   }, []);
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleImageClick = () => {
+    setShowModal(true);
   };
 
   // Hover configurations
@@ -132,6 +140,7 @@ const InMove2_3 = () => {
               pointerEvents: 'auto',
               zIndex: 10,
             }}
+            onClick={handleImageClick}
           />
         ))}
       </div>
@@ -164,6 +173,64 @@ const InMove2_3 = () => {
           </div>
         );
       })()}
+
+      {/* Modal */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setShowModal(false)}
+        >
+          <div className="relative" onClick={e => e.stopPropagation()}>
+            {/* Back Button */}
+            <button
+              className="fixed top-6 right-6 transition-opacity cursor-pointer"
+              style={{ width: '29px', height: '45px', zIndex: 60 }}
+              onClick={() => setShowModal(false)}
+            >
+              <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              </svg>
+            </button>
+
+            {/* Main Image */}
+            <img
+              src={zoomImage || "/tv/pictures/tv1/move-2/zoomIn/03.png"}
+              alt="Zoomed Scene"
+              className="w-[931px] h-[663px] object-cover"
+            />
+
+            {/* Text Content */}
+            <div className="mt-4 text-white">
+              <h2 
+                className="text-left"
+                style={{
+                  width: '341px',
+                  height: '26px',
+                  fontFamily: 'Work Sans',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128%',
+                }}
+              >
+                01:26:08
+              </h2>
+              <p 
+                className="mt-2 text-left"
+                style={{
+                  width: '909px',
+                  height: '60px',
+                  fontFamily: 'Work Sans',
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '100%',
+                }}
+              >
+                The logo on the napkin, "Hotel Valfierno," is a reference to the man behind the 1911 Mona Lisa heist. Like in the film, his scheme wasn't about stealing the real thing, but making others believe they had it.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

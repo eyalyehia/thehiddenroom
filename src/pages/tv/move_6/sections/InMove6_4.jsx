@@ -7,18 +7,22 @@ const InMove6_4 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [hoveredImage, setHoveredImage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState('');
   const [hoverImage, setHoverImage] = useState('');
+  const [zoomImage, setZoomImage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadImages = async () => {
-      const [mainImg, hoverImg] = await Promise.all([
+      const [mainImg, hoverImg, zoomImg] = await Promise.all([
         getBase64('/tv/pictures/tv2/move-6/regular/04.png'),
-        getBase64('/tv/pictures/tv2/move-6/zoomBit/04.png')
+        getBase64('/tv/pictures/tv2/move-6/zoomBit/04.png'),
+        getBase64('/tv/pictures/tv2/move-6/zoomIn/04.png')
       ]);
       setImage(mainImg);
       setHoverImage(hoverImg);
+      setZoomImage(zoomImg);
     };
     loadImages();
   }, []);
@@ -51,6 +55,12 @@ const InMove6_4 = () => {
       setHoveredImage(4);
     } else {
       setHoveredImage(null);
+    }
+  };
+
+  const handleImageClick = () => {
+    if (hoveredImage) {
+      setShowModal(true);
     }
   };
 
@@ -112,6 +122,7 @@ const InMove6_4 = () => {
         className="relative w-full h-full"
         onMouseMove={handleImageMouseMove}
         onMouseLeave={() => setHoveredImage(null)}
+        onClick={handleImageClick}
       >
         <img 
           src={image || "/tv/pictures/tv2/move-6/regular/04.png"}
@@ -164,6 +175,89 @@ const InMove6_4 = () => {
           </div>
         );
       })()}
+
+      {/* Modal */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setShowModal(false)}
+        >
+          <div className="relative" onClick={e => e.stopPropagation()}>
+            {/* Back Button */}
+            <button
+              className="fixed top-6 right-6 transition-opacity cursor-pointer"
+              style={{ width: '29px', height: '45px', zIndex: 60 }}
+              onClick={() => setShowModal(false)}
+            >
+              <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              </svg>
+            </button>
+
+            {/* Modal Content */}
+            <div className="flex flex-col items-center">
+              {/* Image */}
+              <img
+                src={zoomImage || "/tv/pictures/tv2/move-6/zoomIn/04.png"}
+                alt="Zoomed Scene"
+                style={{
+                  width: '1236px',
+                  height: '663px',
+                  opacity: 1,
+                }}
+                className="object-cover"
+              />
+
+              {/* Text Content Below Image */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  left: '0',
+                  bottom: '-85px',
+                  textAlign: 'left'
+                }}
+              >
+                {/* Title */}
+                <div style={{
+                  width: '341px',
+                  height: '26px',
+                  opacity: 1,
+                  fontFamily: 'Work Sans',
+                  fontWeight: 900,
+                  fontStyle: 'normal',
+                  fontSize: '20px',
+                  lineHeight: '128%',
+                  letterSpacing: '0%',
+                  color: '#FFFFFF',
+                  marginBottom: '0px'
+                }}>
+                  00:09:42
+                </div>
+
+                {/* Description */}
+                <div style={{
+                  width: '672px',
+                  height: '60px',
+                  opacity: 0.7,
+                  fontFamily: 'Work Sans',
+                  fontWeight: 400,
+                  fontStyle: 'normal',
+                  fontSize: '20px',
+                  lineHeight: '100%',
+                  letterSpacing: '0%',
+                  color: '#FFFFFF',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical'
+                }}>
+                  Mr. DNA, the animated character from the original Jurassic Park, briefly appears on a visitor screen in Jurassic World.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

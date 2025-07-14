@@ -9,22 +9,30 @@ const InMove3_2 = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [image, setImage] = useState('');
   const [hoverImage, setHoverImage] = useState('');
+  const [zoomImage, setZoomImage] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadImages = async () => {
-      const [mainImg, hoverImg] = await Promise.all([
+      const [mainImg, hoverImg, zoomImg] = await Promise.all([
         getBase64('/tv/pictures/tv1/move-3/regular/02.png'),
-        getBase64('/tv/pictures/tv1/move-3/zoomBit/02.png')
+        getBase64('/tv/pictures/tv1/move-3/zoomBit/02.png'),
+        getBase64('/tv/pictures/tv1/move-3/zoomIn/02.png')
       ]);
       setImage(mainImg);
       setHoverImage(hoverImg);
+      setZoomImage(zoomImg);
     };
     loadImages();
   }, []);
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleImageClick = () => {
+    setShowModal(true);
   };
 
   // Hover configurations
@@ -132,6 +140,7 @@ const InMove3_2 = () => {
               pointerEvents: 'auto',
               zIndex: 10,
             }}
+            onClick={handleImageClick}
           />
         ))}
       </div>
@@ -164,6 +173,64 @@ const InMove3_2 = () => {
           </div>
         );
       })()}
+
+      {/* Modal */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setShowModal(false)}
+        >
+          <div className="relative" onClick={e => e.stopPropagation()}>
+            {/* Back Button */}
+            <button
+              className="fixed top-6 right-6 transition-opacity cursor-pointer"
+              style={{ width: '29px', height: '45px', zIndex: 60 }}
+              onClick={() => setShowModal(false)}
+            >
+              <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              </svg>
+            </button>
+
+            {/* Main Image */}
+            <img
+              src={zoomImage || "/tv/pictures/tv1/move-3/zoomIn/02.png"}
+              alt="Zoomed Scene"
+              className="w-[554px] h-[663px] object-cover"
+            />
+
+            {/* Text Content */}
+            <div className="mt-4 text-white">
+              <h2 
+                className="text-left"
+                style={{
+                  width: '341px',
+                  height: '26px',
+                  fontFamily: 'Work Sans',
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128%',
+                }}
+              >
+                00:07:33
+              </h2>
+              <p 
+                className="mt-2 text-left"
+                style={{
+                  width: '554px',
+                  height: '60px',
+                  fontFamily: 'Work Sans',
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  lineHeight: '100%',
+                }}
+              >
+                Before Tyler Durden is officially introduced, Brad Pitt flashes on screen for a split second, blink and you'll miss him.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
