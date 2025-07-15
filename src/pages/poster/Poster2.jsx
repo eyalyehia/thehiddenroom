@@ -320,67 +320,72 @@ const Poster2 = () => {
       
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
-        <div className="w-full max-w-[1400px] grid grid-cols-4 grid-rows-2 gap-4 h-full max-h-[95vh] px-4">
-          {posters.map((poster) => (
-            <div
-              key={poster.id}
-              className="bg-gray-800 border border-gray-600 relative overflow-visible flex items-center justify-center poster-item"
-              data-poster-id={poster.id}
-              style={{ 
-                aspectRatio: '332/490',
-                width: '100%',
-                maxWidth: '280px' ,
-                height: 'auto'
-              }}
-            >
-              <div className="relative w-full h-full">
-                <img
-                  src={imagePreviews[poster.id] || poster.src}
-                  alt={poster.alt}
-                  className="w-full h-full object-cover transition-all duration-300"
-                  style={{
-                    filter: posterImagesLoaded[poster.id] ? 'none' : 'blur(20px)',
-                    transform: posterImagesLoaded[poster.id] ? 'scale(1)' : 'scale(1.05)'
-                  }}
-                />
-
-                {/* Add debug areas */}
-                {renderClickableAreasDebug(poster.id)}
-
-                {/* אזורי הגדלה - האזור האקטיבי בפועל */}
-                {poster.hotspots.map((hotspot, hotspotIndex) => (
-                  <div
-                    key={hotspotIndex}
-                    className="absolute cursor-pointer hover-detection-area"
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="grid grid-cols-4 grid-rows-2 gap-x-[50px] gap-y-[40px]">
+            {posters.map((poster) => (
+              <div
+                key={poster.id}
+                className="bg-gray-800 border border-gray-600 relative overflow-visible flex items-center justify-center poster-item"
+                data-poster-id={poster.id}
+                style={{ 
+                  aspectRatio: '332/490',
+                  width: '220px',
+                  height: 'auto'
+                }}
+              >
+                <div className="relative w-full h-full">
+                  <img
+                    src={imagePreviews[poster.id] || poster.src}
+                    alt={poster.alt}
+                    className="w-full h-full object-cover transition-all duration-300"
                     style={{
-                      left: `${Math.max(0, hotspot.left - 5)}%`,  /* Much larger detection area */
-                      top: `${Math.max(0, hotspot.top - 5)}%`,     /* Much larger detection area */
-                      width: `${Math.min(100, hotspot.width + 10)}%`,              /* Much larger detection area */
-                      height: `${Math.min(100, hotspot.height + 10)}%`,            /* Much larger detection area */
-                      zIndex: 5,
+                      filter: posterImagesLoaded[poster.id] ? 'none' : 'blur(20px)',
+                      transform: posterImagesLoaded[poster.id] ? 'scale(1)' : 'scale(1.05)'
                     }}
-                    onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
-                    onMouseLeave={handleHotspotLeave}
-                    onClick={() => handleHotspotClick(poster.id)}
                   />
-                ))}
+
+                  {/* Add debug areas */}
+                  {renderClickableAreasDebug(poster.id)}
+
+                  {/* אזורי הגדלה - האזור האקטיבי בפועל */}
+                  {poster.hotspots.map((hotspot, hotspotIndex) => (
+                    <div
+                      key={hotspotIndex}
+                      className="absolute cursor-pointer hover-detection-area"
+                      style={{
+                        left: `${Math.max(0, hotspot.left - 5)}%`,  /* Much larger detection area */
+                        top: `${Math.max(0, hotspot.top - 5)}%`,     /* Much larger detection area */
+                        width: `${Math.min(100, hotspot.width + 10)}%`,              /* Much larger detection area */
+                        height: `${Math.min(100, hotspot.height + 10)}%`,            /* Much larger detection area */
+                        zIndex: 5,
+                      }}
+                      onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
+                      onMouseLeave={handleHotspotLeave}
+                      onClick={() => handleHotspotClick(poster.id)}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Notebook Modal */}
       {showNotebookModal && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ backgroundColor: 'rgba(29, 28, 26, 0.9)' }}
+          className="fixed inset-0 z-50 flex items-start justify-start"
+          style={{ backgroundColor: 'rgba(29, 28, 26, 0.95)' }}
           onClick={() => setShowNotebookModal(false)}
         >
-          <div className="w-full h-full relative">
+          <div 
+            className="w-full h-full relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Close Button */}
             <button
-              className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              className="fixed top-6 right-6 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              style={{ width: '34px', height: '34px' }}
               aria-label="Close"
               onClick={() => setShowNotebookModal(false)}
               onMouseEnter={() => setIsHoveringCloseButton(true)}
@@ -398,20 +403,14 @@ const Poster2 = () => {
             </button>
 
             {/* Content Container */}
-            <div className="absolute" style={{ left: '122px' }}>
+            <div className="absolute text-white font-['Work_Sans']" style={{ left: '122px' }}>
               {/* Title */}
               <h1 
+                className="w-[728px] h-[50px] font-bold text-[39px] leading-[128.04%]"
                 style={{
-                  position: 'absolute',
                   top: '122px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                  fontSize: '39px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF',
-                  width: '728px',
-                  height: '50px'
+                  position: 'absolute',
+                  opacity: 1
                 }}
               >
                 HIDDEN DETAILS IN POSTER DESIGNS
@@ -419,22 +418,21 @@ const Poster2 = () => {
               
               {/* Description */}
               <div 
+                className="w-[827px] h-[221px] font-normal text-[32px]"
                 style={{
-                  position: 'absolute',
                   top: '172px',
+                  position: 'absolute',
+                  opacity: 1,
                   fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
                   fontWeight: 400,
-                  fontSize: '32px',
-                  lineHeight: '100%',
-                  color: '#FFFFFF',
-                  width: '827px',
-                  height: '221px'
+                  fontStyle: 'normal',
+                  lineHeight: '103%',
+                  letterSpacing: '0%'
                 }}
               >
-                <div style={{ marginBottom: '0' }}>Each poster contains a hidden detail.</div>
-                <div style={{ marginTop: '0' }}>move your cursor to uncover it.</div>
-                <div style={{ marginTop: '0' }}>can you spot them all?</div>
+                <p>Each poster contains a hidden detail.</p>
+                <p>move your cursor to uncover it.</p>
+                <p>can you spot them all?</p>
               </div>
             </div>
           </div>

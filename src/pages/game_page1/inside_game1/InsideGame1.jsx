@@ -240,9 +240,9 @@ const InsideGame1 = () => {
               className="absolute text-white"
               style={{
                 position: 'absolute',
-                width: '645px',
+                width: '648px',
                 left: '0',
-                bottom: '-80px',
+                bottom: '-85px',
                 fontFamily: 'Work Sans'
               }}
             >
@@ -256,16 +256,18 @@ const InsideGame1 = () => {
                 <div style={{
                   fontWeight: 400,
                   fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  lineHeight: '100%',
+                  opacity: 1,
+                  width: '648px',
                   height: '40px',
                   overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: '2',
                   WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>The toy robot is a reminder of a boy named Sam,
-who died in the first game. Ellie meant to leave it at his grave, but never did.</div>
+                  whiteSpace: 'pre-line',
+                  letterSpacing: '0%'
+                }}>The toy robot is a reminder of a boy named Sam, who died in
+the first game. Ellie meant to leave it at his grave, but never did.</div>
               </div>
             </div>
           </div>

@@ -163,43 +163,29 @@ const Logo = () => {
     }
   }, [hoveredLogo, clickedLogos]);
 
-  const handleLogoClick = useMemo(() => (logoId) => {
-    setClickedLogos(prev => new Set([...prev, logoId]));
-    setSelectedLogo(logoId);
+  const handleLogoClick = useMemo(() => (logoId, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    // Check if click is in clickable area
+    const inClickableArea = isPointInClickableArea(logoId, mouseX, mouseY, rect.width, rect.height);
+    
+    // Only open modal if click is in clickable area
+    if (inClickableArea) {
+      setClickedLogos(prev => new Set([...prev, logoId]));
+      setSelectedLogo(logoId);
+    }
   }, []);
 
 // Add debug mode state for showing clickable areas
   const [showClickableAreas, setShowClickableAreas] = useState(false);
 
-  // Debug function to show clickable areas 
-  const renderClickableAreasDebug = (logoId, top, left) => {
-    if (!showClickableAreas) return null;
-    
-    const areas = getClickableAreas(logoId);
-    const imageWidth = 168;
-    const imageHeight = 146;
-    
-    return areas.map((area, index) => (
-      <div
-        key={`debug-${logoId}-${index}`}
-        style={{
-          position: 'absolute',
-          left: `${left + (area.x * imageWidth)}px`,
-          top: `${top + (area.y * imageHeight)}px`,
-          width: `${area.width * imageWidth}px`,
-          height: `${area.height * imageHeight}px`,
-          border: '2px solid rgba(255, 0, 0, 0.8)',
-          backgroundColor: 'rgba(255, 0, 0, 0.2)',
-          pointerEvents: 'none',
-          zIndex: 15,
-        }}
-      />
-    ));
-  };
+
 
   // Memoized zoom configurations for better performance
   const logoZoomConfigs = useMemo(() => ({
-      1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -89, y: -25 } },
+      1: { zoomSize: 'w-11', zoomHeight: 'h-11', zoomOffset: { x: -100, y: -25 } },
       2: { zoomSize: 'w-20', zoomHeight: 'h-15', zoomOffset: { x: -70, y: -80 } },
       3: { zoomSize: 'w-19', zoomHeight: 'h-19', zoomOffset: { x: -20, y: -35 } },
       4: { zoomSize: 'w-13', zoomHeight: 'h-auto', zoomOffset: { x: 5, y: -15 } },
@@ -283,70 +269,74 @@ const Logo = () => {
         {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
       </button>
 
-      {/* תמונות הלוגואים - Optimized grid with loading states */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 15 }, (_, index) => {
-          const logoNum = index + 1;
-          const row = Math.floor(index / 5);
-          const col = index % 5;
-          
-          const horizontalSpacing = 200;
-          const leftMargin = 140;
-          
-          const top = 139 + (row * 250);
-          const left = leftMargin + (col * (168 + horizontalSpacing));
-          
-          const imageSrc = `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
-          
-          return (
-            <React.Fragment key={logoNum}>
-              <MemoizedImage
-                src={imageSrc}
-                alt={`Logo ${logoNum}`}
-                className="absolute logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
-                data-logo-id={logoNum}
-                style={{
-                  width: '168px',
-                  height: '146px',
-                  top: `${top}px`,
-                  left: `${left}px`,
-                  objectFit: 'contain',
-                  imageRendering: 'crisp-edges',
-                  cursor: 'default',
-                }}
-                onMouseEnter={() => handleLogoEnter(logoNum)}
-                onMouseLeave={handleLogoLeave}
-                onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
-                onClick={() => handleLogoClick(logoNum)}
-              />
-              {renderClickableAreasDebug(logoNum, top, left)}
-            </React.Fragment>
-          );
-        })}
+      {/* תמונות הלוגואים - Flexbox centered grid */}
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="grid grid-cols-5 gap-x-[100px] gap-y-[80px]">
+          {Array.from({ length: 15 }, (_, index) => {
+            const logoNum = index + 1;
+            const imageSrc = `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
+            
+            return (
+              <div key={logoNum} className="relative">
+                <MemoizedImage
+                  src={imageSrc}
+                  alt={`Logo ${logoNum}`}
+                  className="logo-item transition-transform duration-100 hover:scale-105 will-change-transform"
+                  data-logo-id={logoNum}
+                  style={{
+                    width: '168px',
+                    height: '146px',
+                    objectFit: 'contain',
+                    imageRendering: 'crisp-edges',
+                    cursor: 'default',
+                  }}
+                  onMouseEnter={() => handleLogoEnter(logoNum)}
+                  onMouseLeave={handleLogoLeave}
+                  onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
+                  onClick={(e) => handleLogoClick(logoNum, e)}
+                />
+                {showClickableAreas && (() => {
+                  const areas = getClickableAreas(logoNum);
+                  return areas.map((area, areaIndex) => (
+                    <div
+                      key={`debug-${logoNum}-${areaIndex}`}
+                      className="absolute pointer-events-none z-15"
+                      style={{
+                        left: `${area.x * 168}px`,
+                        top: `${area.y * 146}px`,
+                        width: `${area.width * 168}px`,
+                        height: `${area.height * 146}px`,
+                        border: '2px solid rgba(255, 0, 0, 0.8)',
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                      }}
+                    />
+                  ));
+                })()}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-              {/* Instant Zoomed Image Display - FIXED POSITION */}
+              {/* Instant Zoomed Image Display - RELATIVE POSITION */}
         {hoveredLogo && !selectedLogo && (() => {
           const cfg = getLogoZoomConfig(hoveredLogo);
           const zoomImageSrc = `/logo/pictures/zoomInBit2/${hoveredLogo.toString().padStart(2, '0')}.png`;
           
-          const logoIndex = hoveredLogo - 1;
-          const row = Math.floor(logoIndex / 5);
-          const col = logoIndex % 5;
-          const horizontalSpacing = 200;
-          const leftMargin = 140;
-          const logoTop = 139 + (row * 250);
-          const logoLeft = leftMargin + (col * (168 + horizontalSpacing));
+          // Find the logo element to position relative to it
+          const logoElement = document.querySelector(`[data-logo-id="${hoveredLogo}"]`);
+          if (!logoElement) return null;
           
-          const fixedLeft = logoLeft + 84;
-          const fixedTop = logoTop + 73;
+          const rect = logoElement.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
           
           return (
             <div
               className="fixed z-40 pointer-events-none"
               style={{
-                left: `${fixedLeft + cfg.zoomOffset.x}px`,
-                top: `${fixedTop + cfg.zoomOffset.y}px`,
+                left: `${centerX + cfg.zoomOffset.x}px`,
+                top: `${centerY + cfg.zoomOffset.y}px`,
                 transform: 'translate3d(0, 0, 0)',
                 willChange: 'transform',
               }}
@@ -1277,7 +1267,7 @@ a reference to Bern, where Toblerone was founded.</div>
       {showNotebookModal && (
         <div 
           className="fixed inset-0 z-50 flex items-start justify-start"
-          style={{ backgroundColor: 'rgba(29, 28, 26, 0.9)' }}
+          style={{ backgroundColor: 'rgba(29, 28, 26, 0.95)' }}
           onClick={() => setShowNotebookModal(false)}
         >
           <div 
@@ -1286,19 +1276,20 @@ a reference to Bern, where Toblerone was founded.</div>
           >
             {/* Close Button */}
             <button
-              className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              className="fixed top-6 right-6 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              style={{ width: '34px', height: '34px' }}
               aria-label="Close"
               onClick={() => setShowNotebookModal(false)}
               onMouseEnter={() => setIsHoveringCloseButton(true)}
               onMouseLeave={() => setIsHoveringCloseButton(false)}
             >
               {isHoveringCloseButton ? (
-                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26.7411 1.79167L32.2083 7.28371L22.6641 17.0169L32.2083 26.7151L26.7151 32.2083L17.0169 22.6641L7.28371 32.2083L1.79167 26.7151L11.4199 17.0169L1.79167 7.28371L7.41111 1.79167C7.41111 1.79167 13.9592 8.16621 17.0297 11.2325L26.7411 1.79167Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
                 </svg>
               ) : (
-                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26.7411 1.79167L32.2083 7.28371L22.6641 17.0169L32.2083 26.7151L26.7151 32.2083L17.0169 22.6641L7.28371 32.2083L1.79167 26.7151L11.4199 17.0169L1.79167 7.28371L7.41111 1.79167C7.41111 1.79167 13.9592 8.16621 17.0297 11.2325L26.7411 1.79167Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
                 </svg>
               )}
             </button>
@@ -1319,11 +1310,16 @@ a reference to Bern, where Toblerone was founded.</div>
               
               {/* Description */}
               <div 
-                className="w-[827px] h-[221px] font-normal text-[32px] leading-[100%]"
+                className="w-[827px] h-[221px] font-normal text-[32px]"
                 style={{
                   top: '172px',
                   position: 'absolute',
-                  opacity: 1
+                  opacity: 1,
+                  fontFamily: 'Work Sans',
+                  fontWeight: 400,
+                  fontStyle: 'normal',
+                  lineHeight: '103%',
+                  letterSpacing: '0%'
                 }}
               >
                 <p>Each logo contains a hidden detail.</p>

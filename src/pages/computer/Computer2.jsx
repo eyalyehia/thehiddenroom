@@ -40,7 +40,7 @@ const Computer2 = () => {
       {showNotebookModal && (
         <div 
           className="fixed inset-0 z-50 flex items-start justify-start"
-          style={{ backgroundColor: 'rgba(29, 28, 26, 0.9)' }}
+          style={{ backgroundColor: 'rgba(29, 28, 26, 0.95)' }}
           onClick={() => setShowNotebookModal(false)}
         >
           <div 
@@ -49,38 +49,33 @@ const Computer2 = () => {
           >
             {/* Close Button */}
             <button
-              className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              className="fixed top-6 right-6 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              style={{ width: '34px', height: '34px' }}
               aria-label="Close"
               onClick={() => setShowNotebookModal(false)}
               onMouseEnter={() => setIsHoveringCloseButton(true)}
               onMouseLeave={() => setIsHoveringCloseButton(false)}
             >
               {isHoveringCloseButton ? (
-                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26.7411 1.79167L32.2083 7.28371L22.6641 17.0169L32.2083 26.7151L26.7151 32.2083L17.0169 22.6641L7.28371 32.2083L1.79167 26.7151L11.4199 17.0169L1.79167 7.28371L7.41111 1.79167C7.41111 1.79167 13.9592 8.16621 17.0297 11.2325L26.7411 1.79167Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
                 </svg>
               ) : (
-                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26.7411 1.79167L32.2083 7.28371L22.6641 17.0169L32.2083 26.7151L26.7151 32.2083L17.0169 22.6641L7.28371 32.2083L1.79167 26.7151L11.4199 17.0169L1.79167 7.28371L7.41111 1.79167C7.41111 1.79167 13.9592 8.16621 17.0297 11.2325L26.7411 1.79167Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
                 </svg>
               )}
             </button>
 
             {/* Content Container */}
-            <div className="absolute" style={{ left: '122px' }}>
+            <div className="absolute text-white font-['Work_Sans']" style={{ left: '122px' }}>
               {/* Title */}
               <h1 
+                className="w-[658px] h-[50px] font-bold text-[39px] leading-[128.04%]"
                 style={{
-                  position: 'absolute',
                   top: '122px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
-                  fontSize: '39px',
-                  lineHeight: '128.04%',
-                  color: '#FFFFFF',
-                  width: '658px',
-                  height: '50px'
+                  position: 'absolute',
+                  opacity: 1
                 }}
               >
                 HIDDEN DETAILS IN VIDEO GAMES
@@ -88,23 +83,21 @@ const Computer2 = () => {
               
               {/* Description */}
               <div 
+                className="w-[827px] h-[221px] font-normal text-[32px]"
                 style={{
-                  position: 'absolute',
                   top: '172px',
+                  position: 'absolute',
+                  opacity: 1,
                   fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
                   fontWeight: 400,
-                  fontSize: '32px',
-                  lineHeight: '100%',
-                  letterSpacing: '0%',
-                  color: '#FFFFFF',
-                  width: '827px',
-                  height: '221px'
+                  fontStyle: 'normal',
+                  lineHeight: '103%',
+                  letterSpacing: '0%'
                 }}
               >
-                <div style={{ marginBottom: '0' }}>Each game scene contains a hidden detail.</div>
-                <div style={{ marginTop: '0' }}>move your cursor to uncover it.</div>
-                <div style={{ marginTop: '0' }}>can you spot them all?</div>
+                <p>Each game scene contains a hidden detail.</p>
+                <p>move your cursor to uncover it.</p>
+                <p>can you spot them all?</p>
               </div>
             </div>
           </div>
