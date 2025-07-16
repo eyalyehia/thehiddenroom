@@ -37,7 +37,7 @@ const Poster2 = () => {
             resolve(img);
           };
           img.onerror = reject;
-          img.src = `/poster/pictures/zoomIn/${i.toString().padStart(2, '0')}.png`;
+          img.src = `/poster/pictures/zoomBit/${i.toString().padStart(2, '0')}.png`;
         });
         imagePromises.push(imagePromise);
       }
@@ -321,7 +321,7 @@ const Poster2 = () => {
       {/* מיכל הפוסטרים - רשת רספונסיבית */}
       <div className="w-full h-screen flex items-center justify-center p-4">
         <div className="flex items-center justify-center min-h-screen">
-          <div className="grid grid-cols-4 grid-rows-2 gap-x-[50px] gap-y-[40px]">
+          <div className="grid grid-cols-4 grid-rows-2 gap-x-[100px] gap-y-[50px]">
             {posters.map((poster) => (
               <div
                 key={poster.id}
@@ -329,7 +329,7 @@ const Poster2 = () => {
                 data-poster-id={poster.id}
                 style={{ 
                   aspectRatio: '332/490',
-                  width: '220px',
+                  width: '275px',
                   height: 'auto'
                 }}
               >
@@ -516,7 +516,7 @@ const Poster2 = () => {
           onClick={() => handleHotspotClick(hoveredPoster)}
         >
           <img
-            src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomIn/${hoveredPoster.toString().padStart(2, '0')}.png`}
+            src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomBit/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
             className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
             style={{ 

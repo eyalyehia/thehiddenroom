@@ -324,7 +324,7 @@ const Poster = () => {
           <img
             key={i + 1}
             className="preload-zoom-image"
-            src={`/poster/pictures/zoomIn/${(i + 1).toString().padStart(2, '0')}.png`}
+            src={`/poster/pictures/zoomBit/${(i + 1).toString().padStart(2, '0')}.png`}
             alt={`Preload ${i + 1}`}
             loading="eager"
             decoding="sync"
@@ -360,7 +360,7 @@ const Poster = () => {
       {/* גודל תמונות */}
       <div className="w-full h-screen flex items-center justify-center p-4">
         <div className="flex items-center justify-center min-h-screen">
-          <div className="grid grid-cols-4 grid-rows-2 gap-x-[50px] gap-y-[40px]">
+          <div className="grid grid-cols-4 grid-rows-2 gap-x-[100px] gap-y-[50px]">
           {posters.map((poster) => (
             <div
               key={poster.id}
@@ -368,7 +368,7 @@ const Poster = () => {
               data-poster-id={poster.id}
               style={{ 
                 aspectRatio: '332/490',
-                  width: '220px',
+                  width: '275px',
                 height: 'auto'
               }}
             >
@@ -488,7 +488,7 @@ const Poster = () => {
           onClick={() => handleHotspotClick(hoveredPoster)}
         >
           <img
-            src={`/poster/pictures/zoomIn/${hoveredPoster.toString().padStart(2, '0')}.png`}
+            src={`/poster/pictures/zoomBit/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
             className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn`}
             style={{ 
