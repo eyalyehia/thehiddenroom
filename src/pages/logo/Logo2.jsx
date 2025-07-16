@@ -352,7 +352,7 @@ const Logo2 = () => {
 
       {/* תמונות הלוגואים - Flexbox centered grid */}
       <div className="flex items-center justify-center min-h-screen">
-        <div className="grid grid-cols-5 gap-x-[100px] gap-y-[80px]">
+        <div className="grid grid-cols-5 gap-x-[140px] gap-y-[88px]">
           {logoGrid}
         </div>
       </div>
@@ -1182,7 +1182,7 @@ const Logo2 = () => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>The wave and mountain are inspired by Hokusai's "The Great Wave off Kanagawa",</div>
+                    }}>The wave and mountain are inspired by Hokusai's "The </div>
                     <div style={{
                       fontFamily: 'Work Sans',
                       fontWeight: 400,
@@ -1194,7 +1194,7 @@ const Logo2 = () => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>merging nature and surf culture.</div>
+                    }}>Great Wave off Kanagawa", merging nature and surf culture.</div>
                   </div>
                 </div>
               </div>
