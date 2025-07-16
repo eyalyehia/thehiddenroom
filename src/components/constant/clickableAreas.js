@@ -1,53 +1,53 @@
 export const LOGO_CLICKABLE_AREAS_PAGE1 = {
   1: [
-    { x: -0.1, y: 0.3, width: 0.3, height:0.4 },
+    { x: -0.03, y: 0.40, width: 0.2, height:0.2 },
   ],
   2: [
-    { x: 0.1, y:0, width: 0.5, height: 0.4 },
+    { x: 0.28, y:0.05, width: 0.23, height: 0.23 },
   ],
   3: [
-    { x: 0.3, y: 0.3, width: 0.4, height: 0.5 }
+    { x: 0.42, y: 0.3, width: 0.29, height: 0.40 }
   ],
   4: [
-    { x: 0.5, y: 0.4, width: 0.3, height: 0.4 },
+    { x: 0.58, y: 0.43, width: 0.17, height: 0.23 },
   ],
   5: [
-    { x: -0.15, y: 0.17, width: 0.6, height: 0.7 }
+    { x: -0.02, y: 0.26, width: 0.52, height: 0.53 }
   ],
   6: [
-    { x: 0.3, y: 0.26, width: 0.4, height: 0.4 }
+    { x: 0.32, y: 0.37, width: 0.35, height: 0.18 },
   
   ],
   7: [
     
-    { x: 0, y: 0, width: 1, height: 0.7 }
+    { x: 0.1, y: 0, width: 0.8, height: 0.7 }
   ],
   8: [
    
-    { x: -0.1, y: 0.27, width: 0.38, height: 0.5 }
+    { x: -0.03, y: 0.32, width: 0.3, height: 0.4 }
   
   ],
   9: [
     
-    { x: 0.25, y: 0, width: 0.5, height: 0.6 }
+    { x: 0.35, y: 0.15, width: 0.28, height: 0.43 }
   ],
   10: [
-    { x: -0.13, y: 0.57, width: 1.2, height: 0.2 }
+    { x: 0.06, y: 0.57, width: 0.90, height: 0.17 }
   ],
   11: [
-    { x: -0.10, y: 0.5, width: 0.35, height: 0.35 }
+    { x: 0.1, y: 0.52, width: 0.15, height: 0.23 }
   ],
   12: [
-    { x: -0.25, y: 0.2, width: 0.45, height: 0.68 }
+    { x: -0.05, y: 0.32, width: 0.26, height: 0.35 }
   ],
   13: [
-    { x: 0.07, y: 0.15, width: 1, height: 0.6}
+    { x: 0.30, y: 0.15, width: 0.71, height: 0.55}
   ],
   14: [
-    { x: 0.1, y: 0.20, width: 0.80, height: 0.6 }
+    { x: 0.21, y: 0.20, width: 0.5, height: 0.53 }
   ],
   15: [
-    { x: -0.05, y: 0.35, width: 0.6, height: 0.35 }
+    { x: 0.05, y: 0.4, width: 0.3, height: 0.15 }
   ]
 };
 

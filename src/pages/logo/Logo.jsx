@@ -196,9 +196,9 @@ const Logo = () => {
       9: { zoomSize: 'w-18', zoomHeight: 'h-22', zoomOffset: { x: -40, y: -80 } },
       10: { zoomSize: 'w-52', zoomHeight: 'h-7', zoomOffset: { x: -100, y:15 } },
       11: { zoomSize: 'w-15', zoomHeight: 'h-auto', zoomOffset: { x: -90, y: 2 } },
-      12: { zoomSize: 'w-20', zoomHeight: 'h-25', zoomOffset: { x: -90, y:-40 } },
-      13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -60, y: -73 } },
-      14: { zoomSize: 'w-37', zoomHeight: 'h-18', zoomOffset: { x: -60, y: -38 } },
+      12: { zoomSize: 'w-20', zoomHeight: 'h-25', zoomOffset: { x: -105, y:-40 } },
+      13: { zoomSize: 'w-36', zoomHeight: 'h-27', zoomOffset: { x: -50, y: -73 } },
+      14: { zoomSize: 'w-37', zoomHeight: 'h-18', zoomOffset: { x: -60, y: -50 } },
       15: { zoomSize: 'w-20', zoomHeight: 'h-7', zoomOffset: { x: -80, y:-15 } },
   }), []);
 
