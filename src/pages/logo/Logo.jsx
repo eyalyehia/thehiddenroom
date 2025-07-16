@@ -483,7 +483,7 @@ const Logo = () => {
                   }}>TOBLERONE</div>
                   <div style={{
                     width: '907px',
-                    height: '40px',
+                    height: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '0px'
@@ -553,19 +553,7 @@ a reference to Bern, where Toblerone was founded.</div>
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>The negative space between the arm</div>
-                    <div style={{
-                      fontFamily: 'Work Sans',
-                      fontWeight: 400,
-                      fontSize: '20px',
-                      lineHeight: '20px',
-                      height: '20px',
-                      opacity: 0.7,
-                      color: '#FFFFFF',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
-                    }}>and leg is shaped like Australia.</div>
+                    }}>The negative space between the arm and leg is shaped like Australia.</div>
                   </div>
                 </div>
               </div>
@@ -712,19 +700,8 @@ a reference to Bern, where Toblerone was founded.</div>
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>The letters "my" are designed </div>
-                    <div style={{
-                      fontFamily: 'Work Sans',
-                      fontWeight: 400,
-                      fontSize: '20px',
-                      lineHeight: '20px',
-                      height: '20px',
-                      opacity: 0.7,
-                      color: '#FFFFFF',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
-                    }}>to form the image of a hand.</div>
+                    }}>The letters "my" are designed to form the image of a hand.</div>
+                   
                   </div>
                 </div>
               </div>
@@ -871,7 +848,7 @@ a reference to Bern, where Toblerone was founded.</div>
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>The split "O" with a vertical line suggests an orbital</div>
+                    }}>The split "O" with a vertical line suggests an </div>
                     <div style={{
                       fontFamily: 'Work Sans',
                       fontWeight: 400,
@@ -883,7 +860,7 @@ a reference to Bern, where Toblerone was founded.</div>
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>path, visually reflecting the brand name.</div>
+                    }}>orbital path, visually reflecting the brand name.</div>
                   </div>
                 </div>
               </div>
@@ -908,35 +885,34 @@ a reference to Bern, where Toblerone was founded.</div>
                   }}>BASKIN ROBBINS</div>
                   <div style={{
                     width: '907px',
-                    height: '40px',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '0px'
+                    gap: '4px'
                   }}>
                     <div style={{
                       fontFamily: 'Work Sans',
                       fontWeight: 400,
                       fontSize: '20px',
-                      lineHeight: '20px',
-                      height: '20px',
+                      lineHeight: '24px',
                       opacity: 0.7,
-                      color: '#FFFFFF',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
-                    }}>The number "31" is hidden within the letters B and R,</div>
+                      color: '#FFFFFF'
+                    }}>The number "31" is hidden within the letters </div>
                     <div style={{
                       fontFamily: 'Work Sans',
                       fontWeight: 400,
                       fontSize: '20px',
-                      lineHeight: '20px',
-                      height: '20px',
+                      lineHeight: '24px',
                       opacity: 0.7,
-                      color: '#FFFFFF',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
-                    }}>a reference to the brand's original promise of 31 ice cream flavors.</div>
+                      color: '#FFFFFF'
+                    }}>B and R, a reference to the brand's original </div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '24px',
+                      opacity: 0.7,
+                      color: '#FFFFFF'
+                    }}>promise of 31 ice cream flavors.</div>
                   </div>
                 </div>
               </div>
@@ -1030,7 +1006,7 @@ a reference to Bern, where Toblerone was founded.</div>
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>A hidden chocolate kiss is formed in the negative</div>
+                    }}>A hidden chocolate kiss is formed in the </div>
                     <div style={{
                       fontFamily: 'Work Sans',
                       fontWeight: 400,
@@ -1042,7 +1018,7 @@ a reference to Bern, where Toblerone was founded.</div>
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>space between the "K" and "I".</div>
+                    }}>negative space between the "K" and "I".</div>
                   </div>
                 </div>
               </div>
