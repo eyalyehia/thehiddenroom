@@ -177,7 +177,7 @@ const Logo2 = () => {
     3: { maxWidth: 'max-w-[1416px]', maxHeight: 'max-h-[413]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
     4: { maxWidth: 'max-w-[372px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
     5: { maxWidth: 'max-w-[653px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
-    6: { maxWidth: 'max-w-[1479px]', maxHeight: 'max-h-[418px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
+    6: { maxWidth: 'max-w-[1479px]', maxHeight: 'max-h-[518px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
     7: { maxWidth: 'max-w-[1467px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
     8: { maxWidth: 'max-w-[1175px]', maxHeight: 'max-h-[664px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
     9: { maxWidth: 'max-w-[497px]', maxHeight: 'max-h-[663px]', position: 'flex items-center justify-center', marginTop: '0', marginLeft: '0' },
@@ -1182,7 +1182,19 @@ const Logo2 = () => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>The wave and mountain are inspired by Hokusai's "The Great Wave off Kanagawa", merging nature and surf culture.</div>
+                    }}>The wave and mountain are inspired by Hokusai's "The Great Wave off Kanagawa",</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>merging nature and surf culture.</div>
                   </div>
                 </div>
               </div>
