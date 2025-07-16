@@ -885,7 +885,7 @@ a reference to Bern, where Toblerone was founded.</div>
                     fontSize: '20px',
                     lineHeight: '128%',
                     letterSpacing: '0%',
-                    marginBottom: '7px'  // מרחק בין הכותרת לטקסט
+                    marginBottom: '0px'  // מרחק בין הכותרת לטקסט
                   }}>BASKIN ROBBINS</div>
                   <div style={{
                     width: '445px',

@@ -357,7 +357,7 @@ const Poster = () => {
           </svg>
         )}
       </button>
-      
+      {/* גודל תמונות */}
       <div className="w-full h-screen flex items-center justify-center p-4">
         <div className="flex items-center justify-center min-h-screen">
           <div className="grid grid-cols-4 grid-rows-2 gap-x-[50px] gap-y-[40px]">
