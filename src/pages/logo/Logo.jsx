@@ -468,7 +468,7 @@ const Logo = () => {
                   position: 'absolute',
                   width: '460px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -524,7 +524,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '440px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -565,7 +565,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -618,7 +618,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '440px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -671,7 +671,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '440px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -713,7 +713,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -766,7 +766,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -819,7 +819,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -870,50 +870,34 @@ a reference to Bern, where Toblerone was founded.</div>
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '632px',
+                  width: '445px',
                   left: '0',
-                  bottom: '-80px',
+                  top: '679px',  // 663px (גובה התמונה) + 16px (מרווח)
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
+                    width: '341px',
+                    height: '26px',
+                    fontFamily: 'Work Sans',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128.04%',
-                    marginBottom: '0'
+                    lineHeight: '128%',
+                    letterSpacing: '0%',
+                    marginBottom: '7px'  // מרחק בין הכותרת לטקסט
                   }}>BASKIN ROBBINS</div>
                   <div style={{
-                    width: '907px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4px'
-                  }}>
-                    <div style={{
-                      fontFamily: 'Work Sans',
-                      fontWeight: 400,
-                      fontSize: '20px',
-                      lineHeight: '24px',
-                      opacity: 0.7,
-                      color: '#FFFFFF'
-                    }}>The number "31" is hidden within the letters </div>
-                    <div style={{
-                      fontFamily: 'Work Sans',
-                      fontWeight: 400,
-                      fontSize: '20px',
-                      lineHeight: '24px',
-                      opacity: 0.7,
-                      color: '#FFFFFF'
-                    }}>B and R, a reference to the brand's original </div>
-                    <div style={{
-                      fontFamily: 'Work Sans',
-                      fontWeight: 400,
-                      fontSize: '20px',
-                      lineHeight: '24px',
-                      opacity: 0.7,
-                      color: '#FFFFFF'
-                    }}>promise of 31 ice cream flavors.</div>
-                  </div>
+                    width: '445px',
+                    height: '60px',
+                    fontFamily: 'Work Sans',
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    letterSpacing: '0%',
+                    opacity: 0.7,
+                    color: '#FFFFFF'
+                  }}>The number "31" is hidden within the letters B and R, a reference to the brand's original promise of 31 ice cream flavors.</div>
                 </div>
               </div>
             )}
@@ -924,7 +908,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -977,7 +961,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '440px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -1030,7 +1014,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '440px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -1083,7 +1067,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -1136,7 +1120,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >
@@ -1189,7 +1173,7 @@ a reference to Bern, where Toblerone was founded.</div>
                   position: 'absolute',
                   width: '632px',
                   left: '0',
-                  bottom: '-80px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans'
                 }}
               >

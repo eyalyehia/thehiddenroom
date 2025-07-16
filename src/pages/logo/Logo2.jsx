@@ -444,7 +444,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-105px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -491,7 +491,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -537,7 +537,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -583,7 +583,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -629,7 +629,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -675,7 +675,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -721,7 +721,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -767,7 +767,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -813,7 +813,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -859,7 +859,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -905,7 +905,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -951,7 +951,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -997,7 +997,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -1043,7 +1043,7 @@ const Logo2 = () => {
                 style={{
                   position: 'absolute',
                   width: '907px',
-                  bottom: '-85px',
+                  bottom: '-89px',  // Updated spacing
                   fontFamily: 'Work Sans',
                   fontStyle: 'normal',
                   color: '#FFFFFF'
@@ -1088,43 +1088,27 @@ const Logo2 = () => {
                 className="absolute text-white"
                 style={{
                   position: 'absolute',
-                  width: '907px',
-                  bottom: '-85px',
-                  fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  color: '#FFFFFF'
+                  width: '588px',
+                  left: '0',
+                  bottom: '-89px',  // Updated spacing
+                  fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128.04%',
-                    marginBottom: '0'
+                    lineHeight: '128%',
+                    marginBottom: '0',
+                    width: '341px'
                   }}>QUIKSILVER</div>
                   <div style={{
                     fontWeight: 400,
                     fontSize: '20px',
-                    lineHeight: '20px',
+                    lineHeight: '100%',
                     opacity: 0.7,
-                    height: '20px',
-                    overflow: 'hidden',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 1,
-                    WebkitBoxOrient: 'vertical',
-                    whiteSpace: 'pre-line'
-                  }}>The wave and mountain are inspired by Hokusai's "The ,</div>
-                  <div style={{
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '20px',
-                    opacity: 0.7,
-                    height: '20px',
-                    marginTop: '-5px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
-                  }}>Great Wave off Kanagawa" merging nature and surf culture.</div>
+                    width: '588px'
+                  }}>The wave and mountain are inspired by Hokusai's "The Great Wave off Kanagawa", merging nature and surf culture.</div>
                 </div>
               </div>
             )}
