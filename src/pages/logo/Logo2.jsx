@@ -445,34 +445,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>ROXY</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>Two Quiksilver logos are mirrored to form a heart,</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>highlighting Roxy's identity as Quiksilver's women's brand.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>Two Quiksilver logos are mirrored to form a heart,</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>highlighting Roxy's identity as Quiksilver's women's brand.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -484,34 +499,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>APPLE</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The bitten apple references the Tree of Knowledge,</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>a symbol of curiosity and the pursuit of wisdom.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The bitten apple references the Tree of Knowledge,</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>a symbol of curiosity and the pursuit of wisdom.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -523,34 +553,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '479px',  // Adjusted from 679px to 479px for better visibility
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>CISCO</div>
                   <div style={{
-                    width: '599px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The vertical bars are designed to resemble the Golden Gate</div>
-                  <div style={{
-                    width: '599px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>Bridge, a symbol of San Francisco, where Cisco was founded.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The vertical bars are designed to resemble the Golden Gate</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>Bridge, a symbol of San Francisco, where Cisco was founded.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -562,34 +607,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>LAFAYETTE</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The two t's in "Lafayette" form the shape of the Eiffel</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>Tower, a subtle nod to the brand's Parisian roots.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The two t's in "Lafayette" form the shape of the Eiffel</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>Tower, a subtle nod to the brand's Parisian roots.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -601,26 +661,37 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>EL AL</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>The letter "ל" is shaped like an ascending airplane.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letter "ל" is shaped like an ascending airplane.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -632,34 +703,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '479px',  // Adjusted from 679px to 479px for better visibility
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>AUDI</div>
                   <div style={{
-                    width: '543px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The four rings represent the 1932 merger of Audi, DKW,</div>
-                  <div style={{
-                    width: '543px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>Horch, and Wanderer, the foundation of Audi's legacy.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The four rings represent the 1932 merger of Audi, DKW,</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>Horch, and Wanderer, the foundation of Audi's legacy.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -671,34 +757,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>AMAZON</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The arrow from A to Z suggests the brand sells everything,</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>and forms a smile to convey customer satisfaction.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The arrow from A to Z suggests the brand sells everything,</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>and forms a smile to convey customer satisfaction.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -710,34 +811,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>NBC</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The feathers form a peacock, with its body</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>and beak visible in the negative space.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The feathers form a peacock, with its body</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>and beak visible in the negative space.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -749,34 +865,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>MUL-T-LOCK</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The keyhead forms a strong male</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>figure, a symbol of power and security.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The keyhead forms a strong male</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>figure, a symbol of power and security.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -788,34 +919,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>VAIO</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The "VA" forms an analog wave, while "IO" represents</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>binary code, blending analog and digital in one logo.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The "VA" forms an analog wave, while "IO" represents</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>binary code, blending analog and digital in one logo.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -827,34 +973,49 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>UNILEVER</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7,
-                    marginBottom: '7px'
-                  }}>The large "U" is built from dozens of icons, each</div>
-                  <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>symbolizing one of the brand's product categories.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The large "U" is built from dozens of icons, each</div>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>symbolizing one of the brand's product categories.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -866,26 +1027,37 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>TOYOTA</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>The ovals spell out every letter in "Toyota".</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The ovals spell out every letter in "Toyota".</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -897,26 +1069,37 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>RAY-BAN</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>The letter "R" resembles the shape of a sunglass frame.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The letter "R" resembles the shape of a sunglass frame.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -928,26 +1111,37 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>NEW MAN</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>The logo reads the same upside down.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The logo reads the same upside down.</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -959,26 +1153,37 @@ const Logo2 = () => {
                   position: 'absolute',
                   width: '588px',
                   left: '0',
-                  top: '679px',  // 663px (image height) + 16px (spacing)
+                  bottom: '-89px',
                   fontFamily: 'Work Sans'
                 }}
               >
                 <div className="text-left">
                   <div style={{
-                    width: '341px',
-                    height: '26px',
                     fontWeight: 900,
                     fontSize: '20px',
-                    lineHeight: '128%',
-                    marginBottom: '7px'  // spacing between title and text
+                    lineHeight: '128.04%',
+                    marginBottom: '0'
                   }}>QUIKSILVER</div>
                   <div style={{
-                    width: '588px',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '100%',
-                    opacity: 0.7
-                  }}>The wave and mountain are inspired by Hokusai's "The Great Wave off Kanagawa", merging nature and surf culture.</div>
+                    width: '907px',
+                    height: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Work Sans',
+                      fontWeight: 400,
+                      fontSize: '20px',
+                      lineHeight: '20px',
+                      height: '20px',
+                      opacity: 0.7,
+                      color: '#FFFFFF',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>The wave and mountain are inspired by Hokusai's "The Great Wave off Kanagawa", merging nature and surf culture.</div>
+                  </div>
                 </div>
               </div>
             )}
