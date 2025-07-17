@@ -518,7 +518,7 @@ const Poster2 = () => {
           <img
             src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomBit/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
-            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} ${hoveredPoster === 15 ? 'object-contain' : 'object-cover'} border border-white shadow-2xl bg-black/90`}
+            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} ${hoveredPoster === 15 ? 'object-fill' : 'object-cover'} border border-white shadow-2xl bg-black/90`}
             style={{ 
               willChange: 'transform',
               opacity: 1
