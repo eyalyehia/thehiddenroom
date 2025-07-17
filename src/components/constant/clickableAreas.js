@@ -103,55 +103,55 @@ export const LOGO_CLICKABLE_AREAS_PAGE2 = {
 
 export const POSTER_CLICKABLE_AREAS_PAGE1 = {
   1: [
-    { x: 0.33, y: 0.4, width: 0.35, height: 0.22 }
+    { x: 0.46, y: 0.45, width: 0.07, height: 0.07 }
   ],
   2: [
-    { x: 0.45, y: 0.30, width: 0.30, height: 0.25 }
+    { x: 0.57, y: 0.35, width: 0.15, height: 0.07 }
   ],
   3: [
-    { x: 0.3, y: 0.10, width: 0.38, height: 0.15 }
+    { x: 0.47, y: 0.12, width: 0.07, height: 0.12 }
   ],
   4: [
-    { x: 0.38, y: 0, width: 0.3, height: 0.25 }
+    { x: 0.45, y: 0.05, width: 0.15, height: 0.1 }
   ],
   5: [
-    { x: 0.05, y: 0.6, width: 0.35, height: 0.25 }
+    { x: 0, y: 0.7, width: 0.1, height: 0.1 }
   ],
   6: [
-    { x: 0.3, y: 0.85, width: 0.4, height: 0.15 }
+    { x: 0.37, y: 0.95, width: 0.25, height: 0.02 }
   ],
   7: [
-    { x: 0.02, y: 0.6, width: 0.4, height: 0.2 }
+    { x: 0, y: 0.70, width: 0.10, height: 0.10}
   ],
   8: [
-    { x: 0.25, y: 0.4, width: 0.5, height: 0.25 }
+    { x: 0.45, y: 0.53, width: 0.18, height: 0.05 }
   ]
 };
 
 export const POSTER_CLICKABLE_AREAS_PAGE2 = {
   9: [
-    { x: 0.50, y: 0.01, width: 0.5, height: 0.10 }
+    { x: 0.72, y: 0.01, width: 0.18, height: 0.06 }
   ],
   10: [
-    { x: 0.2, y: 0.1, width: 0.4, height: 0.35 }
+    { x: 0.29, y: 0.29, width: 0.1, height: 0.1 }
   ],
   11: [
-    { x: 0.70, y: 0.15, width: 0.25, height: 0.25 }
+    { x: 0.70, y: 0.25, width: 0.1, height: 0.10 }
   ],
   12: [
-    { x: 0.02, y: 0.6, width: 0.3, height: 0.2 }
+    { x: 0, y: 0.75, width: 0.09, height: 0.10 }
   ],
   13: [
-    { x: 0.62, y: 0.22, width: 0.3, height: 0.2 }
+    { x: 0.77, y: 0.28, width: 0.07, height: 0.05 }
   ],
   14: [
-    { x: 0.35, y: 0.58, width: 0.35, height: 0.12 }
+    { x: 0.42, y: 0.60, width: 0.1, height: 0.05 }
   ],
   15: [
-    { x: 0.35, y: 0.50, width: 0.32, height: 0.25 }
+    { x: 0.40, y: 0.50, width: 0.20, height: 0.15 }
   ],
   16: [
-    { x: 0, y: 0.39, width: 0.5, height: 0.20 }
+    { x: 0, y: 0.33, width: 0.25, height: 0.15 }
   ]
 };
 

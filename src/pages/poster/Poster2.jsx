@@ -86,7 +86,6 @@ const Poster2 = () => {
     id: index + 9,
     src: `/poster/pictures/regular/${(index + 9).toString().padStart(2, '0')}.jpg`,
     alt: `Poster ${index + 9}`,
-    hotspots: getHotspotsForPoster(index + 9)
   }));
 
   // 🎛️ מרכז שליטה על זום עבור פוסטרים 9-16
@@ -97,49 +96,49 @@ const Poster2 = () => {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
         zoomSize: "w-22",
         zoomHeight: "h-10",
-        zoomOffset: { x: -115, y: 2 }
+        zoomOffset: { x: -90, y: -4 }
       },
       10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
-        zoomSize: "w-25",
+        zoomSize: "w-21",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -75, y: 35 }
+        zoomOffset: { x: -62, y: -22 }
       },
       11: {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
-        zoomSize: "w-21",
-        zoomHeight: "h-17",
-        zoomOffset: { x: -115, y: 15 }
+        zoomSize: "w-19",
+        zoomHeight: "h-15",
+        zoomOffset: { x: -50, y: -15 }
       },
       12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
         zoomSize: "w-15",
         zoomHeight: "h-15",
-        zoomOffset: { x: -90, y: -14 }
+        zoomOffset: { x: -35, y: -31 }
       },
       13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
-        zoomSize: "w-21",
+        zoomSize: "w-18",
         zoomHeight: "h-15",
-        zoomOffset: { x: -85, y: 0 }
+        zoomOffset: { x: -60, y: -5 }
       },
       14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
-        zoomSize: "w-28",
-        zoomHeight: "h-15",
-        zoomOffset: { x: -100, y:5 }
+        zoomSize: "w-24",
+        zoomHeight: "h-13",
+        zoomOffset: { x: -70, y:-15 }
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
-        zoomSize: "w-25",
-        zoomHeight: "h-25",
-        zoomOffset: { x: -100, y: 19 }
+        zoomSize: "w-18",
+        zoomHeight: "h-18",
+        zoomOffset: { x: -70, y: 7 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
-        zoomSize: "w-26",
-        zoomHeight: "h-20",
-        zoomOffset: { x: -160, y:5 }
+        zoomSize: "w-18",
+        zoomHeight: "h-18",
+        zoomOffset: { x: -80, y:-15 }
       }
     };
 
@@ -149,11 +148,6 @@ const Poster2 = () => {
       zoomHeight: "h-auto",
       zoomOffset: { x: 20, y: -100 }
     };
-  }
-
-  // פונקציה להגדרת אזורי ההגדלה לכל פוסטר
-  function getHotspotsForPoster(posterId) {
-    return [getPosterZoomConfig(posterId).hotspot];
   }
 
   // פונקציה לחזרה לעמוד הראשי
@@ -348,15 +342,15 @@ const Poster2 = () => {
                   {renderClickableAreasDebug(poster.id)}
 
                   {/* אזורי הגדלה - האזור האקטיבי בפועל */}
-                  {poster.hotspots.map((hotspot, hotspotIndex) => (
+                  {(POSTER_CLICKABLE_AREAS_PAGE2[poster.id] || []).map((area, areaIndex) => (
                     <div
-                      key={hotspotIndex}
+                      key={areaIndex}
                       className="absolute cursor-pointer hover-detection-area"
                       style={{
-                        left: `${Math.max(0, hotspot.left - 5)}%`,  /* Much larger detection area */
-                        top: `${Math.max(0, hotspot.top - 5)}%`,     /* Much larger detection area */
-                        width: `${Math.min(100, hotspot.width + 10)}%`,              /* Much larger detection area */
-                        height: `${Math.min(100, hotspot.height + 10)}%`,            /* Much larger detection area */
+                        left: `${area.x * 100}%`,
+                        top: `${area.y * 100}%`,
+                        width: `${area.width * 100}%`,
+                        height: `${area.height * 100}%`,
                         zIndex: 5,
                       }}
                       onMouseEnter={(e) => handleHotspotEnter(poster.id, e)}
