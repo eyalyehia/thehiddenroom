@@ -167,7 +167,13 @@ const InsideGame2 = () => {
             top: `50%`,
             transform: `translate(${zoomConfig.zoomOffset.x}px, ${zoomConfig.zoomOffset.y}px)`,
             willChange: 'transform',
-            pointerEvents: 'auto'
+            pointerEvents: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            width: zoomConfig.zoomSize.replace('w-[', '').replace(']', ''),
+            height: zoomConfig.zoomHeight.replace('h-[', '').replace(']', '')
           }}
           onClick={handleImageClick}
           onMouseEnter={() => setIsHovering(true)}
@@ -176,14 +182,18 @@ const InsideGame2 = () => {
           <MemoizedImage
             src="/computer/pictures/page1/game2/zoomBitIn/01.png"
             alt="Zoomed Easter egg"
-            className={`${zoomConfig.zoomSize} ${zoomConfig.zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
             style={{ 
+              width: '100%',
+              height: '100%',
+              objectFit: 'fill',
               willChange: 'transform, opacity',
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
               opacity: 1,
-              transition: 'all 0.3s ease-in-out'
+              transition: 'all 0.3s ease-in-out',
+              border: '2px solid #FFFFFF',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
             }}
           />
         </div>

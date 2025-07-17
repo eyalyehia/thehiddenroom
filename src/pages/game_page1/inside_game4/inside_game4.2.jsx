@@ -146,8 +146,8 @@ const InsideGame4_2 = () => {
         <div
           className="fixed z-40 cursor-pointer"
           style={{
-            left: `50%`,
-            top: `50%`,
+            left: '50%',
+            top: '50%',
             transform: `translate(${zoomConfig.zoomOffset.x}px, ${zoomConfig.zoomOffset.y}px)`,
             willChange: 'transform',
             pointerEvents: 'auto'
@@ -156,19 +156,31 @@ const InsideGame4_2 = () => {
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <MemoizedImage
-            src="/computer/pictures/page1/game4/zoomBitIn/03.png"
-            alt="Zoomed Game 4"
-            className={`${zoomConfig.zoomSize} ${zoomConfig.zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
-            style={{ 
-              willChange: 'transform, opacity',
-              imageRendering: 'crisp-edges',
-              backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)',
-              opacity: 1,
-              transition: 'all 0.3s ease-in-out'
-            }}
-          />
+          <div style={{
+            width: zoomConfig.zoomSize.replace('w-[', '').replace(']', ''),
+            height: zoomConfig.zoomHeight.replace('h-[', '').replace(']', ''),
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden'
+          }}>
+            <MemoizedImage
+              src="/computer/pictures/page1/game4/zoomBitIn/03.png"
+              alt="Zoomed Game 4"
+              className="border border-white shadow-2xl"
+              style={{ 
+                width: '100%',
+                height: '100%',
+                objectFit: 'fill',
+                willChange: 'transform, opacity',
+                imageRendering: 'crisp-edges',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+                opacity: 1,
+                transition: 'all 0.3s ease-in-out'
+              }}
+            />
+          </div>
         </div>
       )}
 

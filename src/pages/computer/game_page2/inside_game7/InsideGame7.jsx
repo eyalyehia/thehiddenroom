@@ -145,8 +145,10 @@ const InsideGame7 = () => {
             width: zoomConfigs[1].zoomSize.replace('w-[', '').replace('px]', '') + 'px',
             height: zoomConfigs[1].zoomHeight.replace('h-[', '').replace('px]', '') + 'px',
             cursor: 'pointer',
-            boxSizing: 'border-box',
-            border: '2px solid #FFFFFF'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden'
           }}
         >
           <img
@@ -155,10 +157,12 @@ const InsideGame7 = () => {
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
+              objectFit: 'fill',
               filter: zoomImageLoaded ? 'none' : 'blur(20px)',
               transition: 'filter 0.3s ease-in-out',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              border: '2px solid #FFFFFF',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
             }}
             onLoad={() => setZoomImageLoaded(true)}
           />

@@ -141,27 +141,40 @@ const InsideGame62 = () => {
             top: '50%',
             transform: `translate(${zoomConfigs[3].zoomOffset.x}px, ${zoomConfigs[3].zoomOffset.y}px)`,
             zIndex: 30,
-            pointerEvents: 'none',
+            cursor: 'pointer',
+            pointerEvents: 'auto'
+          }}
+          onClick={handleClick}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          <div style={{
             width: zoomConfigs[3].zoomSize.replace('w-[', '').replace('px]', '') + 'px',
             height: zoomConfigs[3].zoomHeight.replace('h-[', '').replace('px]', '') + 'px',
-            cursor: 'pointer',
-            boxSizing: 'border-box',
-            border: '2px solid #FFFFFF'
-          }}
-        >
-          <img
-            src="/computer/pictures/page2/game2/zoomBitIn/03.png"
-            alt="Zoomed Game 6"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-              transition: 'filter 0.3s ease-in-out',
-              cursor: 'pointer'
-            }}
-            onLoad={() => setZoomImageLoaded(true)}
-          />
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden'
+          }}>
+            <img
+              src="/computer/pictures/page2/game2/zoomBitIn/03.png"
+              alt="Zoomed Game 6"
+              className="border border-white shadow-2xl"
+              style={{ 
+                width: '100%',
+                height: '100%',
+                objectFit: 'fill',
+                filter: zoomImageLoaded ? 'none' : 'blur(20px)',
+                transition: 'filter 0.3s ease-in-out',
+                willChange: 'transform, opacity',
+                imageRendering: 'crisp-edges',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+                opacity: 1
+              }}
+              onLoad={() => setZoomImageLoaded(true)}
+            />
+          </div>
         </div>
       )}
 
