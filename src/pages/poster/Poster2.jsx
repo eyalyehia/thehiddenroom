@@ -131,8 +131,8 @@ const Poster2 = () => {
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
-        zoomSize: "w-22",
-        zoomHeight: "h-22",
+        zoomSize: "w-25",
+        zoomHeight: "h-25",
         zoomOffset: { x: -100, y: 19 }
       },
       16: {
@@ -518,7 +518,7 @@ const Poster2 = () => {
           <img
             src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomBit/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
-            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
+            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} ${hoveredPoster === 15 ? 'object-contain' : 'object-cover'} border border-white shadow-2xl bg-black/90`}
             style={{ 
               willChange: 'transform',
               opacity: 1

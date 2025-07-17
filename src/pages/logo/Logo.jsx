@@ -7,7 +7,7 @@ import getBase64 from '../../components/common/getBase64';
 const MemoizedImage = React.memo(({ src, alt, className, onClick, style, ...props }) => {
   const [loading, setLoading] = useState(true);
   const [base64, setBase64] = useState('');
-
+// 
   useEffect(() => {
     let isMounted = true;
 
