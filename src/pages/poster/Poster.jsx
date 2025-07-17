@@ -56,21 +56,21 @@ const Poster = () => {
     const configs = {
       1: {
         hotspot: { left: 37, top: 43, width: 25, height: 15 },
-        zoomSize: "w-20",
+        zoomSize: "w-16",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -95, y: 5 }
+        zoomOffset: { x: -83, y:10 }
       },
       2: {
         hotspot: { left: 50, top: 30, width: 20, height: 15 },
-        zoomSize: "w-18",
+        zoomSize: "w-15",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -80, y: 15 }
+        zoomOffset: { x: -70, y: 25 }
       },
       3: {
         hotspot: { left: 35, top: 20, width: 30, height: 15 },
-        zoomSize: "w-20",
+        zoomSize: "w-16",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -103, y: -40 }
+        zoomOffset: { x: -95, y: -30 }
       },
       4: {
         hotspot: { left: 40, top: 5, width: 10, height: 20 },
@@ -88,12 +88,12 @@ const Poster = () => {
         hotspot: { left: 40, top: 85, width: 20, height: 80 },
         zoomSize: "w-50",
         zoomHeight: "h-5",
-        zoomOffset: { x: -100, y: -150 }
+        zoomOffset: { x: -140, y: 45 }
       },
       7: {
         hotspot: { left: 2, top: 70, width: 20, height: 15 },
-        zoomSize: "w-24",
-        zoomHeight: "h-30",
+        zoomSize: "w-20",
+        zoomHeight: "h-25",
         zoomOffset: { x: -80, y: -25 }
       },
       8: {
