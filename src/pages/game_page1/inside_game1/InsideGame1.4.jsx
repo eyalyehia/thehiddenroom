@@ -228,18 +228,33 @@ const InsideGame1_4 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 1 HOUR AND 13 MINUTES INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  width: '645px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A toy giraffe appears in a basement, a nod to the memorable
-giraffe scene Ellie and Joel shared in the first game.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>A toy giraffe appears in a basement, a nod to the memorable</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>giraffe scene Ellie and Joel shared in the first game.</div>
+                </div>
               </div>
             </div>
           </div>

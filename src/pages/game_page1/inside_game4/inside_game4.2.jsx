@@ -219,24 +219,40 @@ const InsideGame4_2 = () => {
               }}
             >
               <div className="text-left">
-              <div style={{
-                fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
-                marginBottom: '0'
+                <div style={{
+                  fontWeight: 900,
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
                 }}>UNLOCKED AROUND 6–7 HOURS INTO THE GAME</div>
-              <div style={{
-                fontWeight: 400,
-                fontSize: '20px',
-                height: '40px',
-                lineHeight: '20px',
-                opacity: 0.7,
-                overflow: 'hidden',
-                display: '-webkit-box',
-                WebkitLineClamp: '2',
-                WebkitBoxOrient: 'vertical',
-                whiteSpace: 'pre-line'
-                }}>The heart paintings are a tribute to developer Jake Snipes, who passed away during production. They were created by his partner, Sam Handrick, who also worked on the game.</div>
+                <div style={{
+                  width: '907px',
+                  height: '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>The heart paintings are a tribute to developer Jake Snipes, who passed away during </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>production. They were created by his partner, Sam Handrick, who also worked on the game.</div>
+                </div>
               </div>
             </div>
           </div>

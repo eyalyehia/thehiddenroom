@@ -212,7 +212,7 @@ const InsideGame3_1 = () => {
               className="absolute text-white"
               style={{
                 position: 'absolute',
-                width: '645px',
+                width: '800px',
                 left: '0',
                 bottom: '-80px',
                 fontFamily: 'Work Sans'
@@ -224,20 +224,35 @@ const InsideGame3_1 = () => {
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 3 HOURS AND 30 MINUTES INTO THE GAME</div>
+                }}>AVAILABLE A FEW HOURS INTO THE GAME DURING FREE EXPLORATION</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  width: '645px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A photo of Joel and Tommy before the outbreak shows them
-as touring musicians, revealing their shared past.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>A ship modeled after the Titanic can be seen near the docks during Free Ride.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>as touring musicians, revealing their shared past.</div> */}
+                </div>
               </div>
             </div>
           </div>

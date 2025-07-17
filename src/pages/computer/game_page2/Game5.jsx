@@ -73,10 +73,10 @@ const Game5 = () => {
       }}>
         {imagePaths.map((imagePath, index) => {
           const captions = [
-            'APPROXIMATELY 15 MINUTES INTO THE GAME',
-            'APPROXIMATELY 17 MINUTES INTO THE GAME',
-            'APPROXIMATELY 2 HOURS AND 41 MINUTES INTO THE GAME',
-            'APPROXIMATELY 1 HOUR AND 13 MINUTES INTO THE GAME'
+            'APPROXIMATELY 7 HOURS INTO THE GAME',
+            'APPROXIMATELY 4 HOURS INTO THE GAME',
+            'APPROXIMATELY 2 HOURS INTO THE GAME',
+            'APPROXIMATELY 3-5 HOURS INTO THE GAME'
           ];
           const routes = ['/inside-game5', '/inside-game5-1', '/inside-game5-2', '/inside-game5-3'];
 
@@ -121,8 +121,8 @@ const Game5 = () => {
       <div 
         style={{
           position: 'absolute',
-          right: '50px',
-          top: '50px',
+          right: '30px',
+          top: '30px',
           cursor: 'pointer',
           zIndex: 10
         }}

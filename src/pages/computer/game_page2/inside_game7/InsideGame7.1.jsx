@@ -156,24 +156,24 @@ const InsideGame71 = () => {
             justifyContent: 'center',
             overflow: 'hidden'
           }}>
-            <img
-              src="/computer/pictures/page2/game3/zoomBitIn/02.png"
-              alt="Zoomed Game 7"
+          <img
+            src="/computer/pictures/page2/game3/zoomBitIn/02.png"
+            alt="Zoomed Game 7"
               className="border border-white shadow-2xl"
-              style={{ 
-                width: '100%',
-                height: '100%',
+            style={{
+              width: '100%',
+              height: '100%',
                 objectFit: 'fill',
-                filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-                transition: 'filter 0.3s ease-in-out',
+              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
+              transition: 'filter 0.3s ease-in-out',
                 willChange: 'transform, opacity',
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
                 opacity: 1
-              }}
-              onLoad={() => setZoomImageLoaded(true)}
-            />
+            }}
+            onLoad={() => setZoomImageLoaded(true)}
+          />
           </div>
         </div>
       )}
@@ -234,17 +234,33 @@ const InsideGame71 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 3-4 HOURS INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                  width: '907px',
                   height: '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>On the edge of a mountain, during the late-night hours in the game,you can see</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
                   lineHeight: '20px',
+                    height: '20px',
                   opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>On the edge of a mountain, during the late-night hours in the game, you can see the ghost of a woman. If you wait long enough, you might even hear her scream.</div>
+                  // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> the ghost of a woman. If you wait long enough, you might even hear her scream.</div>
+                </div>
               </div>
             </div>
           </div>

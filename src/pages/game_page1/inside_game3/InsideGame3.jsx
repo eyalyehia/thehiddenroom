@@ -222,20 +222,35 @@ const InsideGame3 = () => {
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 3 HOURS AND 15 MINUTES INTO THE GAME</div>
+                }}>APPROXIMATELY 5–6 HOURS INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  width: '645px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A PlayStation 3 can be found in Joel's house,
-showing how he kept Sarah's gaming hobby alive after her death.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>A teddy bear sits on a chair inside the prison. Hitting</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> it triggers a chilling girl’s laugh.</div>
+                </div>
               </div>
             </div>
           </div>

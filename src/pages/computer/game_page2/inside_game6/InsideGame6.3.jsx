@@ -227,24 +227,40 @@ const InsideGame63 = () => {
               }}
             >
               <div className="text-left">
-              <div style={{ 
+                <div style={{
                   fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
                   marginBottom: '0'
                 }}>APPROXIMATELY 2 HOURS INTO THE GAME</div>
-              <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                <div style={{
+                  width: '907px',
                   height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>You can find a stack of crates filled with bananas, a reference to the classic video game Donkey Kong Country.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>You can find a stack of crates filled with bananas,</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>a reference to the classic video game Donkey Kong Country.</div>
+                </div>
               </div>
             </div>
           </div>

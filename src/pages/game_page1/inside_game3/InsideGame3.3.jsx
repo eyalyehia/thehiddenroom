@@ -224,20 +224,35 @@ const InsideGame3_3 = () => {
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 4 HOURS INTO THE GAME</div>
+                }}>APPROXIMATELY 15–20 MINUTES INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  width: '645px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A collection of vinyl records in Joel's room includes
-several famous country artists he mentioned in the first game.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>“Hotel Corleone” is a reference to The movie "Godfather", named after the iconic Corleone family.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>several famous country artists he mentioned in the first game.</div> */}
+                </div>
               </div>
             </div>
           </div>

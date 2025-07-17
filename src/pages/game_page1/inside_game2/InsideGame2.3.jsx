@@ -224,20 +224,35 @@ const InsideGame2_3 = () => {
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 3 HOURS AND 15 MINUTES INTO THE GAME</div>
+                }}>FIND 5 CLUES TO REVEAL THE VAMPIRE’S LOCATION</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  width: '645px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A sketch in Ellie's journal shows her practicing guitar chords,
-reflecting Joel's influence on her life.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>If you find 5 clues around the city, you’ll discover the location</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> of a vampire drinking a man’s blood in a dark alley at midnight.</div>
+                </div>
               </div>
             </div>
           </div>

@@ -226,17 +226,33 @@ const InsideGame4_1 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 3–5 HOURS INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                  width: '907px',
                   height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>Throughout the game, you can collect books that reference other PlayStation titles, each one styled as a poem with subtle nods to iconic games.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Throughout the game, you can collect books that reference other </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>PlayStation titles, each one styled as a poem with subtle nods to iconic games.</div>
+                </div>
               </div>
             </div>
           </div>

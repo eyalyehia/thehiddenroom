@@ -113,7 +113,7 @@ const Game1 = () => {
             WebkitLineClamp: '2',
             WebkitBoxOrient: 'vertical'
           }}>
-            APPROXIMATELY 15 MINUTES INTO THE GAME
+           APPROXIMATELY 15 MINUTES INTO THE GAME
           </div>
         </div>
 

@@ -227,24 +227,40 @@ const InsideGame8_3 = () => {
               }}
             >
               <div className="text-left">
-              <div style={{ 
+                <div style={{
                   fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
                   marginBottom: '0'
                 }}>APPROXIMATELY 6 HOURS INTO THE GAME</div>
-              <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                <div style={{
+                  width: '907px',
                   height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>Deep underwater, you can find a sunken ship containing a skeleton with a Clicker-style fungal head, a reference to The Last of Us.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Deep underwater, you can find a sunken ship containing a skeleton</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>with a Clicker-style fungal head, a reference to The Last of Us.</div>
+                </div>
               </div>
             </div>
           </div>

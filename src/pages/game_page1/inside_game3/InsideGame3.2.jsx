@@ -212,7 +212,7 @@ const InsideGame3_2 = () => {
               className="absolute text-white"
               style={{
                 position: 'absolute',
-                width: '645px',
+                width: '800px',
                 left: '0',
                 bottom: '-80px',
                 fontFamily: 'Work Sans'
@@ -224,20 +224,35 @@ const InsideGame3_2 = () => {
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 3 HOURS AND 45 MINUTES INTO THE GAME</div>
+                }}>CAN BE FOUND EARLY IN THE GAME DURING FREE RIDE NEAR THE BRIDGE</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
+                  width: '645px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A broken watch in Joel's drawer is the same one Sarah gave him,
-which he still wears despite it being broken.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>While exploring the city, you’ll find a man jumping off a bridge, leaving a note:</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> “They say when life gives you lemons, you make lemonade. life gave me Syphilis.”</div>
+                </div>
               </div>
             </div>
           </div>

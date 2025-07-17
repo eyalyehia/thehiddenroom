@@ -227,24 +227,50 @@ const InsideGame8_1 = () => {
               }}
             >
               <div className="text-left">
-              <div style={{ 
+                <div style={{
                   fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
                   marginBottom: '0'
                 }}>APPROXIMATELY 15 HOURS INTO THE GAME</div>
-              <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                <div style={{
+                  width: '907px',
                   height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>In the epilogue's bedroom scene, you can see a poster that references The Last of Us comics, featuring a pregnant Ellie wearing a gas mask.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>In the epilogue's bedroom scene, you can see a poster </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>that references The Last of Us comics, featuring a </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>pregnant Ellie wearing a gas mask. </div>
+                </div>
               </div>
             </div>
           </div>

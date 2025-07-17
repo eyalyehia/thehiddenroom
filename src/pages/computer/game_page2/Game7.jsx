@@ -73,10 +73,10 @@ const Game7 = () => {
       }}>
         {imagePaths.map((imagePath, index) => {
           const captions = [
-            'APPROXIMATELY 5–6 HOURS INTO THE GAME',
-            'AVAILABLE A FEW HOURS INTO THE GAME DURING FREE EXPLORATION',
-            'CAN BE FOUND EARLY IN THE GAME DURING FREE RIDE NEAR THE BRIDGE',
-            'APPROXIMATELY 15–20 MINUTES INTO THE GAME'
+            'APPROXIMATELY 15–30 MINUTES INTO THE GAME',
+            'APPROXIMATELY 3-4 HOURS INTO THE GAME',
+            'APPROXIMATELY 40 MINUTES INTO THE GAME',
+            'APPROXIMATELY 3–5 HOURS INTO THE GAME'
           ];
           const routes = ['/inside-game7', '/inside-game7-1', '/inside-game7-2', '/inside-game7-3'];
 
@@ -126,8 +126,8 @@ const Game7 = () => {
       <div 
         style={{
           position: 'absolute',
-          right: '50px',
-          top: '50px',
+          right: '30px',
+          top: '30px',
           cursor: 'pointer',
           zIndex: 10
         }}

@@ -223,20 +223,35 @@ const InsideGame7 = () => {
                 fontSize: '20px',
                 lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 7 HOURS INTO THE GAME</div>
+                }}>APPROXIMATELY 15–30 MINUTES INTO THE GAME</div>
               <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                  width: '907px',
                   height: '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>Early in the game, a frozen alien body can be</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
                   lineHeight: '20px',
+                    height: '20px',
                   opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A letter from Maria mentions Tommy's concerns about Joel,
-showing the strain in their relationship.</div>
+                  // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> seen trapped under the ice beneath a bridge.</div>
+                </div>
               </div>
             </div>
           </div>

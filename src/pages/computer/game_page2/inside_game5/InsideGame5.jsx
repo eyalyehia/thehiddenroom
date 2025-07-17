@@ -215,7 +215,7 @@ const InsideGame5 = () => {
                 position: 'absolute',
                 width: '907px',
                 left: '0',
-                bottom: '-80px',
+                bottom: '-110px',
                 fontFamily: 'Work Sans'
               }}
             >
@@ -225,20 +225,41 @@ const InsideGame5 = () => {
                   fontSize: '20px',
                   lineHeight: '128.04%',
                   marginBottom: '0'
-                }}>APPROXIMATELY 5 HOURS INTO THE GAME</div>
+                }}>APPROXIMATELY 7 HOURS INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A drawing of Riley, Ellie's best friend from the first game,
-can be found in Ellie's journal.</div>
+                  width: '907px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>A missing person poster written in Hebrew appears</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>on a bulletin board. Scanning its barcode redirects</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>you to Rick Astley's "Never Gonna Give You Up."</div>
+                </div>
               </div>
             </div>
           </div>

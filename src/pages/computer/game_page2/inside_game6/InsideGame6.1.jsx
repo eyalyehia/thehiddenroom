@@ -156,24 +156,24 @@ const InsideGame61 = () => {
             justifyContent: 'center',
             overflow: 'hidden'
           }}>
-            <img
-              src="/computer/pictures/page2/game2/zoomBitIn/02.png"
-              alt="Zoomed Game 6"
+          <img
+            src="/computer/pictures/page2/game2/zoomBitIn/02.png"
+            alt="Zoomed Game 6"
               className="border border-white shadow-2xl"
-              style={{ 
-                width: '100%',
-                height: '100%',
+            style={{
+              width: '100%',
+              height: '100%',
                 objectFit: 'fill',
-                filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-                transition: 'filter 0.3s ease-in-out',
+              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
+              transition: 'filter 0.3s ease-in-out',
                 willChange: 'transform, opacity',
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
                 opacity: 1
-              }}
-              onLoad={() => setZoomImageLoaded(true)}
-            />
+            }}
+            onLoad={() => setZoomImageLoaded(true)}
+          />
           </div>
         </div>
       )}
@@ -234,17 +234,33 @@ const InsideGame61 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 2-4 HOURS INTO THE GAME</div>
               <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                  width: '907px',
                   height: '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>You can find a small snowy cabin that mirrors Kratos's home from God </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
                   lineHeight: '20px',
+                    height: '20px',
                   opacity: 0.7,
                   overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>You can find a small snowy cabin that mirrors Kratos's home from God of War. Inside, there are subtle props that reference his story and past.</div>
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>of War. Inside, there are subtle props that reference his story and past.</div>
+                </div>
               </div>
             </div>
           </div>

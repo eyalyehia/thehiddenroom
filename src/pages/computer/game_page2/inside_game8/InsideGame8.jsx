@@ -218,25 +218,40 @@ const InsideGame8 = () => {
               }}
             >
               <div className="text-left">
-              <div style={{ 
+                <div style={{ 
                   fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
-                  marginBottom: '0'
-                }}>APPROXIMATELY 8 HOURS INTO THE GAME</div>
-              <div style={{
-                  fontWeight: 400,
                   fontSize: '20px',
+                  lineHeight: '128.04%',
+                  marginBottom: '0'
+                }}>APPROXIMATELY 5–6 HOURS INTO THE GAME</div>
+                <div style={{
+                  width: '907px',
                   height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A photo of Joel and Sarah at a soccer game
-can be found in his desk drawer.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>If you pet a lemur at the market, it will jump on your back</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> and steal an apple from your hand a few seconds later</div>
+                </div>
               </div>
             </div>
           </div>

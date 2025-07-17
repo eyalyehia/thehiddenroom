@@ -227,24 +227,50 @@ const InsideGame8_2 = () => {
               }}
             >
               <div className="text-left">
-              <div style={{ 
+                <div style={{
                   fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '128.04%',
+                  fontSize: '20px',
+                  lineHeight: '128.04%',
                   marginBottom: '0'
                 }}>APPROXIMATELY 5–6 HOURS INTO THE GAME</div>
-              <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                <div style={{
+                  width: '907px',
                   height: '40px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>During Chapter 11, you encounter a series of pirate portraits. One of them, labeled "Guy Wood," is a tribute to Guybrush Threepwood from the video game Monkey Island.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>During Chapter 11, you encounter a series of pirate portraits. </div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>One of them, labeled "Guy Wood," is a tribute to Guybrush</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}> Threepwood from the video game Monkey Island.</div>
+                </div>
               </div>
             </div>
           </div>

@@ -264,20 +264,33 @@ const InsideGame1 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 15 MINUTES INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '100%',
-                  opacity: 1,
                   width: '648px',
                   height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line',
-                  letterSpacing: '0%'
-                }}>The toy robot is a reminder of a boy named Sam, who died in
-the first game. Ellie meant to leave it at his grave, but never did.</div>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>The toy robot is a reminder of a boy named Sam, who died in</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>the first game. Ellie meant to leave it at his grave, but never did.</div>
+                </div>
               </div>
             </div>
           </div>

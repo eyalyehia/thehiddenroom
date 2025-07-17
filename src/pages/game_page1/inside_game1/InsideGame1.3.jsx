@@ -210,38 +210,41 @@ const InsideGame1_3 = () => {
               }}
             />
             
-            <div 
-              className="absolute text-white"
-              style={{
-                position: 'absolute',
-                width: '645px',
-                left: '0',
-                bottom: '-80px',
-                fontFamily: 'Work Sans'
-              }}
-            >
-              <div className="text-left">
-                <div style={{
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128.04%',
-                  marginBottom: '0'
-                }}>APPROXIMATELY 2 HOURS AND 41 MINUTES INTO THE GAME</div>
-                <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
-                  lineHeight: '20px',
-                  opacity: 0.7,
-                  height: '40px',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>The Dr. Uckmann trading card is modeled
-after Neil Druckmann, the game's director.</div>
-              </div>
-            </div>
+            <div
+  className="absolute text-white"
+  style={{
+    position: 'absolute',
+    width: '800px', // הרחבתי מ-645px ל-800px
+    left: '0',
+    bottom: '-80px',
+    fontFamily: 'Work Sans'
+  }}
+>
+  <div className="text-left">
+    <div style={{
+      fontWeight: 900,
+      fontSize: '20px',
+      lineHeight: '128.04%',
+      marginBottom: '0'
+    }}>APPROXIMATELY 2 HOURS AND 41 MINUTES INTO THE GAME</div>
+    <div style={{
+      width: '800px', // הרחבתי מ-645px ל-800px
+      height: '40px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0px'
+    }}>
+      <div style={{
+        fontWeight: 400,
+        fontSize: '20px',
+        lineHeight: '20px',
+        height: '20px',
+        opacity: 0.7,
+        whiteSpace: 'nowrap'
+      }}>The Dr. Uckmann trading card is modeled after Neil Druckmann, the game's director.</div>
+    </div>
+  </div>
+</div>
           </div>
         </div>
       )}

@@ -157,24 +157,24 @@ const InsideGame5_1 = () => {
             justifyContent: 'center',
             overflow: 'hidden'
           }}>
-            <img
-              src="/computer/pictures/page2/game1/zoomBitIn/02.png"
-              alt="Zoomed Game 5"
+          <img
+            src="/computer/pictures/page2/game1/zoomBitIn/02.png"
+            alt="Zoomed Game 5"
               className="border border-white shadow-2xl"
-              style={{ 
-                width: '100%',
-                height: '100%',
+            style={{
+              width: '100%',
+              height: '100%',
                 objectFit: 'fill',
-                filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-                transition: 'filter 0.3s ease-in-out',
+              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
+              transition: 'filter 0.3s ease-in-out',
                 willChange: 'transform, opacity',
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
                 opacity: 1
-              }}
-              onLoad={() => setZoomImageLoaded(true)}
-            />
+            }}
+            onLoad={() => setZoomImageLoaded(true)}
+          />
           </div>
         </div>
       )}
@@ -236,17 +236,33 @@ const InsideGame5_1 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 4 HOURS INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                  width: '907px',
                   height: '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    // overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>A barcode on a wooden crate leads to a cryptic Ubisoft video. The clip is mysterious and its meaning remains unclear.</div>
+                  {/* <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
                   lineHeight: '20px',
+                    height: '20px',
                   opacity: 0.7,
                   overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>A barcode on a wooden crate leads to a cryptic Ubisoft video. The clip is mysterious and its meaning remains unclear.</div>
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}></div> */}
+                </div>
               </div>
             </div>
           </div>

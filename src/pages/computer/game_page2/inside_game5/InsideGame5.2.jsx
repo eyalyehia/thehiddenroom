@@ -157,24 +157,24 @@ const InsideGame5_2 = () => {
             justifyContent: 'center',
             overflow: 'hidden'
           }}>
-            <img
-              src="/computer/pictures/page2/game1/zoomBitIn/03.png"
-              alt="Zoomed Game 5"
+          <img
+            src="/computer/pictures/page2/game1/zoomBitIn/03.png"
+            alt="Zoomed Game 5"
               className="border border-white shadow-2xl"
-              style={{ 
-                width: '100%',
-                height: '100%',
+            style={{
+              width: '100%',
+              height: '100%',
                 objectFit: 'fill',
-                filter: zoomImageLoaded ? 'none' : 'blur(20px)',
-                transition: 'filter 0.3s ease-in-out',
+              filter: zoomImageLoaded ? 'none' : 'blur(20px)',
+              transition: 'filter 0.3s ease-in-out',
                 willChange: 'transform, opacity',
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
                 opacity: 1
-              }}
-              onLoad={() => setZoomImageLoaded(true)}
-            />
+            }}
+            onLoad={() => setZoomImageLoaded(true)}
+          />
           </div>
         </div>
       )}
@@ -236,17 +236,33 @@ const InsideGame5_2 = () => {
                   marginBottom: '0'
                 }}>APPROXIMATELY 2 HOURS INTO THE GAME</div>
                 <div style={{
-                  fontWeight: 400,
-                  fontSize: '20px',
+                  width: '907px',
                   height: '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0px'
+                }}>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '20px',
+                    height: '20px',
+                    opacity: 0.7,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>At one point in the game, you can find a television that briefly</div>
+                  <div style={{
+                    fontWeight: 400,
+                    fontSize: '20px',
                   lineHeight: '20px',
+                    height: '20px',
                   opacity: 0.7,
                   overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-line'
-                }}>At one point in the game, you can find a television that briefly displays villains from past Far Cry games.</div>
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}>displays villains from past Far Cry games.</div>
+                </div>
               </div>
             </div>
           </div>
