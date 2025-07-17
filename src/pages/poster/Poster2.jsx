@@ -95,51 +95,51 @@ const Poster2 = () => {
     const configs = {
       9: {
         hotspot: { left: 57, top: 1, width: 40, height: 10 },
-        zoomSize: "w-24",
-        zoomHeight: "h-12",
-        zoomOffset: { x: -125, y: 2 }
+        zoomSize: "w-22",
+        zoomHeight: "h-10",
+        zoomOffset: { x: -115, y: 2 }
       },
       10: {
         hotspot: { left: 20, top: 20, width: 20, height: 20 },
         zoomSize: "w-25",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -75, y: 10 }
+        zoomOffset: { x: -75, y: 35 }
       },
       11: {
         hotspot: { left: 70, top: 20, width: 20, height: 10 },
-        zoomSize: "w-25",
-        zoomHeight: "h-19",
+        zoomSize: "w-21",
+        zoomHeight: "h-17",
         zoomOffset: { x: -115, y: 15 }
       },
       12: {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
-        zoomSize: "w-22",
-        zoomHeight: "h-22",
-        zoomOffset: { x: -90, y: -65 }
+        zoomSize: "w-15",
+        zoomHeight: "h-15",
+        zoomOffset: { x: -90, y: -14 }
       },
       13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
-        zoomSize: "w-24",
-        zoomHeight: "h-18",
-        zoomOffset: { x: -95, y: -10 }
+        zoomSize: "w-21",
+        zoomHeight: "h-15",
+        zoomOffset: { x: -85, y: 0 }
       },
       14: {
         hotspot: { left: 40, top: 60, width: 15, height: 15 },
         zoomSize: "w-28",
         zoomHeight: "h-15",
-        zoomOffset: { x: -85, y:5 }
+        zoomOffset: { x: -100, y:5 }
       },
       15: {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
-        zoomSize: "w-25",
-        zoomHeight: "h-25",
+        zoomSize: "w-22",
+        zoomHeight: "h-22",
         zoomOffset: { x: -100, y: 19 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
-        zoomSize: "w-32",
+        zoomSize: "w-26",
         zoomHeight: "h-20",
-        zoomOffset: { x: -160, y:20 }
+        zoomOffset: { x: -160, y:5 }
       }
     };
 
