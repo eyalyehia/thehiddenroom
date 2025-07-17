@@ -271,7 +271,7 @@ const Logo = () => {
 
       {/* תמונות הלוגואים - Flexbox centered grid */}
       <div className="flex items-center justify-center min-h-screen">
-        <div className="grid grid-cols-5 gap-x-[140px] gap-y-[88px]">
+        <div className="grid grid-cols-5 gap-x-[190px] gap-y-[130px]">
           {Array.from({ length: 15 }, (_, index) => {
             const logoNum = index + 1;
             const imageSrc = `/logo/pictures/regular2/${logoNum.toString().padStart(2, '0')}.png`;
