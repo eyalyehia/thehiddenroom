@@ -114,7 +114,7 @@ const Poster2 = () => {
         hotspot: { left: 2, top: 80, width: 20, height: 10 },
         zoomSize: "w-15",
         zoomHeight: "h-15",
-        zoomOffset: { x: -35, y: -31 }
+        zoomOffset: { x: -26, y: -25 }
       },
       13: {
         hotspot: { left: 70, top: 30, width: 20, height: 10 },
@@ -132,13 +132,13 @@ const Poster2 = () => {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
         zoomSize: "w-18",
         zoomHeight: "h-18",
-        zoomOffset: { x: -70, y: 7 }
+        zoomOffset: { x: -70, y: 0 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
         zoomSize: "w-18",
         zoomHeight: "h-18",
-        zoomOffset: { x: -80, y:-15 }
+        zoomOffset: { x: -66, y:0 }
       }
     };
 
@@ -512,7 +512,7 @@ const Poster2 = () => {
           <img
             src={imageElements[hoveredPoster]?.src || `/poster/pictures/zoomBit/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
-            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} ${hoveredPoster === 15 ? 'object-fill' : 'object-cover'} border border-white shadow-2xl bg-black/90`}
+            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white shadow-2xl bg-black/90`}
             style={{ 
               willChange: 'transform',
               opacity: 1

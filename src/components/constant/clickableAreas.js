@@ -139,7 +139,7 @@ export const POSTER_CLICKABLE_AREAS_PAGE2 = {
     { x: 0.70, y: 0.25, width: 0.1, height: 0.10 }
   ],
   12: [
-    { x: 0, y: 0.75, width: 0.09, height: 0.10 }
+    { x: 0, y: 0.75, width: 0.06, height: 0.07 }
   ],
   13: [
     { x: 0.77, y: 0.28, width: 0.07, height: 0.05 }
@@ -148,10 +148,10 @@ export const POSTER_CLICKABLE_AREAS_PAGE2 = {
     { x: 0.42, y: 0.60, width: 0.1, height: 0.05 }
   ],
   15: [
-    { x: 0.40, y: 0.50, width: 0.20, height: 0.15 }
+    { x: 0.40, y: 0.57, width: 0.15, height: 0.11 }
   ],
   16: [
-    { x: 0, y: 0.33, width: 0.25, height: 0.15 }
+    { x: 0.05, y: 0.35, width: 0.15, height: 0.12 }
   ]
 };
 
@@ -179,7 +179,7 @@ export const getClickableAreas = (logoId, page = 1) => {
 export const COMPUTER_GAME_CLICKABLE_AREAS = {
   game1: {
     1: [
-      { x: 0.5, y: 0.2, width: 0.25, height: 0.50 }
+      { x: 0.55, y: 0.27, width: 0.1, height: 0.15 }
     ],
     2: [
       { x: 0.45, y: 0.50, width: 0.55, height: 0.4 }
