@@ -81,25 +81,25 @@ const Poster = () => {
         hotspot: { left: 5, top: 60, width: 35, height: 25 },
         zoomSize: "w-16",
         zoomHeight: "h-auto",
-        zoomOffset: { x: -40, y: -15 }
+        zoomOffset: { x: -38, y: -15 }
       },
       6: {
         hotspot: { left: 30, top: 85, width: 40, height: 15 },
-        zoomSize: "w-42",
+        zoomSize: "w-38",
         zoomHeight: "h-5",
-        zoomOffset: { x: -130, y: -5 }
+        zoomOffset: { x: -120, y: -5 }
       },
       7: {
         hotspot: { left: 2, top: 60, width: 40, height: 20 },
         zoomSize: "w-20",
         zoomHeight: "h-25",
-        zoomOffset: { x: -40, y: -25 }
+        zoomOffset: { x: -38, y: -25 }
       },
       8: {
         hotspot: { left: 25, top: 40, width: 50, height: 25 },
         zoomSize: "w-59",
         zoomHeight: "h-5",
-        zoomOffset: { x: -145, y: 0 }
+        zoomOffset: { x: -150, y: 0 }
       }
     };
 
@@ -488,7 +488,8 @@ const Poster = () => {
           <img
             src={`/poster/pictures/zoomBit/${hoveredPoster.toString().padStart(2, '0')}.png`}
             alt={`Poster ${hoveredPoster}`}
-            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} object-cover border border-white shadow-2xl bg-black/90 opacity-0 animate-fadeIn`}
+            className={`${getPosterZoomConfig(hoveredPoster).zoomSize} ${getPosterZoomConfig(hoveredPoster).zoomHeight} ${hoveredPoster === 6 ? 'object-fill' : 'object-cover'} border border-white shadow-2xl bg-black/90`}
+
             style={{ 
               willChange: 'transform',
               animation: 'fadeIn 0.15s ease-out forwards'
