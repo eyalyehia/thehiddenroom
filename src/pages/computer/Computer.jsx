@@ -6,6 +6,8 @@ const Computer = () => {
   const [isHoveringNotebookButton, setIsHoveringNotebookButton] = useState(false);
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
   const [showNotebookModal, setShowNotebookModal] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState(null);
+  const [disappearingImage, setDisappearingImage] = useState(null);
   
   const navigate = useNavigate();
 
@@ -19,6 +21,13 @@ const Computer = () => {
 
   const handleNextPage = () => {
     navigate('/computer2');
+  };
+
+  const handleImageClick = (index, route) => {
+    setDisappearingImage(index);
+    setTimeout(() => {
+        navigate(route);
+    }, 300);
   };
 
   const imageConfigs = [
@@ -139,7 +148,12 @@ const Computer = () => {
         {/* כפתור היומן */}
         <button
           className="fixed bottom-6 left-6 transition-opacity z-50 cursor-pointer"
-          style={{ width: '47px', height: '36px' }}
+          style={{ 
+            width: '47px', 
+            height: '36px',
+            zIndex: showNotebookModal ? 40 : 50,
+            pointerEvents: showNotebookModal ? 'none' : 'auto'
+          }}
           aria-label="Notebook"
           onClick={handleNotebookClick}
           onMouseEnter={() => setIsHoveringNotebookButton(true)}
@@ -183,7 +197,7 @@ const Computer = () => {
           style={{ 
             width: '29px', 
             height: '45px',
-            opacity: showNotebookModal ? '0' : '1',
+            zIndex: showNotebookModal ? 40 : 50,
             pointerEvents: showNotebookModal ? 'none' : 'auto'
           }}
           aria-label="Next Page"
@@ -243,14 +257,20 @@ const Computer = () => {
                   width: '50%',
                   height: '100%',
                   cursor: 'pointer',
-                  overflow: 'hidden',
                   margin: '0',
                   padding: '0',
                   lineHeight: '0',
                   fontSize: '0',
-                  flexShrink: 0
+                  flexShrink: 0,
+                  position: 'relative',
+                  zIndex: hoveredImage === imageConfigs[0].path ? 10 : 1,
+                  transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+                  transform: hoveredImage === imageConfigs[0].path ? 'scale(1.05)' : 'scale(1)',
+                  opacity: disappearingImage === 0 ? 0 : 1,
                 }}
-                onClick={() => navigate(imageConfigs[0].route)}
+                onMouseEnter={() => setHoveredImage(imageConfigs[0].path)}
+                onMouseLeave={() => setHoveredImage(null)}
+                onClick={() => handleImageClick(0, imageConfigs[0].route)}
               >
                 <img 
                   src={imageConfigs[0].path}
@@ -273,14 +293,20 @@ const Computer = () => {
                   width: '50%',
                   height: '100%',
                   cursor: 'pointer',
-                  overflow: 'hidden',
                   margin: '0',
                   padding: '0',
                   lineHeight: '0',
                   fontSize: '0',
-                  flexShrink: 0
+                  flexShrink: 0,
+                  position: 'relative',
+                  zIndex: hoveredImage === imageConfigs[1].path ? 10 : 1,
+                  transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+                  transform: hoveredImage === imageConfigs[1].path ? 'scale(1.05)' : 'scale(1)',
+                  opacity: disappearingImage === 1 ? 0 : 1,
                 }}
-                onClick={() => navigate(imageConfigs[1].route)}
+                onMouseEnter={() => setHoveredImage(imageConfigs[1].path)}
+                onMouseLeave={() => setHoveredImage(null)}
+                onClick={() => handleImageClick(1, imageConfigs[1].route)}
               >
                 <img 
                   src={imageConfigs[1].path}
@@ -315,14 +341,20 @@ const Computer = () => {
                   width: '50%',
                   height: '100%',
                   cursor: 'pointer',
-                  overflow: 'hidden',
                   margin: '0',
                   padding: '0',
                   lineHeight: '0',
                   fontSize: '0',
-                  flexShrink: 0
+                  flexShrink: 0,
+                  position: 'relative',
+                  zIndex: hoveredImage === imageConfigs[2].path ? 10 : 1,
+                  transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+                  transform: hoveredImage === imageConfigs[2].path ? 'scale(1.05)' : 'scale(1)',
+                  opacity: disappearingImage === 2 ? 0 : 1,
                 }}
-                onClick={() => navigate(imageConfigs[2].route)}
+                onMouseEnter={() => setHoveredImage(imageConfigs[2].path)}
+                onMouseLeave={() => setHoveredImage(null)}
+                onClick={() => handleImageClick(2, imageConfigs[2].route)}
               >
                 <img 
                   src={imageConfigs[2].path}
@@ -345,14 +377,20 @@ const Computer = () => {
                   width: '50%',
                   height: '100%',
                   cursor: 'pointer',
-                  overflow: 'hidden',
                   margin: '0',
                   padding: '0',
                   lineHeight: '0',
                   fontSize: '0',
-                  flexShrink: 0
+                  flexShrink: 0,
+                  position: 'relative',
+                  zIndex: hoveredImage === imageConfigs[3].path ? 10 : 1,
+                  transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+                  transform: hoveredImage === imageConfigs[3].path ? 'scale(1.05)' : 'scale(1)',
+                  opacity: disappearingImage === 3 ? 0 : 1,
                 }}
-                onClick={() => navigate(imageConfigs[3].route)}
+                onMouseEnter={() => setHoveredImage(imageConfigs[3].path)}
+                onMouseLeave={() => setHoveredImage(null)}
+                onClick={() => handleImageClick(3, imageConfigs[3].route)}
               >
                 <img 
                   src={imageConfigs[3].path}

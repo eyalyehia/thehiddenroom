@@ -11,7 +11,9 @@ const imagePaths = [
 const Game5 = () => {
   const [isHoveringNextButton, setIsHoveringNextButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({});
+  const [hoveredImage, setHoveredImage] = useState(null);
   const navigate = useNavigate();
+  const [disappearingImage, setDisappearingImage] = useState(null);
 
   useEffect(() => {
     // Set document background color when component mounts
@@ -52,6 +54,13 @@ const Game5 = () => {
     navigate('/computer2');
   };
 
+  const handleImageClick = (index, route) => {
+    setDisappearingImage(index);
+    setTimeout(() => {
+      navigate(route);
+    }, 300);
+  };
+
   return (
     <div 
       className="relative overflow-hidden w-full h-screen" 
@@ -81,14 +90,27 @@ const Game5 = () => {
           const routes = ['/inside-game5', '/inside-game5-1', '/inside-game5-2', '/inside-game5-3'];
 
           return (
-            <div key={index} style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+            <div 
+              key={index} 
+              style={{ 
+                position: 'relative', 
+                width: '100%', 
+                maxWidth: '765px',
+                transform: hoveredImage === index ? 'scale(1.05)' : 'scale(1)',
+                transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+                zIndex: hoveredImage === index ? 10 : 1,
+                cursor: 'pointer',
+                opacity: disappearingImage === index ? 0 : 1,
+              }}
+              onMouseEnter={() => setHoveredImage(index)}
+              onMouseLeave={() => setHoveredImage(null)}
+              onClick={() => handleImageClick(index, routes[index])}
+            >
               <div style={{
                 width: '100%',
                 height: '318px',
                 position: 'relative',
-                cursor: 'pointer'
-              }}
-              onClick={() => navigate(routes[index])}>
+              }}>
                 <img 
                   src={imagePath} 
                   alt={`Game ${index + 1}`} 

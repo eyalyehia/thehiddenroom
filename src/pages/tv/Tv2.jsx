@@ -8,6 +8,7 @@ const Tv2 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [showNotebookModal, setShowNotebookModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [hoveredImage, setHoveredImage] = useState(null);
   const [images, setImages] = useState({
     image1: '',
     image2: '',
@@ -202,7 +203,12 @@ const Tv2 = () => {
         {/* Notebook Button - Bottom Left */}
         <button
           className="fixed bottom-6 left-6 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
-          style={{ width: '57px', height: '46px' }}
+          style={{ 
+            width: '57px', 
+            height: '46px',
+            zIndex: showNotebookModal ? 40 : 50,
+            pointerEvents: showNotebookModal ? 'none' : 'auto'
+          }}
           aria-label="Notebook"
           onClick={handleNotebookClick}
           onMouseEnter={() => setIsHoveringNotebookButton(true)}
@@ -300,7 +306,7 @@ const Tv2 = () => {
           style={{ 
             width: '29px', 
             height: '45px',
-            opacity: showNotebookModal ? '0' : '1',
+            zIndex: showNotebookModal ? 40 : 50,
             pointerEvents: showNotebookModal ? 'none' : 'auto'
           }}
           aria-label="Back"
@@ -324,12 +330,16 @@ const Tv2 = () => {
           {/* Image 1 */}
           <div 
             className="relative cursor-pointer transition-opacity duration-300"
+            onMouseEnter={() => setHoveredImage(1)}
+            onMouseLeave={() => setHoveredImage(null)}
             onClick={() => handleImageClick(1)}
             style={{
               width: '412px',
               height: '927px',
               opacity: selectedImage === 1 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+              transform: hoveredImage === 1 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 1 ? 10 : 1
             }}
           >
             <img 
@@ -342,12 +352,16 @@ const Tv2 = () => {
           {/* Image 2 */}
           <div 
             className="relative cursor-pointer transition-opacity duration-300"
+            onMouseEnter={() => setHoveredImage(2)}
+            onMouseLeave={() => setHoveredImage(null)}
             onClick={() => handleImageClick(2)}
             style={{
               width: '412px',
               height: '927px',
               opacity: selectedImage === 2 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+              transform: hoveredImage === 2 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 2 ? 10 : 1
             }}
           >
             <img 
@@ -360,12 +374,16 @@ const Tv2 = () => {
           {/* Image 3 */}
           <div 
             className="relative cursor-pointer transition-opacity duration-300"
+            onMouseEnter={() => setHoveredImage(3)}
+            onMouseLeave={() => setHoveredImage(null)}
             onClick={() => handleImageClick(3)}
             style={{
               width: '412px',
               height: '927px',
               opacity: selectedImage === 3 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+              transform: hoveredImage === 3 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 3 ? 10 : 1
             }}
           >
             <img 
@@ -378,12 +396,16 @@ const Tv2 = () => {
           {/* Image 4 */}
           <div 
             className="relative cursor-pointer transition-opacity duration-300"
+            onMouseEnter={() => setHoveredImage(4)}
+            onMouseLeave={() => setHoveredImage(null)}
             onClick={() => handleImageClick(4)}
             style={{
               width: '412px',
               height: '927px',
               opacity: selectedImage === 4 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+              transform: hoveredImage === 4 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 4 ? 10 : 1
             }}
           >
             <img 

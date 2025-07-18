@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const Game8 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({});
+  const [hoveredImage, setHoveredImage] = useState(null);
   const navigate = useNavigate();
+  const [disappearingImage, setDisappearingImage] = useState(null);
 
   const imagePaths = [
     "/computer/pictures/page2/game4/regular/01.png",
@@ -31,6 +33,13 @@ const Game8 = () => {
 
   const handleButtonClick = () => {
     navigate('/computer2');
+  };
+
+  const handleImageClick = (index, route) => {
+    setDisappearingImage(index);
+    setTimeout(() => {
+      navigate(route);
+    }, 300);
   };
 
   // Preload images
@@ -81,14 +90,27 @@ const Game8 = () => {
           const routes = ['/inside-game8', '/inside-game8-1', '/inside-game8-2', '/inside-game8-3'];
 
           return (
-            <div key={index} style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+            <div 
+              key={index} 
+              style={{ 
+                position: 'relative', 
+                width: '100%', 
+                maxWidth: '765px',
+                transform: hoveredImage === index ? 'scale(1.05)' : 'scale(1)',
+                transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+                zIndex: hoveredImage === index ? 10 : 1,
+                cursor: 'pointer',
+                opacity: disappearingImage === index ? 0 : 1,
+              }}
+              onMouseEnter={() => setHoveredImage(index)}
+              onMouseLeave={() => setHoveredImage(null)}
+              onClick={() => handleImageClick(index, routes[index])}
+            >
               <div style={{
                 width: '100%',
                 height: '318px',
                 position: 'relative',
-                cursor: 'pointer'
-              }}
-              onClick={() => navigate(routes[index])}>
+              }}>
                 <img 
                   src={imagePath} 
                   alt={`Game ${index + 1}`} 

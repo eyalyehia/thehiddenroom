@@ -5,6 +5,7 @@ import getBase64 from '../../../../components/common/getBase64';
 const Move5 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [hoveredImage, setHoveredImage] = useState(null);
   const [images, setImages] = useState({
     image1: '',
     image2: '',
@@ -98,130 +99,154 @@ const Move5 = () => {
       </button>
 
       {/* Images Grid Container */}
-      <div className="w-full h-full flex flex-wrap justify-center items-center gap-8 p-16">
-        {/* Top Row */}
-        <div className="flex gap-8">
-          {/* Top Left Image */}
-          <div 
-            className="relative cursor-pointer transition-opacity duration-300"
-            onClick={() => handleImageClick(1)}
+      <div style={{
+        position: 'relative',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: 'auto auto',
+        gap: '20px',
+        padding: '40px',
+        height: '100%',
+        alignItems: 'center',
+        justifyItems: 'center'
+      }}>
+        {/* Top Left Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(1)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(1)}
+          style={{
+            opacity: selectedImage === 1 ? 0 : 1,
+            transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+            transform: hoveredImage === 1 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 1 ? 10 : 1,
+            width: '100%',
+            maxWidth: '766px'
+          }}
+        >
+          <div
             style={{
-              opacity: selectedImage === 1 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              width: '100%',
+              height: '318px'
             }}
           >
-            <div 
-              style={{
-                width: '766px',
-                height: '318px'
-              }}
-            >
-              <img 
-                src={images.image1 || "/tv/pictures/tv2/move-5/regular/01.png"}
-                alt="Scene 1"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '85px',
-              marginTop: '8px'
-            }}>
-              00:12:26
-            </div>
+            <img
+              src={images.image1 || "/tv/pictures/tv2/move-5/regular/01.png"}
+              alt="Scene 1"
+              className="w-full h-full object-cover"
+            />
           </div>
-
-          {/* Top Right Image */}
-          <div 
-            className="relative cursor-pointer transition-opacity duration-300"
-            onClick={() => handleImageClick(2)}
-            style={{
-              opacity: selectedImage === 2 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
-            }}
-          >
-            <div 
-              style={{
-                width: '765px',
-                height: '317px'
-              }}
-            >
-              <img 
-                src={images.image2 || "/tv/pictures/tv2/move-5/regular/02.png"}
-                alt="Scene 2"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '90px',
-              marginTop: '8px'
-            }}>
-              00:50:00
-            </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            00:12:26
           </div>
         </div>
 
-        {/* Bottom Row */}
-        <div className="flex gap-8">
-          {/* Bottom Left Image */}
-          <div 
-            className="relative cursor-pointer transition-opacity duration-300"
-            onClick={() => handleImageClick(3)}
+        {/* Top Right Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(2)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(2)}
+          style={{
+            opacity: selectedImage === 2 ? 0 : 1,
+            transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+            transform: hoveredImage === 2 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 2 ? 10 : 1,
+            width: '100%',
+            maxWidth: '765px'
+          }}
+        >
+          <div
             style={{
-              opacity: selectedImage === 3 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              width: '100%',
+              height: '317px'
             }}
           >
-            <div 
-              style={{
-                width: '767px',
-                height: '318px'
-              }}
-            >
-              <img 
-                src={images.image3 || "/tv/pictures/tv2/move-5/regular/03.png"}
-                alt="Scene 3"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '87px',
-              marginTop: '8px'
-            }}>
-              00:18:00
-            </div>
+            <img
+              src={images.image2 || "/tv/pictures/tv2/move-5/regular/02.png"}
+              alt="Scene 2"
+              className="w-full h-full object-cover"
+            />
           </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            00:50:00
+          </div>
+        </div>
 
-          {/* Bottom Right Image */}
-          <div 
-            className="relative cursor-pointer transition-opacity duration-300"
-            onClick={() => handleImageClick(4)}
+        {/* Bottom Left Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(3)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(3)}
+          style={{
+            opacity: selectedImage === 3 ? 0 : 1,
+            transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+            transform: hoveredImage === 3 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 3 ? 10 : 1,
+            width: '100%',
+            maxWidth: '767px'
+          }}
+        >
+          <div
             style={{
-              opacity: selectedImage === 4 ? 0 : 1,
-              transition: 'opacity 300ms ease-out'
+              width: '100%',
+              height: '318px'
             }}
           >
-            <div 
-              style={{
-                width: '770px',
-                height: '319px'
-              }}
-            >
-              <img 
-                src={images.image4 || "/tv/pictures/tv2/move-5/regular/04.png"}
-                alt="Scene 4"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '81px',
-              marginTop: '8px'
-            }}>
-              01:15:02
-            </div>
+            <img
+              src={images.image3 || "/tv/pictures/tv2/move-5/regular/03.png"}
+              alt="Scene 3"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            00:18:00
+          </div>
+        </div>
+
+        {/* Bottom Right Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(4)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(4)}
+          style={{
+            opacity: selectedImage === 4 ? 0 : 1,
+            transition: 'opacity 300ms ease-out, transform 0.3s ease-in-out',
+            transform: hoveredImage === 4 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 4 ? 10 : 1,
+            width: '100%',
+            maxWidth: '770px'
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '319px'
+            }}
+          >
+            <img
+              src={images.image4 || "/tv/pictures/tv2/move-5/regular/04.png"}
+              alt="Scene 4"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            01:15:02
           </div>
         </div>
       </div>

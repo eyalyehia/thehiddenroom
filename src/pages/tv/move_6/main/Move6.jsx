@@ -4,6 +4,8 @@ import getBase64 from '../../../../components/common/getBase64';
 
 const Move6 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState({
     image1: '',
     image2: '',
@@ -39,7 +41,10 @@ const Move6 = () => {
 
   // Function to handle image click
   const handleImageClick = (imageNumber) => {
-    navigate(`/tv/move_6/sections/InMove6_${imageNumber}`);
+    setSelectedImage(imageNumber);
+    setTimeout(() => {
+      navigate(`/tv/move_6/sections/InMove6_${imageNumber}`);
+    }, 300);
   };
 
   // Common text style
@@ -77,114 +82,154 @@ const Move6 = () => {
       </button>
 
       {/* Images Grid Container */}
-      <div className="w-full h-full flex flex-wrap justify-center items-center gap-8 p-16">
-        {/* Top Row */}
-        <div className="flex gap-8">
-          {/* Top Left Image */}
-          <div 
-            className="relative cursor-pointer"
-            onClick={() => handleImageClick(1)}
+      <div style={{
+        position: 'relative',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: 'auto auto',
+        gap: '20px',
+        padding: '40px',
+        height: '100%',
+        alignItems: 'center',
+        justifyItems: 'center'
+      }}>
+        {/* Top Left Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(1)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(1)}
+          style={{
+            transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+            transform: hoveredImage === 1 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 1 ? 10 : 1,
+            width: '100%',
+            maxWidth: '767px',
+            opacity: selectedImage === 1 ? 0 : 1
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '317px'
+            }}
           >
-            <div 
-              style={{
-                width: '767px',
-                height: '317px'
-              }}
-            >
-              <img 
-                src={images.image1 || "/tv/pictures/tv2/move-6/regular/01.png"}
-                alt="Scene 1"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '83px',
-              marginTop: '8px'
-            }}>
-              01:12:40
-            </div>
+            <img
+              src={images.image1 || "/tv/pictures/tv2/move-6/regular/01.png"}
+              alt="Scene 1"
+              className="w-full h-full object-cover"
+            />
           </div>
-
-          {/* Top Right Image */}
-          <div 
-            className="relative cursor-pointer"
-            onClick={() => handleImageClick(2)}
-          >
-            <div 
-              style={{
-                width: '765px',
-                height: '317px'
-              }}
-            >
-              <img 
-                src={images.image2 || "/tv/pictures/tv2/move-6/regular/02.png"}
-                alt="Scene 2"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '88px',
-              marginTop: '8px'
-            }}>
-              00:05:33
-            </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            01:12:40
           </div>
         </div>
 
-        {/* Bottom Row */}
-        <div className="flex gap-8">
-          {/* Bottom Left Image */}
-          <div 
-            className="relative cursor-pointer"
-            onClick={() => handleImageClick(3)}
+        {/* Top Right Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(2)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(2)}
+          style={{
+            transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+            transform: hoveredImage === 2 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 2 ? 10 : 1,
+            width: '100%',
+            maxWidth: '765px',
+            opacity: selectedImage === 2 ? 0 : 1
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '317px'
+            }}
           >
-            <div 
-              style={{
-                width: '768px',
-                height: '319px'
-              }}
-            >
-              <img 
-                src={images.image3 || "/tv/pictures/tv2/move-6/regular/03.png"}
-                alt="Scene 3"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '84px',
-              marginTop: '8px'
-            }}>
-              01:47:22
-            </div>
+            <img
+              src={images.image2 || "/tv/pictures/tv2/move-6/regular/02.png"}
+              alt="Scene 2"
+              className="w-full h-full object-cover"
+            />
           </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            00:05:33
+          </div>
+        </div>
 
-          {/* Bottom Right Image */}
-          <div 
-            className="relative cursor-pointer"
-            onClick={() => handleImageClick(4)}
+        {/* Bottom Left Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(3)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(3)}
+          style={{
+            transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+            transform: hoveredImage === 3 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 3 ? 10 : 1,
+            width: '100%',
+            maxWidth: '768px',
+            opacity: selectedImage === 3 ? 0 : 1
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '319px'
+            }}
           >
-            <div 
-              style={{
-                width: '770px',
-                height: '320px'
-              }}
-            >
-              <img 
-                src={images.image4 || "/tv/pictures/tv2/move-6/regular/04.png"}
-                alt="Scene 4"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div style={{
-              ...timeTextStyle,
-              width: '90px',
-              marginTop: '8px'
-            }}>
-              00:09:42
-            </div>
+            <img
+              src={images.image3 || "/tv/pictures/tv2/move-6/regular/03.png"}
+              alt="Scene 3"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            01:47:22
+          </div>
+        </div>
+
+        {/* Bottom Right Image */}
+        <div
+          className="relative cursor-pointer"
+          onMouseEnter={() => setHoveredImage(4)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(4)}
+          style={{
+            transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+            transform: hoveredImage === 4 ? 'scale(1.05)' : 'scale(1)',
+            zIndex: hoveredImage === 4 ? 10 : 1,
+            width: '100%',
+            maxWidth: '770px',
+            opacity: selectedImage === 4 ? 0 : 1
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '320px'
+            }}
+          >
+            <img
+              src={images.image4 || "/tv/pictures/tv2/move-6/regular/04.png"}
+              alt="Scene 4"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div style={{
+            ...timeTextStyle,
+            marginTop: '10px'
+          }}>
+            00:09:42
           </div>
         </div>
       </div>

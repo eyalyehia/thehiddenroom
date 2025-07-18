@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import getBase64 from '../../../../components/common/getBase64';
 
 const Move8 = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState({
     image1: '',
     image2: '',
@@ -34,7 +35,10 @@ const Move8 = () => {
   }, []);
 
   const handleImageClick = (imageId) => {
-    navigate(`/tv/move_8/sections/InMove8_${imageId}`);
+    setSelectedImage(imageId);
+    setTimeout(() => {
+      navigate(`/tv/move_8/sections/InMove8_${imageId}`);
+    }, 300);
   };
 
   const handleBackClick = () => {
@@ -42,8 +46,7 @@ const Move8 = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
-      <div className="relative w-full h-full">
+    <div className="w-full h-screen" style={{ backgroundColor: '#1D1C1A' }}>
         {/* Back Button */}
         <button
           className="absolute top-6 right-6 transition-opacity z-50 cursor-pointer"
@@ -64,158 +67,193 @@ const Move8 = () => {
         </button>
 
         {/* Images Grid */}
-        <div className="flex flex-wrap justify-center items-center gap-8 p-8 h-screen">
-          {/* Top Row */}
-          <div className="flex gap-8">
-            {/* Image 1 */}
-            <div className="relative">
-              <div 
-                className="cursor-pointer transition-opacity duration-300"
-                onClick={() => handleImageClick(1)}
-                style={{
-                  width: '765px',
-                  height: '318px',
-                  opacity: selectedImage === 1 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
-                }}
-              >
-                <img 
-                  src={images.image1 || "/tv/pictures/tv2/move-8/regular/01.png"}
-                  alt="Scene 1"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span 
-                style={{
-                  position: 'absolute',
-                  bottom: '-40px',
-                  left: '0',
-                  fontFamily: 'Work Sans',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128%',
-                  color: '#FFFFFF',
-                  width: '87px',
-                  height: '26px'
-                }}
-              >
-                00:14:02
-              </span>
+        <div style={{
+          position: 'relative',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gridTemplateRows: 'auto auto',
+          gap: '20px',
+          padding: '40px',
+          height: '100%',
+          alignItems: 'center',
+          justifyItems: 'center'
+        }}>
+          {/* Image 1 */}
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredImage(1)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => handleImageClick(1)}
+            style={{
+              transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+              transform: hoveredImage === 1 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 1 ? 10 : 1,
+              opacity: selectedImage === 1 ? 0 : 1,
+              cursor: 'pointer',
+              width: '100%',
+              maxWidth: '765px'
+            }}
+          >
+            <div
+              className="cursor-pointer"
+              style={{
+                width: '100%',
+                height: '318px'
+              }}
+            >
+              <img
+                src={images.image1 || "/tv/pictures/tv2/move-8/regular/01.png"}
+                alt="Scene 1"
+                className="w-full h-full object-cover"
+              />
             </div>
-
-            {/* Image 2 */}
-            <div className="relative">
-              <div 
-                className="cursor-pointer transition-opacity duration-300"
-                onClick={() => handleImageClick(2)}
-                style={{
-                  width: '765px',
-                  height: '319px',
-                  opacity: selectedImage === 2 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
-                }}
-              >
-                <img 
-                  src={images.image2 || "/tv/pictures/tv2/move-8/regular/02.png"}
-                  alt="Scene 2"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span 
-                style={{
-                  position: 'absolute',
-                  bottom: '-40px',
-                  left: '0',
-                  fontFamily: 'Work Sans',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128%',
-                  color: '#FFFFFF',
-                  width: '81px',
-                  height: '26px'
-                }}
-              >
-                01:22:18
-              </span>
+            <div
+              style={{
+                fontFamily: 'Work Sans',
+                fontWeight: 900,
+                fontSize: '20px',
+                lineHeight: '128%',
+                color: '#FFFFFF',
+                letterSpacing: '0%',
+                marginTop: '10px'
+              }}
+            >
+              00:14:02
             </div>
           </div>
 
-          {/* Bottom Row */}
-          <div className="flex gap-8">
-            {/* Image 3 */}
-            <div className="relative">
-              <div 
-                className="cursor-pointer transition-opacity duration-300"
-                onClick={() => handleImageClick(3)}
-                style={{
-                  width: '768px',
-                  height: '319px',
-                  opacity: selectedImage === 3 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
-                }}
-              >
-                <img 
-                  src={images.image3 || "/tv/pictures/tv2/move-8/regular/03.png"}
-                  alt="Scene 3"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span 
-                style={{
-                  position: 'absolute',
-                  bottom: '-40px',
-                  left: '0',
-                  fontFamily: 'Work Sans',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128%',
-                  color: '#FFFFFF',
-                  width: '88px',
-                  height: '26px'
-                }}
-              >
-                01:44:00
-              </span>
+          {/* Image 2 */}
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredImage(2)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => handleImageClick(2)}
+            style={{
+              transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+              transform: hoveredImage === 2 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 2 ? 10 : 1,
+              opacity: selectedImage === 2 ? 0 : 1,
+              cursor: 'pointer',
+              width: '100%',
+              maxWidth: '765px'
+            }}
+          >
+            <div
+              className="cursor-pointer"
+              style={{
+                width: '100%',
+                height: '319px'
+              }}
+            >
+              <img
+                src={images.image2 || "/tv/pictures/tv2/move-8/regular/02.png"}
+                alt="Scene 2"
+                className="w-full h-full object-cover"
+              />
             </div>
+            <div
+              style={{
+                fontFamily: 'Work Sans',
+                fontWeight: 900,
+                fontSize: '20px',
+                lineHeight: '128%',
+                color: '#FFFFFF',
+                letterSpacing: '0%',
+                marginTop: '10px'
+              }}
+            >
+              01:22:18
+            </div>
+          </div>
 
-            {/* Image 4 */}
-            <div className="relative">
-              <div 
-                className="cursor-pointer transition-opacity duration-300"
-                onClick={() => handleImageClick(4)}
-                style={{
-                  width: '770px',
-                  height: '320px',
-                  opacity: selectedImage === 4 ? 0 : 1,
-                  transition: 'opacity 300ms ease-out'
-                }}
-              >
-                <img 
-                  src={images.image4 || "/tv/pictures/tv2/move-8/regular/04.png"}
-                  alt="Scene 4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span 
-                style={{
-                  position: 'absolute',
-                  bottom: '-40px',
-                  left: '0',
-                  fontFamily: 'Work Sans',
-                  fontWeight: 900,
-                  fontSize: '20px',
-                  lineHeight: '128%',
-                  color: '#FFFFFF',
-                  width: '84px',
-                  height: '26px'
-                }}
-              >
-                01:27:38
-              </span>
+          {/* Image 3 */}
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredImage(3)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => handleImageClick(3)}
+            style={{
+              transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+              transform: hoveredImage === 3 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 3 ? 10 : 1,
+              opacity: selectedImage === 3 ? 0 : 1,
+              cursor: 'pointer',
+              width: '100%',
+              maxWidth: '768px'
+            }}
+          >
+            <div
+              className="cursor-pointer"
+              style={{
+                width: '100%',
+                height: '319px'
+              }}
+            >
+              <img
+                src={images.image3 || "/tv/pictures/tv2/move-8/regular/03.png"}
+                alt="Scene 3"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              style={{
+                fontFamily: 'Work Sans',
+                fontWeight: 900,
+                fontSize: '20px',
+                lineHeight: '128%',
+                color: '#FFFFFF',
+                letterSpacing: '0%',
+                marginTop: '10px'
+              }}
+            >
+              01:44:00
+            </div>
+          </div>
+
+          {/* Image 4 */}
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredImage(4)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => handleImageClick(4)}
+            style={{
+              transition: 'transform 0.3s ease-in-out, opacity 300ms ease-out',
+              transform: hoveredImage === 4 ? 'scale(1.05)' : 'scale(1)',
+              zIndex: hoveredImage === 4 ? 10 : 1,
+              opacity: selectedImage === 4 ? 0 : 1,
+              cursor: 'pointer',
+              width: '100%',
+              maxWidth: '770px'
+            }}
+          >
+            <div
+              className="cursor-pointer"
+              style={{
+                width: '100%',
+                height: '320px'
+              }}
+            >
+              <img
+                src={images.image4 || "/tv/pictures/tv2/move-8/regular/04.png"}
+                alt="Scene 4"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              style={{
+                fontFamily: 'Work Sans',
+                fontWeight: 900,
+                fontSize: '20px',
+                lineHeight: '128%',
+                color: '#FFFFFF',
+                letterSpacing: '0%',
+                marginTop: '10px'
+              }}
+            >
+              01:27:38
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

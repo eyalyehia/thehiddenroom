@@ -4,10 +4,19 @@ import { useNavigate } from 'react-router-dom';
 const Game4 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({});
+  const [hoveredImage, setHoveredImage] = useState(null);
   const navigate = useNavigate();
+  const [disappearingImage, setDisappearingImage] = useState(null);
 
   const handleButtonClick = () => {
     navigate('/computer');
+  };
+
+  const handleImageClick = (index, route) => {
+    setDisappearingImage(index);
+    setTimeout(() => {
+      navigate(route);
+    }, 300);
   };
 
   // Generate base64 previews for all images
@@ -68,18 +77,31 @@ const Game4 = () => {
       }}>
         {/* Images rendered in 2x2 grid */}
         {imageConfigs.map((config, index) => (
-          <div key={index} style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+          <div 
+            key={index} 
+            style={{ 
+              position: 'relative', 
+              width: '100%', 
+              maxWidth: '765px',
+              transform: hoveredImage === index ? 'scale(1.05)' : 'scale(1)',
+              transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+              zIndex: hoveredImage === index ? 10 : 1,
+              cursor: 'pointer',
+              opacity: disappearingImage === index ? 0 : 1,
+            }}
+            onMouseEnter={() => setHoveredImage(index)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => handleImageClick(index, config.route)}
+          >
             <div 
               style={{
                 width: '100%',
                 height: '318px',
-                overflow: 'hidden',
                 position: 'relative',
                                  border: 'none',
                 boxSizing: 'border-box',
                 marginBottom: '10px'
               }}
-              onClick={() => navigate(config.route)}
             >
               <img 
                 src={config.path}

@@ -436,7 +436,12 @@ const Poster2 = () => {
       {/* כפתור יומן */}
       <button
         className="fixed bottom-6 left-6 transition-opacity z-50 cursor-pointer"
-        style={{ width: '47px', height: '36px' }}
+        style={{ 
+          width: '47px', 
+          height: '36px',
+          zIndex: showNotebookModal ? 40 : 50,
+          pointerEvents: showNotebookModal ? 'none' : 'auto'
+        }}
         aria-label="Notebook"
         onClick={handleNotebookClick}
         onMouseEnter={() => setIsHoveringNotebookButton(true)}

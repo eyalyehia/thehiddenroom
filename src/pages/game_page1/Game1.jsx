@@ -7,7 +7,9 @@ const Game1 = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [_imagePreviews, setImagePreviews] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState({});
+  const [hoveredImage, setHoveredImage] = useState(null);
   const navigate = useNavigate();
+  const [disappearingImage, setDisappearingImage] = useState(null);
 
   const handleNextClick = () => {
     navigate('/computer');
@@ -15,6 +17,13 @@ const Game1 = () => {
 
   const _handleImageClick = (index) => {
     setSelectedImage(selectedImage === index ? null : index);
+  };
+
+  const handleImageClick = (index, route) => {
+    setDisappearingImage(index);
+    setTimeout(() => {
+      navigate(route);
+    }, 300);
   };
 
   // Generate base64 previews for all images
@@ -72,18 +81,30 @@ const Game1 = () => {
         justifyItems: 'center'
       }}>
         {/* Top Left Image */}
-        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+        <div 
+          style={{ 
+            position: 'relative', 
+            width: '100%', 
+            maxWidth: '765px',
+            transform: hoveredImage === 0 ? 'scale(1.05)' : 'scale(1)',
+            transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+            zIndex: hoveredImage === 0 ? 10 : 1,
+            cursor: 'pointer',
+            opacity: disappearingImage === 0 ? 0 : 1,
+          }}
+          onMouseEnter={() => setHoveredImage(0)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(0, '/inside-game1')}
+        >
           <div 
             style={{
               width: '100%',
               height: '318px',
-              overflow: 'hidden',
               position: 'relative',
               border: selectedImage === 0 ? '2px solid #3498db' : 'none',
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => navigate('/inside-game1')}
           >
             <img 
               src={imagePaths[0]}
@@ -118,18 +139,30 @@ const Game1 = () => {
         </div>
 
         {/* Top Right Image */}
-        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+        <div 
+          style={{ 
+            position: 'relative', 
+            width: '100%', 
+            maxWidth: '765px',
+            transform: hoveredImage === 1 ? 'scale(1.05)' : 'scale(1)',
+            transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+            zIndex: hoveredImage === 1 ? 10 : 1,
+            cursor: 'pointer',
+            opacity: disappearingImage === 1 ? 0 : 1,
+          }}
+          onMouseEnter={() => setHoveredImage(1)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(1, '/inside-game1-2')}
+        >
           <div 
             style={{
               width: '100%',
               height: '318px',
-              overflow: 'hidden',
               position: 'relative',
               border: selectedImage === 1 ? '2px solid #3498db' : 'none',
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => navigate('/inside-game1-2')}
           >
             <img 
               src={imagePaths[1]}
@@ -164,18 +197,30 @@ const Game1 = () => {
         </div>
 
         {/* Bottom Left Image */}
-        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+        <div 
+          style={{ 
+            position: 'relative', 
+            width: '100%', 
+            maxWidth: '765px',
+            transform: hoveredImage === 2 ? 'scale(1.05)' : 'scale(1)',
+            transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+            zIndex: hoveredImage === 2 ? 10 : 1,
+            cursor: 'pointer',
+            opacity: disappearingImage === 2 ? 0 : 1,
+          }}
+          onMouseEnter={() => setHoveredImage(2)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(2, '/inside-game1-3')}
+        >
           <div 
             style={{
               width: '100%',
               height: '318px',
-              overflow: 'hidden',
               position: 'relative',
               border: selectedImage === 2 ? '2px solid #3498db' : 'none',
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => navigate('/inside-game1-3')}
           >
             <img 
               src={imagePaths[2]}
@@ -205,18 +250,30 @@ const Game1 = () => {
         </div>
 
         {/* Bottom Right Image */}
-        <div style={{ position: 'relative', width: '100%', maxWidth: '765px' }}>
+        <div 
+          style={{ 
+            position: 'relative', 
+            width: '100%', 
+            maxWidth: '765px',
+            transform: hoveredImage === 3 ? 'scale(1.05)' : 'scale(1)',
+            transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-out',
+            zIndex: hoveredImage === 3 ? 10 : 1,
+            cursor: 'pointer',
+            opacity: disappearingImage === 3 ? 0 : 1,
+          }}
+          onMouseEnter={() => setHoveredImage(3)}
+          onMouseLeave={() => setHoveredImage(null)}
+          onClick={() => handleImageClick(3, '/inside-game1-4')}
+        >
           <div 
             style={{
               width: '100%',
               height: '318px',
-              overflow: 'hidden',
               position: 'relative',
               border: selectedImage === 3 ? '2px solid #3498db' : 'none',
               boxSizing: 'border-box',
               marginBottom: '10px'
             }}
-            onClick={() => navigate('/inside-game1-4')}
           >
             <img 
               src={imagePaths[3]}
