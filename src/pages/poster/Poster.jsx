@@ -453,7 +453,7 @@ const Poster = () => {
         style={{ 
           width: '29px', 
           height: '45px',
-          opacity: showNotebookModal ? '0' : '1',
+          zIndex: showNotebookModal ? 40 : 50,
           pointerEvents: showNotebookModal ? 'none' : 'auto'
         }}
         aria-label="Next Page"

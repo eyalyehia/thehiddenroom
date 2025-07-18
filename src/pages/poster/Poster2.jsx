@@ -132,7 +132,7 @@ const Poster2 = () => {
         hotspot: { left: 40, top: 50, width: 20, height: 15 },
         zoomSize: "w-18",
         zoomHeight: "h-18",
-        zoomOffset: { x: -70, y: 0 }
+        zoomOffset: { x: -60, y: -15 }
       },
       16: {
         hotspot: { left: 15, top: 35, width: 35, height: 20 },
@@ -477,7 +477,12 @@ const Poster2 = () => {
       {/* כפתור חץ לעמוד הראשון */}
       <button
         className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
-        style={{ width: '29px', height: '45px' }}
+        style={{ 
+          width: '29px', 
+          height: '45px',
+          zIndex: showNotebookModal ? 40 : 50,
+          pointerEvents: showNotebookModal ? 'none' : 'auto',
+        }}
         aria-label="Previous Page"
         onClick={handleNextPage}
         onMouseEnter={() => setIsHoveringArrowButton(true)}
@@ -802,14 +807,14 @@ const Poster2 = () => {
                     opacity: 0.7,
                     letterSpacing: '0%',
                     marginBottom: '0px'
-                  }}>Beneath Leatherface’s bottom lip, a silhouette of his</div>
+                  }}>Beneath Leatherface’s bottom lip, a silhouette </div>
                   <div style={{
                     fontWeight: 400,
                     fontSize: '20px',
                     lineHeight: '100%',
                     opacity: 0.7,
                     letterSpacing: '0%'
-                  }}> iconic figure holding a chainsaw is hidden.</div>
+                  }}>of his iconic figure holding a chainsaw is hidden.</div>
                 </div>
               </div>
             )}
