@@ -220,90 +220,36 @@ const Tv = () => {
           onMouseEnter={() => setIsHoveringNotebookButton(true)}
           onMouseLeave={() => setIsHoveringNotebookButton(false)}
         >
-          <svg width="57" height="46" viewBox="0 0 57 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_d_1471_2349)">
-              <path 
-                d="M28.9609 1.17969V30.1082" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M12.0176 1H45.9043V30.2914H12.0176V1Z" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-                fill={isHoveringNotebookButton ? "rgba(255, 255, 255, 0.1)" : "none"}
-              />
-              <path 
-                d="M15.1719 7.17188H25.8052" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M15.1719 12.8203H25.8052" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M15.1719 18.4688H25.8052" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M15.1719 24.1172H25.8052" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M32.1152 7.17188H42.7486" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M32.1152 12.8203H42.7486" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M32.1152 18.4688H42.7486" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M32.1152 24.1172H42.7486" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-              />
-              <path 
-                d="M11.4679 7H5V37H52V7H45.1009" 
-                stroke="white" 
-                strokeWidth="2" 
-                strokeMiterlimit="10"
-                fill={isHoveringNotebookButton ? "rgba(255, 255, 255, 0.1)" : "none"}
-              />
-            </g>
-            <defs>
-              <filter id="filter0_d_1471_2349" x="0" y="0" width="57" height="46" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dy="4"/>
-                <feGaussianBlur stdDeviation="2"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1471_2349"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1471_2349" result="shape"/>
-              </filter>
-            </defs>
-          </svg>
+          {isHoveringNotebookButton ? (
+            <svg width="47" height="36" viewBox="0 0 47 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.15 6.6H0.96V35.04H46.08V6.6H39.46" fill="white"/>
+              <path d="M7.15 6.6H0.96V35.04H46.08V6.6H39.46" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M7.69 0.95H40.22V28.68H7.69V0.95Z" fill="white" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M23.95 1.12V28.55" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 6.82H20.93" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 12.18H20.93" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 17.55H20.93" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 22.92H20.93" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 6.82H37.18" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 12.18H37.18" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 17.55H37.18" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 22.92H37.18" stroke="#1D1C1A" strokeWidth="2" strokeMiterlimit="10"/>
+            </svg>
+          ) : (
+            <svg width="47" height="36" viewBox="0 0 47 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.95 1.12V28.55" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M7.69 0.95H40.22V28.68H7.69V0.95Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 6.82H20.93" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 12.18H20.93" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 17.55H20.93" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M10.73 22.92H20.93" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 6.82H37.18" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 12.18H37.18" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 17.55H37.18" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M26.98 22.92H37.18" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+              <path d="M7.15 6.6H0.96V35.04H46.08V6.6H39.46" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+            </svg>
+          )}
         </button>
 
         {/* Arrow Button - Right Side */}
