@@ -321,7 +321,7 @@ export const TV_MOVE1_CLICKABLE_AREAS = {
     { x: 0.25, y: 0.15, width: 0.5, height: 0.7 }
   ],
   4: [
-    { x: 0.35, y: 0.25, width: 0.3, height: 0.5 }
+    { x: 0.069, y: 0.33, width: 0.03, height: 0.09 }
   ]
 };
 
