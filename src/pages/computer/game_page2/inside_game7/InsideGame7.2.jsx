@@ -15,9 +15,9 @@ const InsideGame72 = () => {
   // קונפיגורציה לתמונות מוגדלות
   const zoomConfigs = useMemo(() => ({
     3: { 
-      zoomSize: 'w-[450px]', 
-      zoomHeight: 'h-[310px]', 
-      zoomOffset: { x: 120, y: -150 } 
+      zoomSize: 'w-[132px]', 
+      zoomHeight: 'h-[75px]', 
+      zoomOffset: { x: -395, y: -20 } 
     }
   }), []);
 

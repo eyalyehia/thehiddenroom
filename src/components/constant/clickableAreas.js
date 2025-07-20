@@ -235,58 +235,58 @@ export const COMPUTER_GAME_CLICKABLE_AREAS = {
   },
   game5: {
     1: [
-      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+      { x: 0.51, y: 0.38, width: 0.02, height: 0.05 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.53, y: 0.6, width: 0.01, height: 0.03 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.69, y: 0.22, width: 0.03, height: 0.05 }
     ],
     4: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.48, y: 0.53, width: 0.04, height: 0.06 }
     ]
   },
   game6: {
     1: [
-      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+      { x: 0.52, y: 0.78, width: 0.03, height: 0.04 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.2, y: 0.45, width: 0.05, height: 0.04 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.55, y: 0.43, width: 0.06, height: 0.04}
     ],
     4: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.57, y: 0.35, width: 0.03, height: 0.06 }
     ]
   },
   game7: {
     1: [
-      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+      { x: 0.25, y: 0.59, width: 0.03, height: 0.04 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.48, y: 0.36, width: 0.02, height: 0.04 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.31, y: 0.49, width: 0.03, height: 0.04 }
     ],
     4: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.4, y: 0.27, width: 0.03, height: 0.08 }
     ]
   },
   game8: {
     1: [
-      { x: 0.35, y: 0.25, width: 0.35, height: 0.4 }
+      { x: 0.05, y: 0.43, width: 0.04, height: 0.04 }
     ],
     2: [
-      { x: 0.4, y: 0.3, width: 0.3, height: 0.35 }
+      { x: 0.66, y: 0.67, width: 0.02, height: 0.03 }
     ],
     3: [
-      { x: 0.45, y: 0.25, width: 0.3, height: 0.4 }
+      { x: 0.31, y: 0.29, width: 0.03, height: 0.05 }
     ],
     4: [
-      { x: 0.35, y: 0.3, width: 0.35, height: 0.35 }
+      { x: 0.61, y: 0.29, width: 0.02, height: 0.04 }
     ]
   }
 };

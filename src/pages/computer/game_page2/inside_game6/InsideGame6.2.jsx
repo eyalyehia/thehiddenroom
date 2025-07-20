@@ -15,9 +15,9 @@ const InsideGame62 = () => {
   // קונפיגורציה לתמונות מוגדלות
   const zoomConfigs = useMemo(() => ({
     3: { 
-      zoomSize: 'w-[450px]', 
-      zoomHeight: 'h-[310px]', 
-      zoomOffset: { x: 120, y: -150 } 
+      zoomSize: 'w-[223px]', 
+      zoomHeight: 'h-[67px]', 
+      zoomOffset: { x: 65, y: -80 } 
     }
   }), []);
 
@@ -246,7 +246,7 @@ const InsideGame62 = () => {
                     lineHeight: '20px',
                     height: '20px',
                     opacity: 0.7,
-                    overflow: 'hidden',
+                    // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
                   }}>A small graffiti appears on a train car, featuring the Ukrainian flag,</div>
@@ -256,7 +256,7 @@ const InsideGame62 = () => {
                   lineHeight: '20px',
                     height: '20px',
                   opacity: 0.7,
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
                   }}>a red heart, and the logo of Guerrilla Games, the studio behind the game.</div>

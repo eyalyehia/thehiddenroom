@@ -15,9 +15,9 @@ const InsideGame63 = () => {
   // קונפיגורציה לתמונות מוגדלות
   const zoomConfigs = useMemo(() => ({
     4: { 
-      zoomSize: 'w-[450px]', 
-      zoomHeight: 'h-[310px]', 
-      zoomOffset: { x: 120, y: -150 } 
+      zoomSize: 'w-[187px]', 
+      zoomHeight: 'h-[226px]', 
+      zoomOffset: { x: 50, y: -260 } 
     }
   }), []);
 
@@ -246,7 +246,7 @@ const InsideGame63 = () => {
                     lineHeight: '20px',
                     height: '20px',
                     opacity: 0.7,
-                    overflow: 'hidden',
+                    // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
                   }}>You can find a stack of crates filled with bananas,</div>
@@ -256,7 +256,7 @@ const InsideGame63 = () => {
                     lineHeight: '20px',
                     height: '20px',
                     opacity: 0.7,
-                    overflow: 'hidden',
+                    // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
                   }}>a reference to the classic video game Donkey Kong Country.</div>

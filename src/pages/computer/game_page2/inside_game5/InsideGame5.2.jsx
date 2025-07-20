@@ -16,9 +16,9 @@ const InsideGame5_2 = () => {
   // קונפיגורציה לתמונות מוגדלות
   const zoomConfigs = useMemo(() => ({
     3: { 
-      zoomSize: 'w-[450px]', 
-      zoomHeight: 'h-[310px]', 
-      zoomOffset: { x: 120, y: -150 } 
+      zoomSize: 'w-[78px]', 
+      zoomHeight: 'h-[56px]', 
+      zoomOffset: { x: 345, y: -262 } 
     }
   }), []);
 
@@ -248,20 +248,20 @@ const InsideGame5_2 = () => {
                     lineHeight: '20px',
                     height: '20px',
                     opacity: 0.7,
-                    overflow: 'hidden',
+                    // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}>At one point in the game, you can find a television that briefly</div>
+                  }}>At one point in the game, you can find a television </div>
                   <div style={{
                     fontWeight: 400,
                     fontSize: '20px',
                   lineHeight: '20px',
                     height: '20px',
                   opacity: 0.7,
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}>displays villains from past Far Cry games.</div>
+                  }}>that briefly displays villains from past Far Cry games.</div>
                 </div>
               </div>
             </div>
