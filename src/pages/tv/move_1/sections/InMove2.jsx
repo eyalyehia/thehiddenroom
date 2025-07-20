@@ -188,7 +188,7 @@ const InMove2 = () => {
           <img 
             src={image || "/tv/pictures/tv1/move-1/regular/02.png"}
             alt="Full Screen Scene"
-            className="w-full h-full object-fill"
+            className="w-full h-full object-cover"
             style={{
               willChange: 'transform',
               imageRendering: 'crisp-edges',
