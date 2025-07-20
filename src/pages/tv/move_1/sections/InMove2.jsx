@@ -60,7 +60,7 @@ const InMove2 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    2: { zoomSize: 'w-[286px]', zoomHeight: 'h-[212px]', zoomOffset: { x: -760, y: -130 } }
+    2: { zoomSize: 'w-[286px]', zoomHeight: 'h-[212px]', zoomOffset: { x: -700, y: -130 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -188,7 +188,7 @@ const InMove2 = () => {
           <img 
             src={image || "/tv/pictures/tv1/move-1/regular/02.png"}
             alt="Full Screen Scene"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fill"
             style={{
               willChange: 'transform',
               imageRendering: 'crisp-edges',
