@@ -213,10 +213,10 @@ export const COMPUTER_GAME_CLICKABLE_AREAS = {
       { x: 0.47, y: 0.28, width: 0.05, height: 0.05 }
     ],
     3: [
-      { x: 0.49, y: 0.88, width: 0.02, height: 0.03 }
+      { x: 0.49, y: 0.855, width: 0.02, height: 0.03 }
     ],
     4: [
-      { x: 0.19, y: 0.33, width: 0.06, height: 0.03}
+      { x: 0.18, y: 0.35, width: 0.06, height: 0.03}
     ]
   },
   game4: {

@@ -61,7 +61,7 @@ const InsideGame3_2 = () => {
   const zoomConfig = useMemo(() => ({
     zoomSize: 'w-[131px]',
     zoomHeight: 'h-[66px]',
-    zoomOffset: { x: -60, y: 330 }
+    zoomOffset: { x: -65, y: 360 }
   }), []);
 
   // קונפיגורציה למודאל
