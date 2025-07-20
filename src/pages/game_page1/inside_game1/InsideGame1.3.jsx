@@ -61,7 +61,7 @@ const InsideGame1_3 = () => {
   const zoomConfig = useMemo(() => ({
     zoomSize: 'w-[81px]',
     zoomHeight: 'h-[63px]',
-    zoomOffset: { x: 10, y: 220 }
+    zoomOffset: { x: 7, y: 210 }
   }), []);
 
   // קונפיגורציה למודאל
@@ -131,7 +131,7 @@ const InsideGame1_3 = () => {
         <MemoizedImage
           src="/computer/pictures/page1/game1/regular/03.png"
           alt="Easter egg 03"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
           style={{
             cursor: isHovering ? 'pointer' : 'default',
             transform: 'translateZ(0)',
