@@ -11,6 +11,7 @@ const InMove3_1 = () => {
   const [hoverImage, setHoverImage] = useState('');
   const [zoomImage, setZoomImage] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [isHoveringModalBackButton, setIsHoveringModalBackButton] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -186,10 +187,18 @@ const InMove3_1 = () => {
               className="fixed top-6 right-6 transition-opacity cursor-pointer"
               style={{ width: '29px', height: '45px', zIndex: 60 }}
               onClick={() => setShowModal(false)}
+              onMouseEnter={() => setIsHoveringModalBackButton(true)}
+              onMouseLeave={() => setIsHoveringModalBackButton(false)}
             >
-              <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-              </svg>
+              {isHoveringModalBackButton ? (
+                <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              ) : (
+                <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              )}
             </button>
 
             {/* Main Image */}

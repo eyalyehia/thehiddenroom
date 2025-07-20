@@ -5,6 +5,7 @@ import getBase64 from '../../../../components/common/getBase64';
 
 const InMove4 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
+  const [isHoveringModalBackButton, setIsHoveringModalBackButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
   const [hoveredImage, setHoveredImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -255,10 +256,18 @@ const InMove4 = () => {
               className="absolute top-6 right-6 transition-opacity cursor-pointer"
               style={{ width: '29px', height: '45px', zIndex: 60 }}
               onClick={handleZoomInModalClose}
+              onMouseEnter={() => setIsHoveringModalBackButton(true)}
+              onMouseLeave={() => setIsHoveringModalBackButton(false)}
             >
-              <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-              </svg>
+              {isHoveringModalBackButton ? (
+                <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              ) : (
+                <svg width="33" height="49" viewBox="0 0 33 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.39546 2L31 24.476L8.39546 47L2 40.646L18.203 24.53L2 8.354L8.39546 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
+                </svg>
+              )}
             </button>
 
             {/* Modal Content */}
