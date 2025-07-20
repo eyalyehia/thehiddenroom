@@ -38,7 +38,7 @@ const InMove2_3 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    3: { zoomSize: 'w-[358px]', zoomHeight: 'h-[241px]', zoomOffset: { x: -40, y: -30 } }
+    3: { zoomSize: 'w-[243px]', zoomHeight: 'h-[142px]', zoomOffset: { x: -20, y: -120 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -209,7 +209,7 @@ const InMove2_3 = () => {
             />
 
             {/* Text Content */}
-            <div className="mt-4 text-white">
+            <div className="mt-4 text-white" style={{position: 'absolute', left: 0, bottom: '-105px', textAlign: 'left'}}>
               <h2 
                 className="text-left"
                 style={{

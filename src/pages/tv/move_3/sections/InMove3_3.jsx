@@ -209,7 +209,7 @@ const InMove3_3 = () => {
             />
 
             {/* Text Content */}
-            <div className="mt-4 text-white">
+            <div className="mt-4 text-white" style={{position: 'absolute', left: 0, bottom: '-85px', textAlign: 'left'}}>
               <h2 
                 className="text-left"
                 style={{
