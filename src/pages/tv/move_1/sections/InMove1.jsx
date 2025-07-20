@@ -60,14 +60,14 @@ const InMove1 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    1: { zoomSize: 'w-[230px]', zoomHeight: 'h-[375px]', zoomOffset: { x: -40, y: -30 } }
+    1: { zoomSize: 'w-[142px]', zoomHeight: 'h-[230px]', zoomOffset: { x: 700, y: -235 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
     return imageZoomConfigs[imageId] || { 
       zoomSize: 'w-[230px]', 
       zoomHeight: 'h-[375px]', 
-      zoomOffset: { x: -40, y: -30 } 
+      zoomOffset: { x: 0, y: 0 } 
     };
   };
 
@@ -222,8 +222,8 @@ const InMove1 = () => {
             <div
               className="fixed z-40 pointer-events-none"
               style={{
-                left: '50%',
-                top: '50%',
+                left: `calc(50% + ${cfg.zoomOffset.x}px)`,
+                top: `calc(50% + ${cfg.zoomOffset.y}px)`,
                 transform: 'translate(-50%, -50%)',
                 opacity: isAreaHovered ? 1 : 0,
                 transition: 'opacity 300ms ease-in-out',

@@ -312,16 +312,16 @@ export const getComputerGameClickableAreas = (gameId, imageId) => {
 
 export const TV_MOVE1_CLICKABLE_AREAS = {
   1: [
-    { x: 0.25, y: 0.15, width: 0.5, height: 0.6 }
+    { x: 0.85, y: 0.19, width: 0.03, height: 0.06 }
   ],
   2: [
-    { x: 0.3, y: 0.2, width: 0.4, height: 0.5 }
+    { x: 0.01, y: 0.33, width: 0.09, height: 0.05 }
   ],
   3: [
-    { x: 0.4, y: 0.15, width: 0.3, height: 0.6 }
+    { x: 0.25, y: 0.15, width: 0.5, height: 0.7 }
   ],
   4: [
-    { x: 0.35, y: 0.25, width: 0.35, height: 0.45 }
+    { x: 0.35, y: 0.25, width: 0.3, height: 0.5 }
   ]
 };
 
@@ -346,16 +346,16 @@ export const getTvMove1ClickableAreas = (imageId) => {
 
 export const TV_MOVE2_CLICKABLE_AREAS = {
   1: [
-    { x: 0.35, y: 0.25, width: 0.213, height: 0.19 }
+    { x: 0.3, y: 0.25, width: 0.05, height: 0.5 }
   ],
   2: [
-    { x: 0.3, y: 0.2, width: 0.875, height: 0.336 }
+    { x: 0.2, y: 0.3, width: 0.6, height: 0.4 }
   ],
   3: [
-    { x: 0.4, y: 0.15, width: 0.358, height: 0.241 }
+    { x: 0.25, y: 0.35, width: 0.5, height: 0.3 }
   ],
   4: [
-    { x: 0.35, y: 0.25, width: 0.464, height: 0.327 }
+    { x: 0.3, y: 0.4, width: 0.4, height: 0.25 }
   ]
 };
 
@@ -448,7 +448,7 @@ export const getTvMove4ClickableAreas = (imageId) => {
 
 export const TV_MOVE5_CLICKABLE_AREAS = {
   1: [
-    { x: 0.35, y: 0.25, width: 0.487, height: 0.486 }
+    { x: 0.35, y: 0.25, width: 0.03, height: 0.03 }
   ],
   2: [
     { x: 0.3, y: 0.2, width: 0.505, height: 0.240 }

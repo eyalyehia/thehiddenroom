@@ -222,8 +222,8 @@ const InMove4 = () => {
             <div
               className="fixed z-40 pointer-events-none"
               style={{
-                left: '50%',
-                top: '50%',
+                left: `calc(50% + ${cfg.zoomOffset.x}px)`,
+                top: `calc(50% + ${cfg.zoomOffset.y}px)`,
                 transform: 'translate(-50%, -50%)',
                 opacity: isAreaHovered ? 1 : 0,
                 transition: 'opacity 300ms ease-in-out',

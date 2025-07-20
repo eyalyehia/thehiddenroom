@@ -152,8 +152,8 @@ const InMove3_1 = () => {
           <div
             className="absolute z-40 pointer-events-none"
             style={{
-              left: '50%',
-              top: '50%',
+              left: `calc(50% + ${cfg.zoomOffset.x}px)`,
+              top: `calc(50% + ${cfg.zoomOffset.y}px)`,
               transform: 'translate(-50%, -50%)',
             }}
           >
