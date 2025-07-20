@@ -182,55 +182,55 @@ export const COMPUTER_GAME_CLICKABLE_AREAS = {
       { x: 0.59, y: 0.31, width: 0.02, height: 0.06 }
     ],
     2: [
-      { x: 0.45, y: 0.50, width: 0.55, height: 0.4 }
+      { x: 0.69, y: 0.90, width: 0.05, height: 0.08 }
     ],
     3: [
-      { x: 0.38, y: 0.50, width: 0.3, height: 0.60 }
+      { x: 0.51, y: 0.77, width: 0.02, height: 0.03 }
     ],
     4: [
-      { x: 0.40, y: 0.05, width: 0.35, height: 0.60 }
+      { x: 0.60, y: 0.32, width: 0.02, height: 0.05 }
     ]
   },
   game2: {
     1: [
-      { x: 0.15, y: 0.20, width: 0.45, height: 0.55 }
+      { x: 0.51, y: 0.30, width: 0.02, height: 0.05 }
     ],
     2: [
-      { x: 0.35, y: 0.05, width: 0.35, height: 0.55 }
+      { x: 0.52, y: 0.34, width: 0.02, height: 0.03 }
     ],
     3: [
-      { x: 0.29, y: 0.30, width: 0.45, height: 0.65 }
+      { x: 0.48, y: 0.53, width: 0.02, height: 0.05 }
     ],
     4: [
-      { x: 0.3, y: 0.3, width: 0.36, height: 0.6 }
+      { x: 0.48, y: 0.43, width: 0.02, height: 0.04 }
     ]
   },
   game3: {
     1: [
-      { x: 0.38, y: 0.1, width: 0.35, height: 0.55 }
+      { x: 0.56, y: 0.33, width: 0.02, height: 0.05 }
     ],
     2: [
-      { x: 0.25, y: 0.05, width: 0.4, height: 0.60 }
+      { x: 0.47, y: 0.25, width: 0.05, height: 0.05 }
     ],
     3: [
-      { x: 0.38, y: 0.6, width: 0.3, height: 0.4 }
+      { x: 0.49, y: 0.88, width: 0.02, height: 0.03 }
     ],
     4: [
-      { x: 0.1, y: 0.22, width: 0.35, height: 0.35 }
+      { x: 0.19, y: 0.33, width: 0.06, height: 0.03}
     ]
   },
   game4: {
     1: [
-      { x: 0.45, y: 0.42, width: 0.25, height: 0.4 }
+      { x: 0.58, y: 0.59, width: 0.03, height: 0.04 }
     ],
     2: [
-      { x: 0.4, y: 0.15, width: 0.20, height: 0.65 }
+      { x: 0.45, y: 0.31, width: 0.02, height: 0.04 }
     ],
     3: [
-      { x: 0.05, y: 0.02, width: 0.15, height: 0.65 }
+      { x: 0.10, y: 0.12, width: 0.1, height: 0.1 }
     ],
     4: [
-      { x: 0.15, y: 0.35, width: 0.15, height: 0.65 }
+      { x: 0.62, y: 0.43, width: 0.03, height: 0.08 }
     ]
   },
   game5: {

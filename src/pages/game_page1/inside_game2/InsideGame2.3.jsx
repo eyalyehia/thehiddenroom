@@ -59,9 +59,9 @@ const InsideGame2_3 = () => {
 
   // קונפיגורציה לתמונה מוגדלת
   const zoomConfig = useMemo(() => ({
-    zoomSize: 'w-[653px]',
-    zoomHeight: 'h-[487px]',
-    zoomOffset: { x: -350, y: -170 }
+    zoomSize: 'w-[153px]',
+    zoomHeight: 'h-[203px]',
+    zoomOffset: { x: -65, y: -93 }
   }), []);
 
   // קונפיגורציה למודאל
