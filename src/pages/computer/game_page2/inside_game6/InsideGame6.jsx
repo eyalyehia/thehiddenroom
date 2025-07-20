@@ -17,7 +17,7 @@ const InsideGame6 = () => {
     1: { 
       zoomSize: 'w-[112px]', 
       zoomHeight: 'h-[142px]', 
-      zoomOffset: { x: 19, y: 189 } 
+      zoomOffset: { x: 19, y: 215 } 
     }
   }), []);
 

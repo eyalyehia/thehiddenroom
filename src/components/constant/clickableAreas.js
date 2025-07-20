@@ -235,24 +235,24 @@ export const COMPUTER_GAME_CLICKABLE_AREAS = {
   },
   game5: {
     1: [
-      { x: 0.51, y: 0.38, width: 0.02, height: 0.05 }
+      { x: 0.51, y: 0.38, width: 0.02, height: 0.069 }
     ],
     2: [
-      { x: 0.53, y: 0.6, width: 0.01, height: 0.03 }
+      { x: 0.539, y: 0.595, width: 0.01, height: 0.03 }
     ],
     3: [
-      { x: 0.69, y: 0.22, width: 0.03, height: 0.05 }
+      { x: 0.69, y: 0.251, width: 0.03, height: 0.05 }
     ],
     4: [
-      { x: 0.48, y: 0.53, width: 0.04, height: 0.06 }
+      { x: 0.48, y: 0.5, width: 0.04, height: 0.06 }
     ]
   },
   game6: {
     1: [
-      { x: 0.52, y: 0.78, width: 0.03, height: 0.04 }
+      { x: 0.52, y: 0.75, width: 0.03, height: 0.04 }
     ],
     2: [
-      { x: 0.2, y: 0.45, width: 0.05, height: 0.04 }
+      { x: 0.2, y: 0.44, width: 0.05, height: 0.055 }
     ],
     3: [
       { x: 0.55, y: 0.43, width: 0.06, height: 0.04}
