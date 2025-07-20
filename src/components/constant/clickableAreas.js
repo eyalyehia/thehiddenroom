@@ -312,7 +312,7 @@ export const getComputerGameClickableAreas = (gameId, imageId) => {
 
 export const TV_MOVE1_CLICKABLE_AREAS = {
   1: [
-    { x: 0.8, y: 0.19, width: 0.03, height: 0.06 }
+    { x: 0.85, y: 0.19, width: 0.03, height: 0.06 }
   ],
   2: [
     { x: 0.09, y: 0.35, width: 0.08, height: 0.05 }
