@@ -34,7 +34,7 @@ const InMove4_4 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    4: { zoomSize: 'w-[311px]', zoomHeight: 'h-[356px]', zoomOffset: { x: -40, y: -30 } }
+    4: { zoomSize: 'w-[143px]', zoomHeight: 'h-[254px]', zoomOffset: { x: 450, y: 195 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -240,7 +240,7 @@ const InMove4_4 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  01:47:33
+                  00:27:09
                 </div>
 
                 {/* Description */}
@@ -260,7 +260,7 @@ const InMove4_4 = () => {
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  A portrait of Voldemort's face is prominently displayed on the wall, serving as a haunting reminder of the Dark Lord's presence.
+                  In one scene, a portrait of Voldemort <br /> can be seen hanging in the castle.
                 </div>
               </div>
             </div>

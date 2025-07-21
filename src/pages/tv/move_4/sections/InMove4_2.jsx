@@ -34,7 +34,7 @@ const InMove4_2 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    2: { zoomSize: 'w-[325px]', zoomHeight: 'h-[459px]', zoomOffset: { x: -40, y: -30 } }
+    2: { zoomSize: 'w-[233px]', zoomHeight: 'h-[361px]', zoomOffset: { x: 725, y: -90 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -222,7 +222,7 @@ const InMove4_2 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove4_2 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:14:22
+                  00:12:45
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,12 @@ const InMove4_2 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  Among the books on the shelf, one can spot "A Brief History of Time" by Stephen Hawking, an Easter egg referencing the real physicist.
+                  At the start of the film, a man can be seen reading <br /> Stephen Hawking’s A Brief History of Time, a clever <br /> reference to the story’s themes of time and destiny.
                 </div>
               </div>
             </div>
