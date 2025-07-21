@@ -222,7 +222,7 @@ const InMove6_3 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove6_3 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  01:57:04
+                  01:47:22
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,12 @@ const InMove6_3 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The poster displays "I'm back" in bold letters, serving as both a movie tagline and character statement.
+                  a poster saying “I’m back” appears <br /> as a dinosaur attacks the kids.
                 </div>
               </div>
             </div>

@@ -34,7 +34,7 @@ const InMove6_2 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    2: { zoomSize: 'w-[350px]', zoomHeight: 'h-[177px]', zoomOffset: { x: -40, y: -30 } }
+    2: { zoomSize: 'w-[98px]', zoomHeight: 'h-[89px]', zoomOffset: { x: 275, y: 165 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -222,7 +222,7 @@ const InMove6_2 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove6_2 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:31:22
+                 00:05:33
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,12 @@ const InMove6_2 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The book "God Creates Dinosaurs" sits prominently on the desk, echoing Ian Malcolm's famous quote from the original film.
+                  You can spot a book authored by Jeff Goldblum’s character <br /> from the original Jurassic Park, titled “God Creates Dinosaurs.”
                 </div>
               </div>
             </div>

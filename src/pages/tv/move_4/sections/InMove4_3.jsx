@@ -222,7 +222,7 @@ const InMove4_3 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove4_3 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:52:18
+                  02:19:59
                 </div>
 
                 {/* Description */}
@@ -260,7 +260,7 @@ const InMove4_3 = () => {
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  During the end credits, subtle suggestive imagery appears on screen, hinting at the mature themes explored in the film.
+                  During the end credits, a pair of legs facing each <br /> other appears briefly, hinting at a sexual pose.
                 </div>
               </div>
             </div>

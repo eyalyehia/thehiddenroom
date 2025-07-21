@@ -34,7 +34,7 @@ const InMove6_1 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    1: { zoomSize: 'w-[259px]', zoomHeight: 'h-[344px]', zoomOffset: { x: -40, y: -30 } }
+    1: { zoomSize: 'w-[180px]', zoomHeight: 'h-[245px]', zoomOffset: { x: -200, y: -120 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -240,7 +240,7 @@ const InMove6_1 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:15:41
+                 01:12:40
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,13 @@ const InMove6_1 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The Jeep bears the number "029," a subtle reference to the original Jurassic Park vehicle numbering system.
+                  The kids in Jurassic World discover Jeep #029,<br />
+                  the same vehicle used in the original Jurassic Park.
                 </div>
               </div>
             </div>
