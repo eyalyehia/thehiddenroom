@@ -12,7 +12,7 @@ export const LOGO_CLICKABLE_AREAS_PAGE1 = {
     { x: 0.58, y: 0.43, width: 0.17, height: 0.23 },
   ],
   5: [
-    { x: -0.02, y: 0.26, width: 0.52, height: 0.53 }
+    { x: 0.1, y: 0.26, width: 0.38, height: 0.32 }
   ],
   6: [
     { x: 0.32, y: 0.37, width: 0.35, height: 0.18 },
@@ -20,7 +20,7 @@ export const LOGO_CLICKABLE_AREAS_PAGE1 = {
   ],
   7: [
     
-    { x: 0.1, y: 0, width: 0.8, height: 0.7 }
+    { x: 0.22, y: 0.20, width: 0.57, height: 0.28 }
   ],
   8: [
    
@@ -32,7 +32,7 @@ export const LOGO_CLICKABLE_AREAS_PAGE1 = {
     { x: 0.35, y: 0.15, width: 0.28, height: 0.43 }
   ],
   10: [
-    { x: 0.06, y: 0.57, width: 0.90, height: 0.17 }
+    { x: 0.23, y: 0.62, width: 0.55, height: 0.17 }
   ],
   11: [
     { x: 0.1, y: 0.52, width: 0.15, height: 0.23 }
@@ -41,10 +41,10 @@ export const LOGO_CLICKABLE_AREAS_PAGE1 = {
     { x: -0.05, y: 0.32, width: 0.26, height: 0.35 }
   ],
   13: [
-    { x: 0.30, y: 0.15, width: 0.71, height: 0.55}
+    { x: 0.73, y: 0.27, width: 0.29, height: 0.32}
   ],
   14: [
-    { x: 0.21, y: 0.20, width: 0.5, height: 0.53 }
+    { x: 0.42, y: 0.33, width: 0.16, height: 0.25 }
   ],
   15: [
     { x: 0.05, y: 0.4, width: 0.3, height: 0.15 }
@@ -56,35 +56,35 @@ export const LOGO_CLICKABLE_AREAS_PAGE2 = {
     { x: 0, y: 0.15, width: 0.2, height: 0.26 }
   ],
   2: [
-    { x: 0.70, y: 0.2, width: 0.15, height: 0.80 }
+    { x: 0.70, y: 0.32, width: 0.15, height: 0.45 }
   ],
   3: [
-    { x: -0.04, y: 0.15, width: 1.05, height: 0.37 }
+    { x: 0.25, y: 0.26, width: 0.5, height: 0.22 }
   ],
   4: [
-    { x: 0.65, y: 0.19, width: 0.25, height: 0.55 },
+    { x: 0.69, y: 0.37, width: 0.19, height: 0.36 },
   ],
   5: [
     { x: 0.18, y: 0.37, width: 0.12, height: 0.27 }
   ],
   6: [
-    { x: -0.02, y: 0.09, width: 1.03, height: 0.5 }
+    { x: 0.26, y: 0.23, width: 0.5, height: 0.26 }
   ],
   7: [
-    { x: 0.09, y: 0.53, width: 0.6, height: 0.15 }
+    { x: 0.22, y: 0.58, width: 0.35, height: 0.15 }
   ],
   8: [
-    { x: 0.05, y: 0, width: 0.9, height: 0.60 },
+    { x: 0.39, y: 0.16, width: 0.22, height: 0.42 }
   ],
   9: [
-    { x: 0, y: 0.22, width: 0.32, height: 0.55 }
+    { x: 0.02, y: 0.29, width: 0.25, height: 0.21 }
   ],
   10: [
     { x: -0.02, y: 0.35, width: 0.15, height: 0.25 },
    
   ],
   11: [
-    { x: 0.39, y: 0, width: 0.22, height: 0.5 }
+    { x: 0.39, y: 0.22, width: 0.18, height: 0.29 }
   ],
   12: [
     { x: -0.03, y: 0.38, width: 0.28, height: 0.22 },
@@ -361,7 +361,7 @@ export const TV_MOVE2_CLICKABLE_AREAS = {
 
 export const TV_MOVE3_CLICKABLE_AREAS = {
   1: [
-    { x: 0.11, y: 0.82, width: 0.03, height: 0.115 }
+    { x: 0.115, y: 0.82, width: 0.04, height: 0.1 }
   ],
   2: [
     { x: 0.44, y: 0.23, width: 0.035, height: 0.055 }
@@ -448,10 +448,10 @@ export const getTvMove4ClickableAreas = (imageId) => {
 
 export const TV_MOVE5_CLICKABLE_AREAS = {
   1: [
-    { x: 0.26, y: 0.58, width: 0.04, height: 0.05 }
+    { x: 0.29, y: 0.56, width: 0.04, height: 0.08 }
   ],
   2: [
-    { x: 0.62, y: 0.2, width: 0.045, height: 0.03 }
+    { x: 0.62, y: 0.2, width: 0.069, height: 0.05 }
   ],
   3: [
     { x: 0.9, y: 0.82, width: 0.05, height: 0.03 }
@@ -481,10 +481,10 @@ export const TV_MOVE7_CLICKABLE_AREAS = {
     { x: 0.59, y: 0.579, width: 0.03, height: 0.03}
   ],
   2: [
-    { x: 0.09, y: 0.64, width: 0.02, height: 0.03 }
+    { x: 0.08, y: 0.64, width: 0.03, height: 0.06 }
   ],
   3: [
-    { x: 0.69, y: 0.3, width: 0.03, height: 0.04 }
+    { x: 0.658, y: 0.28, width: 0.07, height: 0.08 }
   ],
   4: [
     { x: 0.921, y: 0.58, width: 0.03, height: 0.12 }

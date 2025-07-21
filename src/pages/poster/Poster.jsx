@@ -99,7 +99,7 @@ const Poster = () => {
         hotspot: { left: 25, top: 40, width: 50, height: 25 },
         zoomSize: "w-59",
         zoomHeight: "h-5",
-        zoomOffset: { x: -150, y: 0 }
+        zoomOffset: { x: -160, y: 0 }
       }
     };
 
