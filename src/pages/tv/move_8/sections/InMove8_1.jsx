@@ -61,7 +61,7 @@ const InMove8_1 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    1: { zoomSize: 'w-[312px]', zoomHeight: 'h-[169px]', zoomOffset: { x: -40, y: -30 } }
+    1: { zoomSize: 'w-[277px]', zoomHeight: 'h-[123px]', zoomOffset: { x: 420, y: -120 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -331,7 +331,7 @@ const InMove8_1 = () => {
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  A boat named "We're gonna make it, Rose" appears as a playful Titanic reference, a Ryan Reynolds Easter egg he came up with himself.
+                  A boat named "We're gonna make it, Rose" appears as a playful <br /> Titanic reference, a Ryan Reynolds Easter egg he came up with himself.
                 </div>
               </div>
             </div>

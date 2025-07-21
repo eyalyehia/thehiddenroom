@@ -481,7 +481,7 @@ export const TV_MOVE7_CLICKABLE_AREAS = {
     { x: 0.59, y: 0.579, width: 0.03, height: 0.03}
   ],
   2: [
-    { x: 0.3, y: 0.2, width: 0.331, height: 0.621 }
+    { x: 0.09, y: 0.64, width: 0.02, height: 0.03 }
   ],
   3: [
     { x: 0.69, y: 0.3, width: 0.03, height: 0.04 }
@@ -493,16 +493,16 @@ export const TV_MOVE7_CLICKABLE_AREAS = {
 
 export const TV_MOVE8_CLICKABLE_AREAS = {
   1: [
-    { x: 0.35, y: 0.25, width: 0.312, height: 0.169 }
+    { x: 0.67, y: 0.38, width: 0.05, height: 0.03 }
   ],
   2: [
-    { x: 0.3, y: 0.2, width: 0.175, height: 0.222 }
+    { x: 0.595, y: 0.365, width: 0.025, height: 0.05 }
   ],
   3: [
-    { x: 0.4, y: 0.15, width: 0.132, height: 0.089 }
+    { x: 0.63, y: 0.369, width: 0.02, height: 0.04 }
   ],
   4: [
-    { x: 0.35, y: 0.25, width: 0.432, height: 0.254 }
+    { x: 0.69, y: 0.59, width: 0.09, height: 0.03}
   ]
 };
 

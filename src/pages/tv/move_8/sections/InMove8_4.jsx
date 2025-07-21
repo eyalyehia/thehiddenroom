@@ -61,7 +61,7 @@ const InMove8_4 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    4: { zoomSize: 'w-[432px]', zoomHeight: 'h-[254px]', zoomOffset: { x: -40, y: -30 } }
+    4: { zoomSize: 'w-[362px]', zoomHeight: 'h-[230px]', zoomOffset: { x: 480, y: 120 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
