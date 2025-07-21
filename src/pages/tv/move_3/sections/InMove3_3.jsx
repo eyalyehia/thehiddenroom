@@ -178,7 +178,7 @@ const InMove3_3 = () => {
       {/* Modal */}
       {showModal && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
           onClick={() => setShowModal(false)}
         >
           <div className="relative" onClick={e => e.stopPropagation()}>

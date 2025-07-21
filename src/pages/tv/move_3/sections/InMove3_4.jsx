@@ -178,7 +178,7 @@ const InMove3_4 = () => {
       {/* Modal */}
       {showModal && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
           onClick={() => setShowModal(false)}
         >
           <div className="relative" onClick={e => e.stopPropagation()}>
@@ -209,7 +209,7 @@ const InMove3_4 = () => {
             />
 
             {/* Text Content */}
-            <div className="mt-4 text-white" style={{position: 'absolute', left: 0, bottom: '-85px', textAlign: 'left'}}>
+            <div className="mt-4 text-white" style={{position: 'absolute', left: 0, bottom: '-105px', textAlign: 'left'}}>
               <h2 
                 className="text-left"
                 style={{

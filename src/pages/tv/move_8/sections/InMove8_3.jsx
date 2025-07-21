@@ -248,7 +248,7 @@ const InMove8_3 = () => {
         {/* ZoomIn Modal */}
         {showZoomInModal && (
           <div 
-            className="fixed inset-0 bg-black/80 z-50 p-8 flex items-center justify-center"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
             onClick={handleZoomInModalClose}
           >
             {/* Back Button in Modal */}
