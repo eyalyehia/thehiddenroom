@@ -34,7 +34,7 @@ const InMove5_1 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    1: { zoomSize: 'w-[487px]', zoomHeight: 'h-[486px]', zoomOffset: { x: -40, y: -30 } }
+    1: { zoomSize: 'w-[316px]', zoomHeight: 'h-[294px]', zoomOffset: { x: -380, y: 75 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -222,7 +222,7 @@ const InMove5_1 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove5_1 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:23:14
+                  00:12:26
                 </div>
 
                 {/* Description */}
@@ -260,7 +260,7 @@ const InMove5_1 = () => {
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The book "Shibumi" by Trevanian is visible on the bookshelf, a novel known for inspiring elements of the John Wick universe.
+                  In one scene, a man is seen sitting in his car reading <br /> Shibumi by Trevanian. The book’s lone assassin <br /> protagonist shares key traits with John Wick.
                 </div>
               </div>
             </div>

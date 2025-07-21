@@ -34,7 +34,7 @@ const InMove5_2 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    2: { zoomSize: 'w-[505px]', zoomHeight: 'h-[240px]', zoomOffset: { x: -40, y: -30 } }
+    2: { zoomSize: 'w-[357px]', zoomHeight: 'h-[152px]', zoomOffset: { x: 280, y: -320 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -222,7 +222,7 @@ const InMove5_2 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove5_2 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  01:08:37
+                  00:50:00
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,12 @@ const InMove5_2 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The pills in this scene share the same distinctive color scheme as the red and blue pills from The Matrix, symbolizing choice.
+                  In one of the film’s early fight scenes, blue and red lighting subtly <br /> mirrors the iconic pill choice from The Matrix, casting symbolic <br /> colors across John’s face.
                 </div>
               </div>
             </div>

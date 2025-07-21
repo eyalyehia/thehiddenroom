@@ -448,10 +448,10 @@ export const getTvMove4ClickableAreas = (imageId) => {
 
 export const TV_MOVE5_CLICKABLE_AREAS = {
   1: [
-    { x: 0.35, y: 0.25, width: 0.03, height: 0.03 }
+    { x: 0.26, y: 0.58, width: 0.04, height: 0.05 }
   ],
   2: [
-    { x: 0.3, y: 0.2, width: 0.505, height: 0.240 }
+    { x: 0.62, y: 0.2, width: 0.045, height: 0.03 }
   ],
   3: [
     { x: 0.4, y: 0.15, width: 0.281, height: 0.210 }
