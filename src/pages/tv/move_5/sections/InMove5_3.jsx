@@ -34,7 +34,7 @@ const InMove5_3 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    3: { zoomSize: 'w-[281px]', zoomHeight: 'h-[210px]', zoomOffset: { x: -40, y: -30 } }
+    3: { zoomSize: 'w-[179px]', zoomHeight: 'h-[58px]', zoomOffset: { x:810, y: 365} }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -222,7 +222,7 @@ const InMove5_3 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove5_3 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:44:51
+                  00:18:00
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,12 @@ const InMove5_3 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The bottle labeled "Peligroso" (Spanish for "dangerous") subtly foreshadows the perilous events to come.
+                  In the scene where Aurelio gives John a drink, the bottle <br /> is labeled “Peligroso”, Spanish for “dangerous,” a nod to <br /> John Wick’s deadly nature.
                 </div>
               </div>
             </div>

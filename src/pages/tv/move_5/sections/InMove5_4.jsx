@@ -34,7 +34,7 @@ const InMove5_4 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    4: { zoomSize: 'w-[664px]', zoomHeight: 'h-[131px]', zoomOffset: { x: -40, y: -30 } }
+    4: { zoomSize: 'w-[295px]', zoomHeight: 'h-[24px]', zoomOffset: { x: 590, y: -520 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -90,7 +90,7 @@ const InMove5_4 = () => {
   };
 
   return (
-    <div className="relative w-full h-screen" style={{ backgroundColor: '#1D1C1A' }}>
+    <div className="relative w-full h-screen" style={{ backgroundColor: '#1D1C1A' ,overflow: 'visible' }}>
       {/* Debug Button */}
       <button
         className="absolute top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
@@ -153,27 +153,27 @@ const InMove5_4 = () => {
         const cfg = getImageZoomConfig(hoveredImage);
         return (
           <div
-            className="absolute z-40 pointer-events-none"
-            style={{
-              left: `calc(50% + ${cfg.zoomOffset.x}px)`,
-              top: `calc(50% + ${cfg.zoomOffset.y}px)`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            <img
-              src={hoverImage || "/tv/pictures/tv2/move-5/zoomBIt/04.png"}
-              alt="Hover Scene"
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border-2 border-white`}
-              style={{ 
-                transition: 'opacity 300ms ease-out',
-                opacity: 1,
-                willChange: 'transform',
-                imageRendering: 'crisp-edges',
-                backfaceVisibility: 'hidden',
-                transform: 'translateZ(0)',
-              }}
-            />
-          </div>
+  className="absolute z-40 pointer-events-none"
+  style={{
+    left: `calc(50% + ${cfg.zoomOffset.x}px)`,
+    top: `calc(50% + ${cfg.zoomOffset.y}px)`,
+    transform: 'translate(0, -50%)',
+  }}
+>
+  <img
+    src={hoverImage || "/tv/pictures/tv2/move-5/zoomBIt/04.png"}
+    alt="Hover Scene"
+    className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border-2 border-white`}
+    style={{
+      transition: 'opacity 300ms ease-out',
+      opacity: 1,
+      willChange: 'transform',
+      imageRendering: 'crisp-edges',
+      backfaceVisibility: 'hidden',
+      transform: 'translateZ(0)',
+    }}
+  />
+</div>
         );
       })()}
 
@@ -222,7 +222,7 @@ const InMove5_4 = () => {
                 style={{
                   position: 'absolute',
                   left: '0',
-                  bottom: '-85px',
+                  bottom: '-105px',
                   textAlign: 'left'
                 }}
               >
@@ -240,7 +240,7 @@ const InMove5_4 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  01:35:29
+                01:15:02
                 </div>
 
                 {/* Description */}
@@ -255,12 +255,12 @@ const InMove5_4 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  The video game features a character named "Neo," directly referencing the protagonist from The Matrix.
+                 Near the end of the film, a video game is visible on-screen, <br /> showing a character named “Neo”, a reference to Keanu <br/> Reeves’ iconic role in The Matrix.
                 </div>
               </div>
             </div>

@@ -61,7 +61,7 @@ const InMove7_1 = () => {
 
   // Hover configurations
   const imageZoomConfigs = useMemo(() => ({
-    1: { zoomSize: 'w-[198px]', zoomHeight: 'h-[209px]', zoomOffset: { x: -40, y: -30 } }
+    1: { zoomSize: 'w-[74px]', zoomHeight: 'h-[44px]', zoomOffset: { x: 200, y: 105 } }
   }), []);
 
   const getImageZoomConfig = (imageId) => {
@@ -331,7 +331,7 @@ const InMove7_1 = () => {
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical'
                 }}>
-                  Early in the film, a newsstand displays newspapers with fake, humorous headlines, like "Neighbor's bagel scares boy, cures his hiccups."
+                  Early in the film, a newsstand displays newspapers with fake, <br /> humorous headlines, like "Neighbor's bagel scares boy, cures his hiccups."
                 </div>
               </div>
             </div>
