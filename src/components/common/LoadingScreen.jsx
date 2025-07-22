@@ -172,6 +172,8 @@ function LoadingScreen({ progress = 0 }) {
               strokeLinecap="round"
               style={{
                 transition: 'stroke-dashoffset 0.3s ease',
+                transform: 'rotate(-90deg)', // הוספת סיבוב כדי להתחיל מלמעלה
+                transformOrigin: '130px 130px', // מרכז העיגול
               }}
             />
           </svg>
@@ -180,12 +182,13 @@ function LoadingScreen({ progress = 0 }) {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '2.3rem',
-            fontWeight: 400,
+            fontFamily: 'Work Sans',
+            fontWeight: 300,
+            fontStyle: 'Light',
+            fontSize: '20px',
+            lineHeight: '100%',
+            letterSpacing: '0%',
             color: '#FFFFFF',
-            letterSpacing: '1px',
-            textShadow: '0 0 8px #000',
-            fontFamily: 'Work Sans, Arial, sans-serif',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -200,14 +203,16 @@ function LoadingScreen({ progress = 0 }) {
         <div style={{
           marginTop: '38px',
           color: '#FFFFFF',
-          fontFamily: 'Work Sans, Arial, sans-serif',
-          fontSize: '1.35rem',
+          fontFamily: 'Work Sans',
           fontWeight: 300,
-          letterSpacing: '0.5px',
+          fontStyle: 'Light',
+          fontSize: '20px',
+          lineHeight: '100%',
+          letterSpacing: '0%',
           textAlign: 'center',
           minHeight: '32px',
           userSelect: 'none',
-              width: '100%',
+          width: '100%',
         }}>
           {renderAnimatedText()}
         </div>
