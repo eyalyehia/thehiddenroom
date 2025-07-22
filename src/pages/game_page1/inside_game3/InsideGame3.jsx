@@ -239,7 +239,7 @@ const InsideGame3 = () => {
                     // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}>A teddy bear sits on a chair inside the prison. Hitting</div>
+                  }}>A teddy bear sits on a chair inside the prison. </div>
                   <div style={{
                     fontWeight: 400,
                     fontSize: '20px',
@@ -249,7 +249,7 @@ const InsideGame3 = () => {
                     // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}> it triggers a chilling girl’s laugh.</div>
+                  }}>Hitting it triggers a chilling girl’s laugh.</div>
                 </div>
               </div>
             </div>

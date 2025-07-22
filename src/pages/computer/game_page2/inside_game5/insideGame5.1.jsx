@@ -251,7 +251,7 @@ const InsideGame5_1 = () => {
                     // overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}>A barcode on a wooden crate leads to a cryptic Ubisoft video. The clip is mysterious and its meaning remains unclear.</div>
+                  }}>A barcode on a wooden crate leads to a cryptic Ubisoft video. <br /> The clip is mysterious and its meaning remains unclear.</div>
                   {/* <div style={{
                     fontWeight: 400,
                     fontSize: '20px',

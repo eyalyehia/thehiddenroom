@@ -250,7 +250,7 @@ const InsideGame8 = () => {
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}> and steal an apple from your hand a few seconds later</div>
+                  }}> and steal an apple from your hand a few seconds later.</div>
                 </div>
               </div>
             </div>

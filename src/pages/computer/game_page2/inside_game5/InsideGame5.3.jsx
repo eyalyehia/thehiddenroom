@@ -251,7 +251,7 @@ const InsideGame5_3 = () => {
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
-                  }}>On a small island, there’s a tall tower styled like Assassin’s Creed</div>
+                  }}>On a small island, there’s a tall tower styled like Assassin’s Creed.</div>
                   <div style={{
                     fontWeight: 400,
                     fontSize: '20px',
