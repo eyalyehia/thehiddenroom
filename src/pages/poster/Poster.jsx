@@ -753,7 +753,7 @@ const Poster = () => {
                     lineHeight: '100%',
                     opacity: 0.7,
                     letterSpacing: '0%'
-                  }}>for the Theatrical", a quote from the previous film's ending</div>
+                  }}>for the Theatrical", a quote from the previous film's ending.</div>
                 </div>
               </div>
             )}

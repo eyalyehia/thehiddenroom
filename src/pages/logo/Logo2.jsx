@@ -1098,7 +1098,7 @@ const Logo2 = () => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap'
-                    }}>The letter "R" resembles the shape of a sunglass frame.</div>
+                    }}>The letter “B” resembles the shape of a sunglass frame.</div>
                   </div>
                 </div>
               </div>

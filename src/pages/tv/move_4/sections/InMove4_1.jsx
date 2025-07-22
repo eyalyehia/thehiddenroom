@@ -240,12 +240,12 @@ const InMove4_1 = () => {
                   color: '#FFFFFF',
                   marginBottom: '0px'
                 }}>
-                  00:08:44
+                  01:00:17
                 </div>
 
                 {/* Description */}
                 <div style={{
-                  width: '552px',
+                  width: '700px', // הגדלת הרוחב
                   height: '60px',
                   opacity: 0.7,
                   fontFamily: 'Work Sans',
@@ -255,12 +255,12 @@ const InMove4_1 = () => {
                   lineHeight: '100%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
-                  overflow: 'hidden',
                   display: '-webkit-box',
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: 'vertical'
+                  WebkitLineClamp: 2, // שתי שורות בלבד
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden', // חשוב כדי להסתיר טקסט עודף
                 }}>
-                  The Marauder's Map can be briefly seen on Dudley's desk, a clear reference to the magical artifact from Harry Potter.
+                  While viewing the Marauder’s Map, Newt Scamander’s name briefly  appears, a hidden reference to the future Fantastic Beasts protagonist.
                 </div>
               </div>
             </div>
