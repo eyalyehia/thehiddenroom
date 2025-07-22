@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isPointInComputerGameArea, getComputerGameClickableAreas } from '../../../../components/constant/clickableAreas';
+import { isPointInComputerGameArea } from '../../../../components/constant/clickableAreas';
 import getBase64 from '../../../../components/common/getBase64';
 
 const InsideGame73 = () => {
   const [isHoveringButton, setIsHoveringButton] = useState(false);
-  const [showClickableAreas, setShowClickableAreas] = useState(false);
+  // הסרתי את showClickableAreas
   const [isHovering, setIsHovering] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
@@ -57,27 +57,7 @@ const InsideGame73 = () => {
     }
   };
 
-  const renderClickableAreasDebug = () => {
-    if (!showClickableAreas) return null;
-
-    const areas = getComputerGameClickableAreas('game7', 4);
-    return areas.map((area, index) => (
-      <div
-        key={`debug-${index}`}
-        style={{
-          position: 'absolute',
-          left: `${area.x * 100}%`,
-          top: `${area.y * 100}%`,
-          width: `${area.width * 100}%`,
-          height: `${area.height * 100}%`,
-          border: '2px solid rgba(255, 0, 0, 0.8)',
-          backgroundColor: 'rgba(255, 0, 0, 0.2)',
-          pointerEvents: 'none',
-          zIndex: 15,
-        }}
-      />
-    ));
-  };
+  // הסרתי את renderClickableAreasDebug
 
   return (
     <div style={{ 
@@ -87,24 +67,7 @@ const InsideGame73 = () => {
       overflow: 'hidden',
       background: '#1D1C1A'
     }}>
-      {/* כפתור להצגת אזורים לחיצים */}
-      <button
-        style={{
-          position: 'absolute',
-          top: '20px',
-          left: '20px',
-          padding: '8px 16px',
-          backgroundColor: 'red',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          zIndex: 20
-        }}
-        onClick={() => setShowClickableAreas(!showClickableAreas)}
-      >
-        {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
-      </button>
+      {/* הסרתי את כפתור הצגת האזורים האדומים */}
 
       <div 
         style={{
@@ -129,7 +92,7 @@ const InsideGame73 = () => {
           }}
           onLoad={() => setImageLoaded(true)}
         />
-        {renderClickableAreasDebug()}
+        {/* הסרתי את renderClickableAreasDebug */}
       </div>
       
       {/* תמונה מוגדלת בעת hover */}

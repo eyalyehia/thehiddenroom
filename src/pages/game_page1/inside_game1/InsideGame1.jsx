@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isPointInComputerGameArea, getComputerGameClickableAreas } from '../../../components/constant/clickableAreas';
+import { isPointInComputerGameArea } from '../../../components/constant/clickableAreas';
 import getBase64 from '../../../components/common/getBase64';
 
 // Memoized image component with loading state
@@ -52,7 +52,7 @@ const MemoizedImage = React.memo(({ src, alt, className, onClick, style, ...prop
 
 const InsideGame1 = () => {
   const [isHoveringArrowButton, setIsHoveringArrowButton] = useState(false);
-  const [showClickableAreas, setShowClickableAreas] = useState(false);
+  // הסרתי את showClickableAreas
   const [hoveredArea, setHoveredArea] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
@@ -98,27 +98,7 @@ const InsideGame1 = () => {
     setSelectedImage(1);
   };
 
-  const renderClickableAreasDebug = () => {
-    if (!showClickableAreas) return null;
-
-    const areas = getComputerGameClickableAreas('game1', 1);
-    return areas.map((area, index) => (
-      <div
-        key={`debug-${index}`}
-        style={{
-          position: 'absolute',
-          left: `${area.x * 100}%`,
-          top: `${area.y * 100}%`,
-          width: `${area.width * 100}%`,
-          height: `${area.height * 100}%`,
-          border: '2px solid rgba(255, 0, 0, 0.8)',
-          backgroundColor: 'rgba(255, 0, 0, 0.2)',
-          pointerEvents: 'none',
-          zIndex: 15,
-        }}
-      />
-    ));
-  };
+  // הסרתי את renderClickableAreasDebug
 
   // קונפיגורציה לתמונה מוגדלת
   const zoomConfig = useMemo(() => ({
@@ -138,13 +118,7 @@ const InsideGame1 = () => {
 
   return (
     <div className="relative w-full h-screen bg-white overflow-hidden">
-      {/* כפתור להצגת אזורים לחיצים */}
-      <button
-        className="absolute top-5 left-5 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
-        onClick={() => setShowClickableAreas(!showClickableAreas)}
-      >
-        {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
-      </button>
+      {/* הסרתי את כפתור הצגת האזורים האדומים */}
 
       <div 
         className="relative w-full h-full"
@@ -169,7 +143,7 @@ const InsideGame1 = () => {
             transition: 'all 0.3s ease-in-out'
           }}
         />
-        {renderClickableAreasDebug()}
+        {/* הסרתי את renderClickableAreasDebug */}
       </div>
       
       {/* תמונה מוגדלת בעת hover */}
@@ -187,7 +161,9 @@ const InsideGame1 = () => {
             justifyContent: 'center',
             overflow: 'hidden',
             width: zoomConfig.zoomSize.replace('w-[', '').replace(']', ''),
-            height: zoomConfig.zoomHeight.replace('h-[', '').replace(']', '')
+            height: zoomConfig.zoomHeight.replace('h-[', '').replace(']', ''),
+            background: 'transparent',
+            zIndex: 40
           }}
           onClick={handleImageClick}
           onMouseEnter={() => {
@@ -218,6 +194,7 @@ const InsideGame1 = () => {
               border: '2px solid #FFFFFF',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
             }}
+            draggable={false}
           />
         </div>
       )}
