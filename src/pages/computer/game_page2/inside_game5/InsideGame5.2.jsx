@@ -11,6 +11,7 @@ const InsideGame5_2 = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
   const [modalImageLoaded, setModalImageLoaded] = useState(false);
+  const [isHoveringZoomImage, setIsHoveringZoomImage] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -134,7 +135,7 @@ const InsideGame5_2 = () => {
       </div>
       
       {/* תמונה מוגדלת בעת hover */}
-      {isHovering && (
+      {(isHovering || isHoveringZoomImage) && (
         <div
           style={{
             position: 'fixed',
@@ -145,9 +146,9 @@ const InsideGame5_2 = () => {
             cursor: 'pointer',
             pointerEvents: 'auto'
           }}
-          onClick={handleZoomClick}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
+          onClick={() => setShowModal(true)}
+          onMouseEnter={() => setIsHoveringZoomImage(true)}
+          onMouseLeave={() => setIsHoveringZoomImage(false)}
         >
           <div style={{
             width: zoomConfigs[3].zoomSize.replace('w-[', '').replace('px]', '') + 'px',

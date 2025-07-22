@@ -10,6 +10,7 @@ const InsideGame7 = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isHoveringZoomImage, setIsHoveringZoomImage] = useState(false);
   const navigate = useNavigate();
 
   // קונפיגורציה לתמונות מוגדלות
@@ -133,7 +134,7 @@ const InsideGame7 = () => {
       </div>
       
       {/* תמונה מוגדלת בעת hover */}
-      {isHovering && (
+      {(isHovering || isHoveringZoomImage) && (
         <div
           style={{
             position: 'fixed',
@@ -141,7 +142,7 @@ const InsideGame7 = () => {
             top: '50%',
             transform: `translate(${zoomConfigs[1].zoomOffset.x}px, ${zoomConfigs[1].zoomOffset.y}px)`,
             zIndex: 30,
-            pointerEvents: 'none',
+            pointerEvents: 'auto',
             width: zoomConfigs[1].zoomSize.replace('w-[', '').replace('px]', '') + 'px',
             height: zoomConfigs[1].zoomHeight.replace('h-[', '').replace('px]', '') + 'px',
             cursor: 'pointer',
@@ -150,6 +151,9 @@ const InsideGame7 = () => {
             justifyContent: 'center',
             overflow: 'hidden'
           }}
+          onMouseEnter={() => setIsHoveringZoomImage(true)}
+          onMouseLeave={() => setIsHoveringZoomImage(false)}
+          onClick={() => setShowModal(true)}
         >
           <img
             src="/computer/pictures/page2/game3/zoomBitIn/01.png"

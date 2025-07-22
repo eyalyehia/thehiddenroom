@@ -207,7 +207,7 @@ function LoadingScreen({ progress = 0 }) {
           textAlign: 'center',
           minHeight: '32px',
           userSelect: 'none',
-          width: '100%',
+              width: '100%',
         }}>
           {renderAnimatedText()}
         </div>
