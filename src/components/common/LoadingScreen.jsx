@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
  * Loading Screen Component displayed while the model is loading.
  */
 function LoadingScreen({ progress = 0 }) {
-  const [dots, setDots] = useState('');
-  const [pulseOpacity, setPulseOpacity] = useState(1);
   const [smoothProgress, setSmoothProgress] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = 'All it takes is a closer look.';
 
   // Smooth progress animation
   useEffect(() => {
@@ -18,38 +18,52 @@ function LoadingScreen({ progress = 0 }) {
     const animateProgress = () => {
       const elapsed = Date.now() - startTime;
       const ratio = Math.min(elapsed / duration, 1);
-      
       // Easing function לתנועה חלקה
       const easeOut = 1 - Math.pow(1 - ratio, 3);
       const currentProgress = startProgress + (targetProgress - startProgress) * easeOut;
-      
       setSmoothProgress(currentProgress);
-      
       if (ratio < 1) {
         requestAnimationFrame(animateProgress);
       }
     };
-
     if (Math.abs(targetProgress - startProgress) > 0.5) {
       requestAnimationFrame(animateProgress);
     }
   }, [progress, smoothProgress]);
 
-  // Animated dots effect - מהיר יותר
+  // אפקט לחשיפת הטקסט אות-אחר-אות עם ריחוף, מתחיל מ-10% טעינה
   useEffect(() => {
-    const interval = setInterval(() => {
-      setDots(prev => prev.length >= 3 ? '' : prev + '.');
-    }, 300); // מהיר יותר
-    return () => clearInterval(interval);
-  }, []);
+    // נחשב את אחוז ההתקדמות הרלוונטי לטקסט (0 ב-10%, 1 ב-100%)
+    const textProgress = Math.max(0, Math.min(1, (smoothProgress - 10) / 90));
+    const current = Math.floor(textProgress * fullText.length);
+    setDisplayedText(fullText.slice(0, current));
+  }, [smoothProgress]);
 
-  // Pulse effect for loading text - מהיר יותר
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPulseOpacity(prev => prev === 1 ? 0.7 : 1);
-    }, 800); // מהיר יותר
-    return () => clearInterval(interval);
-  }, []);
+  // פונקציה ליצירת אפקט ריחוף לכל אות
+  const renderAnimatedText = () => {
+    return (
+      <span style={{ display: 'inline-block' }}>
+        {fullText.split('').map((char, i) => {
+          const isVisible = i < displayedText.length;
+          return (
+            <span
+              key={i}
+              style={{
+                display: 'inline-block',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0px)' : 'translateY(6px)',
+                transition: 'opacity 1s cubic-bezier(.4,2,.6,1), transform 1s cubic-bezier(.4,2,.6,1)',
+                transitionDelay: isVisible ? `${i * 0.12}s` : '0s',
+                color: '#FFFFFF',
+              }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          );
+        })}
+      </span>
+    );
+  };
 
   const CircularProgress = ({ size = 120, strokeWidth = 8 }) => {
     const radius = (size - strokeWidth) / 2;
@@ -100,147 +114,104 @@ function LoadingScreen({ progress = 0 }) {
       position: 'absolute',
       top: 0,
       left: 0,
-      width: '100%',
-      height: '100%',
-      background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1611 50%, #2d2d2d 100%)',
+      width: '100vw',
+      height: '100vh',
+      background: '#1D1C1A',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      color: 'white',
-      fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif",
       zIndex: 9999,
-      overflow: 'hidden'
+      overflow: 'hidden',
     }}>
-      {/* Animated background particles */}
       <div style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        background: `
-          radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(129, 199, 132, 0.05) 0%, transparent 50%),
-          radial-gradient(circle at 40% 80%, rgba(165, 214, 167, 0.08) 0%, transparent 50%)
-        `,
-        animation: 'float 6s ease-in-out infinite',
-        zIndex: -1
-      }} />
-
-      <div style={{ 
-        textAlign: 'center',
-        position: 'relative',
-        padding: '40px',
-        borderRadius: '20px',
-        background: 'rgba(255, 255, 255, 0.05)',
-        backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
-        minWidth: '320px'
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
         {/* Circular Progress */}
-        <div style={{ position: 'relative', marginBottom: '30px' }}>
-          <CircularProgress />
+        <div style={{ position: 'relative', marginBottom: '0px' }}>
+          <svg width={260} height={260} style={{ display: 'block' }}>
+            {/* גבול חיצוני */}
+            <circle
+              cx={130}
+              cy={130}
+              r={120}
+              stroke="#FFFFFF"
+              strokeWidth={2}
+              fill="none"
+            />
+            {/* רקע בין הגבולות */}
+            <circle
+              cx={130}
+              cy={130}
+              r={110}
+              fill="#1D1C1A"
+              stroke="none"
+            />
+            {/* גבול פנימי */}
+            <circle
+              cx={130}
+              cy={130}
+              r={100}
+              stroke="#FFFFFF"
+              strokeWidth={2}
+              fill="none"
+            />
+            {/* עיגול התקדמות עבה */}
+            <circle
+              cx={130}
+              cy={130}
+              r={110}
+              stroke="#FFFFFF"
+              strokeWidth={10}
+              fill="none"
+              strokeDasharray={2 * Math.PI * 110}
+              strokeDashoffset={(1 - smoothProgress / 100) * 2 * Math.PI * 110}
+              strokeLinecap="round"
+              style={{
+                transition: 'stroke-dashoffset 0.3s ease',
+              }}
+            />
+          </svg>
           <div style={{
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '24px',
-            fontWeight: 'bold',
-            color: '#4CAF50',
-            textShadow: '0 0 10px rgba(76, 175, 80, 0.5)'
+            fontSize: '2.3rem',
+            fontWeight: 400,
+            color: '#FFFFFF',
+            letterSpacing: '1px',
+            textShadow: '0 0 8px #000',
+            fontFamily: 'Work Sans, Arial, sans-serif',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '160px',
+            height: '160px',
+            textAlign: 'center',
           }}>
-            {Math.round(smoothProgress)}%
+            {Math.round(smoothProgress)}<span style={{fontSize: '1.2rem', marginRight: '2px'}}>%</span>
           </div>
         </div>
-
-        {/* Loading Text */}
+        {/* טקסט מתחת לעיגול */}
         <div style={{
-          fontSize: '28px',
-          fontWeight: '300',
-          marginBottom: '10px',
-          opacity: pulseOpacity,
-          transition: 'opacity 1s ease',
-          letterSpacing: '2px'
+          marginTop: '38px',
+          color: '#FFFFFF',
+          fontFamily: 'Work Sans, Arial, sans-serif',
+          fontSize: '1.35rem',
+          fontWeight: 300,
+          letterSpacing: '0.5px',
+          textAlign: 'center',
+          minHeight: '32px',
+          userSelect: 'none',
+          width: '100%',
         }}>
-          Loading{dots}
-        </div>
-
-        <div style={{
-          fontSize: '16px',
-          color: 'rgba(255, 255, 255, 0.7)',
-          marginBottom: '25px',
-          fontWeight: '300'
-        }}>
-          Please wait while we prepare your experience
-        </div>
-
-        {/* Progress Bar */}
-        <div style={{
-          width: '280px',
-          height: '6px',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '10px',
-          overflow: 'hidden',
-          margin: '0 auto',
-          position: 'relative'
-        }}>
-          <div style={{
-            width: `${smoothProgress}%`,
-            height: '100%',
-            background: 'linear-gradient(90deg, #4CAF50, #81C784, #A5D6A7)',
-            borderRadius: '10px',
-            transition: 'width 0.1s ease-out',
-            boxShadow: '0 0 15px rgba(76, 175, 80, 0.6)',
-            position: 'relative'
-          }}>
-            {/* Animated shine effect */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: '-100%',
-              width: '100%',
-              height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-              animation: 'shine 2s infinite'
-            }} />
-          </div>
-        </div>
-
-        {/* Loading stages indicator */}
-        <div style={{
-          marginTop: '20px',
-          fontSize: '12px',
-          color: 'rgba(255, 255, 255, 0.5)',
-          textTransform: 'uppercase',
-          letterSpacing: '1px'
-        }}>
-          {smoothProgress < 25 ? 'Initializing...' :
-           smoothProgress < 50 ? 'Loading Assets...' :
-           smoothProgress < 75 ? 'Processing Data...' :
-           smoothProgress < 95 ? 'Finalizing...' : 'Almost Ready!'}
+          {renderAnimatedText()}
         </div>
       </div>
-
-      {/* CSS Animations injected via style tag */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-          }
-          
-          @keyframes shine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-          }
-
-          @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-          }
-        `
-      }} />
     </div>
   );
 }

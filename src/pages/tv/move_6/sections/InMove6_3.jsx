@@ -61,7 +61,7 @@ const InMove6_3 = () => {
   };
 
   const handleImageClick = () => {
-    setShowModal(true);
+      setShowModal(true);
   };
 
   // Debug function to show clickable areas

@@ -221,12 +221,12 @@ const InMove1 = () => {
 
         {/* Hover Image */}
         {((isAreaHovered || isHoveringZoomImage) && !selectedImage) && (
-          <div
+            <div
             className="fixed z-40 cursor-pointer"
-            style={{
+              style={{
               left: `calc(50% + ${getImageZoomConfig(1).zoomOffset.x}px)`,
               top: `calc(50% + ${getImageZoomConfig(1).zoomOffset.y}px)`,
-              transform: 'translate(-50%, -50%)',
+                transform: 'translate(-50%, -50%)',
               willChange: 'transform',
               pointerEvents: 'auto',
               display: 'flex',
@@ -239,25 +239,25 @@ const InMove1 = () => {
             onMouseEnter={() => setIsHoveringZoomImage(true)}
             onMouseLeave={() => setIsHoveringZoomImage(false)}
             onClick={() => handleImageClick(1)}
-          >
-            <img
-              src={hoverImage || "/tv/pictures/tv1/move-1/zoonBit/01.png"}
+            >
+              <img
+                src={hoverImage || "/tv/pictures/tv1/move-1/zoonBit/01.png"}
               alt="Zoomed Easter egg"
-              style={{ 
+                style={{ 
                 width: '100%',
                 height: '100%',
                 objectFit: 'fill',
                 willChange: 'transform, opacity',
-                imageRendering: 'crisp-edges',
-                backfaceVisibility: 'hidden',
-                transform: 'translateZ(0)',
+                  imageRendering: 'crisp-edges',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
                 opacity: 1,
                 transition: 'all 0.3s ease-in-out',
                 border: '2px solid #FFFFFF',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-              }}
-            />
-          </div>
+                }}
+              />
+            </div>
         )}
 
         {/* ZoomIn Modal */}

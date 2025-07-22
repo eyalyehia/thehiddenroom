@@ -61,7 +61,7 @@ const InMove5_4 = () => {
   };
 
   const handleImageClick = () => {
-    setShowModal(true);
+      setShowModal(true);
   };
 
   // Debug function to show clickable areas
@@ -156,10 +156,10 @@ const InMove5_4 = () => {
         return (
           <div
             className="absolute z-40 cursor-pointer"
-            style={{
-              left: `calc(50% + ${cfg.zoomOffset.x}px)`,
-              top: `calc(50% + ${cfg.zoomOffset.y}px)`,
-              transform: 'translate(0, -50%)',
+  style={{
+    left: `calc(50% + ${cfg.zoomOffset.x}px)`,
+    top: `calc(50% + ${cfg.zoomOffset.y}px)`,
+    transform: 'translate(0, -50%)',
               willChange: 'transform',
               pointerEvents: 'auto',
               display: 'flex',
@@ -172,25 +172,25 @@ const InMove5_4 = () => {
             onMouseEnter={() => setIsHoveringZoomImage(true)}
             onMouseLeave={() => setIsHoveringZoomImage(false)}
             onClick={() => setShowModal(true)}
-          >
-            <img
-              src={hoverImage || "/tv/pictures/tv2/move-5/zoomBIt/04.png"}
+>
+  <img
+    src={hoverImage || "/tv/pictures/tv2/move-5/zoomBIt/04.png"}
               alt="Zoomed Easter egg"
-              style={{ 
+    style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'fill',
                 willChange: 'transform, opacity',
-                imageRendering: 'crisp-edges',
-                backfaceVisibility: 'hidden',
-                transform: 'translateZ(0)',
+      imageRendering: 'crisp-edges',
+      backfaceVisibility: 'hidden',
+      transform: 'translateZ(0)',
                 opacity: 1,
                 transition: 'all 0.3s ease-in-out',
                 border: '2px solid #FFFFFF',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-              }}
-            />
-          </div>
+    }}
+  />
+</div>
         );
       })()}
 
