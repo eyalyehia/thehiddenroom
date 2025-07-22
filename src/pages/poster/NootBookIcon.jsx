@@ -37,11 +37,18 @@ const NootBookIcon = () => {
         <div className="absolute text-white font-['Work_Sans']" style={{ left: '122px' }}>
           {/* Title */}
           <h1 
-            className="w-[372px] h-[50px] font-bold text-[39px] leading-[128.04%]"
+            className="w-[372px] h-[50px]"
             style={{
               top: '122px',
               position: 'absolute',
-              opacity: 1
+              opacity: 1,
+              fontFamily: 'Work Sans',
+              fontWeight: 900,
+              fontStyle: 'Black',
+              fontSize: '39px',
+              lineHeight: '128%',
+              letterSpacing: '0%',
+              color: '#FFFFFF',
             }}
           >
             THE HIDDEN ROOM
@@ -49,14 +56,26 @@ const NootBookIcon = () => {
           
           {/* Description */}
           <p 
-            className="w-[827px] h-[221px] font-normal text-[32px] leading-[100%]"
+            className="w-[827px] h-[221px]"
             style={{
               top: '172px',
               position: 'absolute',
-              opacity: 1
+              // opacity: 1,
+              fontFamily: 'Work Sans',
+              fontWeight: 400,
+              fontStyle: 'normal',
+              fontSize: '32px',
+              lineHeight: '103%',
+              letterSpacing: '0%',
+              color: '#FFFFFF',
+              whiteSpace: 'pre-line',
             }}
           >
-            This room is an exploration of visual easter eggs: secret messages and hidden details. From films and posters to brand logos and video games, each section invites you to look closer and uncover what's been hiding in plain sight.
+            {`This room is an exploration of visual easter eggs:
+secret messages and hidden details. From films
+and posters to brand logos and video games,
+each section invites you to look closer and
+uncover what’s been hiding in plain sight.`}
           </p>
         </div>
       </div>

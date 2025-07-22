@@ -118,10 +118,11 @@ const Tv2 = () => {
                   position: 'absolute',
                   top: '122px',
                   fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
-                  fontWeight: 700,
+                  fontWeight: 900,
+                  fontStyle: 'Black',
                   fontSize: '39px',
-                  lineHeight: '128.04%',
+                  lineHeight: '128%',
+                  letterSpacing: '0%',
                   color: '#FFFFFF',
                   width: '682px',
                   height: '50px'
@@ -131,25 +132,24 @@ const Tv2 = () => {
               </h1>
               
               {/* Description */}
-              <div 
+              <p 
                 style={{
                   position: 'absolute',
                   top: '172px',
                   fontFamily: 'Work Sans',
-                  fontStyle: 'normal',
                   fontWeight: 400,
+                  fontStyle: 'normal',
                   fontSize: '32px',
-                  lineHeight: '100%',
+                  lineHeight: '103%',
                   letterSpacing: '0%',
                   color: '#FFFFFF',
                   width: '827px',
-                  height: '221px'
+                  height: '221px',
+                  whiteSpace: 'pre-line'
                 }}
               >
-                <div style={{ marginBottom: '0' }}>Each movie scene contains a hidden detail.</div>
-                <div style={{ marginTop: '0' }}>move your cursor to uncover it.</div>
-                <div style={{ marginTop: '0' }}>can you spot them all?</div>
-              </div>
+                {`Each movie scene contains a hidden detail.\nmove your cursor to uncover it.\ncan you spot them all?`}
+              </p>
             </div>
           </div>
         </div>

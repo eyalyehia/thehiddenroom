@@ -1263,34 +1263,41 @@ const Logo2 = () => {
             <div className="absolute text-white font-['Work_Sans']" style={{ left: '122px' }}>
               {/* Title */}
               <h1 
-                className="w-[670px] h-[50px] font-bold text-[39px] leading-[128.04%]"
+                className="w-[670px] h-[50px]"
                 style={{
                   top: '122px',
                   position: 'absolute',
-                  opacity: 1
+                  opacity: 1,
+                  fontFamily: 'Work Sans',
+                  fontWeight: 900,
+                  fontStyle: 'Black',
+                  fontSize: '39px',
+                  lineHeight: '128%',
+                  letterSpacing: '0%',
+                  color: '#FFFFFF',
                 }}
               >
                 HIDDEN DETAILS IN BRAND LOGOS
               </h1>
               
               {/* Description */}
-              <div 
-                className="w-[827px] h-[221px] font-normal text-[32px]"
+              <p 
+                className="w-[827px] h-[221px]"
                 style={{
                   top: '172px',
                   position: 'absolute',
-                  opacity: 1,
                   fontFamily: 'Work Sans',
                   fontWeight: 400,
                   fontStyle: 'normal',
+                  fontSize: '32px',
                   lineHeight: '103%',
-                  letterSpacing: '0%'
+                  letterSpacing: '0%',
+                  color: '#FFFFFF',
+                  whiteSpace: 'pre-line',
                 }}
               >
-                <p>Each logo contains a hidden detail.</p>
-                <p>move your cursor to uncover it.</p>
-                <p>can you spot them all?</p>
-              </div>
+                {`Each logo contains a hidden detail.\nmove your cursor to uncover it.\ncan you spot them all?`}
+              </p>
             </div>
           </div>
         </div>
