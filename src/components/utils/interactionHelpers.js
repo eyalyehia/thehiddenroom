@@ -10,15 +10,27 @@ export const handlePointerOver = (e, setHovered, interactiveObjects) => {
   e.stopPropagation();
   const obj = e.object;
   
+  // Debug - נראה איזה אובייקט נלחץ
+  console.log('Pointer over object:', {
+    name: obj.name,
+    userData: obj.userData,
+    parentName: obj.parent?.name,
+    parentUserData: obj.parent?.userData
+  });
+  
   if (obj && (obj.userData.isInteractive || (obj.parent && obj.parent.userData && obj.parent.userData.isInteractive))) {
     const interactiveObj = obj.userData.isInteractive ? obj : obj.parent;
+    
+    // סינון אובייקטים שלא רצויים - לא נטפל ב-Plane002_1 כאינטראקטיבי
+    if (obj.name === 'Plane002_1' || interactiveObj.name === 'Plane002_1') {
+      return;
+    }
+    
     setHovered(interactiveObj.userData.name);
     
-    const isTVObject = interactiveObj.userData.name === "TV" || 
-                      interactiveObj.name.includes("TV") || 
-                      interactiveObj.name === "TV_2" || 
-                      interactiveObj.name === "TV_1" ||
-                      interactiveObj.name === "Plane002_1";
+    // בדיקה מדויקת יותר לטלוויזיה - רק אם השם הוא בדיוק "TV"
+    // ולא Plane002_1 או שמות אחרים
+    const isTVObject = interactiveObj.userData.name === "TV";
     
     if (isTVObject) {
       Object.keys(interactiveObjects.current).forEach(key => {
@@ -48,13 +60,15 @@ export const handlePointerOut = (e, setHovered, interactiveObjects) => {
   if (obj && (obj.userData.isInteractive || (obj.parent && obj.parent.userData && obj.parent.userData.isInteractive))) {
     const interactiveObj = obj.userData.isInteractive ? obj : obj.parent;
     
+    // סינון אובייקטים שלא רצויים - לא נטפל ב-Plane002_1 כאינטראקטיבי
+    if (obj.name === 'Plane002_1' || interactiveObj.name === 'Plane002_1') {
+      return;
+    }
+    
     setHovered(null);
     
-    const isTVObject = interactiveObj.userData.name === "TV" || 
-                      interactiveObj.name.includes("TV") || 
-                      interactiveObj.name === "TV_2" || 
-                      interactiveObj.name === "TV_1" ||
-                      interactiveObj.name === "Plane002_1";
+    // בדיקה מדויקת יותר לטלוויזיה - רק אם השם הוא בדיוק "TV"
+    const isTVObject = interactiveObj.userData.name === "TV";
     
     if (isTVObject) {
       Object.keys(interactiveObjects.current).forEach(key => {
@@ -80,6 +94,11 @@ export const handleClick = (e) => {
   const obj = e.object;
   
   if (obj && obj.userData.isInteractive) {
+    // סינון אובייקטים שלא רצויים - לא נטפל ב-Plane002_1 כאינטראקטיבי
+    if (obj.name === 'Plane002_1') {
+      return;
+    }
+    
     const name = obj.userData.name;
     
     if (name === "Poster" || obj.name === "Plane012" || obj.name === "Plane014" ||
@@ -106,15 +125,13 @@ export const handleClick = (e) => {
       return;
     }
 
-    if (name === "TV" || obj.name === "TV_1" || obj.name === "TV_2" || 
-        obj.name === "Plane002_1" || obj.name.toLowerCase().includes("tv") ||
-        obj.name.toLowerCase().includes("television")) {
+    // בדיקה מדויקת יותר לטלוויזיה - הסרנו את הבדיקות המיותרות
+    if (name === "TV") {
       window.location.href = '/tv';
       return;
     }
 
-    if (name === "ComputerScreen" || obj.name.toLowerCase().includes("computer") || 
-        obj.name.toLowerCase().includes("monitor") || obj.name.toLowerCase().includes("screen")) {
+    if (name === "ComputerScreen") {
       window.location.href = '/computer';
       return;
     }
@@ -135,4 +152,4 @@ export const handleClick = (e) => {
 
     alert(`מידע על ${obj.userData.description}:\nשם האובייקט: ${meshInfo.name}\nסוג: ${meshInfo.type}\nגיאומטריה: ${meshInfo.geometry}\nחומר: ${meshInfo.materialType}`);
   }
-}; 
+};
