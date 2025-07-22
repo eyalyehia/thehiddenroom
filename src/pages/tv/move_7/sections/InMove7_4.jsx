@@ -6,7 +6,7 @@ import getBase64 from '../../../../components/common/getBase64';
 const InMove7_4 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [isHoveringModalBackButton, setIsHoveringModalBackButton] = useState(false);
-  const [showClickableAreas, setShowClickableAreas] = useState(false);
+  // הסרתי את showClickableAreas
   const [hoveredImage, setHoveredImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [clickedImages, setClickedImages] = useState(new Set());
@@ -124,29 +124,7 @@ const InMove7_4 = () => {
     setShowZoomInModal(true);
   }, []);
 
-  // Debug function to show clickable areas
-  const renderClickableAreasDebug = () => {
-    if (!showClickableAreas) return null;
-    
-    const areas = getTvMove7ClickableAreas(4);
-    
-    return areas.map((area, index) => (
-      <div
-        key={`debug-${index}`}
-        style={{
-          position: 'absolute',
-          left: `${area.x * 100}%`,
-          top: `${area.y * 100}%`,
-          width: `${area.width * 100}%`,
-          height: `${area.height * 100}%`,
-          border: '2px solid rgba(255, 0, 0, 0.8)',
-          backgroundColor: 'rgba(255, 0, 0, 0.2)',
-          pointerEvents: 'none',
-          zIndex: 15,
-        }}
-      />
-    ));
-  };
+  // הסרתי את renderClickableAreasDebug
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -174,12 +152,7 @@ const InMove7_4 = () => {
         </button>
 
         {/* Debug Button */}
-        <button
-          className="fixed top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
-          onClick={() => setShowClickableAreas(!showClickableAreas)}
-        >
-          {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
-        </button>
+        {/* הסרתי את כפתור הצגת האזורים האדומים */}
 
         {/* Main Image */}
         <div 
@@ -198,7 +171,6 @@ const InMove7_4 = () => {
               transform: 'translateZ(0)',
             }}
           />
-          {renderClickableAreasDebug()}
           {/* Add clickable area overlay */}
           {getTvMove7ClickableAreas(4).map((area, index) => (
             <div

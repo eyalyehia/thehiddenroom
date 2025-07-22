@@ -10,7 +10,7 @@ const InMove4_2 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [isHoveringModalBackButton, setIsHoveringModalBackButton] =
     useState(false);
-  const [showClickableAreas, setShowClickableAreas] = useState(false);
+  // הסרתי את showClickableAreas
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
   const [hoverImage, setHoverImage] = useState("");
@@ -83,29 +83,7 @@ const InMove4_2 = () => {
       setShowModal(true);
   };
 
-  // Debug function to show clickable areas
-  const renderClickableAreasDebug = () => {
-    if (!showClickableAreas) return null;
-
-    const areas = getTvMove4ClickableAreas(2);
-
-    return areas.map((area, index) => (
-      <div
-        key={`debug-${index}`}
-        style={{
-          position: "absolute",
-          left: `${area.x * 100}%`,
-          top: `${area.y * 100}%`,
-          width: `${area.width * 100}%`,
-          height: `${area.height * 100}%`,
-          border: "2px solid rgba(255, 0, 0, 0.8)",
-          backgroundColor: "rgba(255, 0, 0, 0.2)",
-          pointerEvents: "none",
-          zIndex: 15,
-        }}
-      />
-    ));
-  };
+  // הסרתי את renderClickableAreasDebug
 
   return (
     <div
@@ -113,12 +91,7 @@ const InMove4_2 = () => {
       style={{ backgroundColor: "#1D1C1A" }}
     >
       {/* Debug Button */}
-      <button
-        className="absolute top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
-        onClick={() => setShowClickableAreas(!showClickableAreas)}
-      >
-        {showClickableAreas ? "הסתר אזורים" : "הראה אזורים"}
-      </button>
+      {/* הסרתי את כפתור הצגת האזורים האדומים */}
 
       {/* Back Button */}
       <button
@@ -174,7 +147,6 @@ const InMove4_2 = () => {
           alt="Full Screen Scene"
           className="w-full h-full object-cover"
         />
-        {renderClickableAreasDebug()}
         {/* Add clickable area overlay */}
         {getTvMove4ClickableAreas(2).map((area, index) => (
           <div
