@@ -6,12 +6,13 @@ import getBase64 from '../../../../components/common/getBase64';
 const InMove2_3 = () => {
   const [isHoveringBackButton, setIsHoveringBackButton] = useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
-  const [hoveredImage, setHoveredImage] = useState(null);
   const [image, setImage] = useState('');
   const [hoverImage, setHoverImage] = useState('');
   const [zoomImage, setZoomImage] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [isHoveringModalBackButton, setIsHoveringModalBackButton] = useState(false);
+  const [isAreaHovered, setIsAreaHovered] = useState(false);
+  const [isHoveringZoomImage, setIsHoveringZoomImage] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,9 +58,9 @@ const InMove2_3 = () => {
     const inClickableArea = isPointInTvMove2Area(3, mouseX, mouseY, rect.width, rect.height);
     
     if (inClickableArea) {
-      setHoveredImage(3);
+      // setHoveredImage(3); // This line was removed as per the edit hint
     } else {
-      setHoveredImage(null);
+      // setHoveredImage(null); // This line was removed as per the edit hint
     }
   };
 
@@ -120,7 +121,7 @@ const InMove2_3 = () => {
       <div 
         className="relative w-full h-full"
         onMouseMove={handleImageMouseMove}
-        onMouseLeave={() => setHoveredImage(null)}
+        onMouseLeave={() => {}}
       >
         <img 
           src={image || "/tv/pictures/tv1/move-2/regular/03.png"}
@@ -141,34 +142,51 @@ const InMove2_3 = () => {
               pointerEvents: 'auto',
               zIndex: 10,
             }}
+            onMouseEnter={() => setIsAreaHovered(true)}
+            onMouseLeave={() => setIsAreaHovered(false)}
             onClick={handleImageClick}
           />
         ))}
       </div>
 
       {/* Hover Image */}
-      {hoveredImage && (() => {
-        const cfg = getImageZoomConfig(hoveredImage);
+      {((isAreaHovered || isHoveringZoomImage)) && (() => {
+        const cfg = getImageZoomConfig(3);
         return (
           <div
-            className="absolute z-40 pointer-events-none"
+            className="absolute z-40 cursor-pointer"
             style={{
               left: `calc(50% + ${cfg.zoomOffset.x}px)`,
               top: `calc(50% + ${cfg.zoomOffset.y}px)`,
               transform: 'translate(-50%, -50%)',
+              willChange: 'transform',
+              pointerEvents: 'auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              width: cfg.zoomSize.replace('w-[', '').replace(']', ''),
+              height: cfg.zoomHeight.replace('h-[', '').replace(']', '')
             }}
+            onMouseEnter={() => setIsHoveringZoomImage(true)}
+            onMouseLeave={() => setIsHoveringZoomImage(false)}
+            onClick={handleImageClick}
           >
             <img
               src={hoverImage || "/tv/pictures/tv1/move-2/zoomBit/03.png"}
-              alt="Hover Scene"
-              className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border-2 border-white`}
+              alt="Zoomed Easter egg"
               style={{ 
-                transition: 'opacity 300ms ease-out',
-                opacity: 1,
-                willChange: 'transform',
+                width: '100%',
+                height: '100%',
+                objectFit: 'fill',
+                willChange: 'transform, opacity',
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
+                opacity: 1,
+                transition: 'all 0.3s ease-in-out',
+                border: '2px solid #FFFFFF',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
               }}
             />
           </div>

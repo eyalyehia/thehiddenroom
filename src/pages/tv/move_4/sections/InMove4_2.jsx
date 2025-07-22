@@ -11,12 +11,13 @@ const InMove4_2 = () => {
   const [isHoveringModalBackButton, setIsHoveringModalBackButton] =
     useState(false);
   const [showClickableAreas, setShowClickableAreas] = useState(false);
-  const [hoveredImage, setHoveredImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
   const [hoverImage, setHoverImage] = useState("");
   const [zoomImage, setZoomImage] = useState("");
   const navigate = useNavigate();
+  const [isAreaHovered, setIsAreaHovered] = useState(false);
+  const [isHoveringZoomImage, setIsHoveringZoomImage] = useState(false);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -72,16 +73,14 @@ const InMove4_2 = () => {
     );
 
     if (inClickableArea) {
-      setHoveredImage(2);
+      // אין צורך בפעולה
     } else {
-      setHoveredImage(null);
+      // אין צורך בפעולה
     }
   };
 
   const handleImageClick = () => {
-    if (hoveredImage) {
-      setShowModal(true);
-    }
+    setShowModal(true);
   };
 
   // Debug function to show clickable areas
@@ -167,7 +166,7 @@ const InMove4_2 = () => {
       <div
         className="relative w-full h-full"
         onMouseMove={handleImageMouseMove}
-        onMouseLeave={() => setHoveredImage(null)}
+        onMouseLeave={() => {}}
         onClick={handleImageClick}
       >
         <img
@@ -186,42 +185,59 @@ const InMove4_2 = () => {
               top: `${area.y * 100}%`,
               width: `${area.width * 100}%`,
               height: `${area.height * 100}%`,
-              pointerEvents: "auto",
+              pointerEvents: 'auto',
               zIndex: 10,
             }}
+            onMouseEnter={() => setIsAreaHovered(true)}
+            onMouseLeave={() => setIsAreaHovered(false)}
+            onClick={() => setShowModal(true)}
           />
         ))}
       </div>
 
       {/* Hover Image */}
-      {hoveredImage &&
-        (() => {
-          const cfg = getImageZoomConfig(hoveredImage);
-          return (
-            <div
-              className="absolute z-40 pointer-events-none"
-              style={{
-                left: `calc(50% + ${cfg.zoomOffset.x}px)`,
-                top: `calc(50% + ${cfg.zoomOffset.y}px)`,
-                transform: "translate(-50%, -50%)",
+      {((isAreaHovered || isHoveringZoomImage)) && (() => {
+        const cfg = getImageZoomConfig(2);
+        return (
+          <div
+            className="absolute z-40 cursor-pointer"
+            style={{
+              left: `calc(50% + ${cfg.zoomOffset.x}px)`,
+              top: `calc(50% + ${cfg.zoomOffset.y}px)`,
+              transform: 'translate(-50%, -50%)',
+              willChange: 'transform',
+              pointerEvents: 'auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              width: cfg.zoomSize.replace('w-[', '').replace(']', ''),
+              height: cfg.zoomHeight.replace('h-[', '').replace(']', '')
+            }}
+            onMouseEnter={() => setIsHoveringZoomImage(true)}
+            onMouseLeave={() => setIsHoveringZoomImage(false)}
+            onClick={() => setShowModal(true)}
+          >
+            <img
+              src={hoverImage || "/tv/pictures/tv1/move-4/zoomBit/02.png"}
+              alt="Zoomed Easter egg"
+              style={{ 
+                width: '100%',
+                height: '100%',
+                objectFit: 'fill',
+                willChange: 'transform, opacity',
+                imageRendering: 'crisp-edges',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+                opacity: 1,
+                transition: 'all 0.3s ease-in-out',
+                border: '2px solid #FFFFFF',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
               }}
-            >
-              <img
-                src={hoverImage || "/tv/pictures/tv1/move-4/zoomBit/02.png"}
-                alt="Hover Scene"
-                className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border-2 border-white`}
-                style={{
-                  transition: "opacity 300ms ease-out",
-                  opacity: 1,
-                  willChange: "transform",
-                  imageRendering: "crisp-edges",
-                  backfaceVisibility: "hidden",
-                  transform: "translateZ(0)",
-                }}
-              />
-            </div>
-          );
-        })()}
+            />
+          </div>
+        );
+      })()}
 
       {/* Modal */}
       {showModal && (

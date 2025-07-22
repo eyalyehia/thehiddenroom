@@ -15,6 +15,7 @@ const InMove8_3 = () => {
   const [zoomInImage, setZoomInImage] = useState('');
   const [showZoomInModal, setShowZoomInModal] = useState(false);
   const [isAreaHovered, setIsAreaHovered] = useState(false);
+  const [isHoveringZoomImage, setIsHoveringZoomImage] = useState(false);
 
   const hoverTimeoutRef = useRef(null);
   const navigate = useNavigate();
@@ -217,28 +218,43 @@ const InMove8_3 = () => {
         </div>
 
         {/* Hover Image */}
-        {hoveredImage && !selectedImage && (() => {
-          const cfg = getImageZoomConfig(hoveredImage);
+        {((isAreaHovered || isHoveringZoomImage) && !selectedImage) && (() => {
+          const cfg = getImageZoomConfig(3);
           return (
             <div
-              className="fixed z-40 pointer-events-none"
+              className="fixed z-40 cursor-pointer"
               style={{
                 left: `calc(50% + ${cfg.zoomOffset.x}px)`,
                 top: `calc(50% + ${cfg.zoomOffset.y}px)`,
                 transform: 'translate(-50%, -50%)',
-                opacity: isAreaHovered ? 1 : 0,
-                transition: 'opacity 300ms ease-in-out',
+                willChange: 'transform',
+                pointerEvents: 'auto',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                overflow: 'hidden',
+                width: cfg.zoomSize.replace('w-[', '').replace(']', ''),
+                height: cfg.zoomHeight.replace('h-[', '').replace(']', '')
               }}
+              onMouseEnter={() => setIsHoveringZoomImage(true)}
+              onMouseLeave={() => setIsHoveringZoomImage(false)}
+              onClick={() => handleImageClick(3)}
             >
               <img
                 src={hoverImage || "/tv/pictures/tv2/move-8/zoomBit/03.png"}
-                alt="Hover Scene"
-                className={`${cfg.zoomSize} ${cfg.zoomHeight} object-cover border-2 border-white shadow-2xl bg-black/90`}
+                alt="Zoomed Easter egg"
                 style={{ 
-                  willChange: 'transform',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'fill',
+                  willChange: 'transform, opacity',
                   imageRendering: 'crisp-edges',
                   backfaceVisibility: 'hidden',
                   transform: 'translateZ(0)',
+                  opacity: 1,
+                  transition: 'all 0.3s ease-in-out',
+                  border: '2px solid #FFFFFF',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
                 }}
               />
             </div>
