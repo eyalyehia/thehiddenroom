@@ -9,13 +9,19 @@ import { applyHighlightEffect, removeHighlightEffect } from './raycastHelpers';
 export const handlePointerOver = (e, setHovered, interactiveObjects) => {
   e.stopPropagation();
   const obj = e.object;
+  // החרגה של zhuozi001
+  if (obj && (obj.name === 'zhuozi001' || obj.userData.name === 'zhuozi.001')) {
+    return;
+  }
   
-  // Debug - נראה איזה אובייקט נלחץ
+  // Debug - נראה איזה אובייקט נגע בו העכבר
   console.log('Pointer over object:', {
     name: obj.name,
     userData: obj.userData,
     parentName: obj.parent?.name,
-    parentUserData: obj.parent?.userData
+    parentUserData: obj.parent?.userData,
+    isToblerone: obj.userData.name === "Toblerone" || obj.name.includes("toblerone") || obj.name.includes("טובלרון"),
+    isDiary: obj.userData.name === "Diary" || obj.name.includes("diary") || obj.name.includes("notebook") || obj.name.includes("journal")
   });
   
   if (obj && (obj.userData.isInteractive || (obj.parent && obj.parent.userData && obj.parent.userData.isInteractive))) {
@@ -56,6 +62,10 @@ export const handlePointerOver = (e, setHovered, interactiveObjects) => {
 export const handlePointerOut = (e, setHovered, interactiveObjects) => {
   e.stopPropagation();
   const obj = e.object;
+  // החרגה של zhuozi001
+  if (obj && (obj.name === 'zhuozi001' || obj.userData.name === 'zhuozi.001')) {
+    return;
+  }
   
   if (obj && (obj.userData.isInteractive || (obj.parent && obj.parent.userData && obj.parent.userData.isInteractive))) {
     const interactiveObj = obj.userData.isInteractive ? obj : obj.parent;
@@ -92,6 +102,10 @@ export const handlePointerOut = (e, setHovered, interactiveObjects) => {
 export const handleClick = (e) => {
   e.stopPropagation();
   const obj = e.object;
+  // החרגה של zhuozi001
+  if (obj && (obj.name === 'zhuozi001' || obj.userData.name === 'zhuozi.001')) {
+    return;
+  }
   
   if (obj && obj.userData.isInteractive) {
     // סינון אובייקטים שלא רצויים - לא נטפל ב-Plane002_1 כאינטראקטיבי
