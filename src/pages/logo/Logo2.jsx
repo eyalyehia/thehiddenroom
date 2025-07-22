@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'; // Removed unused useCallback
 import { useNavigate } from 'react-router-dom';
-import { isPointInClickableArea, getClickableAreas } from '../../components/constant/clickableAreas';
+import { isPointInClickableArea } from '../../components/constant/clickableAreas';
 import getBase64 from '../../components/common/getBase64';
 
 // Memoized image component with loading state
@@ -85,8 +85,7 @@ const Logo2 = () => {
     navigate('/logo');
   };
 
-  // Add debug mode state for showing clickable areas
-  const [showClickableAreas, setShowClickableAreas] = useState(false);
+  // מצב debug לאזורים לחיצים (נשלט רק ע"י מקש d)
 
   // Hover handler for logo hotspots - simplified to match poster behavior
   const handleLogoEnter = useMemo(() => (logoId) => {
@@ -230,7 +229,7 @@ const Logo2 = () => {
             onMouseMove={(e) => handleLogoMouseMove(logoNum, e)}
             onClick={(e) => handleLogoClick(logoNum, e)}
           />
-          {showClickableAreas && (() => {
+          {/* showClickableAreas && (() => {
             const areas = getClickableAreas(logoNum, 2);
             return areas.map((area, areaIndex) => (
               <div
@@ -246,11 +245,11 @@ const Logo2 = () => {
                 }}
               />
             ));
-          })()}
+          })() */}
         </div>
       );
     });
-  }, [handleLogoEnter, handleLogoLeave, handleLogoMouseMove, handleLogoClick, showClickableAreas]);
+  }, [handleLogoEnter, handleLogoLeave, handleLogoMouseMove, handleLogoClick]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1D1C1A' }}>
@@ -261,13 +260,7 @@ const Logo2 = () => {
         }}
       >
       
-      {/* כפתור לתצוגת אזורים לחיצים */}
-      <button
-        className="fixed top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
-        onClick={() => setShowClickableAreas(!showClickableAreas)}
-      >
-        {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
-      </button>
+      {/* כפתור debug מוסתר - נשאר רק בהערות, מצב debug עדיין נפתח עם מקש d */}
 
       {/* כפתור סגירה X */}
       <button

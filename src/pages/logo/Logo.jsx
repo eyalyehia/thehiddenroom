@@ -261,13 +261,7 @@ const Logo = () => {
         )}
       </button>
 
-      {/* כפתור לתצוגת אזורים לחיצים */}
-      <button
-        className="fixed top-6 left-6 bg-red-500 text-white px-3 py-1 rounded text-sm z-50"
-        onClick={() => setShowClickableAreas(!showClickableAreas)}
-      >
-        {showClickableAreas ? 'הסתר אזורים' : 'הראה אזורים'}
-      </button>
+      {/* כפתור debug מוסתר - נשאר רק בהערות, מצב debug עדיין נפתח עם מקש d */}
 
       {/* תמונות הלוגואים - Flexbox centered grid */}
       <div className="flex items-center justify-center min-h-screen">
