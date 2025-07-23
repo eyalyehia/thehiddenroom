@@ -232,6 +232,7 @@ const InsideGame62 = () => {
 
       {/* Navigation Button */}
       <button
+        className="transition-all duration-200 ease-in-out border-0 outline-none focus:outline-none cursor-pointer"
         style={{
           position: 'absolute',
           width: '29px',
@@ -239,24 +240,33 @@ const InsideGame62 = () => {
           right: '30px',
           top: '30px',
           background: 'none',
-          border: 'none',
-          cursor: 'pointer',
           padding: 0,
-          zIndex: 1000
+          zIndex: 1000,
+          transform: isHoveringButton ? 'scale(0.90)' : 'scale(1)',
+          backgroundColor: 'transparent'
         }}
         onClick={() => navigate('/game6')}
         onMouseEnter={() => setIsHoveringButton(true)}
         onMouseLeave={() => setIsHoveringButton(false)}
       >
-        {isHoveringButton ? (
-          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        ) : (
-          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        )}
+        <svg 
+          width="29" 
+          height="45" 
+          viewBox="0 0 29 45" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            transition: 'all 0.2s ease-in-out'
+          }}
+        >
+          <path 
+            d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" 
+            fill={isHoveringButton ? "white" : "none"}
+            stroke="white" 
+            strokeWidth="2" 
+            strokeMiterlimit="10"
+          />
+        </svg>
       </button>
     </div>
   );

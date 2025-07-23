@@ -145,19 +145,32 @@ const Game6 = () => {
       </div>
 
       {/* Navigation Arrow - Top Right */}
-      <div 
+      <button
+        className="transition-all duration-200 ease-in-out border-0 outline-none focus:outline-none cursor-pointer"
         style={{
           position: 'absolute',
           right: '30px',
           top: '30px',
-          cursor: 'pointer',
-          zIndex: 10
+          width: '29px',
+          height: '45px',
+          zIndex: 10,
+          transform: isHoveringButton ? 'scale(0.90)' : 'scale(1)',
+          backgroundColor: 'transparent'
         }}
         onMouseEnter={() => setIsHoveringButton(true)}
         onMouseLeave={() => setIsHoveringButton(false)}
         onClick={handleButtonClick}
       >
-        <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg 
+          width="29" 
+          height="45" 
+          viewBox="0 0 29 45" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            transition: 'all 0.2s ease-in-out'
+          }}
+        >
           <path 
             d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" 
             fill={isHoveringButton ? 'white' : 'none'} 
@@ -166,7 +179,7 @@ const Game6 = () => {
             strokeMiterlimit="10"
           />
         </svg>
-      </div>
+      </button>
     </div>
   );
 };

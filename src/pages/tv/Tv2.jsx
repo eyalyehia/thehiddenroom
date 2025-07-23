@@ -93,21 +93,34 @@ const Tv2 = () => {
           >
             {/* Close Button */}
             <button
-              className="fixed top-6 right-6 w-10 h-10 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+              className="fixed top-6 right-6 w-10 h-10 transition-all duration-200 ease-in-out z-50 border-0 outline-none focus:outline-none cursor-pointer"
+              style={{
+                transform: isHoveringCloseButton ? 'scale(0.90)' : 'scale(1)',
+                backgroundColor: 'transparent'
+              }}
               aria-label="Close"
               onClick={() => setShowNotebookModal(false)}
               onMouseEnter={() => setIsHoveringCloseButton(true)}
               onMouseLeave={() => setIsHoveringCloseButton(false)}
             >
-              {isHoveringCloseButton ? (
-                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-                </svg>
-              ) : (
-                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-                </svg>
-              )}
+              <svg 
+                width="38" 
+                height="38" 
+                viewBox="0 0 38 38" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  transition: 'all 0.2s ease-in-out'
+                }}
+              >
+                <path 
+                  d="M29.8233 2L36 8.205L25.2381 19.0189L36 29.795L29.795 36L18.9811 25.2381L8.205 36L2 29.795L12.7619 19.0189L2 8.205L8.23333 2C8.23333 2 15.5103 9.10694 19.0331 12.5919L29.8233 2Z" 
+                  fill={isHoveringCloseButton ? "white" : "none"}
+                  stroke="white" 
+                  strokeWidth="2" 
+                  strokeMiterlimit="10"
+                />
+              </svg>
             </button>
 
             {/* Content Container */}
@@ -163,12 +176,14 @@ const Tv2 = () => {
       >
         {/* Close Button - Top Right */}
         <button
-          className="fixed top-6 right-6 transition-opacity z-50 border-0 focus:outline-none cursor-pointer"
+          className="fixed top-6 right-6 transition-all duration-200 ease-in-out z-50 border-0 outline-none focus:outline-none cursor-pointer"
           style={{ 
             width: '46px', 
             height: '46px',
             opacity: showNotebookModal ? '0' : '1',
-            pointerEvents: showNotebookModal ? 'none' : 'auto'
+            pointerEvents: showNotebookModal ? 'none' : 'auto',
+            transform: isHoveringCloseButton ? 'scale(0.90)' : 'scale(1)',
+            backgroundColor: 'transparent'
           }}
           aria-label="Close"
           onClick={handleClose}
@@ -248,27 +263,38 @@ const Tv2 = () => {
 
         {/* Back Button - Left Side */}
         <button
-          className="fixed left-6 top-1/2 transform -translate-y-1/2 transition-opacity z-50 cursor-pointer"
+          className="fixed left-6 top-1/2 transition-all duration-200 ease-in-out z-50 cursor-pointer border-0 outline-none focus:outline-none"
           style={{ 
             width: '29px', 
             height: '45px',
             zIndex: showNotebookModal ? 40 : 50,
-            pointerEvents: showNotebookModal ? 'none' : 'auto'
+            pointerEvents: showNotebookModal ? 'none' : 'auto',
+            transform: `translateY(-50%) ${isHoveringBackButton ? 'scale(0.90)' : 'scale(1)'}`,
+            backgroundColor: 'transparent'
           }}
           aria-label="Back"
           onClick={handleBackClick}
           onMouseEnter={() => setIsHoveringBackButton(true)}
           onMouseLeave={() => setIsHoveringBackButton(false)}
         >
-          {isHoveringBackButton ? (
-            <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.81 1.5L1.5 22.5L21.81 43.5L27.5 37.94L12.97 22.55L27.5 7.06L21.81 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-            </svg>
-          ) : (
-            <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.81 1.5L1.5 22.5L21.81 43.5L27.5 37.94L12.97 22.55L27.5 7.06L21.81 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-            </svg>
-          )}
+          <svg 
+            width="29" 
+            height="45" 
+            viewBox="0 0 29 45" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            style={{
+              transition: 'all 0.2s ease-in-out'
+            }}
+          >
+            <path 
+              d="M21.81 1.5L1.5 22.5L21.81 43.5L27.5 37.94L12.97 22.55L27.5 7.06L21.81 1.5Z" 
+              fill={isHoveringBackButton ? "white" : "none"}
+              stroke="white" 
+              strokeWidth="2" 
+              strokeMiterlimit="10"
+            />
+          </svg>
         </button>
 
         {/* Images Container */}

@@ -315,21 +315,34 @@ const Game1 = () => {
           border: 'none',
           cursor: 'pointer',
           padding: 0,
-          zIndex: 10
+          zIndex: 10,
+          outline: 'none',
+          transform: isHoveringArrowButton ? 'scale(0.90)' : 'scale(1)',
+          transition: 'all 0.2s ease-in-out',
+          backgroundColor: 'transparent'
         }}
         onClick={handleNextClick}
         onMouseEnter={() => setIsHoveringArrowButton(true)}
         onMouseLeave={() => setIsHoveringArrowButton(false)}
       >
-        {isHoveringArrowButton ? (
-          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" fill="white" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        ) : (
-          <svg width="29" height="45" viewBox="0 0 29 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" stroke="white" strokeWidth="2" strokeMiterlimit="10"/>
-          </svg>
-        )}
+        <svg 
+          width="29" 
+          height="45" 
+          viewBox="0 0 29 45" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            transition: 'all 0.2s ease-in-out'
+          }}
+        >
+          <path 
+            d="M7.19 1.5L27.5 22.5L7.19 43.5L1.5 37.94L16.03 22.55L1.5 7.06L7.19 1.5Z" 
+            fill={isHoveringArrowButton ? "white" : "none"}
+            stroke="white" 
+            strokeWidth="2" 
+            strokeMiterlimit="10"
+          />
+        </svg>
       </button>
     </div>
   );
